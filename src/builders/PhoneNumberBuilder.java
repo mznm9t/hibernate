@@ -2,19 +2,15 @@ package builders;
 
 import domain.PhoneNumberH;
 import interfaces.PhoneNumber;
+import static builders.BuilderDirector.getPrimitiveAttribute;
 
 public class PhoneNumberBuilder implements BuilderI<PhoneNumber> {
 
 	private String entityName="PhoneNumber";
-    private String areaCode="02";
-    private String theNumber="7689872634";
-    private String countryCode="+44";
+    private String areaCode=getPrimitiveAttribute("02");
+    private String theNumber=getPrimitiveAttribute("7689872634");
+    private String countryCode=getPrimitiveAttribute("+44");
 	
-	public PhoneNumberBuilder withEntityName(String entityName) {
-		this.entityName = entityName;
-		return this;
-	}
-
 	public PhoneNumberBuilder withAreaCode(String areaCode) {
 		this.areaCode = areaCode;
 		return this;

@@ -17,7 +17,6 @@ import interfaces.Publication;
 
 public class PublicationDAO extends GenericHibernateDAOWhiInterface<Publication,PublicationH, ID>  {
 
-	public static final String ENTITY_NAME = "entityName";
 	public static final String DESCRIPTION = "description";
 	public static final String PUBLICATION_NAME = "publicationName";
 	public static final String TYPE = "type";

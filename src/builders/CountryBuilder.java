@@ -1,5 +1,6 @@
 package builders;
 
+import static builders.BuilderDirector.getPrimitiveAttribute;
 import domain.CountryH;
 import interfaces.Country;
 
@@ -7,15 +8,9 @@ public class CountryBuilder implements BuilderI<Country>{
 
 
 	 private String entityName="Country";
-     private String name="Spain";
-     private String isoCode="SP";
+     private String name=getPrimitiveAttribute("Spain");
+     private String isoCode=getPrimitiveAttribute("SP");
      
-     
- 	
-	 public CountryBuilder withEntityName(String entityName) {
-		this.entityName = entityName;
-		return this;
-	}
 
 	public CountryBuilder withName(String name) {
 		this.name = name;

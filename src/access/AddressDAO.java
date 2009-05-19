@@ -18,7 +18,7 @@ import domain.ID;
  */
 
 public class AddressDAO extends GenericHibernateDAOWhiInterface<Address, AddressH, ID>  {     
-	public static final String ENTITY_NAME = "entityName";
+
 	public static final String POSTCODE = "postcode";
 	public static final String LINE4 = "line4";
 	public static final String LINE3 = "line3";

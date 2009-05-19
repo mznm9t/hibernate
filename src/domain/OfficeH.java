@@ -1,6 +1,7 @@
 package domain;
 
 import java.util.Collection;
+import java.util.Set;
 
 import interfaces.PRManager;
 import interfaces.Region;
@@ -18,11 +19,13 @@ public class OfficeH extends ContactableH implements interfaces.Office, java.io.
 
     // Fields    
 
+	 private ID id;
      private String entityName;
      private String description;
      private String name;
      private Region region;
      private PRManager managedBy;
+	 private Set<PRManager> allManagers;
 
 
     // Constructors
@@ -33,24 +36,34 @@ public class OfficeH extends ContactableH implements interfaces.Office, java.io.
 
     
     /** full constructor */
-    public OfficeH(String entityName, String description, String name, Region region, PRManager managedBy) {
+    public OfficeH(String entityName, String description, String name, Region region, PRManager managedBy,Set<PRManager> allManagers) {
         this.entityName = entityName;
         this.description = description;
         this.name = name;
         this.region = region;
         this.managedBy = managedBy;
+        this.allManagers=allManagers;
     }
 
    
     // Property accessors
 
+    public ID getID() {
+		return id;
+	}
 
-
+	@SuppressWarnings("unused")
+	private void setID(ID id) {
+		this.id = id;
+	}
+	
+	
     public String getEntityName() {
         return this.entityName;
     }
     
-    public void setEntityName(String entityName) {
+    @SuppressWarnings("unused")
+	private void setEntityName(String entityName) {
         this.entityName = entityName;
     }
 
@@ -89,51 +102,45 @@ public class OfficeH extends ContactableH implements interfaces.Office, java.io.
 
 	@Override
 	public void addAllManager(PRManager aAllManager) {
-		// TODO Auto-generated method stub
-		
+		allManagers.add(aAllManager);
 	}
 
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public void addAllManagers(Collection aAllManagers) {
-		// TODO Auto-generated method stub
+		allManagers.addAll(aAllManagers);
 		
 	}
 
 
 	@Override
 	public void clearAllManagers() {
-		// TODO Auto-generated method stub
-		
+		allManagers.clear();
 	}
 
 
 	@Override
 	public boolean containsAllManager(PRManager aAllManager) {
-		// TODO Auto-generated method stub
-		return false;
+		return allManagers.contains(aAllManager);
 	}
 
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public Collection getAllManagers() {
-		// TODO Auto-generated method stub
-		return null;
+		return allManagers;
 	}
 
 
 	@Override
 	public PRManager[] getAllManagersAsArray() {
-		// TODO Auto-generated method stub
-		return null;
+		return (PRManager[])allManagers.toArray();
 	}
-
 
 	@Override
 	public void removeAllManager(PRManager aAllManager) {
-		// TODO Auto-generated method stub
-	
-		
+		allManagers.remove(aAllManager);
 	}
    
     

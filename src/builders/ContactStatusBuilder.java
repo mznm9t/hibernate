@@ -1,18 +1,15 @@
 package builders;
 
+import static builders.BuilderDirector.getPrimitiveAttribute;
 import domain.ContactStatusH;
 import interfaces.ContactStatus;
 
 public class ContactStatusBuilder implements BuilderI<ContactStatus>{
 
 	private String entityName="ContactStatus";
-	private String name="Active";
-	private String code="ACT";
+	private String name=getPrimitiveAttribute("Active");
+	private String code=getPrimitiveAttribute("ACT");
 
-	public ContactStatusBuilder withEntityName(String entityName) {
-		this.entityName = entityName;
-		return this;
-	}
 
 	public ContactStatusBuilder withName(String name) {
 		this.name = name;

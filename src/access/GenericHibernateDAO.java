@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.hibernate.Criteria;
 import org.hibernate.LockMode;
+import org.hibernate.LockOptions;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.criterion.Criterion;
@@ -69,17 +70,13 @@ public abstract class GenericHibernateDAO<T, I extends Serializable> implements
 		);
 	}
 	
-	public List<T> findByEntityName(Object entityName
-	) {
-		return findByProperty("entityName", entityName
-		);
-	}
 
 	/**
 	 * Will attach an object to the session.
 	 * Assuming the the object is already persisted in the DB and has not been modified.
 	 * @param instance
 	 */
+	@SuppressWarnings("deprecation")
 	public void attachClean(T instance) {
 	        log.debug("attaching clean  " + this.persistentClass.getName() + " instance");
 	        try {
@@ -203,7 +200,7 @@ public abstract class GenericHibernateDAO<T, I extends Serializable> implements
 		// go to the database
 		if (lock)
 			entity = (T) getSession().load(getPersistentClass(), id,
-					LockMode.UPGRADE);
+					LockOptions.UPGRADE);
 		else
 			entity = (T) getSession().load(getPersistentClass(), id);
 		return entity;

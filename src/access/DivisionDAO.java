@@ -18,7 +18,7 @@ import domain.ID;
  */
 
 public class DivisionDAO extends GenericHibernateDAOWhiInterface<Division, DivisionH, ID>  {
-	public static final String ENTITY_NAME = "entityName";
+
 	public static final String NAME = "name";
 
 	public List<Division> findByName(Object name

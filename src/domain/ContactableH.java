@@ -50,7 +50,7 @@ public class ContactableH  implements interfaces.Contactable,java.io.Serializabl
 
     
     /** full constructor */
-    public ContactableH(String entityName, String notes, ContactGroup mainGroup, Address address, PhoneNumber phone1, PhoneNumber phone2, PhoneNumber mobile, PhoneNumber fax, String email, String www, ContactStatus status, Date created, Date lastUpdate, Employee accountManager, String knownAs) {
+    public ContactableH(String entityName, String notes, ContactGroup mainGroup, Address address, PhoneNumber phone1, PhoneNumber phone2, PhoneNumber mobile, PhoneNumber fax, String email, String www, ContactStatus status, Date created, Date lastUpdate, Employee accountManager, String knownAs,Set<ContactEvent> contactEvents) {
         this.entityName = entityName;
         this.notes = notes;
         this.mainGroup = mainGroup;
@@ -66,6 +66,7 @@ public class ContactableH  implements interfaces.Contactable,java.io.Serializabl
         this.lastUpdate = lastUpdate;
         this.accountManager = accountManager;
         this.knownAs = knownAs;
+        this.contactEvents = contactEvents;
     }
     
     

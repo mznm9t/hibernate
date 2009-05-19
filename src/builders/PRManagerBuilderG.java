@@ -1,6 +1,7 @@
 package builders;
 
 import static core.ReflectiveUtil.copyObjectFields;
+import static builders.BuilderDirector.getPrimitiveAttribute;
 import interfaces.BusinessObject;
 import interfaces.PRManager;
 import domain.PRManagerH;
@@ -9,13 +10,8 @@ import domain.PRManagerH;
 public class PRManagerBuilderG<T extends PRManager,B extends PRManagerBuilderG<T,B>> extends PersonBuilderG<T,B> implements BuilderGI<T,B>  {
 
      private String entityName="PRManager";
-     private String fullName="Omar PR Manager Sanchez";
+     private String fullName=getPrimitiveAttribute("Omar PR Manager Sanchez");
 
-     
-	 public B withEntityName(String entityName) {
-        this.entityName = entityName;
-        return (B) this;
-     }
 
     public B withFullName(String fullName) {
         this.fullName = fullName;
@@ -28,7 +24,7 @@ public class PRManagerBuilderG<T extends PRManager,B extends PRManagerBuilderG<T
 		PRManager currentInstance=new PRManagerH(entityName,fullName);//return on object of the this class 
 		//do not change it by createInstance() because it is expected to call different method when this class is extended 
 		//and createInstance() is override. 
-		copyObjectFields(superInstance,currentInstance,true);//merge both
+		copyObjectFields(superInstance,currentInstance,false);//merge both
 		return (T)currentInstance;
 	}
 

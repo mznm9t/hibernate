@@ -1,6 +1,7 @@
 package domain;
 
 import java.util.Collection;
+import java.util.Set;
 
 import interfaces.Audience;
 import interfaces.PublicationType;
@@ -24,6 +25,7 @@ public class PublicationH extends CompanyH implements interfaces.Publication,jav
      private String publicationName;
      private PublicationType type;
      private Float value;
+     private Set<Audience> audiences;
 
 
     // Constructors
@@ -34,12 +36,13 @@ public class PublicationH extends CompanyH implements interfaces.Publication,jav
 
     
     /** full constructor */
-    public PublicationH(String entityName, String description, String publicationName, PublicationType type, Float value) {
+    public PublicationH(String entityName, String description, String publicationName, PublicationType type, Float value,Set<Audience>audiences) {
         this.entityName = entityName;
         this.description = description;
         this.publicationName = publicationName;
         this.type = type;
         this.value = value;
+        this.audiences=audiences;
     }
 
    
@@ -99,50 +102,45 @@ public class PublicationH extends CompanyH implements interfaces.Publication,jav
 
 	@Override
 	public void addAudience(Audience aAudience) {
-		// TODO Auto-generated method stub
-		
+		audiences.add(aAudience);
 	}
 
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public void addAudiences(Collection aAudiences) {
-		// TODO Auto-generated method stub
-		
+		audiences.addAll(aAudiences);
 	}
 
 
 	@Override
 	public void clearAudiences() {
-		// TODO Auto-generated method stub
-		
+		audiences.clear();
 	}
 
 
 	@Override
 	public boolean containsAudience(Audience aAudience) {
-		// TODO Auto-generated method stub
-		return false;
+		return audiences.contains(aAudience);
 	}
 
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public Collection getAudiences() {
-		// TODO Auto-generated method stub
-		return null;
+		return audiences;
 	}
 
 
 	@Override
 	public Audience[] getAudiencesAsArray() {
-		// TODO Auto-generated method stub
-		return null;
+		return (Audience[])audiences.toArray();
 	}
 
 
 	@Override
 	public void removeAudience(Audience aAudience) {
-		// TODO Auto-generated method stub
-		
+		audiences.remove(aAudience);
 	}
    
 

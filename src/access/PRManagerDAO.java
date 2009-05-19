@@ -18,7 +18,6 @@ import domain.PRManagerH;
 
 public class PRManagerDAO extends GenericHibernateDAOWhiInterface<PRManager,PRManagerH, ID>  {
 
-	public static final String ENTITY_NAME = "entityName";
 	public static final String FULL_NAME = "fullName";
 
 

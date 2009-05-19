@@ -1,5 +1,5 @@
 package builders;
-
+import static builders.BuilderDirector.getPrimitiveAttribute;
 import interfaces.ContactEventType;
 import domain.ContactEventTypeH;
 
@@ -7,15 +7,8 @@ public class ContactEventTypeBuilder implements BuilderI<ContactEventType> {
 
 	
      private String entityName="ContactEventType";
-     private String name="Letter";
-     private String code="LETT";
-
-   
-	public ContactEventTypeBuilder withEntityName(String entityName) {
-		this.entityName = entityName;
-		return this;
-	}
-
+     private String name=getPrimitiveAttribute("Letter");
+     private String code=getPrimitiveAttribute("LETT");
 
 	public ContactEventTypeBuilder withName(String name) {
 		this.name = name;

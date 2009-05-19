@@ -20,7 +20,6 @@ import domain.ID;
 
 public class EmployeeDAO extends GenericHibernateDAOWhiInterface<Employee,EmployeeH, ID>  {
 	
-	public static final String ENTITY_NAME = "entityName";
 	public static final String CURRENT = "current";
 	
 	public List<Employee> findByCurrent(Object current

@@ -21,7 +21,6 @@ import domain.MentionTypeH;
 
 public class MentionTypeDAO extends GenericHibernateDAOWhiInterface<MentionType, MentionTypeH, ID>  {
 
-	public static final String ENTITY_NAME = "entityName";
 	public static final String NAME = "name";
 	public static final String CODE = "code";
 

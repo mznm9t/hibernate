@@ -17,7 +17,6 @@ import domain.ID;
 
 public class ContactGroupDAO extends GenericHibernateDAOWhiInterface<ContactGroup,ContactGroupH, ID>  {   
 		//property constants
-	public static final String ENTITY_NAME = "entityName";
 	public static final String NAME = "name";
 	public static final String DESCRIPTION = "description";
 

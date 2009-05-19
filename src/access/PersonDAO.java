@@ -18,7 +18,6 @@ import domain.PersonH;
 
 public class PersonDAO extends GenericHibernateDAOWhiInterface<Person, PersonH, ID>  {
 
-	public static final String ENTITY_NAME = "entityName";
 	public static final String COMPANY = "company";
 	public static final String JOB_TITLE = "jobTitle";
 	public static final String LAST_NAME = "lastName";

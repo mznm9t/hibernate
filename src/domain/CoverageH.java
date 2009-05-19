@@ -15,6 +15,7 @@ import interfaces.Story;
 
 import java.util.Collection;
 import java.util.Date;
+import java.util.Set;
 
 
 /**
@@ -55,11 +56,11 @@ public class CoverageH implements interfaces.Coverage , java.io.Serializable {
      private Boolean pictureUsed;
      private Date pubDate;
      private Integer national;
-     private Date pubDate2;
      private PRManager prManager;
      private FeatureType featureType;
      private Country country;
      private String sequenceNumber;
+     private Set<Employee> quotedPersons;
 
 
     // Constructors
@@ -70,7 +71,7 @@ public class CoverageH implements interfaces.Coverage , java.io.Serializable {
 
     
     /** full constructor */
-    public CoverageH(String entityName, Story story, Publication publication, Journalist journalist, Date publicationDate, String filename, String content, String title, Float evaluation, Float centimetres, String feature, Boolean contactDetails, Date dateRead, String comments, String pictureDescription, String pictureFile, MentionType mentionType, String propertyNamed, Office office, Division division, Boolean researchReports, Boolean marketComment, ContactGivenType contactGivenType, String personNamed, Boolean pictureUsed, Date pubDate, Integer national, Date pubDate2, PRManager prManager, FeatureType featureType, Country country, String sequenceNumber) {
+    public CoverageH(String entityName, Story story, Publication publication, Journalist journalist, Date publicationDate, String filename, String content, String title, Float evaluation, Float centimetres, String feature, Boolean contactDetails, Date dateRead, String comments, String pictureDescription, String pictureFile, MentionType mentionType, String propertyNamed, Office office, Division division, Boolean researchReports, Boolean marketComment, ContactGivenType contactGivenType, String personNamed, Boolean pictureUsed, Date pubDate, Integer national, PRManager prManager, FeatureType featureType, Country country, String sequenceNumber,Set<Employee> quotedPersons) {
         this.entityName = entityName;
         this.story = story;
         this.publication = publication;
@@ -98,11 +99,11 @@ public class CoverageH implements interfaces.Coverage , java.io.Serializable {
         this.pictureUsed = pictureUsed;
         this.pubDate = pubDate;
         this.national = national;
-        this.pubDate2 = pubDate2;
         this.prManager = prManager;
         this.featureType = featureType;
         this.country = country;
         this.sequenceNumber = sequenceNumber;
+        this.quotedPersons = quotedPersons;
     }
 
    
@@ -333,14 +334,6 @@ public class CoverageH implements interfaces.Coverage , java.io.Serializable {
         this.national = national;
     }
 
-    public Date getPubDate2() {
-        return this.pubDate2;
-    }
-    
-    public void setPubDate2(Date pubDate2) {
-        this.pubDate2 = pubDate2;
-    }
-
     public PRManager getPrManager() {
         return this.prManager;
     }
@@ -376,50 +369,46 @@ public class CoverageH implements interfaces.Coverage , java.io.Serializable {
 
 	@Override
 	public void addQuotedPerson(Employee aQuotedPerson) {
-		// TODO Auto-generated method stub
+		quotedPersons.add(aQuotedPerson);
 		
 	}
 
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public void addQuotedPersons(Collection aQuotedPersons) {
-		// TODO Auto-generated method stub
-		
+		quotedPersons.addAll(aQuotedPersons);
 	}
 
 
 	@Override
 	public void clearQuotedPersons() {
-		// TODO Auto-generated method stub
-		
+		quotedPersons.clear();
 	}
 
 
 	@Override
-	public boolean containsQuotedPerson(Employee aQuotedPerson) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean containsQuotedPerson(Employee aQuotedPerson) {	
+		return quotedPersons.contains(quotedPersons);
 	}
 
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public Collection getQuotedPersons() {
-		// TODO Auto-generated method stub
-		return null;
+		return quotedPersons;
 	}
 
 
 	@Override
 	public Employee[] getQuotedPersonsAsArray() {
-		// TODO Auto-generated method stub
-		return null;
+		return (Employee[])quotedPersons.toArray();
 	}
 
 
 	@Override
 	public void removeQuotedPerson(Employee aQuotedPerson) {
-		// TODO Auto-generated method stub
-		
+		quotedPersons.remove(aQuotedPerson);
 	}
    
 

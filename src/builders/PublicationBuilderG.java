@@ -2,6 +2,11 @@ package builders;
 
 import static core.ReflectiveUtil.copyObjectFields;
 import static builders.BuilderDirector.*;
+
+import java.util.HashSet;
+import java.util.Set;
+
+import interfaces.Audience;
 import interfaces.BusinessObject;
 import interfaces.Company;
 import interfaces.Publication;
@@ -13,15 +18,11 @@ public class PublicationBuilderG<T extends Publication, B extends PublicationBui
 		extends CompanyBuilderG<T, B> {
 
 	private String entityName="Publication";
-	private String description="This is a wonderfull magazine";
-	private String publicationName="The Magazine";
-	private PublicationType type=lazzyObject(PublicationTypeBuilder.class, PublicationType.class);
-	private Float value=5f;
-
-	public B withEntityName(String entityName) {
-		this.entityName = entityName;
-		return (B) this;
-	}
+	private String description=getPrimitiveAttribute("This is a wonderfull magazine");
+	private String publicationName=getPrimitiveAttribute("The Magazine");
+	private PublicationType type=getEntityAttribute(PublicationTypeBuilder.class, PublicationType.class);
+	private Float value=getPrimitiveAttribute(5f);
+	private Set<Audience> audiences=getSetAttribute(AudienceBuilder.class, Audience.class);
 
 	public B withDescription(String description) {
 		this.description = description;
@@ -42,17 +43,23 @@ public class PublicationBuilderG<T extends Publication, B extends PublicationBui
 		this.value = value;
 		return (B) this;
 	}
+	
+	public B withAnAudience(Audience anAudience) {
+		if(audiences==null)audiences=new HashSet<Audience>();
+		audiences.add(anAudience);
+		return (B) this;
+	}
 
 	public T build() {
 		BusinessObject superInstance = getSuperInstance();// return an object of
 		// the super class
 		Company currentInstance = new PublicationH(entityName, description,
-				publicationName, type, value);// return on object of the this
+				publicationName, type, value,audiences);// return on object of the this
 		// class
 		// do not change it by createInstance() because it is expected to call
 		// different method when this class is extended
 		// and createInstance() is override.
-		copyObjectFields(superInstance, currentInstance, true);// merge both
+		copyObjectFields(superInstance, currentInstance, false);// merge both
 		return (T) currentInstance;
 
 	}
@@ -60,7 +67,7 @@ public class PublicationBuilderG<T extends Publication, B extends PublicationBui
 	@Override
 	public T createInstance() {
 		return (T) new PublicationH(entityName, description, publicationName,
-				type, value);
+				type, value,audiences);
 	}
 
 	private BusinessObject getSuperInstance() {

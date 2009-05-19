@@ -22,7 +22,6 @@ import domain.ID;
 
 public class ContactGivenTypeDAO extends GenericHibernateDAOWhiInterface<ContactGivenType, ContactGivenTypeH, ID>  {
 
-	public static final String ENTITY_NAME = "entityName";
 	public static final String TELEPHONE = "telephone";
 	public static final String WEBSITE = "website";
 	public static final String NAME = "name";

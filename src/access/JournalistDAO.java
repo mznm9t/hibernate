@@ -20,15 +20,8 @@ import domain.JournalistH;
 
 public class JournalistDAO extends GenericHibernateDAOWhiInterface<Journalist,JournalistH, ID>  {
 
-	public static final String ENTITY_NAME = "entityName";
 	public static final String PUBLICATION = "publication";
 	public static final String FREQUENCY = "frequency";
-
-	public List<Journalist> findByEntityName(Object entityName
-	) {
-		return findByProperty(ENTITY_NAME, entityName
-		);
-	}
 	
 	public List<Journalist> findByPublication(Object publication
 	) {

@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.hibernate.Criteria;
 import org.hibernate.LockMode;
+import org.hibernate.LockOptions;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.criterion.Criterion;
@@ -29,6 +30,9 @@ public abstract class GenericHibernateDAOWhiInterface<R, T extends R , I extends
 	private Class<T> persistentClass;
 	private Session session;
 	private Logger log;
+	
+	public static final String ENTITY_NAME = "entityName";
+	public static final String ID = "ID";
 
 	/**
 	 * General constructor
@@ -65,8 +69,41 @@ public abstract class GenericHibernateDAOWhiInterface<R, T extends R , I extends
 	
 	public List<R> findByEntityName(Object entityName
 	) {
-		return findByProperty("entityName", entityName
+		return findByProperty(ENTITY_NAME, entityName
 		);
+	}
+	
+	/*public R findById(I id){
+		try{
+		List<R> result=findByProperty(ID, id);
+		if(result.isEmpty()) return null;
+		else if(result.size()==1) return result.iterator().next();
+		else throw new Exception("Multiple instance founded with the same ID "+id);
+		}catch(Exception e){
+			e.printStackTrace();
+			return null;
+		}
+	}*/
+	
+	
+	/**
+	 * Will return a persisted instance of the entity by ID,if the instance is loaded in the cache
+	 * it may not need to query the DB for that instance. 
+	 * @param id the id of the instance we want to obtain.
+	 * @return The returned instance or null if it does not exist.It never returns a proxy object 
+	 * but only real object.
+	 */
+	@SuppressWarnings("unchecked")
+	 public R findById(I id) {
+		log.debug("finding " + this.persistentClass.getName()
+					+ "instance by ID");
+		try {
+			return (T) getSession().get(getPersistentClass(), id);
+		} catch (RuntimeException re) {
+			log.error("load failed", re);
+			re.printStackTrace();
+			return null;
+		}
 	}
 
 	/**
@@ -74,6 +111,7 @@ public abstract class GenericHibernateDAOWhiInterface<R, T extends R , I extends
 	 * Assuming the the object is already persisted in the DB and has not been modified.
 	 * @param instance
 	 */
+	@SuppressWarnings("deprecation")
 	public void attachClean(R instance) {
 	        log.debug("attaching clean  " + this.persistentClass.getName() + " instance");
 	        try {
@@ -188,12 +226,14 @@ public abstract class GenericHibernateDAOWhiInterface<R, T extends R , I extends
 	 * @param id it is the actual instance that represent the id
 	 * 
 	 * @param lock if set to true,Hibernate will send a lock to the database raw
-	 * until the transaction is finished
+	 * until the transaction is finished, if the parameter is no then it basically
+	 * works like findById();
 	 * 
 	 * @return the instance from the database or null if not found
 	 */
+	
 	@SuppressWarnings("unchecked")
-	public R findById(I id, boolean lock) {
+	 public R load(I id, boolean lock) {
 		log.debug("finding " + this.persistentClass.getName()
 					+ "instance by ID");
 		try {
@@ -202,18 +242,15 @@ public abstract class GenericHibernateDAOWhiInterface<R, T extends R , I extends
 		// go to the database
 		if (lock)
 			entity = (T) getSession().load(getPersistentClass(), id,
-					LockMode.UPGRADE);
+					LockOptions.UPGRADE);
 		else
 			entity = (T) getSession().load(getPersistentClass(), id);
 		return entity;
 		} catch (RuntimeException re) {
-			log.error("find by example failed", re);
-			throw re;
+			log.error("load failed", re);
+			re.printStackTrace();
+			return null;
 		}
-	}
-
-	public R findById(I id) {
-		return findById(id,false);
 	}
 
 
@@ -303,12 +340,6 @@ public abstract class GenericHibernateDAOWhiInterface<R, T extends R , I extends
         }
     }
 	
-	/**
-	 * This method will save a new instance
-	 * If the instance already exist on the database it will return an exception or will duplicate the instance
-	 * @param transientInstance the instance that is not in the database
-	 * @return the instance once is been saved.
-	 */
 	public R save(R transientInstance) {
 		log.debug("saving " + this.persistentClass.getName() + " instance");
 		try {
@@ -321,7 +352,9 @@ public abstract class GenericHibernateDAOWhiInterface<R, T extends R , I extends
 		return transientInstance;
 	}
 	
-
+    public void renewSession(){
+    	setSession(HibernateSessionFactory.getSession());
+    }
 
 	public void setSession(Session s) {
 		this.session = s;

@@ -3,7 +3,11 @@ package test;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.sql.DriverManager;
+
+import junit.framework.Test;
+import junit.framework.TestSuite;
 
 import org.dbunit.DatabaseTestCase;
 import org.dbunit.database.DatabaseConnection;
@@ -12,6 +16,9 @@ import org.dbunit.dataset.DataSetException;
 import org.dbunit.dataset.IDataSet;
 import org.dbunit.dataset.excel.XlsDataSet;
 import org.dbunit.dataset.xml.FlatXmlDataSetBuilder;
+import org.hibernate.Session;
+
+import core.HibernateSessionFactory;
 
 public class SandBoxTestCase extends DatabaseTestCase {
 	
@@ -35,16 +42,16 @@ public class SandBoxTestCase extends DatabaseTestCase {
 	public void tearDown() throws Exception {
 	}
 	
-	public void testSandBox() throws Exception {
+	public void checkSandBox() throws Exception {
 		assertEquals(getDatabaseTester().getDataSet().getTableNames().length,33);
 	}
 	
 	/*
 	 * This method show an example of how you can export data to XLS in order to use it a test sample afterwards.
 	 */
-    /*	public void testSandBoxCreation() throws Exception {
+    	public void checkSandBoxCreation() throws Exception {
 		XlsDataSet.write( getConnection().createDataSet(),new FileOutputStream("exportedDB.xls"));
-	}*/
+	}
 	
 	/*
 	 * This method show an example of how you can export data to XML in order to use it a test sample afterwards.
@@ -54,6 +61,16 @@ public class SandBoxTestCase extends DatabaseTestCase {
 	}
 	*/
 	
+    protected Session getSession() {
+    		Session session=HibernateSessionFactory.getSession();
+    		//session.setCacheMode(CacheMode.IGNORE);
+    		return session;
+    }
+    
+    protected Session getNewSession() {
+		return HibernateSessionFactory.getNewSession();
+    }
+    	
 	protected IDatabaseConnection getConnection() throws Exception {
 	    Class.forName(DBCLASS);
         return new DatabaseConnection(DriverManager.getConnection(DBURL, USERNAME,PASSWORD));
@@ -94,5 +111,13 @@ public class SandBoxTestCase extends DatabaseTestCase {
 			throw e;
 		}
 	}
+	
+	@SuppressWarnings("unused")
+	private static Test suite() {
+	TestSuite suite = new TestSuite("Running all test test");
+	suite.addTest(new PersitabilityTest("checkSandBox"));  
+	suite.addTest(new PersitabilityTest("checkSandBoxCreation"));  
+	return suite;
+}
 
 }

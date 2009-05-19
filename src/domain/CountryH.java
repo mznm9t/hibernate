@@ -36,19 +36,21 @@ public class CountryH  implements Country,java.io.Serializable {
     }
 
     public ID getID() {
-		return id;
+		return this.id;
 	}
 
 
-	public void setID(ID iD) {
-		id = iD;
+	@SuppressWarnings("unused")
+	private void setID(ID id) {
+		this.id = id;
 	}
 
     public String getEntityName() {
         return this.entityName;
     }
     
-    public void setEntityName(String entityName) {
+    @SuppressWarnings("unused")
+	private void setEntityName(String entityName) {
         this.entityName = entityName;
     }
 

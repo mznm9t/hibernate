@@ -1,13 +1,19 @@
 package core;
 
 
+import interfaces.BusinessObject;
+
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.lang.Class;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -16,6 +22,10 @@ import java.util.Set;
  * This helper class allows you to clone a compare object to different types (or same type) based only on thier attributes.
  */
 
+/**
+ * @author omar
+ *
+ */
 @SuppressWarnings("unchecked")
 public abstract class ReflectiveUtil {
 
@@ -42,18 +52,51 @@ public abstract class ReflectiveUtil {
 	 * @param srcObj source object
 	 * @param dstObj	destination object
 	 * @return	return true if all the attributes in dstObj has the same values as the attributes in srcObj
+	 * @throws Exception 
 	 */
-	public static boolean hasSameValues(Object srcObj,Object dstObj){
+	public static boolean hasSameValues(Object srcObj,Object dstObj) {
+		return hasSameValues(srcObj,dstObj,true);
+	}
+	
+	
+	/**
+	 * As hasSomeValues(Object,Object) but allows you to choose comparing the one-many relationships or not
+	 * If choose to compare this kind attributes, the method will compare all the elements of the source
+	 * object and destination object plus the element related through the set attributes. 
+	 * @param srcObj - Object a to be compare
+	 * @param dstObj - Object b to be compare
+	 * @param compareSetAttributes - If true will compare the element of the set attributes(oneToMany relationships)
+	 * @return return true if both elements are null or destination object has the same attributes values that the 
+	 * source object. Otherwise return false;
+	 */
+	public static boolean hasSameValues(Object srcObj,Object dstObj,boolean compareSetAttributes) {
+		if(srcObj == null && dstObj==null)return true;
+		if(srcObj == null || dstObj==null)return false;
 		Map<FieldNameAndType, FieldInObject> srcFields = getAllFields(srcObj);
 		Map<FieldNameAndType, FieldInObject> dstFields = getAllFields(dstObj);
 		for (FieldNameAndType key : srcFields.keySet()) {
 				if (DEBUG) System.out.println ("Comparing - src object key[" + key + "] - [ value =  "+ srcFields.get(key)+ " ]");
 				if (DEBUG) System.out.println ("to  - dst contains key : [" + dstFields.containsKey(key) + " ] - [ value ="+ dstFields.get(key)+ " ]");
-				if (!dstFields.containsKey(key) || (!equals(srcFields.get(key).value,dstFields.get(key).value)))return false;
+				if (!dstFields.containsKey(key) || (!equals(srcFields.get(key).value, dstFields.get(key).value, compareSetAttributes)))return false;
 			  //  if (DEBUG) System.out.println ("Comparing - dst object key present [" + dstFields.containsKey(key) + " - "+ dstFields.get(key)+ " ]");
 			}
 		return true;
 		
+	}
+	
+	/**
+	 * This method will tell if the an object has any of his attribute set to null;
+	 * @param obj The object to be check
+	 * @return	Return true if any of the attributes is null.
+	 */
+	public static boolean hasAnyNullValues(Object obj){
+		if(obj==null)return true;
+		Map<FieldNameAndType, FieldInObject> srcFields = getAllFields(obj);
+		for (FieldNameAndType key : srcFields.keySet()) {
+				if (DEBUG) System.out.println ("Examining if it is null - src object key[" + key + "] - [ value =  "+ srcFields.get(key)+ " ]");
+			    if (srcFields.get(key).value == null) return true;
+			}
+	    return false;
 	}
 	
 	//this method will determine if a specific object is a virtual proxy created with CGLIB
@@ -133,6 +176,7 @@ public abstract class ReflectiveUtil {
 		//First we need to check that the object we want to get the fields from is not 
 		//not a dynamic proxy created for easy loading. If this is the case we need to extract 
 		//the object from the proxy.
+		Set<String> fieldNames=new HashSet<String>();
 		if(isAVirtualProxy(srcObj))srcObj=getProxiedObject(srcObj,true);
 		
 		// we iterate from the direct class to all the super classes ..
@@ -141,7 +185,23 @@ public abstract class ReflectiveUtil {
 				.getSuperclass()) {
 
 			Field[] declaredfields = c.getDeclaredFields();// we get all the
-			srcFields.putAll(getFieldValues(srcObj, declaredfields));
+			Map<FieldNameAndType, FieldInObject> fieldValues=getFieldValues(srcObj, declaredfields);
+			
+			//We make sure that we do not compare fields of the super-classes that have been override
+			//by the subclass i.e. ID is in Contactable and also in Company which is a subclass of 
+			//Contactable. We only want to compare the ID from Company. Not the ID from the superclass.
+			
+			Collection<FieldNameAndType> itemsToRemove=new ArrayList<FieldNameAndType>();
+			for(FieldNameAndType k:fieldValues.keySet()){
+				if(!fieldNames.contains(k.fieldName)){
+					fieldNames.add(k.fieldName);
+				}else itemsToRemove.add(k);
+				
+			}
+			for(FieldNameAndType k:itemsToRemove) fieldValues.remove(k);	
+			
+			
+			srcFields.putAll(fieldValues);
 		}
 		return srcFields;
 	}
@@ -198,7 +258,7 @@ public abstract class ReflectiveUtil {
 		    	Field destField=dstFields.get(key).field;
 		    	Object destObject=dstFields.get(key).obj;
 		    	
-		    		if (override || dstFields.get(key) == null) {
+		    		if (override || dstFields.get(key).value == null) {
 			    		destField.set(destObject, srcFields.get(key).value); // populate the field of
 																// the destination
 																// object overriding the
@@ -216,17 +276,57 @@ public abstract class ReflectiveUtil {
 
 	}
 	
-	
-	private static boolean equals(Object a,Object b){
-		if(a==null && b==null)return true;
-		if(a==null && b!=null) return false;
-		if(b==null && a!=null) return false;
-		if(isAVirtualProxy(a) && isAVirtualProxy(b)){ 
-			//if both are virtual proxy will compare the proxied values if loaded.				
-			return equals(getProxiedObject(a, false),getProxiedObject(b, false));
+	private static boolean equals(Object a,Object b,boolean compareCollections){
+		if(a==null && b==null) return true;
+		if(a==null && b!=null) {
+			System.out.println("Object A is null!");
+			return false;
 		}
-		if(b.equals(a) || a.equals(b))return true;
+		if(b==null && a!=null) {
+			System.out.println("Object B is null!");
+			return false;
+		}
+		if(a instanceof Collection && b instanceof Collection)
+			return (compareCollections ? equals4Collections((Set)a,(Set)b): true);
+		else if(isAVirtualProxy(a) && isAVirtualProxy(b))
+			//if both are virtual proxy will compare the proxied values if loaded.				
+			return equals(getProxiedObject(a, false),getProxiedObject(b, false),compareCollections);
+		else if(a instanceof BusinessObject && b instanceof BusinessObject)
+			return equals4BusinessObjects((BusinessObject)a,(BusinessObject)b);
+		else if(b.equals(a) && a.equals(b))
+			return true;
 		else return false;	
+	}
+	
+	private static boolean equals4BusinessObjects(BusinessObject o1,BusinessObject o2){
+		if(o1.getID() == null || o2.getID()==null ) return false;
+		else return o1.getID().toString().equals(o2.getID().toString());
+	}
+	
+	private static boolean equals4Collections(Set<BusinessObject> a,Set<BusinessObject> b){
+		List<BusinessObject> listA=new ArrayList(a);
+		List<BusinessObject> listB=new ArrayList(b);
+		
+		Comparator<BusinessObject> c=new Comparator<BusinessObject>(){
+			@Override
+			public int compare(BusinessObject o1, BusinessObject o2) {
+				if(o1.equals(o2)) return 0;
+				if(o1.getID() == null || o2.getID()==null ) return -1;
+				else return o1.getID().toString().compareTo(o2.getID().toString());
+			}	
+		};
+		java.util.Collections.sort(listA, c);
+		java.util.Collections.sort(listB, c);
+		
+		for(BusinessObject o:listA) {
+			int index=java.util.Collections.binarySearch(listB, o, c);
+			if(index < 0) return false; 
+		}
+		for(BusinessObject o:listB) {
+			int index=java.util.Collections.binarySearch(listA, o, c);
+			if(index < 0) return false; 
+		}
+		return true;
 	}
 	
 	public static void setField(Object obj,String fieldName,Object value){

@@ -1,18 +1,14 @@
 package builders;
 
+import static builders.BuilderDirector.getPrimitiveAttribute;
 import domain.ContactGroupH;
 import interfaces.ContactGroup;
 
 public class ContactGroupBuilder implements BuilderI<ContactGroup> {
 
 	private String entityName="ContactGroup";
-	private String name="Main Group";
-	private String description="Main group";
-
-	public ContactGroupBuilder withEntityName(String entityName) {
-		this.entityName = entityName;
-		return this;
-	}
+	private String name=getPrimitiveAttribute("Main Group");
+	private String description=getPrimitiveAttribute("Main group");
 
 	public ContactGroupBuilder withName(String name) {
 		this.name = name;

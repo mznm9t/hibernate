@@ -19,7 +19,7 @@ public class ContactEventH implements interfaces.ContactEvent, java.io.Serializa
 	private Date whenHappened;
 	private Date whenPlanned;
 	
-	
+	public ContactEventH() {}
 
 	public ContactEventH(String entityName, String title,
 			ContactEventType type, Contactable ourContact,

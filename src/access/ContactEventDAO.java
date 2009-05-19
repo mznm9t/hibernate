@@ -17,7 +17,6 @@ import interfaces.ContactEvent;
 
 public class ContactEventDAO extends GenericHibernateDAOWhiInterface<ContactEvent,ContactEventH, ID>  {
 
-	public static final String ENTITY_NAME = "entityName";
 	public static final String CONTENT = "content";
 	public static final String TITLE = "title";
 	public static final String TYPE = "type";

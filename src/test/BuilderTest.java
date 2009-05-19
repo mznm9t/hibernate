@@ -7,6 +7,8 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import builders.BuilderDirector;
+
 import domain.ContactableH;
 import domain.PersonH;
 import interfaces.Address;
@@ -45,140 +47,156 @@ public class BuilderTest {
 	}
 	
 	@Test
-	public void simpleBuilderWithSuperClass(){
-		 Date NOW=new Date();
-		 String entityName = "Contactable";
-		 String notes = "No notes";
-		 Address address = anAddress().build();
-		 PhoneNumber phone1 = aPhoneNumber().build();
-		 PhoneNumber phone2 = aPhoneNumber().build();
-		 PhoneNumber mobile = aPhoneNumber().build();
-		 PhoneNumber fax = aPhoneNumber().build();
-		 String email="test@com.com";
-	     String www="www.test.com";
-		 Employee accountManager = aEmployee().build();
-		 String knownAs="The Contactable";
-		 ContactGroup mainGroup = aContactGroup()
-		.build();
-		 ContactStatus status = aContactStatus()
-		.build();
-		 
-		 Company company=aCompany().withCreated(NOW).withLastUpdate(NOW).build();
-	     String jobTitle="Engineer";
-	     String lastName="Nahhas";
-	     String title="Mr";
-	     String firstName="Omar";
-		 String personEntityName="Person";
-		
-		 ContactableH c=(ContactableH) aContactable().build();
-		
-	     assertEquals(entityName, c.getEntityName());
-	     assertEquals(notes, c.getNotes());
-	     
-	     assertTrue(hasSameValues(phone1,c.getPhone1()));
-	     assertTrue(hasSameValues(status,c.getStatus()));
-	     assertTrue(hasSameValues(phone2,c.getPhone2()));
-	     assertTrue(hasSameValues(mobile,c.getMobile()));
-	     assertTrue(hasSameValues(fax,c.getFax()));
-	     assertEquals(email, c.getEmail());
-	     assertEquals(www, c.getWww());
-	     assertTrue(hasSameValues(address,c.getAddress()));
-	     assertEquals(knownAs, c.getKnownAs());
-	     assertEquals(email, c.getEmail());
-	     assertTrue(hasSameValues(accountManager.getFirstName(),c.getAccountManager().getFirstName()));
-	     assertTrue(hasSameValues(mainGroup,c.getMainGroup()));
-	     
-	     
-	     PersonH p=(PersonH) aPerson().withCompany(aCompany().withCreated(NOW).withLastUpdate(NOW).build()).build();
-	     assertEquals(personEntityName, p.getEntityName());
-	     assertEquals(notes, p.getNotes());
-	     assertTrue(hasSameValues(address,p.getAddress()));
-	     assertTrue(hasSameValues(phone1,p.getPhone1()));
-	     assertTrue(hasSameValues(phone2,p.getPhone2()));
-	     assertTrue(hasSameValues(mobile,p.getMobile()));
-	     assertTrue(hasSameValues(fax,p.getFax()));
-	     assertEquals(email, p.getEmail());
-	     assertEquals(www, p.getWww());
-	     assertEquals(knownAs, p.getKnownAs());
-	     assertEquals(email, p.getEmail());
-	     assertTrue(hasSameValues(accountManager.getFirstName(),p.getAccountManager().getFirstName()));
-	     assertTrue(hasSameValues(mainGroup,p.getMainGroup()));
-	     assertTrue(hasSameValues(status,p.getStatus()));
-	     assertTrue(hasSameValues(company,p.getCompany()));
-	     assertEquals(jobTitle, p.getJobTitle());
-	     assertEquals(lastName, p.getLastName());
-	     assertEquals(title, p.getTitle());
-	     assertEquals(firstName, p.getFirstName());
+	public void simpleBuilderWithSuperClassWithDefaultPolicyCOMPLETE(){
+		 try {
+			BuilderDirector.setDefaultPoliciy(DefaultPoliciy.COMPLETE);
+			 
+			 //getting the same default values that are on the builders.
+			 Date NOW=new Date();
+			 String entityName = "Contactable";
+			 String notes = "No notes";
+			 Address address = anAddress().build();
+			 PhoneNumber phone1 = aPhoneNumber().build();
+			 PhoneNumber phone2 = aPhoneNumber().build();
+			 PhoneNumber mobile = aPhoneNumber().build();
+			 PhoneNumber fax = aPhoneNumber().build();
+			 String email="test@com.com";
+			 String www="www.test.com";
+			 Employee accountManager = aEmployee().build();
+			 String knownAs="The Contactable";
+			 ContactGroup mainGroup = aContactGroup()
+			.build();
+			 ContactStatus status = aContactStatus()
+			.build();
+			 
+			 Company company=aCompany().withCreated(NOW).withLastUpdate(NOW).build();
+			 String jobTitle="Engineer";
+			 String lastName="Nahhas";
+			 String title="Mr";
+			 String firstName="Omar";
+			 String personEntityName="Person";
+			
+			 ContactableH c=(ContactableH) aContactable().build();
+			
+			 assertEquals(entityName, c.getEntityName());
+			 assertEquals(notes, c.getNotes());
+			 
+			 assertTrue(hasSameValues(phone1,c.getPhone1()));
+			 assertTrue(hasSameValues(status,c.getStatus()));
+			 assertTrue(hasSameValues(phone2,c.getPhone2()));
+			 assertTrue(hasSameValues(mobile,c.getMobile()));
+			 assertTrue(hasSameValues(fax,c.getFax()));
+			 assertEquals(email, c.getEmail());
+			 assertEquals(www, c.getWww());
+			 assertTrue(hasSameValues(address,c.getAddress()));
+			 assertEquals(knownAs, c.getKnownAs());
+			 assertEquals(email, c.getEmail());
+			 assertTrue(hasSameValues(accountManager.getFirstName(),c.getAccountManager().getFirstName()));
+			 assertTrue(hasSameValues(mainGroup,c.getMainGroup()));
+			 
+			 
+			 PersonH p=(PersonH) aPerson().withCompany(aCompany().withCreated(NOW).withLastUpdate(NOW).build()).build();
+			 assertEquals(personEntityName, p.getEntityName());
+			 assertEquals(notes, p.getNotes());
+			 assertTrue(hasSameValues(address,p.getAddress()));
+			 assertTrue(hasSameValues(phone1,p.getPhone1()));
+			 assertTrue(hasSameValues(phone2,p.getPhone2()));
+			 assertTrue(hasSameValues(mobile,p.getMobile()));
+			 assertTrue(hasSameValues(fax,p.getFax()));
+			 assertEquals(email, p.getEmail());
+			 assertEquals(www, p.getWww());
+			 assertEquals(knownAs, p.getKnownAs());
+			 assertEquals(email, p.getEmail());
+			 assertTrue(hasSameValues(accountManager.getFirstName(),p.getAccountManager().getFirstName()));
+			 assertTrue(hasSameValues(mainGroup,p.getMainGroup()));
+			 assertTrue(hasSameValues(status,p.getStatus()));
+			 assertTrue(hasSameValues(company,p.getCompany(),false));
+			 assertEquals(jobTitle, p.getJobTitle());
+			 assertEquals(lastName, p.getLastName());
+			 assertEquals(title, p.getTitle());
+			 assertEquals(firstName, p.getFirstName());
+			 BuilderDirector.setDefaultPoliciy(DefaultPoliciy.BASIC);
+		} catch (Exception e) {
+			e.printStackTrace();
+			fail();
+		}
 	}
 	
 	@Test
-	public void simpleBuilderWithSuperClassWithDifferntValues(){
-		 Date NOW=new Date();
-		 String entityName = "Contactable";
-		 String notes = "No notes";
-		 Address address = anAddress().build();
-		 
-		 address.setLine1("OTHER LINE");
-		 PhoneNumber phone1 = aPhoneNumber().build();
-		 phone1.setAreaCode("99");
-		 PhoneNumber phone2 = aPhoneNumber().build();
-		 PhoneNumber mobile = aPhoneNumber().build();
-		 PhoneNumber fax = aPhoneNumber().build();
-		 String email="test@com.com";
-	     String www="www.test.com";
-		 Employee accountManager = aEmployee().build();
-		 String knownAs="The Contactable";
-		 ContactGroup mainGroup = aContactGroup()
-		.build();
-		 ContactStatus status = aContactStatus()
-		.build();
-		 
-		 Company company=aCompany().withCreated(NOW).withLastUpdate(NOW).build();
-	     String jobTitle="Engineer";
-	     String lastName="Nahhas";
-	     String title="Mr";
-	     String firstName="Omar";
-		 String personEntityName="Person";
-		
-		 ContactableH c=(ContactableH) aContactable().build();
-		
-	     assertEquals(entityName, c.getEntityName());
-	     assertEquals(notes, c.getNotes());
-	     
-	     assertFalse(hasSameValues(phone1,c.getPhone1()));
-	     assertTrue(hasSameValues(status,c.getStatus()));
-	     assertTrue(hasSameValues(phone2,c.getPhone2()));
-	     assertTrue(hasSameValues(mobile,c.getMobile()));
-	     assertTrue(hasSameValues(fax,c.getFax()));
-	     assertEquals(email, c.getEmail());
-	     assertEquals(www, c.getWww());
-	     assertFalse(hasSameValues(address,c.getAddress()));
-	     assertEquals(knownAs, c.getKnownAs());
-	     assertEquals(email, c.getEmail());
-	     assertTrue(hasSameValues(accountManager.getFirstName(),c.getAccountManager().getFirstName()));
-	     assertTrue(hasSameValues(mainGroup,c.getMainGroup()));
-	     
-	     
-	     PersonH p=(PersonH) aPerson().withCompany(aCompany().withCreated(NOW).withLastUpdate(NOW).build()).build();
-	     assertEquals(personEntityName, p.getEntityName());
-	     assertEquals(notes, p.getNotes());
-	     assertFalse(hasSameValues(address,p.getAddress()));
-	     assertFalse(hasSameValues(phone1,p.getPhone1()));
-	     assertTrue(hasSameValues(phone2,p.getPhone2()));
-	     assertTrue(hasSameValues(mobile,p.getMobile()));
-	     assertTrue(hasSameValues(fax,p.getFax()));
-	     assertEquals(email, p.getEmail());
-	     assertEquals(www, p.getWww());
-	     assertEquals(knownAs, p.getKnownAs());
-	     assertEquals(email, p.getEmail());
-	     assertTrue(hasSameValues(accountManager.getFirstName(),p.getAccountManager().getFirstName()));
-	     assertTrue(hasSameValues(mainGroup,p.getMainGroup()));
-	     assertTrue(hasSameValues(status,p.getStatus()));
-	     assertTrue(hasSameValues(company,p.getCompany()));
-	     assertEquals(jobTitle, p.getJobTitle());
-	     assertEquals(lastName, p.getLastName());
-	     assertEquals(title, p.getTitle());
-	     assertEquals(firstName, p.getFirstName());
+	public void simpleBuilderWithSuperClassWithDifferntValuesWithDefaultPolicyCOMPLETE(){
+		 try {
+			BuilderDirector.setDefaultPoliciy(DefaultPoliciy.COMPLETE);
+			 Date NOW=new Date();
+			 String entityName = "Contactable";
+			 String notes = "No notes";
+			 Address address = anAddress().build();
+			 
+			 address.setLine1("OTHER LINE");
+			 PhoneNumber phone1 = aPhoneNumber().build();
+			 phone1.setAreaCode("99");
+			 PhoneNumber phone2 = aPhoneNumber().build();
+			 PhoneNumber mobile = aPhoneNumber().build();
+			 PhoneNumber fax = aPhoneNumber().build();
+			 String email="test@com.com";
+			 String www="www.test.com";
+			 Employee accountManager = aEmployee().build();
+			 String knownAs="The Contactable";
+			 ContactGroup mainGroup = aContactGroup()
+			.build();
+			 ContactStatus status = aContactStatus()
+			.build();
+			 
+			 Company company=aCompany().withCreated(NOW).withLastUpdate(NOW).build();
+			 String jobTitle="Engineer";
+			 String lastName="Nahhas";
+			 String title="Mr";
+			 String firstName="Omar";
+			 String personEntityName="Person";
+			
+			 ContactableH c=(ContactableH) aContactable().build();
+			
+			 assertEquals(entityName, c.getEntityName());
+			 assertEquals(notes, c.getNotes());
+			 
+			 assertFalse(hasSameValues(phone1,c.getPhone1()));
+			 assertTrue(hasSameValues(status,c.getStatus()));
+			 assertTrue(hasSameValues(phone2,c.getPhone2()));
+			 assertTrue(hasSameValues(mobile,c.getMobile()));
+			 assertTrue(hasSameValues(fax,c.getFax()));
+			 assertEquals(email, c.getEmail());
+			 assertEquals(www, c.getWww());
+			 assertFalse(hasSameValues(address,c.getAddress()));
+			 assertEquals(knownAs, c.getKnownAs());
+			 assertEquals(email, c.getEmail());
+			 assertTrue(hasSameValues(accountManager.getFirstName(),c.getAccountManager().getFirstName()));
+			 assertTrue(hasSameValues(mainGroup,c.getMainGroup()));
+			 
+			 
+			 PersonH p=(PersonH) aPerson().withCompany(aCompany().withCreated(NOW).withLastUpdate(NOW).build()).build();
+			 assertEquals(personEntityName, p.getEntityName());
+			 assertEquals(notes, p.getNotes());
+			 assertFalse(hasSameValues(address,p.getAddress()));
+			 assertFalse(hasSameValues(phone1,p.getPhone1()));
+			 assertTrue(hasSameValues(phone2,p.getPhone2()));
+			 assertTrue(hasSameValues(mobile,p.getMobile()));
+			 assertTrue(hasSameValues(fax,p.getFax()));
+			 assertEquals(email, p.getEmail());
+			 assertEquals(www, p.getWww());
+			 assertEquals(knownAs, p.getKnownAs());
+			 assertEquals(email, p.getEmail());
+			 assertTrue(hasSameValues(accountManager.getFirstName(),p.getAccountManager().getFirstName()));
+			 assertTrue(hasSameValues(mainGroup,p.getMainGroup()));
+			 assertTrue(hasSameValues(status,p.getStatus()));
+			 assertTrue(hasSameValues(company,p.getCompany(),false));
+			 assertEquals(jobTitle, p.getJobTitle());
+			 assertEquals(lastName, p.getLastName());
+			 assertEquals(title, p.getTitle());
+			 assertEquals(firstName, p.getFirstName());
+			 BuilderDirector.setDefaultPoliciy(DefaultPoliciy.BASIC);
+		} catch (Exception e) {
+			e.printStackTrace();
+			fail();
+		}
 	}
 	
 	@Test

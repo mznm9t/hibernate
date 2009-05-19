@@ -1,19 +1,15 @@
 package builders;
 
+import static builders.BuilderDirector.getPrimitiveAttribute;
 import interfaces.PublicationType;
 import domain.PublicationTypeH;
 
 public class PublicationTypeBuilder implements BuilderI<PublicationType>{
 
 	     private String entityName="PublicationType";
-	     private String name="Property Weekly Maganzines";
-	     private String code="PROWEEK";
-	     private Float value=10f;
-
-		public PublicationTypeBuilder withEntityName(String entityName) {
-	        this.entityName = entityName;
-	        return this;
-	    }
+	     private String name=getPrimitiveAttribute("Property Weekly Maganzines");
+	     private String code=getPrimitiveAttribute("PROWEEK");
+	     private Float value=getPrimitiveAttribute(10f);
 
 	    public PublicationTypeBuilder withName(String name) {
 	        this.name = name;

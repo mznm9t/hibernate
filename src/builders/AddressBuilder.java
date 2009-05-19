@@ -8,22 +8,18 @@ import static builders.BuilderDirector.*;
 public class AddressBuilder implements BuilderI<Address> {
 
 	 private String entityName="Address";
-     private String postcode="E10PF";
-     private String line1="Flat 77";
-     private String line2="245";
-     private String line3="Jamaica Street";;
-     private String line4="London";
-     private Country country= lazzyObject(CountryBuilder.class, Country.class);
+     private String postcode=getPrimitiveAttribute("E10PF");
+     private String line1=getPrimitiveAttribute("Flat 77");
+     private String line2=getPrimitiveAttribute("245");
+     private String line3=getPrimitiveAttribute("Jamaica Street");
+     private String line4=getPrimitiveAttribute("London");
+     private Country country= getEntityAttribute(CountryBuilder.class, Country.class);
 	
      
 		public Address build() {
 			return new AddressH(entityName,postcode,line4,line3,line2,line1,country);
 		}
 
-	   public AddressBuilder withEntityName(String entityName) {
-			this.entityName = entityName;
-			return this;
-		}
 
 		public AddressBuilder withPostcode(String postcode) {
 			this.postcode = postcode;

@@ -70,9 +70,6 @@
   <property generated="never" lazy="false" name="national" type="java.lang.Integer">
    <column name="national"/>
   </property>
-  <property generated="never" lazy="false" name="pubDate2" type="DateLong">
-   <column length="10" name="pubDate2"/>
-  </property>
   <property generated="never" lazy="false" name="sequenceNumber" type="java.lang.String">
    <column name="sequenceNumber_"/>
   </property>
@@ -91,5 +88,10 @@
   <many-to-one class="domain.PRManagerH" column="prManager_" name="prManager"/>
   <many-to-one class="domain.FeatureTypeH" column="featureType_" name="featureType"/>
   <many-to-one class="domain.CountryH" column="country_" name="country"/>
+  <set access="field" cascade="save-update" name="quotedPersons"
+   sort="unsorted" table="com_fpdsavills_pr_coverage$to$quotedPerson">
+   <key column="coverageID"/>
+   <many-to-many class="domain.EmployeeH" column="quotedPerson_" unique="false"/>
+  </set>
  </class>
 </hibernate-mapping>

@@ -62,7 +62,7 @@ public class DateLong implements UserType {
 			Long dateLong=new Long(date.getTime());
 			BigInteger bigInt=new BigInteger(dateLong.toString());
 			Hibernate.BIG_INTEGER.nullSafeSet(st, bigInt, index);			
-		}
+		}else Hibernate.BIG_INTEGER.nullSafeSet(st, null, index);
 		
 	}
 

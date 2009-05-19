@@ -24,7 +24,6 @@ import domain.ID;
 
 public class CoverageDAO extends GenericHibernateDAOWhiInterface<Coverage,CoverageH, ID>  {
 	
-	public static final String ENTITY_NAME = "entityName";
 	public static final String STORY = "story";
 	public static final String PUBLICATION = "publication";
 	public static final String JOURNALIST = "journalist";
@@ -55,13 +54,6 @@ public class CoverageDAO extends GenericHibernateDAOWhiInterface<Coverage,Covera
 	public static final String FEATURE_TYPE = "featureType";
 	public static final String COUNTRY = "country";
 	public static final String SEQUENCE_NUMBER = "sequenceNumber";
-
-
-	public List<Coverage> findByEntityName(Object entityName
-	) {
-		return findByProperty(ENTITY_NAME, entityName
-		);
-	}
 	
 	public List<Coverage> findByStory(Object story
 	) {

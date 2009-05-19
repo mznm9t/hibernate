@@ -8,8 +8,6 @@ import java.util.List;
 import domain.ID;
 import domain.StoryH;
 
-
-
 /**
  	* A data access object (DAO) providing persistence and search support for Story entities.
  			* Transaction control of the save(), update() and delete() operations 
@@ -21,7 +19,6 @@ import domain.StoryH;
 
 public class StoryDAO extends GenericHibernateDAOWhiInterface<Story, StoryH, ID>  {
 
-	public static final String ENTITY_NAME = "entityName";
 	public static final String MESSAGE = "message";
 	public static final String TITLE = "title";
 	public static final String DESCRIPTION = "description";

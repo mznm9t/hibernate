@@ -20,7 +20,6 @@ import domain.PhoneNumberH;
 
 public class PhoneNumberDAO extends GenericHibernateDAOWhiInterface<PhoneNumber,PhoneNumberH, ID>  {
 	
-	public static final String ENTITY_NAME = "entityName";
 	public static final String AREA_CODE = "areaCode";
 	public static final String THE_NUMBER = "theNumber";
 	public static final String COUNTRY_CODE = "countryCode";

@@ -90,7 +90,7 @@ public class HibernateSessionFactory {
         Session session = (Session) threadLocal.get();
         threadLocal.set(null);
 
-        if (session != null) {
+        if (session != null && session.isOpen()) {
             session.close();
         }
     }
@@ -121,4 +121,10 @@ public class HibernateSessionFactory {
 		return configuration;
 	}
 
+	
+	public static Session getNewSession() {
+		  closeSession();
+		  return getSession();
+	}
+	
 }

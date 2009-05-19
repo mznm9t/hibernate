@@ -105,4 +105,19 @@
 	<table name="com_fpdsavills_pr_contactgiventype"
 		catalog="savillstest" class="ContactGivenType">
 	</table>
+	<table name="com_fpdsavills_pr_asset" catalog="savillstest"
+		class="Asset">
+	</table>
+	<table name="com_fpdsavills_pr_audience" catalog="savillstest"
+		class="Audience">
+	</table>
+	<table name="com_fpdsavills_pr_mappingtool" catalog="savillstest"
+		class="MappingTool">
+	</table>
+	<table name="com_fpdsavills_pr_pressrelease" catalog="savillstest"
+		class="PressRelease">
+	</table>
+	<table name="com_fpdsavills_pr_sequencenumber"
+		catalog="savillstest" class="SequenceNumber">
+	</table>
 </hibernate-reverse-engineering>

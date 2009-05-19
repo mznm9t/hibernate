@@ -1,7 +1,9 @@
 package builders;
 
+import interfaces.BusinessObject;
+
 public interface BuilderI<T> {
 
-	T build();
+	BusinessObject build();
 	
 }

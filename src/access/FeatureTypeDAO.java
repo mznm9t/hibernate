@@ -20,7 +20,6 @@ import domain.ID;
 
 public class FeatureTypeDAO extends GenericHibernateDAOWhiInterface<FeatureType, FeatureTypeH, ID>  {
 	
-	public static final String ENTITY_NAME = "entityName";
 	public static final String NAME = "name";
 	public static final String CODE = "code";
 

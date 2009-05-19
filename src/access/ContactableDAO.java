@@ -20,7 +20,6 @@ import domain.ID;
 public class ContactableDAO extends GenericHibernateDAOWhiInterface<Contactable,ContactableH, ID>  {
 		
 		//property constants
-	public static final String ENTITY_NAME = "entityName";
 	public static final String NOTES = "notes";
 	public static final String MAIN_GROUP = "mainGroup";
 	public static final String ADDRESS = "address";

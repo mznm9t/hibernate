@@ -1,6 +1,7 @@
 package builders;
 
-import static builders.BuilderDirector.lazzyObject;
+import static builders.BuilderDirector.getEntityAttribute;
+import static builders.BuilderDirector.getPrimitiveAttribute;
 
 import java.util.Date;
 
@@ -13,19 +14,15 @@ import interfaces.Contactable;
 public class ContactEventBuilder implements BuilderI<ContactEvent>{
 
 	private String entityName="ContactEvent";
-	private String title="This is a communication from me to you";
-	private ContactEventType type=lazzyObject(ContactEventTypeBuilder.class,ContactEventType.class);
-	private Contactable ourContact=lazzyObject(ContactableBuilder.class,Contactable.class);
-	private Contactable theirContact=lazzyObject(ContactableBuilder.class,Contactable.class);
-	private String content="This is the content of the communicaiton";
-	private ContactEvent followup=lazzyObject(ContactEventBuilder.class,ContactEvent.class);
-	private Date whenHappened=new Date();
-	private Date whenPlanned=new Date();
+	private String title=getPrimitiveAttribute("This is a communication from me to you");
+	private ContactEventType type=getEntityAttribute(ContactEventTypeBuilder.class,ContactEventType.class);
+	private Contactable ourContact=getEntityAttribute(ContactableBuilder.class,Contactable.class);
+	private Contactable theirContact=getEntityAttribute(ContactableBuilder.class,Contactable.class);
+	private String content=getPrimitiveAttribute("This is the content of the communicaiton");
+	private ContactEvent followup=getEntityAttribute(ContactEventBuilder.class,ContactEvent.class);
+	private Date whenHappened=getPrimitiveAttribute(new Date());
+	private Date whenPlanned=getPrimitiveAttribute(new Date());
 	
-	public ContactEventBuilder withEntityName(String entityName) {
-		this.entityName = entityName;
-		return this;
-	}
 
 	public ContactEventBuilder withTitle(String title) {
 		this.title = title;
