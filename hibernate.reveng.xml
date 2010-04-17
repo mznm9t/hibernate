@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-reverse-engineering PUBLIC "-//Hibernate/Hibernate Reverse Engineering DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-reverse-engineering-3.0.dtd" >
+
+<hibernate-reverse-engineering>
+	<table name="com_fpdsavills_pr_Contactable" catalog="savillstest"
+		class="Contactable">
+		<primary-key>
+			<generator class="native"></generator>
+		</primary-key>
+	</table>
+	<table name="com_fpdsavills_pr_Address" catalog="savillstest"
+		class="Address">
+		<primary-key>
+			<generator class="native"></generator>
+		</primary-key>
+	</table>
+	<table name="com_fpdsavills_pr_ContactGroup" catalog="savillstest"
+		class="ContactGroup">
+		<primary-key>
+			<generator class="native"></generator>
+		</primary-key>
+	</table>
+	<table name="com_fpdsavills_pr_ContactStatus" catalog="savillstest"
+		class="ContactStatus">
+		<primary-key>
+			<generator class="native"></generator>
+		</primary-key>
+	</table>
+	<table name="com_fpdsavills_pr_PhoneNumber" catalog="savillstest"
+		class="PhoneNumber">
+		<primary-key>
+			<generator class="native"></generator>
+		</primary-key>
+	</table>
+	<table name="com_fpdsavills_pr_contactable" catalog="savillstest"
+		class="Contactable">
+		<primary-key>
+			<generator class="native"></generator>
+		</primary-key>
+	</table>
+	<table name="com_fpdsavills_pr_address" catalog="savillstest"
+		class="Address">
+		<primary-key>
+			<generator class="native"></generator>
+		</primary-key>
+	</table>
+	<table name="com_fpdsavills_pr_contactgroup" catalog="savillstest"
+		class="ContactGroup">
+	</table>
+	<table name="com_fpdsavills_pr_contactstatus" catalog="savillstest"
+		class="ContactStatus">
+	</table>
+	<table name="com_fpdsavills_pr_phonenumber" catalog="savillstest" class="PhoneNumber"></table>
+</hibernate-reverse-engineering>
