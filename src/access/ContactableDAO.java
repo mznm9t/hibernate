@@ -35,18 +35,6 @@ public class ContactableDAO extends GenericHibernateDAO<Contactable, ID>  {
 	public static final String KNOWN_AS = "knownAs";
 	public static final String IDENTIFIER = "identifier";
 
-	public List<Contactable> findByEntityName(Object entityName
-	) {
-		return findByProperty(ENTITY_NAME, entityName
-		);
-	}
-	
-	public List<Contactable> findByIdentifier(Object identifier
-	) {
-		return findByProperty(IDENTIFIER, identifier
-		);
-	}
-	
 	public List<Contactable> findByNotes(Object notes
 	) {
 		return findByProperty(NOTES, notes

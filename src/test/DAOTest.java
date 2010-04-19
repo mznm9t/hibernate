@@ -29,6 +29,7 @@ import domain.ID;
 
 import access.AddressDAO;
 import access.ContactableDAO;
+import access.PhoneNumberDAO;
 
 
 import junit.framework.Test;
@@ -157,7 +158,7 @@ public class DAOTest extends TestCase {
 		 String PHONENUMBER="0115 9102106";
 		 
 		 DetachedCriteria phoneCriteria=DetachedCriteria.forClass(PhoneNumber.class ,"pho")
-		 .add(Restrictions.eq(PhoneNumber.THENUMBER, PHONENUMBER));
+		 .add(Restrictions.eq(PhoneNumberDAO.THE_NUMBER, PHONENUMBER));
 		 	 
 		 PhoneNumber phoneNumber=(PhoneNumber) phoneCriteria.getExecutableCriteria(getSession()).uniqueResult();
 		 
@@ -169,10 +170,10 @@ public class DAOTest extends TestCase {
 		  		 
 		 Criteria mainCriteria=getSession().createCriteria(Contactable.class)
 		 		.add(Restrictions.disjunction()
-					.add(Property.forName(Contactable.PHONE1).eq(phoneNumber))
-					.add(Property.forName(Contactable.PHONE2).eq(phoneNumber))
-					.add(Property.forName(Contactable.MOBILE).eq(phoneNumber))
-					.add(Property.forName(Contactable.FAX).eq(phoneNumber)));	
+					.add(Property.forName(ContactableDAO.PHONE1).eq(phoneNumber))
+					.add(Property.forName(ContactableDAO.PHONE2).eq(phoneNumber))
+					.add(Property.forName(ContactableDAO.MOBILE).eq(phoneNumber))
+					.add(Property.forName(ContactableDAO.FAX).eq(phoneNumber)));	
 		 List<Contactable> contactableWithAddress=mainCriteria.list();
 		 
 		 Contactable contactable=(Contactable) mainCriteria.uniqueResult();	 
@@ -206,7 +207,7 @@ public class DAOTest extends TestCase {
 		 String ADDRESS="Finsbury Circus";
 		 Criteria mainCriteria=getSession().createCriteria("domain.Contactable")
 		 .createCriteria("address")
-		 	.add(Property.forName(Address.LINE1).eq(ADDRESS));
+		 	.add(Property.forName(AddressDAO.LINE1).eq(ADDRESS));
 		 
 		 assertEquals(mainCriteria.list().size(),1);
 		 

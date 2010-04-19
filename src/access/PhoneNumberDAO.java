@@ -22,12 +22,6 @@ public class PhoneNumberDAO extends GenericHibernateDAO<PhoneNumber, ID>  {
 	public static final String THE_NUMBER = "theNumber";
 	public static final String COUNTRY_CODE = "countryCode";
 
-	public List<PhoneNumber>findByEntityName(Object entityName
-	) {
-		return findByProperty(ENTITY_NAME, entityName
-		);
-	}
-	
 	public List<PhoneNumber>findByAreaCode(Object areaCode
 	) {
 		return findByProperty(AREA_CODE, areaCode

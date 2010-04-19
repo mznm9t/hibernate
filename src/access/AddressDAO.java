@@ -22,14 +22,7 @@ public class AddressDAO extends GenericHibernateDAO<Address, ID>  {
 	public static final String LINE2 = "line2";
 	public static final String LINE1 = "line1";
 	public static final String COUNTRY = "country";
-  
-    
-	public List<Address> findByEntityName(Object entityName
-	) {
-		return findByProperty(ENTITY_NAME, entityName
-		);
-	}
-	
+
 	public List<Address> findByPostcode(Object postcode
 	) {
 		return findByProperty(POSTCODE, postcode

@@ -19,11 +19,6 @@ public class PhoneNumber  implements java.io.Serializable {
      private String theNumber;
      private String countryCode;
 
-     public static String  AREACODE="areaCode";
-     public static String  THENUMBER="theNumber";
-     public static String  COUNTRYCODE="countryCode";
-
-
     // Constructors
 
     /** default constructor */

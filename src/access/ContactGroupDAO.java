@@ -20,11 +20,6 @@ public class ContactGroupDAO extends GenericHibernateDAO<ContactGroup, ID>  {
 	public static final String NAME = "name";
 	public static final String DESCRIPTION = "description";
 
-	public List<ContactGroup> findByEntityName(Object entityName
-	) {
-		return findByProperty(ENTITY_NAME, entityName
-		);
-	}
 	
 	public List<ContactGroup> findByName(Object name
 	) {

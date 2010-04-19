@@ -63,6 +63,17 @@ public abstract class GenericHibernateDAO<T, I extends Serializable> implements
 		this.log = LoggerFactory.getLogger(this.persistentClass);
 	}
 
+	public List<T> findByIdentifier(Object identifier
+	) {
+		return findByProperty("identifier", identifier
+		);
+	}
+	
+	public List<T> findByEntityName(Object entityName
+	) {
+		return findByProperty("entityName", entityName
+		);
+	}
 
 	/**
 	 * Will attach an object to the session.

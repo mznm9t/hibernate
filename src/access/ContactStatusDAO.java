@@ -22,11 +22,6 @@ public class ContactStatusDAO extends GenericHibernateDAO<ContactStatus, ID>  {
 	public static final String NAME = "name";
 	public static final String CODE = "code";
 
-	public List<ContactStatus> findByEntityName(Object entityName
-	) {
-		return findByProperty(ENTITY_NAME, entityName
-		);
-	}
 	
 	public List<ContactStatus> findByName(Object name
 	) {

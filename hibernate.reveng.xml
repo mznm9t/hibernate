@@ -50,5 +50,26 @@
 	<table name="com_fpdsavills_pr_contactstatus" catalog="savillstest"
 		class="ContactStatus">
 	</table>
-	<table name="com_fpdsavills_pr_phonenumber" catalog="savillstest" class="PhoneNumber"></table>
+	<table name="com_fpdsavills_pr_phonenumber" catalog="savillstest"
+		class="PhoneNumber">
+	</table>
+	<table name="com_fpdsavills_pr_company" catalog="savillstest"
+		class="Company">
+	</table>
+	<table name="com_fpdsavills_pr_employee" catalog="savillstest"
+		class="Employee">
+	</table>
+	<table name="com_fpdsavills_pr_journalist" catalog="savillstest"
+		class="Journalist">
+	</table>
+	<table name="com_fpdsavills_pr_office" catalog="savillstest"
+		class="Office">
+	</table>
+	<table name="com_fpdsavills_pr_person" catalog="savillstest"
+		class="Person">
+	</table>
+	<table name="com_fpdsavills_pr_prmanager" catalog="savillstest"
+		class="PRManager">
+	</table>
+	<table name="com_fpdsavills_pr_publication" catalog="savillstest" class="Publication"></table>
 </hibernate-reverse-engineering>
