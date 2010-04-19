@@ -21,6 +21,8 @@ public class Address  implements java.io.Serializable {
      private String line2;
      private String line1;
      private Long country;
+     
+     public static String LINE1="line1";
 
 
     // Constructors

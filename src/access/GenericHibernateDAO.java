@@ -125,7 +125,7 @@ public abstract class GenericHibernateDAO<T, I extends Serializable> implements
 	 * @return
 	 */
 	@SuppressWarnings("unchecked")
-	protected List<T> findByCriteria(Criterion... criterion) {
+	public List<T> findByCriteria(Criterion... criterion) {
 		// this use vargs of java 1.5 it allows to define methods with variable
 		// number of arguments
 		Criteria crit = getSession().createCriteria(getPersistentClass());

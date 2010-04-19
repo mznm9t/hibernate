@@ -29,6 +29,22 @@ public class Contactable  implements java.io.Serializable {
      private Long lastUpdate;
      private Long accountManager;
      private String knownAs;
+     
+     
+     public static String MAINGROUP="mainGroup";
+     public static String ADDRESS="address";
+     public static String PHONE1="phone1";
+     public static String PHONE2="phone2";
+     public static String MOBILE="mobile";
+     public static String FAX="fax";
+     public static String EMAIL="email";
+     public static String WWW="www";
+     public static String STATUS="status";
+     public static String CREATE="created";
+     public static String LASTUPDATE="lastUpdate";
+     public static String ACCOUNTMANAGER="accountManager";
+     public static String KNOWNAS="knownAs";
+     
 
 
     // Constructors

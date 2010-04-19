@@ -6,7 +6,16 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import org.hibernate.Criteria;
+import org.hibernate.Hibernate;
+import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.criterion.DetachedCriteria;
+import org.hibernate.criterion.Disjunction;
+import org.hibernate.criterion.Expression;
+import org.hibernate.criterion.Property;
+import org.hibernate.criterion.Restrictions;
+import org.hibernate.criterion.Subqueries;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -15,6 +24,7 @@ import core.HibernateSessionFactory;
 
 import domain.Address;
 import domain.Contactable;
+import domain.PhoneNumber;
 import domain.ID;
 
 import access.AddressDAO;
@@ -126,6 +136,85 @@ public class DAOTest extends TestCase {
 		 assertTrue(IDs.size()==111);
 	 }
 	 
+	 public void canGetAllContactablesThatHasAnAddressByDetachedCriteria(){
+		 ContactableDAO contactableDataProvider=new ContactableDAO();
+		 DetachedCriteria criteria=DetachedCriteria.forEntityName("domain.Contactable")
+		 .add(Restrictions.isNotNull("address"));
+		 List<Contactable> contactableWithAddress=criteria.getExecutableCriteria(getSession()).list();
+		 assertEquals(111, contactableWithAddress.size());
+	 }
+	 
+	 public void canGetAllContactablesThatHasAnAddressByFindByCriteron(){
+		 ContactableDAO contactableDataProvider=new ContactableDAO();
+		 List<Contactable> contactableWithAddress=contactableDataProvider
+		 .findByCriteria(Restrictions.isNotNull("address"));
+		 assertEquals(111, contactableWithAddress.size()); 
+	 }
+	 
+	 public void catGetContactByOneOfThePhoneNumbersPhoneNumber(){
+		 
+		 Long IDLONG=new Long("-9148036790037986107");
+		 String PHONENUMBER="0115 9102106";
+		 
+		 DetachedCriteria phoneCriteria=DetachedCriteria.forClass(PhoneNumber.class ,"pho")
+		 .add(Restrictions.eq(PhoneNumber.THENUMBER, PHONENUMBER));
+		 	 
+		 PhoneNumber phoneNumber=(PhoneNumber) phoneCriteria.getExecutableCriteria(getSession()).uniqueResult();
+		 
+		 assertNotNull(phoneNumber);
+		 
+		 assertTrue(phoneNumber.getTheNumber().equals(PHONENUMBER));
+		 
+		 assertTrue(phoneNumber.getIdentifier().equals(IDLONG));
+		  		 
+		 Criteria mainCriteria=getSession().createCriteria(Contactable.class)
+		 		.add(Restrictions.disjunction()
+					.add(Property.forName(Contactable.PHONE1).eq(phoneNumber))
+					.add(Property.forName(Contactable.PHONE2).eq(phoneNumber))
+					.add(Property.forName(Contactable.MOBILE).eq(phoneNumber))
+					.add(Property.forName(Contactable.FAX).eq(phoneNumber)));	
+		 List<Contactable> contactableWithAddress=mainCriteria.list();
+		 
+		 Contactable contactable=(Contactable) mainCriteria.uniqueResult();	 
+		 
+		 assertEquals(1,contactableWithAddress.size());	 
+		 log.info("Founded "+contactable.getEntityName()+"with the following number "+PHONENUMBER);		 
+		 assertTrue(!contactableWithAddress.isEmpty());	 
+		 
+		 assertEquals(contactable.getPhone1().getTheNumber(),PHONENUMBER);
+	 }
+	 
+	 
+ public void catGetContactByOneOfThePhoneNumbersPhoneNumberByDotNotation(){		 
+	
+		 String PHONENUMBER="0115 9102106";
+		 
+		 Query q = getSession().createQuery("select c from Contactable c where c.phone1.theNumber=:number");
+		 q.setString("number", PHONENUMBER);
+		 List contactableWithAddress = q.list();
+	
+		 Contactable contactable=(Contactable)q.uniqueResult();	 
+		 
+		 assertEquals(1,contactableWithAddress.size());	 
+		 log.info("Founded "+contactable.getEntityName()+"with the following number "+PHONENUMBER);		 
+		 assertTrue(!contactableWithAddress.isEmpty());	 
+		 
+		 assertEquals(contactable.getPhone1().getTheNumber(),PHONENUMBER);
+	 }
+	 	 
+	 public void canFindContactableWithSpecificAddress(){
+		 String ADDRESS="Finsbury Circus";
+		 Criteria mainCriteria=getSession().createCriteria("domain.Contactable")
+		 .createCriteria("address")
+		 	.add(Property.forName(Address.LINE1).eq(ADDRESS));
+		 
+		 assertEquals(mainCriteria.list().size(),1);
+		 
+		 Contactable contactable=(Contactable) mainCriteria.uniqueResult();
+		 
+		 assertEquals(contactable.getAddress().getLine1(),ADDRESS);
+		 
+	 }
 	
 	public void canFindContactableByID(){
 		Long IDLONG=new Long("-9206799015780976182");
@@ -161,6 +250,16 @@ public class DAOTest extends TestCase {
 		suite.addTest(new DAOTest("canFindContactableByIdentifier"));
 		suite.addTest(new DAOTest("canFindAddressFromContactable"));
 		suite.addTest(new DAOTest("canGetAllContactablesThatHasAnAddressByNativeSQL"));	
+		suite.addTest(new DAOTest("canGetAllContactablesThatHasAnAddressByDetachedCriteria"));
+		suite.addTest(new DAOTest("canGetAllContactablesThatHasAnAddressByFindByCriteron"));	
+		suite.addTest(new DAOTest("catGetContactByOneOfThePhoneNumbersPhoneNumber"));
+		suite.addTest(new DAOTest("canFindContactableWithSpecificAddress"));
+		suite.addTest(new DAOTest("catGetContactByOneOfThePhoneNumbersPhoneNumberByDotNotation"));
+		
+		
+		
+		
+		
 		//$JUnit-END$
 		return suite;
 	}
