@@ -23,13 +23,27 @@ import org.slf4j.LoggerFactory;
 import core.HibernateSessionFactory;
 
 import domain.Address;
+import domain.Company;
 import domain.Contactable;
+import domain.Employee;
+import domain.Journalist;
+import domain.Office;
+import domain.PRManager;
+import domain.Person;
 import domain.PhoneNumber;
 import domain.ID;
+import domain.Publication;
 
 import access.AddressDAO;
+import access.CompanyDAO;
 import access.ContactableDAO;
+import access.EmployeeDAO;
+import access.JournalistDAO;
+import access.OfficeDAO;
+import access.PRManagerDAO;
+import access.PersonDAO;
 import access.PhoneNumberDAO;
+import access.PublicationDAO;
 
 
 import junit.framework.Test;
@@ -101,12 +115,62 @@ public class DAOTest extends TestCase {
 		log.info("Founded "+addresses.size()+" addresses");
 	}
 	
+	public void canFindAllCompanies(){
+		CompanyDAO contactableDataProvider=new CompanyDAO();
+		List<Company> contactables=contactableDataProvider.findAll();
+		assertTrue("Founded "+contactables.size()+" companies", !contactables.isEmpty());
+		log.info("Founded "+contactables.size()+" companies");
+	}
+	
+	public void canFindAllEmployee(){
+		EmployeeDAO contactableDataProvider=new EmployeeDAO();
+		Collection<Employee> contactables=contactableDataProvider.findAll();
+		assertTrue("Founded "+contactables.size()+" Employee", !contactables.isEmpty());
+		log.info("Founded "+contactables.size()+" Employee");
+	}
+	
+	public void canFindAllJournalist(){
+		JournalistDAO contactableDataProvider=new JournalistDAO();
+		Collection<Journalist> contactables=contactableDataProvider.findAll();
+		assertTrue("Founded "+contactables.size()+" Journalist", !contactables.isEmpty());
+		log.info("Founded "+contactables.size()+" Journalist");
+	}
+	
+	public void canFindAllOffice(){
+		OfficeDAO contactableDataProvider=new OfficeDAO();
+		Collection<Office> contactables=contactableDataProvider.findAll();
+		assertTrue("Founded "+contactables.size()+" Office", !contactables.isEmpty());
+		log.info("Founded "+contactables.size()+" Office");
+	}
+	
+	public void canFindAllAPerson(){
+		PersonDAO contactableDataProvider=new PersonDAO();
+		Collection<Person> contactables=contactableDataProvider.findAll();
+		assertTrue("Founded "+contactables.size()+" Person", !contactables.isEmpty());
+		log.info("Founded "+contactables.size()+" Person");
+	}
+	
+	public void canFindAllPRManager(){
+		PRManagerDAO contactableDataProvider=new PRManagerDAO();
+		Collection<PRManager> contactables=contactableDataProvider.findAll();
+		assertTrue("Founded "+contactables.size()+" PRManager", !contactables.isEmpty());
+		log.info("Founded "+contactables.size()+" PRManager");
+	}
+	
+	public void canFindAllPublication(){
+		PublicationDAO contactableDataProvider=new PublicationDAO();
+		Collection<Publication> contactables=contactableDataProvider.findAll();
+		assertTrue("Founded "+contactables.size()+" Publication", !contactables.isEmpty());
+		log.info("Founded "+contactables.size()+" Publication");
+	}
+	
 	public void canFindAllAContactable(){
 		ContactableDAO contactableDataProvider=new ContactableDAO();
 		Collection<Contactable> contactables=contactableDataProvider.findAll();
-		assertTrue("Founded "+contactables.size()+" contactables", !contactables.isEmpty());
-		log.info("Founded "+contactables.size()+" contactables");
+		assertTrue("Founded "+contactables.size()+" Contactable", !contactables.isEmpty());
+		log.info("Founded "+contactables.size()+" Contactable");
 	}
+	
 	
 	public void canFindContactableByIdentifier(){
 		Long IDLONG=new Long("-9206799015780976182");
@@ -246,6 +310,14 @@ public class DAOTest extends TestCase {
 		TestSuite suite = new TestSuite("Running all test test");
 		//$JUnit-BEGIN$
 		suite.addTest(new DAOTest("canFindAllAContactable"));
+		suite.addTest(new DAOTest("canFindAllCompanies"));
+		suite.addTest(new DAOTest("canFindAllEmployee"));
+		suite.addTest(new DAOTest("canFindAllJournalist"));
+		suite.addTest(new DAOTest("canFindAllOffice"));
+		suite.addTest(new DAOTest("canFindAllAPerson"));
+		suite.addTest(new DAOTest("canFindAllPublication"));
+		suite.addTest(new DAOTest("canFindAllPRManager"));
+		
 		suite.addTest(new DAOTest("canFindAllAddresses"));
 		suite.addTest(new DAOTest("canFindContactableByID"));
 		suite.addTest(new DAOTest("canFindContactableByIdentifier"));
