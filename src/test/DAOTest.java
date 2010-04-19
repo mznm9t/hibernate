@@ -248,7 +248,6 @@ public class DAOTest extends TestCase {
 		suite.addTest(new DAOTest("canFindAllAddresses"));
 		suite.addTest(new DAOTest("canFindContactableByID"));
 		suite.addTest(new DAOTest("canFindContactableByIdentifier"));
-		
 		suite.addTest(new DAOTest("canFindAddressFromContactable"));
 		suite.addTest(new DAOTest("canGetAllContactablesThatHasAnAddressByNativeSQL"));	
 		suite.addTest(new DAOTest("canGetAllContactablesThatHasAnAddressByDetachedCriteria"));
