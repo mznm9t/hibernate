@@ -24,13 +24,7 @@
 	<mapping resource="domain/ContactGroup.hbm.xml" />
 	<mapping resource="domain/ContactStatus.hbm.xml" />
 	<mapping resource="domain/PhoneNumber.hbm.xml" />
-	<mapping resource="domain/PRManager.hbm.xml" />
-	<mapping resource="domain/Journalist.hbm.xml" />
-	<mapping resource="domain/Publication.hbm.xml" />
-	<mapping resource="domain/Company.hbm.xml" />
-	<mapping resource="domain/Office.hbm.xml" />
-	<mapping resource="domain/Employee.hbm.xml" />
-	<mapping resource="domain/Person.hbm.xml" />
+	<mapping resource="domain/Coverage.hbm.xml" />
 </session-factory>
 
 </hibernate-configuration>

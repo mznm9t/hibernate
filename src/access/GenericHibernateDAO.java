@@ -151,7 +151,7 @@ public abstract class GenericHibernateDAO<T, I extends Serializable> implements
 	 * @see access.GenericDAO#findByExample(java.lang.Object)
 	 */
 	public List<T> findByExample(T instance) {
-		return findByExample(instance,null);
+		return findByExample(instance,new String[]{});
 	}
 
 	/**

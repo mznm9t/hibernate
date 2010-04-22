@@ -71,5 +71,11 @@
 	<table name="com_fpdsavills_pr_prmanager" catalog="savillstest"
 		class="PRManager">
 	</table>
-	<table name="com_fpdsavills_pr_publication" catalog="savillstest" class="Publication"></table>
+	<table name="com_fpdsavills_pr_publication" catalog="savillstest"
+		class="Publication">
+	</table>
+	<table name="com_fpdsavills_pr_coverage" catalog="savillstest"
+		class="Coverage">
+		<column name="publication_"></column>
+	</table>
 </hibernate-reverse-engineering>

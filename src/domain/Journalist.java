@@ -7,7 +7,7 @@ package domain;
  * Journalist entity. @author MyEclipse Persistence Tools
  */
 
-public class Journalist  implements java.io.Serializable {
+public class Journalist extends Person implements java.io.Serializable {
 
 
     // Fields    

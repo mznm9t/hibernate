@@ -7,7 +7,7 @@ package domain;
  * Office entity. @author MyEclipse Persistence Tools
  */
 
-public class Office  implements java.io.Serializable {
+public class Office extends Contactable implements java.io.Serializable {
 
 
     // Fields    

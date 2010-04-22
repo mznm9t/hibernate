@@ -7,7 +7,7 @@ package domain;
  * Publication entity. @author MyEclipse Persistence Tools
  */
 
-public class Publication  implements java.io.Serializable {
+public class Publication extends Company implements java.io.Serializable {
 
 
     // Fields    

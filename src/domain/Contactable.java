@@ -76,7 +76,7 @@ public class Contactable  implements java.io.Serializable {
 	}
 
 
-	private void setIdentifier(Long identifier) {
+	public void setIdentifier(Long identifier) {
 			this.identifier = identifier;
 	}
 

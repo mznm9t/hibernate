@@ -7,7 +7,7 @@ package domain;
  * Employee entity. @author MyEclipse Persistence Tools
  */
 
-public class Employee  implements java.io.Serializable {
+public class Employee extends Person implements java.io.Serializable {
 
 
     // Fields    

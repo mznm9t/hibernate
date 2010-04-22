@@ -7,7 +7,7 @@ package domain;
  * PRManager entity. @author MyEclipse Persistence Tools
  */
 
-public class PRManager  implements java.io.Serializable {
+public class PRManager extends Person implements java.io.Serializable {
 
 
     // Fields    
