@@ -78,4 +78,13 @@
 		class="Coverage">
 		<column name="publication_"></column>
 	</table>
+	<table name="com_fpdsavills_pr_country" catalog="savillstest"
+		class="Country">
+	</table>
+	<table name="com_fpdsavills_pr_region" catalog="savillstest"
+		class="RegionH">
+	</table>
+	<table name="com_fpdsavills_pr_publicationtype"
+		catalog="savillstest" class="PublicationTypeH">
+	</table>
 </hibernate-reverse-engineering>

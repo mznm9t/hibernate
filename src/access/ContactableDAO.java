@@ -2,8 +2,10 @@ package access;
 // default package
 
 
+import interfaces.Contactable;
+
 import java.util.List;
-import domain.Contactable;
+import domain.ContactableH;
 import domain.ID;
 
 /**
@@ -15,7 +17,7 @@ import domain.ID;
   * @author MyEclipse Persistence Tools 
  */
 
-public class ContactableDAO extends GenericHibernateDAO<Contactable, ID>  {
+public class ContactableDAO extends GenericHibernateDAOWhiInterface<Contactable,ContactableH, ID>  {
 		
 		//property constants
 	public static final String ENTITY_NAME = "entityName";

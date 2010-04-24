@@ -1,9 +1,11 @@
 package access;
 // default package
 
+import interfaces.PRManager;
 import java.util.List;
 import domain.ID;
-import domain.PRManager;
+import domain.PRManagerH;
+
 
 /**
  	* A data access object (DAO) providing persistence and search support for PRManager entities.
@@ -14,7 +16,7 @@ import domain.PRManager;
   * @author MyEclipse Persistence Tools 
  */
 
-public class PRManagerDAO extends GenericHibernateDAO<PRManager, ID>  {
+public class PRManagerDAO extends GenericHibernateDAOWhiInterface<PRManager,PRManagerH, ID>  {
 
 	public static final String ENTITY_NAME = "entityName";
 	public static final String FULL_NAME = "fullName";

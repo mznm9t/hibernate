@@ -1,9 +1,11 @@
 package access;
 // default package
 
+import interfaces.Person;
+
 import java.util.List;
 import domain.ID;
-import domain.Person;
+import domain.PersonH;
 
 /**
  	* A data access object (DAO) providing persistence and search support for Person entities.
@@ -14,7 +16,7 @@ import domain.Person;
   * @author MyEclipse Persistence Tools 
  */
 
-public class PersonDAO extends GenericHibernateDAO<Person, ID>  {
+public class PersonDAO extends GenericHibernateDAOWhiInterface<Person, PersonH, ID>  {
 
 	public static final String ENTITY_NAME = "entityName";
 	public static final String COMPANY = "company";

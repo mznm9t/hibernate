@@ -5,7 +5,8 @@ package access;
 
 import java.util.List;
 
-import domain.Employee;
+import interfaces.Employee;
+import domain.EmployeeH;
 import domain.ID;
 
 /**
@@ -17,7 +18,7 @@ import domain.ID;
   * @author MyEclipse Persistence Tools 
  */
 
-public class EmployeeDAO extends GenericHibernateDAO<Employee, ID>  {
+public class EmployeeDAO extends GenericHibernateDAOWhiInterface<Employee,EmployeeH, ID>  {
 	
 	public static final String ENTITY_NAME = "entityName";
 	public static final String CURRENT = "current";

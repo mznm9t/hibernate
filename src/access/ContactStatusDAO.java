@@ -1,10 +1,12 @@
 package access;
 // default package
 
+import interfaces.ContactStatus;
+
 import java.util.List;
 
 
-import domain.ContactStatus;
+import domain.ContactStatusH;
 import domain.ID;
 
 /**
@@ -16,7 +18,7 @@ import domain.ID;
   * @author MyEclipse Persistence Tools 
  */
 
-public class ContactStatusDAO extends GenericHibernateDAO<ContactStatus, ID>  {
+public class ContactStatusDAO extends GenericHibernateDAOWhiInterface<ContactStatus,ContactStatusH, ID>  {
 	   
 	public static final String ENTITY_NAME = "entityName";
 	public static final String NAME = "name";

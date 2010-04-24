@@ -4,7 +4,8 @@ package access;
 import java.util.List;
 
 
-import domain.Company;
+import interfaces.Company;
+import domain.CompanyH;
 import domain.ID;
 
 /**
@@ -16,7 +17,7 @@ import domain.ID;
   * @author MyEclipse Persistence Tools 
  */
 
-public class CompanyDAO extends GenericHibernateDAO<Company, ID>  {
+public class CompanyDAO extends GenericHibernateDAOWhiInterface<Company, CompanyH, ID>  {
 		
 	public static final String ENTITY_NAME = "entityName";
 	public static final String NAME = "name";

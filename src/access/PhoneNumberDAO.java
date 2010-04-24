@@ -1,10 +1,13 @@
 package access;
 // default package
 
+import interfaces.PhoneNumber;
+
 import java.util.List;
 
 import domain.ID;
-import domain.PhoneNumber;
+import domain.PhoneNumberH;
+
 
 /**
  	* A data access object (DAO) providing persistence and search support for PhoneNumber entities.
@@ -15,7 +18,7 @@ import domain.PhoneNumber;
   * @author MyEclipse Persistence Tools 
  */
 
-public class PhoneNumberDAO extends GenericHibernateDAO<PhoneNumber, ID>  {
+public class PhoneNumberDAO extends GenericHibernateDAOWhiInterface<PhoneNumber,PhoneNumberH, ID>  {
 	
 	public static final String ENTITY_NAME = "entityName";
 	public static final String AREA_CODE = "areaCode";

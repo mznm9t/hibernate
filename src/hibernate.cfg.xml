@@ -24,7 +24,9 @@
 	<mapping resource="domain/ContactGroup.hbm.xml" />
 	<mapping resource="domain/ContactStatus.hbm.xml" />
 	<mapping resource="domain/PhoneNumber.hbm.xml" />
-	<mapping resource="domain/Coverage.hbm.xml" />
+	<mapping resource="domain/Country.hbm.xml" />
+	<mapping resource="domain/Region.hbm.xml" />
+	<mapping resource="domain/PublicationType.hbm.xml" />
 </session-factory>
 
 </hibernate-configuration>

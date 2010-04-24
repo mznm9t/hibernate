@@ -1,11 +1,13 @@
 package access;
 // default package
 
+import interfaces.Office;
+
 import java.util.List;
 
 
 import domain.ID;
-import domain.Office;
+import domain.OfficeH;
 
 /**
  	* A data access object (DAO) providing persistence and search support for Office entities.
@@ -16,7 +18,7 @@ import domain.Office;
   * @author MyEclipse Persistence Tools 
  */
 
-public class OfficeDAO extends GenericHibernateDAO<Office, ID>  {
+public class OfficeDAO extends GenericHibernateDAOWhiInterface<Office,OfficeH, ID>  {
 
 	public static final String ENTITY_NAME = "entityName";
 	public static final String DESCRIPTION = "description";

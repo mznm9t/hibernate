@@ -3,7 +3,8 @@ package access;
 
 import java.util.List;
 import domain.ID;
-import domain.Publication;
+import domain.PublicationH;
+import interfaces.Publication;
 
 /**
  	* A data access object (DAO) providing persistence and search support for Publication entities.
@@ -14,7 +15,7 @@ import domain.Publication;
   * @author MyEclipse Persistence Tools 
  */
 
-public class PublicationDAO extends GenericHibernateDAO<Publication, ID>  {
+public class PublicationDAO extends GenericHibernateDAOWhiInterface<Publication,PublicationH, ID>  {
 
 	public static final String ENTITY_NAME = "entityName";
 	public static final String DESCRIPTION = "description";

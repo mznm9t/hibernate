@@ -8,12 +8,13 @@ import java.util.Date;
  * Coverage entity. @author MyEclipse Persistence Tools
  */
 
-public class Coverage  implements java.io.Serializable {
+@SuppressWarnings("serial")
+public class Coverage  implements /*interfaces.Coverage ,*/ java.io.Serializable {
 
 
     // Fields    
 
-     private Long id;
+	 private ID ID;
      private String entityName;
      private Long story;
      private Long publication;
@@ -93,15 +94,16 @@ public class Coverage  implements java.io.Serializable {
 
    
     // Property accessors
-
-    public Long getId() {
-        return this.id;
-    }
     
-    public void setId(Long id) {
-        this.id = id;
-    }
+    public ID getID() {
+		return ID;
+	}
 
+
+	public void setID(ID iD) {
+		ID = iD;
+	}
+	
     public String getEntityName() {
         return this.entityName;
     }

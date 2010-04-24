@@ -3,6 +3,7 @@ package domain;
 import java.io.Serializable;
 
 
+@SuppressWarnings("serial")
 public class ID implements Serializable {
 
 	private Long identifier;
@@ -30,7 +31,6 @@ public class ID implements Serializable {
 
 	@Override
 	public boolean equals(Object obj) {
-		// TODO Auto-generated method stub
 		return (obj instanceof ID && ((ID)obj).getIdentifier()!=null && ((ID)obj).getIdentifier().equals(identifier));
 	}
 

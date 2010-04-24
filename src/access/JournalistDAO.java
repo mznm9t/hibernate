@@ -3,9 +3,11 @@ package access;
 
 
 
+import interfaces.Journalist;
+
 import java.util.List;
 import domain.ID;
-import domain.Journalist;
+import domain.JournalistH;
 
 /**
  	* A data access object (DAO) providing persistence and search support for Journalist entities.
@@ -16,7 +18,7 @@ import domain.Journalist;
   * @author MyEclipse Persistence Tools 
  */
 
-public class JournalistDAO extends GenericHibernateDAO<Journalist, ID>  {
+public class JournalistDAO extends GenericHibernateDAOWhiInterface<Journalist,JournalistH, ID>  {
 
 	public static final String ENTITY_NAME = "entityName";
 	public static final String PUBLICATION = "publication";

@@ -1,8 +1,11 @@
 package access;
 // default package
 
+import interfaces.Address;
+
 import java.util.List;
-import domain.Address;
+
+import domain.AddressH;
 import domain.ID;
 
 /**
@@ -14,7 +17,7 @@ import domain.ID;
   * @author MyEclipse Persistence Tools 
  */
 
-public class AddressDAO extends GenericHibernateDAO<Address, ID>  {     
+public class AddressDAO extends GenericHibernateDAOWhiInterface<Address, AddressH, ID>  {     
 	public static final String ENTITY_NAME = "entityName";
 	public static final String POSTCODE = "postcode";
 	public static final String LINE4 = "line4";

@@ -2,7 +2,8 @@ package access;
 // default package
 
 import java.util.List;
-import domain.ContactGroup;
+import interfaces.ContactGroup;
+import domain.ContactGroupH;
 import domain.ID;
 
 /**
@@ -14,7 +15,7 @@ import domain.ID;
   * @author MyEclipse Persistence Tools 
  */
 
-public class ContactGroupDAO extends GenericHibernateDAO<ContactGroup, ID>  {   
+public class ContactGroupDAO extends GenericHibernateDAOWhiInterface<ContactGroup,ContactGroupH, ID>  {   
 		//property constants
 	public static final String ENTITY_NAME = "entityName";
 	public static final String NAME = "name";
