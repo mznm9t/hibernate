@@ -1,0 +1,388 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="en-US">
+<head profile="http://gmpg.org/xfn/11">
+
+    <title>Part 2 of GrailsUI Screencast Series: AutoComplete Basics</title>
+
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+	<meta name="description" content="sweaty programming and disconnected gibberish" />
+		
+	<link rel="stylesheet" type="text/css" href="http://weblog.dangertree.net/wp-content/themes/thematic/style.css" />
+	
+  	<link rel="alternate" type="application/rss+xml" href="http://weblog.dangertree.net/feed/" title="dangertree techblog Posts RSS feed" />
+	<link rel="alternate" type="application/rss+xml" href="http://weblog.dangertree.net/comments/feed/" title="dangertree techblog Comments RSS feed" />
+	<link rel="pingback" href="http://weblog.dangertree.net/xmlrpc.php" />
+	
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://weblog.dangertree.net/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://weblog.dangertree.net/wp-includes/wlwmanifest.xml" /> 
+<script type='text/javascript' src='http://weblog.dangertree.net/wp-includes/js/jquery/jquery.js?ver=1.2.6'></script>
+
+	<script type="text/javascript" src="http://www.google.com/friendconnect/script/friendconnect.js"></script>
+	<link rel="stylesheet" type="text/css" href="http://weblog.dangertree.net/wp-content/plugins/wp-recaptcha/recaptcha.css" />	<link type="text/css" rel="stylesheet" href="http://weblog.dangertree.net/wp-content/plugins/syntaxhighlighter/files/SyntaxHighlighter.css"></link>
+
+</head>
+
+<body class="wordpress y2010 m04 d02 h15 single postid-419 s-y2009 s-m04 s-d07 s-h15 s-category-grails-plugins s-tag-grailsui s-tag-screencasts s-author-rhyolight">
+
+<div id="wrapper" class="hfeed">
+
+    <div id="header">
+    	<div id="branding">
+    		<div id="blog-title"><span><a href="http://weblog.dangertree.net/" title="dangertree techblog" rel="home">dangertree techblog</a></span></div>
+    			
+    		<div id="blog-description">sweaty programming and disconnected gibberish</div>
+    		    	</div><!--  #branding -->
+    	<div id="access">
+    		<div class="skip-link"><a href="#content" title="Skip navigation to the content">Skip to content</a></div>
+            <div id="menu"><ul><li class="page_item page-item-2"><a href="http://weblog.dangertree.net/about/" title="about">about</a></li></ul></div>
+        </div><!-- #access -->
+    </div><!-- #header-->
+    
+   
+    <div id="main">
+    
+	<div id="container">
+		<div id="content">
+
+			<div id="nav-above" class="navigation">
+				<div class="nav-previous"><a href="http://weblog.dangertree.net/2009/04/06/grails-developer-for-hire/"><span class="meta-nav">&laquo;</span> Grails Developer for Hire (sort of)</a></div>
+				<div class="nav-next"><a href="http://weblog.dangertree.net/2009/04/15/part-3-of-grailsui-screencast-series-advanced-autocomplete/">Part 3 of GrailsUI Screencast Series: Advanced AutoComplete <span class="meta-nav">&raquo;</span></a></div>
+			</div>
+
+
+			<div id="post-419" class="hentry p1 post publish author-matthew-taylor category-grails-plugins tag-grailsui tag-screencasts y2009 m04 d07 h15">
+    			<h1 class="entry-title">Part 2 of GrailsUI Screencast Series: AutoComplete Basics</h1>
+<div class="entry-meta"><span class="author vcard">By <a class="url fn n" href="http://weblog.dangertree.net/author/rhyolight/" title="View all posts by Matthew Taylor">Matthew Taylor</a></span><span class="meta-sep"> | </span><span class="entry-date"><abbr class="published" title="2009-04-07T15:33:32-0500">April 7, 2009</abbr></span></div><!-- .entry-meta -->
+				<div class="entry-content">
+<p>The 2nd installation of my GrailsUI Screencast series deals with the AutoComplete component.  I&#8217;ve given an example of usage from scratch, including form submission.</p>
+<div class="download">
+<div class="main-link"><a href="http://groovymag.com/screencasts/GrailsUI-Screencast-Part2.mov">Download</a> (44.4 MB, 15:23)</div>
+<div class="alt-link"><a href="http://groovymag.com/screencasts/GrailsUI-Screencast-Part2.m4v">alternative download</a> for iPod &#038; Apple TV (28.5 MB, 15:23)</div>
+</div>
+<p>Music is <em>&#8220;Binge and Purge&#8221;</em> by <strong>Clutch</strong>.</p>
+<p>So far, the series goes like this:</p>
+<ol>
+<li><a href="http://weblog.dangertree.net/2009/04/03/part-1-of-grailsui-screencast-series-the-basics/">Part 1: GrailsUI Basics (expandablePanel, accordion, tabView)</a></li>
+<li><a href="http://weblog.dangertree.net/2009/04/07/part-2-of-grailsui-screencast-series-autocomplete-basics">Part 2: GrailsUI AutoComplete Basics</a></li>
+<li>Part 3: GrailsUI AutoComplete Advanced (query options, filtering, dependency) COMING SOON</li>
+</ol>
+
+									</div>
+				<div class="entry-utility"><span class="cat-links">This entry was posted in <a href="http://weblog.dangertree.net/category/grails-plugins/" title="View all posts in grails plugins" rel="category tag">grails plugins</a></span><span class="tag-links">  and tagged <a href="http://weblog.dangertree.net/tag/grailsui/" rel="tag">GrailsUI</a>, <a href="http://weblog.dangertree.net/tag/screencasts/" rel="tag">screencasts</a></span>. Bookmark the <a href="http://weblog.dangertree.net/2009/04/07/part-2-of-grailsui-screencast-series-autocomplete-basics/" title="Permalink to Part 2 of GrailsUI Screencast Series: AutoComplete Basics">permalink</a>. <a class="comment-link" href="#respond" title ="Post a comment">Post a comment</a> or leave a trackback: <a class="trackback-link" href="http://weblog.dangertree.net/2009/04/07/part-2-of-grailsui-screencast-series-autocomplete-basics/trackback/" title ="Trackback URL for your post" rel="trackback">Trackback URL</a>.</div><!-- .entry-utility -->
+			</div><!-- .post -->
+			
+	                        <div style="float:right; padding:10px">
+<script type="text/javascript">var dzone_url = 'http://weblog.dangertree.net/2009/04/07/part-2-of-grailsui-screencast-series-autocomplete-basics/';</script>
+<script type="text/javascript">var dzone_title = 'Part 2 of GrailsUI Screencast Series: AutoComplete Basics';</script>
+<script type="text/javascript">var dzone_blurb = 'Part 2 of GrailsUI Screencast Series: AutoComplete Basics';</script>
+<script type="text/javascript">var dzone_style = '2';</script>
+<script language="javascript" src="http://widgets.dzone.com/widgets/zoneit.js"></script>
+                                </div>
+
+			<div id="nav-below" class="navigation">
+				<div class="nav-previous"><a href="http://weblog.dangertree.net/2009/04/06/grails-developer-for-hire/"><span class="meta-nav">&laquo;</span> Grails Developer for Hire (sort of)</a></div>
+				<div class="nav-next"><a href="http://weblog.dangertree.net/2009/04/15/part-3-of-grailsui-screencast-series-advanced-autocomplete/">Part 3 of GrailsUI Screencast Series: Advanced AutoComplete <span class="meta-nav">&raquo;</span></a></div>
+			</div>
+
+			<div id="comments">
+				<div id="respond">
+					<h3>Post a Comment</h3>
+
+					<div class="formcontainer">	
+						<form id="commentform" action="http://weblog.dangertree.net/wp-comments-post.php" method="post">
+
+
+							<p id="comment-notes">Your email is <em>never</em> published nor shared. Required fields are marked <span class="required">*</span></p>
+
+                            <div id="form-section-author" class="form-section">
+    							<div class="form-label"><label for="author">Name</label> <span class="required">*</span></div>
+    							<div class="form-input"><input id="author" name="author" type="text" value="" size="30" maxlength="20" tabindex="3" /></div>
+                            </div><!-- #form-section-author .form-section -->
+
+                            <div id="form-section-email" class="form-section">
+    							<div class="form-label"><label for="email">Email</label> <span class="required">*</span></div>
+    							<div class="form-input"><input id="email" name="email" type="text" value="" size="30" maxlength="50" tabindex="4" /></div>
+                            </div><!-- #form-section-email .form-section -->
+
+                            <div id="form-section-url" class="form-section">
+    							<div class="form-label"><label for="url">Website</label></div>
+    							<div class="form-input"><input id="url" name="url" type="text" value="" size="30" maxlength="50" tabindex="5" /></div>
+                            </div><!-- #form-section-url .form-section -->
+
+
+                            <div id="form-section-comment" class="form-section">
+    							<div class="form-label"><label for="comment">Comment</label></div>
+    							<div class="form-textarea"><textarea id="comment" name="comment" cols="45" rows="8" tabindex="6"></textarea></div>
+                            </div><!-- #form-section-comment .form-section -->
+
+
+							<div class="form-submit"><input id="submit" name="submit" type="submit" value="Post Comment" tabindex="7" /><input type="hidden" name="comment_post_ID" value="419" /></div>
+
+									<script type='text/javascript'>
+				var RecaptchaOptions = { theme : 'blackglass', lang : 'en' , tabindex : 5 };
+		</script><script type="text/javascript" src="http://api.recaptcha.net/challenge?k=6LdiywMAAAAAAFCUU1obgvYTyLb3vCPLOGwjj00Z"></script>
+
+<noscript>
+<iframe src="http://api.recaptcha.net/noscript?k=6LdiywMAAAAAAFCUU1obgvYTyLb3vCPLOGwjj00Z" height="300" width="500" frameborder="0"></iframe><br/>
+<textarea name="recaptcha_challenge_field" rows="3" cols="40"></textarea>
+<input type="hidden" name="recaptcha_response_field" value="manual_challenge"/>
+</noscript>				<div id="recaptcha-submit-btn-area"></div> 
+				<script type='text/javascript'>
+				var sub = document.getElementById('submit');
+				sub.parentNode.removeChild(sub);
+				document.getElementById('recaptcha-submit-btn-area').appendChild (sub);
+				document.getElementById('submit').tabIndex = 6;
+				if ( typeof _recaptcha_wordpress_savedcomment != 'undefined') {
+						document.getElementById('comment').value = _recaptcha_wordpress_savedcomment;
+				}
+				document.getElementById('recaptcha_table').style.direction = 'ltr';
+				</script>
+				<noscript>
+				 <style type='text/css'>#submit {display:none;}</style>
+				 <input name="submit" type="submit" id="submit-alt" tabindex="6" value="Submit Comment"/> 
+				</noscript>
+						</form><!-- #commentform -->
+						
+						
+					</div><!-- .formcontainer -->
+
+				</div><!-- #respond -->
+
+			</div><!-- #comments -->
+
+
+		</div><!-- #content -->
+	</div><!-- #container -->
+
+<div align="center">
+Check out the <a href="http://www.groovymag.com/main.issues.description/id=14/">latest GroovyMag</a> to see an interview with me about the 1.1 release of <a href="http://grails.org/plugin/grails-ui">GrailsUI</a>:<br/><br/>
+	<a href="http://www.groovymag.com/main.issues.description/id=14/"><img src="http://www.groovymag.com/images/gm12_125.jpg"/></a>
+</div>
+    <div id="primary" class="aside main-aside">
+		<ul class="xoxo">
+			<li id="search" class="widgetcontainer widget_thematic_search">				<h3 class="widgettitle"><label for="s">Search</label></h3>
+				<form id="searchform" method="get" action="http://weblog.dangertree.net">
+					<div>
+						<input id="s" name="s" type="text" value="" size="20" tabindex="1" />
+						<input id="searchsubmit" name="searchsubmit" type="submit" value="Search" tabindex="2" />
+					</div>
+				</form>
+			</li>
+<li id="ctc" class="widgetcontainer widget_ctc"><h3 class="widgettitle">TAG CLOUD</h3>
+<div class="ctc"><a href="http://weblog.dangertree.net/tag/advice/" class="tag-link-94" title="1 topics" rel="tag" style="font-size: 10px;">advice</a>
+<a href="http://weblog.dangertree.net/tag/agile/" class="tag-link-44" title="1 topics" rel="tag" style="font-size: 10px;">agile</a>
+<a href="http://weblog.dangertree.net/tag/astronomy/" class="tag-link-93" title="1 topics" rel="tag" style="font-size: 10px;">astronomy</a>
+<a href="http://weblog.dangertree.net/tag/awesome/" class="tag-link-88" title="1 topics" rel="tag" style="font-size: 10px;">AWESOME</a>
+<a href="http://weblog.dangertree.net/tag/brain/" class="tag-link-46" title="1 topics" rel="tag" style="font-size: 10px;">brain</a>
+<a href="http://weblog.dangertree.net/tag/consulting/" class="tag-link-85" title="1 topics" rel="tag" style="font-size: 10px;">consulting</a>
+<a href="http://weblog.dangertree.net/tag/cool/" class="tag-link-21" title="4 topics" rel="tag" style="font-size: 12.2857142857px;">cool</a>
+<a href="http://weblog.dangertree.net/tag/data/" class="tag-link-37" title="2 topics" rel="tag" style="font-size: 10.7619047619px;">data</a>
+<a href="http://weblog.dangertree.net/tag/design/" class="tag-link-8" title="3 topics" rel="tag" style="font-size: 11.5238095238px;">design</a>
+<a href="http://weblog.dangertree.net/tag/downloads/" class="tag-link-36" title="3 topics" rel="tag" style="font-size: 11.5238095238px;">downloads</a>
+<a href="http://weblog.dangertree.net/tag/dynamic/" class="tag-link-65" title="1 topics" rel="tag" style="font-size: 10px;">dynamic</a>
+<a href="http://weblog.dangertree.net/tag/education/" class="tag-link-33" title="1 topics" rel="tag" style="font-size: 10px;">education</a>
+<a href="http://weblog.dangertree.net/tag/entertainment/" class="tag-link-96" title="1 topics" rel="tag" style="font-size: 10px;">entertainment</a>
+<a href="http://weblog.dangertree.net/tag/evolution/" class="tag-link-91" title="1 topics" rel="tag" style="font-size: 10px;">evolution</a>
+<a href="http://weblog.dangertree.net/tag/example/" class="tag-link-82" title="1 topics" rel="tag" style="font-size: 10px;">example</a>
+<a href="http://weblog.dangertree.net/tag/flame-bait/" class="tag-link-71" title="2 topics" rel="tag" style="font-size: 10.7619047619px;">flame-bait</a>
+<a href="http://weblog.dangertree.net/tag/flex/" class="tag-link-13" title="1 topics" rel="tag" style="font-size: 10px;">flex</a>
+<a href="http://weblog.dangertree.net/tag/fortran/" class="tag-link-23" title="1 topics" rel="tag" style="font-size: 10px;">fortran</a>
+<a href="http://weblog.dangertree.net/tag/fun/" class="tag-link-38" title="3 topics" rel="tag" style="font-size: 11.5238095238px;">fun</a>
+<a href="http://weblog.dangertree.net/tag/functional/" class="tag-link-66" title="1 topics" rel="tag" style="font-size: 10px;">functional</a>
+<a href="http://weblog.dangertree.net/tag/g2one/" class="tag-link-63" title="1 topics" rel="tag" style="font-size: 10px;">G2One</a>
+<a href="http://weblog.dangertree.net/tag/grails/" class="tag-link-53" title="19 topics" rel="tag" style="font-size: 23.7142857143px;">grails</a>
+<a href="http://weblog.dangertree.net/tag/grailsui/" class="tag-link-57" title="22 topics" rel="tag" style="font-size: 26px;">GrailsUI</a>
+<a href="http://weblog.dangertree.net/tag/griffon/" class="tag-link-80" title="1 topics" rel="tag" style="font-size: 10px;">griffon</a>
+<a href="http://weblog.dangertree.net/tag/groovy/" class="tag-link-51" title="12 topics" rel="tag" style="font-size: 18.380952381px;">groovy</a>
+<a href="http://weblog.dangertree.net/tag/hardware/" class="tag-link-12" title="2 topics" rel="tag" style="font-size: 10.7619047619px;">hardware</a>
+<a href="http://weblog.dangertree.net/tag/help/" class="tag-link-95" title="1 topics" rel="tag" style="font-size: 10px;">help</a>
+<a href="http://weblog.dangertree.net/tag/hibernate/" class="tag-link-40" title="2 topics" rel="tag" style="font-size: 10.7619047619px;">hibernate</a>
+<a href="http://weblog.dangertree.net/tag/home-media/" class="tag-link-97" title="1 topics" rel="tag" style="font-size: 10px;">home&nbsp;media</a>
+<a href="http://weblog.dangertree.net/tag/intelligence/" class="tag-link-47" title="1 topics" rel="tag" style="font-size: 10px;">intelligence</a>
+<a href="http://weblog.dangertree.net/tag/java/" class="tag-link-2" title="14 topics" rel="tag" style="font-size: 19.9047619048px;">java</a>
+<a href="http://weblog.dangertree.net/tag/java-5/" class="tag-link-15" title="3 topics" rel="tag" style="font-size: 11.5238095238px;">java&nbsp;5</a>
+<a href="http://weblog.dangertree.net/tag/javascript/" class="tag-link-56" title="9 topics" rel="tag" style="font-size: 16.0952380952px;">javascript</a>
+<a href="http://weblog.dangertree.net/tag/jobs/" class="tag-link-89" title="2 topics" rel="tag" style="font-size: 10.7619047619px;">jobs</a>
+<a href="http://weblog.dangertree.net/tag/jquery/" class="tag-link-87" title="4 topics" rel="tag" style="font-size: 12.2857142857px;">jquery</a>
+<a href="http://weblog.dangertree.net/tag/jsp/" class="tag-link-3" title="1 topics" rel="tag" style="font-size: 10px;">jsp</a>
+<a href="http://weblog.dangertree.net/tag/jug/" class="tag-link-79" title="1 topics" rel="tag" style="font-size: 10px;">jug</a>
+<a href="http://weblog.dangertree.net/tag/kansas-city/" class="tag-link-78" title="1 topics" rel="tag" style="font-size: 10px;">kansas&nbsp;city</a>
+<a href="http://weblog.dangertree.net/tag/laptops/" class="tag-link-20" title="3 topics" rel="tag" style="font-size: 11.5238095238px;">laptops</a>
+<a href="http://weblog.dangertree.net/tag/launchy/" class="tag-link-41" title="4 topics" rel="tag" style="font-size: 12.2857142857px;">launchy</a>
+<a href="http://weblog.dangertree.net/tag/linux/" class="tag-link-22" title="2 topics" rel="tag" style="font-size: 10.7619047619px;">linux</a>
+<a href="http://weblog.dangertree.net/tag/meeting/" class="tag-link-67" title="1 topics" rel="tag" style="font-size: 10px;">meeting</a>
+<a href="http://weblog.dangertree.net/tag/multithreading/" class="tag-link-6" title="1 topics" rel="tag" style="font-size: 10px;">multithreading</a>
+<a href="http://weblog.dangertree.net/tag/news/" class="tag-link-61" title="10 topics" rel="tag" style="font-size: 16.8571428571px;">news</a>
+<a href="http://weblog.dangertree.net/tag/object-oriented/" class="tag-link-24" title="3 topics" rel="tag" style="font-size: 11.5238095238px;">object&nbsp;oriented</a>
+<a href="http://weblog.dangertree.net/tag/off-topic/" class="tag-link-35" title="5 topics" rel="tag" style="font-size: 13.0476190476px;">off&nbsp;topic</a>
+<a href="http://weblog.dangertree.net/tag/opinion/" class="tag-link-70" title="2 topics" rel="tag" style="font-size: 10.7619047619px;">opinion</a>
+<a href="http://weblog.dangertree.net/tag/philosophy/" class="tag-link-9" title="4 topics" rel="tag" style="font-size: 12.2857142857px;">philosophy</a>
+<a href="http://weblog.dangertree.net/tag/plugin/" class="tag-link-54" title="9 topics" rel="tag" style="font-size: 16.0952380952px;">plugin</a>
+<a href="http://weblog.dangertree.net/tag/powershell/" class="tag-link-60" title="1 topics" rel="tag" style="font-size: 10px;">powershell</a>
+<a href="http://weblog.dangertree.net/tag/presentation/" class="tag-link-69" title="11 topics" rel="tag" style="font-size: 17.619047619px;">presentation</a>
+<a href="http://weblog.dangertree.net/tag/presentation-jug-groovy-tdd/" class="tag-link-76" title="2 topics" rel="tag" style="font-size: 10.7619047619px;">presentation&nbsp;jug&nbsp;groovy&nbsp;tdd</a>
+<a href="http://weblog.dangertree.net/tag/productivity/" class="tag-link-17" title="4 topics" rel="tag" style="font-size: 12.2857142857px;">productivity</a>
+<a href="http://weblog.dangertree.net/tag/promotion/" class="tag-link-84" title="1 topics" rel="tag" style="font-size: 10px;">promotion</a>
+<a href="http://weblog.dangertree.net/tag/rambling/" class="tag-link-48" title="1 topics" rel="tag" style="font-size: 10px;">rambling</a>
+<a href="http://weblog.dangertree.net/tag/release/" class="tag-link-64" title="1 topics" rel="tag" style="font-size: 10px;">release</a>
+<a href="http://weblog.dangertree.net/tag/science/" class="tag-link-92" title="1 topics" rel="tag" style="font-size: 10px;">science</a>
+<a href="http://weblog.dangertree.net/tag/screencasts/" class="tag-link-83" title="3 topics" rel="tag" style="font-size: 11.5238095238px;">screencasts</a>
+<a href="http://weblog.dangertree.net/tag/servlets/" class="tag-link-5" title="2 topics" rel="tag" style="font-size: 10.7619047619px;">servlets</a>
+<a href="http://weblog.dangertree.net/tag/singularity/" class="tag-link-10" title="3 topics" rel="tag" style="font-size: 11.5238095238px;">singularity</a>
+<a href="http://weblog.dangertree.net/tag/social-websites/" class="tag-link-30" title="1 topics" rel="tag" style="font-size: 10px;">social&nbsp;websites</a>
+<a href="http://weblog.dangertree.net/tag/springsource/" class="tag-link-62" title="1 topics" rel="tag" style="font-size: 10px;">SpringSource</a>
+<a href="http://weblog.dangertree.net/tag/st-louis/" class="tag-link-68" title="1 topics" rel="tag" style="font-size: 10px;">st&nbsp;louis</a>
+<a href="http://weblog.dangertree.net/tag/swing/" class="tag-link-81" title="1 topics" rel="tag" style="font-size: 10px;">swing</a>
+<a href="http://weblog.dangertree.net/tag/tdd/" class="tag-link-77" title="1 topics" rel="tag" style="font-size: 10px;">tdd</a>
+<a href="http://weblog.dangertree.net/tag/technology/" class="tag-link-11" title="4 topics" rel="tag" style="font-size: 12.2857142857px;">technology</a>
+<a href="http://weblog.dangertree.net/tag/tips/" class="tag-link-34" title="8 topics" rel="tag" style="font-size: 15.3333333333px;">tips</a>
+<a href="http://weblog.dangertree.net/tag/tomcat/" class="tag-link-4" title="2 topics" rel="tag" style="font-size: 10.7619047619px;">tomcat</a>
+<a href="http://weblog.dangertree.net/tag/tools/" class="tag-link-72" title="1 topics" rel="tag" style="font-size: 10px;">tools</a>
+<a href="http://weblog.dangertree.net/tag/tutorial/" class="tag-link-31" title="8 topics" rel="tag" style="font-size: 15.3333333333px;">tutorial</a>
+<a href="http://weblog.dangertree.net/tag/ubuntu/" class="tag-link-19" title="2 topics" rel="tag" style="font-size: 10.7619047619px;">ubuntu</a>
+<a href="http://weblog.dangertree.net/tag/uncategorized/" class="tag-link-1" title="1 topics" rel="tag" style="font-size: 10px;">uncategorized</a>
+<a href="http://weblog.dangertree.net/tag/user-interfaces/" class="tag-link-14" title="1 topics" rel="tag" style="font-size: 10px;">user&nbsp;interfaces</a>
+<a href="http://weblog.dangertree.net/tag/version-control/" class="tag-link-73" title="1 topics" rel="tag" style="font-size: 10px;">version&nbsp;control</a>
+<a href="http://weblog.dangertree.net/tag/windows/" class="tag-link-18" title="7 topics" rel="tag" style="font-size: 14.5714285714px;">windows</a>
+<a href="http://weblog.dangertree.net/tag/yahoo/" class="tag-link-90" title="1 topics" rel="tag" style="font-size: 10px;">yahoo</a>
+<a href="http://weblog.dangertree.net/tag/yui/" class="tag-link-55" title="6 topics" rel="tag" style="font-size: 13.8095238095px;">yui</a></div></li><li id="gfc-members" class="widgetcontainer GFCIWidget_Members"><h3 class="widgettitle"></h3>
+
+<div id="gfci-member" style="width:px;border:1px solid #cccccc;"></div>
+<script type="text/javascript">
+var skin = {};
+skin['HEIGHT'] = '';
+skin['BORDER_COLOR'] = '';
+skin['ENDCAP_BG_COLOR'] = '';
+skin['ENDCAP_TEXT_COLOR'] = '';
+skin['ENDCAP_LINK_COLOR'] = '';
+skin['ALTERNATE_BG_COLOR'] = '';
+skin['CONTENT_BG_COLOR'] = '';
+skin['CONTENT_LINK_COLOR'] = '';
+skin['CONTENT_TEXT_COLOR'] = '';
+skin['CONTENT_SECONDARY_LINK_COLOR'] = '';
+skin['CONTENT_SECONDARY_TEXT_COLOR'] = '';
+skin['CONTENT_HEADLINE_COLOR'] = '';
+google.friendconnect.container.setParentUrl('/' /* location of rpc_relay.html and canvas.html */);
+google.friendconnect.container.renderMembersGadget(
+ { id: 'gfci-member',
+   site: '04793414477370833441'},
+  skin);
+</script>
+</li><li id="archives" class="widgetcontainer widget_archive"><h3 class="widgettitle">Archives</h3>
+		<ul>
+			<li><a href='http://weblog.dangertree.net/2010/03/' title='March 2010'>March 2010</a></li>
+	<li><a href='http://weblog.dangertree.net/2010/02/' title='February 2010'>February 2010</a></li>
+	<li><a href='http://weblog.dangertree.net/2010/01/' title='January 2010'>January 2010</a></li>
+	<li><a href='http://weblog.dangertree.net/2009/12/' title='December 2009'>December 2009</a></li>
+	<li><a href='http://weblog.dangertree.net/2009/11/' title='November 2009'>November 2009</a></li>
+	<li><a href='http://weblog.dangertree.net/2009/10/' title='October 2009'>October 2009</a></li>
+	<li><a href='http://weblog.dangertree.net/2009/09/' title='September 2009'>September 2009</a></li>
+	<li><a href='http://weblog.dangertree.net/2009/07/' title='July 2009'>July 2009</a></li>
+	<li><a href='http://weblog.dangertree.net/2009/06/' title='June 2009'>June 2009</a></li>
+	<li><a href='http://weblog.dangertree.net/2009/04/' title='April 2009'>April 2009</a></li>
+	<li><a href='http://weblog.dangertree.net/2009/03/' title='March 2009'>March 2009</a></li>
+	<li><a href='http://weblog.dangertree.net/2009/02/' title='February 2009'>February 2009</a></li>
+	<li><a href='http://weblog.dangertree.net/2009/01/' title='January 2009'>January 2009</a></li>
+	<li><a href='http://weblog.dangertree.net/2008/12/' title='December 2008'>December 2008</a></li>
+	<li><a href='http://weblog.dangertree.net/2008/11/' title='November 2008'>November 2008</a></li>
+	<li><a href='http://weblog.dangertree.net/2008/10/' title='October 2008'>October 2008</a></li>
+	<li><a href='http://weblog.dangertree.net/2008/04/' title='April 2008'>April 2008</a></li>
+	<li><a href='http://weblog.dangertree.net/2008/03/' title='March 2008'>March 2008</a></li>
+	<li><a href='http://weblog.dangertree.net/2008/01/' title='January 2008'>January 2008</a></li>
+	<li><a href='http://weblog.dangertree.net/2007/11/' title='November 2007'>November 2007</a></li>
+	<li><a href='http://weblog.dangertree.net/2007/10/' title='October 2007'>October 2007</a></li>
+	<li><a href='http://weblog.dangertree.net/2007/09/' title='September 2007'>September 2007</a></li>
+	<li><a href='http://weblog.dangertree.net/2007/07/' title='July 2007'>July 2007</a></li>
+	<li><a href='http://weblog.dangertree.net/2007/06/' title='June 2007'>June 2007</a></li>
+	<li><a href='http://weblog.dangertree.net/2007/05/' title='May 2007'>May 2007</a></li>
+	<li><a href='http://weblog.dangertree.net/2007/04/' title='April 2007'>April 2007</a></li>
+	<li><a href='http://weblog.dangertree.net/2007/02/' title='February 2007'>February 2007</a></li>
+	<li><a href='http://weblog.dangertree.net/2007/01/' title='January 2007'>January 2007</a></li>
+	<li><a href='http://weblog.dangertree.net/2006/06/' title='June 2006'>June 2006</a></li>
+		</ul>
+</li>		</ul>
+	</div><!-- #primary .aside -->
+
+	<div id="secondary" class="aside main-aside">
+		<ul class="xoxo">
+
+<li id="linkcat-59" class="linkcat"><h3>Blogs I Read</h3>
+	<ul class='xoxo blogroll'>
+<li><a href="http://tech.puredanger.com">Alex Miller</a></li>
+<li><a href="http://groovyland.wordpress.com">Alex Tkachman</a></li>
+<li><a href="http://thediscoblog.com">Andy Glover</a></li>
+<li><a href="http://www.agileprogrammer.com/oneagilecoder/">Brian Button</a></li>
+<li><a href="http://graemerocher.blogspot.com/">Graeme Rocher</a></li>
+<li><a href="http://www.greggbolinger.com/blog/">Gregg Bolinger</a></li>
+<li><a href="http://glaforge.free.fr/weblog/">Guillaume LaForge</a></li>
+<li><a href="http://javajeff.blogspot.com/" rel="contact met co-worker">Jeff Brown</a></li>
+<li><a href="http://blackdragsview.blogspot.com/">Jochen Theodorou</a></li>
+<li><a href="http://www.anyware.co.uk/2005">Marc Palmer</a></li>
+<li><a href="http://marceloverdijk.blogspot.com/">Marcel Overdijk</a></li>
+<li><a href="http://marioaquino.blogspot.com/">Mario Aquino</a></li>
+<li><a href="http://codetojoy.blogspot.com/index.html">Mike Easter</a></li>
+<li><a href="http://pyrochub.com" title="Groovy and Grails with attitude">Nathan Neff</a></li>
+<li><a href="http://enfranchisedmind.com/blog">Robert Fischer</a></li>
+<li><a href="http://hansamann.wordpress.com">Sven Haiges</a></li>
+<li><a href="http://naleid.com/blog">Ted Naleid</a></li>
+<li><a href="http://www.weiqigao.com/blog/">Weiqi Gao</a></li>
+
+	</ul>
+</li>
+<li id="linkcat-52" class="linkcat"><h3>See this site at</h3>
+	<ul class='xoxo blogroll'>
+<li><a href="http://www.dzone.com/links/search.html?query=domain%3Aweblog.dangertree.net">DZone</a></li>
+<li><a href="http://www.groovyblogs.org/blog/show/7981">GroovyBlogs</a></li>
+<li><a href="http://www.javablogs.com/ViewBlog.action?id=14134">JavaBlogs</a></li>
+
+	</ul>
+</li>
+
+			<li id="rss-links">
+				<h3>RSS Feeds</h3>
+				<ul>
+					<li><a href="http://weblog.dangertree.net/feed/" title="dangertree techblog Posts RSS feed" rel="alternate" type="application/rss+xml">All posts</a></li>
+					<li><a href="http://weblog.dangertree.net/comments/feed/" title="dangertree techblog Comments RSS feed" rel="alternate" type="application/rss+xml">All comments</a></li>
+				</ul>
+			</li>
+
+			<li id="meta">
+				<h3>Meta</h3>
+				<ul>
+					
+					<li><a href="http://weblog.dangertree.net/wp-login.php">Log in</a></li>
+					
+				</ul>
+			</li>
+		</ul>
+	</div><!-- #secondary .aside -->
+    </div><!-- #main -->
+    
+    
+
+	<div id="footer">
+                    <div id="siteinfo">        
+    		<span id="generator-link">Powered by <a href="http://WordPress.org/" title="WordPress" rel="generator">WordPress</a></span><span class="meta-sep">. </span><span id="designer-link">Built on the <a href="http://themeshaper.com/thematic-for-wordpress" title="Thematic Theme Framework" rel="designer">Thematic Theme Framework</a>.</span>		</div><!-- #siteinfo -->
+	</div><!-- #footer -->
+
+</div><!-- #wrapper .hfeed -->
+
+
+<!-- SyntaxHighlighter Stuff -->
+<script type="text/javascript" src="http://weblog.dangertree.net/wp-content/plugins/syntaxhighlighter/files/shCore.js"></script>
+<script type="text/javascript">
+	dp.SyntaxHighlighter.ClipboardSwf = 'http://weblog.dangertree.net/wp-content/plugins/syntaxhighlighter/files/clipboard.swf';
+	dp.SyntaxHighlighter.HighlightAll('code');
+</script>
+
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+var pageTracker = _gat._getTracker("UA-1986806-1");
+pageTracker._trackPageview();
+} catch(err) {}</script>
+</body>
+</html>
