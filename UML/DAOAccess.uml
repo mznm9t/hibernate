@@ -1,0 +1,344 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xmi:id="_qb8akM37EdqwVrslYOdUDA" name="DAOAccess">
+  <packagedElement xmi:type="uml:Package" xmi:id="_yote0U-fEd-4lr3owcpZYg" name="access">
+    <packagedElement xmi:type="uml:Class" xmi:id="_yqpYgE-fEd-4lr3owcpZYg" name="GenericHibernateDAOWhiInterface" isAbstract="true">
+      <ownedComment xmi:id="_yq86gE-fEd-4lr3owcpZYg">
+        <body>/** 
+ * @author omar
+ * @param&lt;T>
+ * @param&lt;I>
+ */
+</body>
+      </ownedComment>
+      <ownedTemplateSignature xmi:type="uml:RedefinableTemplateSignature" xmi:id="_yqpYgU-fEd-4lr3owcpZYg" parameter="_yqpYgk-fEd-4lr3owcpZYg _yqpYhE-fEd-4lr3owcpZYg _yqpYhk-fEd-4lr3owcpZYg">
+        <ownedParameter xmi:type="uml:ClassifierTemplateParameter" xmi:id="_yqpYgk-fEd-4lr3owcpZYg" parameteredElement="_yqpYg0-fEd-4lr3owcpZYg">
+          <ownedParameteredElement xmi:type="uml:Class" xmi:id="_yqpYg0-fEd-4lr3owcpZYg" name="R" templateParameter="_yqpYgk-fEd-4lr3owcpZYg"/>
+        </ownedParameter>
+        <ownedParameter xmi:type="uml:ClassifierTemplateParameter" xmi:id="_yqpYhE-fEd-4lr3owcpZYg" parameteredElement="_yqpYhU-fEd-4lr3owcpZYg">
+          <ownedParameteredElement xmi:type="uml:Class" xmi:id="_yqpYhU-fEd-4lr3owcpZYg" name="T" templateParameter="_yqpYhE-fEd-4lr3owcpZYg"/>
+        </ownedParameter>
+        <ownedParameter xmi:type="uml:ClassifierTemplateParameter" xmi:id="_yqpYhk-fEd-4lr3owcpZYg" parameteredElement="_yqpYh0-fEd-4lr3owcpZYg">
+          <ownedParameteredElement xmi:type="uml:Class" xmi:id="_yqpYh0-fEd-4lr3owcpZYg" name="I" templateParameter="_yqpYhk-fEd-4lr3owcpZYg"/>
+        </ownedParameter>
+      </ownedTemplateSignature>
+      <ownedAttribute xmi:id="_y7MV8U-fEd-4lr3owcpZYg" name="persistentClass" visibility="private" type="_y7MV8E-fEd-4lr3owcpZYg"/>
+      <ownedAttribute xmi:id="_y7fQ4E-fEd-4lr3owcpZYg" name="session" visibility="private" type="_y7Vf4E-fEd-4lr3owcpZYg"/>
+      <ownedAttribute xmi:id="_y7pB4E-fEd-4lr3owcpZYg" name="log" visibility="private" type="_y7fQ4U-fEd-4lr3owcpZYg"/>
+      <ownedOperation xmi:id="_y7pB4U-fEd-4lr3owcpZYg" name="initDAO" visibility="private"/>
+      <ownedOperation xmi:id="_y7yL0E-fEd-4lr3owcpZYg" name="findByEntityName" visibility="public">
+        <ownedParameter xmi:id="_y7yL0U-fEd-4lr3owcpZYg" name="entityName" type="_yy2SQE-fEd-4lr3owcpZYg"/>
+        <ownedParameter xmi:id="_y7yL0k-fEd-4lr3owcpZYg" name="return" type="_yy_cME-fEd-4lr3owcpZYg" direction="return"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_y7yL00-fEd-4lr3owcpZYg" name="attachClean" visibility="public">
+        <ownedComment xmi:id="_y7780E-fEd-4lr3owcpZYg">
+          <body>/** 
+ * Will attach an object to the session.
+ * Assuming the the object is already persisted in the DB and has not been modified.
+ * @param instance
+ */
+</body>
+        </ownedComment>
+        <ownedParameter xmi:id="_y7yL1E-fEd-4lr3owcpZYg" name="instance" type="_yqpYg0-fEd-4lr3owcpZYg"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_y7780U-fEd-4lr3owcpZYg" name="attachDirty" visibility="public">
+        <ownedComment xmi:id="_y77800-fEd-4lr3owcpZYg">
+          <body>/** 
+ * Will attach an instance to the session.
+ * Assuming the instance has been modify or it is not on the DB.
+ * @param instance
+ */
+</body>
+        </ownedComment>
+        <ownedParameter xmi:id="_y7780k-fEd-4lr3owcpZYg" name="instance" type="_yqpYg0-fEd-4lr3owcpZYg"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_y7781E-fEd-4lr3owcpZYg" name="clear" visibility="public">
+        <ownedComment xmi:id="_y8Ft0E-fEd-4lr3owcpZYg">
+          <body>/** 
+ * Like ROLLBACK
+ */
+</body>
+        </ownedComment>
+      </ownedOperation>
+      <ownedOperation xmi:id="_y8Ft0U-fEd-4lr3owcpZYg" name="delete" visibility="public">
+        <ownedComment xmi:id="_y8O3wE-fEd-4lr3owcpZYg">
+          <body>/** 
+ * Remove the instance from the session and from the DB.
+ * @param persistentInstance
+ */
+</body>
+        </ownedComment>
+        <ownedParameter xmi:id="_y8Ft0k-fEd-4lr3owcpZYg" name="persistentInstance" type="_yqpYg0-fEd-4lr3owcpZYg"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_y8O3wU-fEd-4lr3owcpZYg" name="findAll" visibility="public">
+        <ownedComment xmi:id="_y8O3w0-fEd-4lr3owcpZYg">
+          <body>/** 
+ * Find all
+ * @see access.GenericDAO#findAll()
+ */
+</body>
+        </ownedComment>
+        <ownedParameter xmi:id="_y8O3wk-fEd-4lr3owcpZYg" name="return" type="_yy_cME-fEd-4lr3owcpZYg" direction="return"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_y8O3xU-fEd-4lr3owcpZYg" name="findByCriteria" visibility="public">
+        <ownedComment xmi:id="_y8YowE-fEd-4lr3owcpZYg">
+          <body>/** 
+ * It will execute a query based on an undefined number of Criterion.
+ * Use this inside subclasses as a convenience method.
+ * @param criterion
+ * @return
+ */
+</body>
+        </ownedComment>
+        <ownedParameter xmi:id="_y8O3xk-fEd-4lr3owcpZYg" name="criterion" type="_y8O3xE-fEd-4lr3owcpZYg"/>
+        <ownedParameter xmi:id="_y8O3x0-fEd-4lr3owcpZYg" name="return" type="_yy_cME-fEd-4lr3owcpZYg" direction="return"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_y8Yowk-fEd-4lr3owcpZYg" name="findByHQL" visibility="public">
+        <ownedParameter xmi:id="_y8Yow0-fEd-4lr3owcpZYg" name="q" type="_y8YowU-fEd-4lr3owcpZYg"/>
+        <ownedParameter xmi:id="_y8YoxE-fEd-4lr3owcpZYg" name="return" type="_yy_cME-fEd-4lr3owcpZYg" direction="return"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_y8hysE-fEd-4lr3owcpZYg" name="findByExample" visibility="public">
+        <ownedComment xmi:id="_y8hys0-fEd-4lr3owcpZYg">
+          <body>/** 
+ * Finds by example
+ * @see access.GenericDAO#findByExample(java.lang.Object)
+ */
+</body>
+        </ownedComment>
+        <ownedParameter xmi:id="_y8hysU-fEd-4lr3owcpZYg" name="instance" type="_yqpYg0-fEd-4lr3owcpZYg"/>
+        <ownedParameter xmi:id="_y8hysk-fEd-4lr3owcpZYg" name="return" type="_yy_cME-fEd-4lr3owcpZYg" direction="return"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_y8hytE-fEd-4lr3owcpZYg" name="findByExample" visibility="public">
+        <ownedComment xmi:id="_y8rjsE-fEd-4lr3owcpZYg">
+          <body>/** 
+ * Find by example with excluded properties
+ * @param exampleInstance
+ * @param excludeProperty
+ * @return
+ */
+</body>
+        </ownedComment>
+        <ownedParameter xmi:id="_y8hytU-fEd-4lr3owcpZYg" name="exampleInstance" type="_yqpYg0-fEd-4lr3owcpZYg"/>
+        <ownedParameter xmi:id="_y8hytk-fEd-4lr3owcpZYg" name="excludeProperty">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        </ownedParameter>
+        <ownedParameter xmi:id="_y8hyt0-fEd-4lr3owcpZYg" name="return" type="_yy_cME-fEd-4lr3owcpZYg" direction="return"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_y8rjsk-fEd-4lr3owcpZYg" name="findById" visibility="public">
+        <ownedParameter xmi:id="_y8rjs0-fEd-4lr3owcpZYg" name="id" type="_yqpYh0-fEd-4lr3owcpZYg"/>
+        <ownedParameter xmi:id="_y8rjtE-fEd-4lr3owcpZYg" name="lock">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#boolean"/>
+        </ownedParameter>
+        <ownedParameter xmi:id="_y8rjtU-fEd-4lr3owcpZYg" name="return" type="_yqpYg0-fEd-4lr3owcpZYg" direction="return"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_y8rjtk-fEd-4lr3owcpZYg" name="findById" visibility="public">
+        <ownedParameter xmi:id="_y8rjt0-fEd-4lr3owcpZYg" name="id" type="_yqpYh0-fEd-4lr3owcpZYg"/>
+        <ownedParameter xmi:id="_y8rjuE-fEd-4lr3owcpZYg" name="return" type="_yqpYg0-fEd-4lr3owcpZYg" direction="return"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_y81UsE-fEd-4lr3owcpZYg" name="findByProperty" visibility="public">
+        <ownedComment xmi:id="_y8-eoE-fEd-4lr3owcpZYg">
+          <body>/** 
+ * It will return instances of entities that match propertyName=value
+ * @param propertyName	the attribute of the object
+ * @param value	the value that needs to be equal
+ * @return the list of found instances of that entity
+ */
+</body>
+        </ownedComment>
+        <ownedParameter xmi:id="_y81UsU-fEd-4lr3owcpZYg" name="propertyName">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        </ownedParameter>
+        <ownedParameter xmi:id="_y81Usk-fEd-4lr3owcpZYg" name="value" type="_yy2SQE-fEd-4lr3owcpZYg"/>
+        <ownedParameter xmi:id="_y81Us0-fEd-4lr3owcpZYg" name="return" type="_yy_cME-fEd-4lr3owcpZYg" direction="return"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_y8-eoU-fEd-4lr3owcpZYg" name="flush" visibility="public">
+        <ownedComment xmi:id="_y8-eok-fEd-4lr3owcpZYg">
+          <body>/** 
+ * Like COMMIT the pending changes that has not been committed yet by the
+ * transaction
+ */
+</body>
+        </ownedComment>
+      </ownedOperation>
+      <ownedOperation xmi:id="_y9IPoU-fEd-4lr3owcpZYg" name="getPersistentClass" visibility="public">
+        <ownedParameter xmi:id="_y9IPok-fEd-4lr3owcpZYg" name="return" type="_y9IPoE-fEd-4lr3owcpZYg" direction="return"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_y9IPo0-fEd-4lr3owcpZYg" name="getSession" visibility="protected">
+        <ownedParameter xmi:id="_y9IPpE-fEd-4lr3owcpZYg" name="return" type="_y7Vf4E-fEd-4lr3owcpZYg" direction="return"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_y9SAoE-fEd-4lr3owcpZYg" name="makePersistent" visibility="public">
+        <ownedParameter xmi:id="_y9SAoU-fEd-4lr3owcpZYg" name="entity" type="_yqpYg0-fEd-4lr3owcpZYg"/>
+        <ownedParameter xmi:id="_y9SAok-fEd-4lr3owcpZYg" name="return" type="_yqpYg0-fEd-4lr3owcpZYg" direction="return"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_y9SAo0-fEd-4lr3owcpZYg" name="makeTransient" visibility="public">
+        <ownedParameter xmi:id="_y9SApE-fEd-4lr3owcpZYg" name="entity" type="_yqpYg0-fEd-4lr3owcpZYg"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_y9bKkE-fEd-4lr3owcpZYg" name="merge" visibility="public">
+        <ownedParameter xmi:id="_y9bKkU-fEd-4lr3owcpZYg" name="detachedInstance" type="_yqpYg0-fEd-4lr3owcpZYg"/>
+        <ownedParameter xmi:id="_y9bKkk-fEd-4lr3owcpZYg" name="return" type="_yqpYg0-fEd-4lr3owcpZYg" direction="return"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_y9k7kE-fEd-4lr3owcpZYg" name="save" visibility="public">
+        <ownedComment xmi:id="_y9k7k0-fEd-4lr3owcpZYg">
+          <body>/** 
+ * This method will save a new instance
+ * If the instance already exist on the database it will return an exception or will duplicate the instance
+ * @param transientInstance the instance that is not in the database
+ * @return the instance once is been saved.
+ */
+</body>
+        </ownedComment>
+        <ownedParameter xmi:id="_y9k7kU-fEd-4lr3owcpZYg" name="transientInstance" type="_yqpYg0-fEd-4lr3owcpZYg"/>
+        <ownedParameter xmi:id="_y9k7kk-fEd-4lr3owcpZYg" name="return" type="_yqpYg0-fEd-4lr3owcpZYg" direction="return"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_y9k7lE-fEd-4lr3owcpZYg" name="setSession" visibility="public">
+        <ownedParameter xmi:id="_y9k7lU-fEd-4lr3owcpZYg" name="s" type="_y7Vf4E-fEd-4lr3owcpZYg"/>
+      </ownedOperation>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_yriwYk-fEd-4lr3owcpZYg" name="EmployeeDAO">
+      <ownedComment xmi:id="_yriwY0-fEd-4lr3owcpZYg">
+        <body>/** 
+ * A data access object (DAO) providing persistence and search support for Employee entities.
+ * Transaction control of the save(), update() and delete() operations 
+ * can directly support Spring container-managed transactions or they can be augmented	to handle user-managed Spring transactions. 
+ * Each of these methods provides additional information for how to configure it for the desired type of transaction control. 	
+ * @see .Employee
+ * @author MyEclipse Persistence Tools 
+ */
+</body>
+      </ownedComment>
+      <generalization xmi:id="_y-Uid0-fEd-4lr3owcpZYg" general="_y-Uidk-fEd-4lr3owcpZYg"/>
+      <ownedAttribute xmi:id="_y-UieE-fEd-4lr3owcpZYg" name="ENTITY_NAME" visibility="public" isStatic="true" isReadOnly="true">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        <defaultValue xmi:type="uml:LiteralString" xmi:id="_y-UieU-fEd-4lr3owcpZYg" value="entityName"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_y-Uiek-fEd-4lr3owcpZYg" name="CURRENT" visibility="public" isStatic="true" isReadOnly="true">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        <defaultValue xmi:type="uml:LiteralString" xmi:id="_y-Uie0-fEd-4lr3owcpZYg" value="current"/>
+      </ownedAttribute>
+      <ownedOperation xmi:id="_y-eTcE-fEd-4lr3owcpZYg" name="findByCurrent" visibility="public">
+        <ownedParameter xmi:id="_y-eTcU-fEd-4lr3owcpZYg" name="current" type="_yy2SQE-fEd-4lr3owcpZYg"/>
+        <ownedParameter xmi:id="_y-eTck-fEd-4lr3owcpZYg" name="return" type="_yy_cME-fEd-4lr3owcpZYg" direction="return"/>
+      </ownedOperation>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_yriwZk-fEd-4lr3owcpZYg" name="PersonDAO">
+      <ownedComment xmi:id="_yrshYE-fEd-4lr3owcpZYg">
+        <body>/** 
+ * A data access object (DAO) providing persistence and search support for Person entities.
+ * Transaction control of the save(), update() and delete() operations 
+ * can directly support Spring container-managed transactions or they can be augmented	to handle user-managed Spring transactions. 
+ * Each of these methods provides additional information for how to configure it for the desired type of transaction control. 	
+ * @see .Person
+ * @author MyEclipse Persistence Tools 
+ */
+</body>
+      </ownedComment>
+      <generalization xmi:id="_y-xOak-fEd-4lr3owcpZYg" general="_y-xOaU-fEd-4lr3owcpZYg"/>
+      <ownedAttribute xmi:id="_y-xOa0-fEd-4lr3owcpZYg" name="ENTITY_NAME" visibility="public" isStatic="true" isReadOnly="true">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        <defaultValue xmi:type="uml:LiteralString" xmi:id="_y-xObE-fEd-4lr3owcpZYg" value="entityName"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_y-6YUE-fEd-4lr3owcpZYg" name="COMPANY" visibility="public" isStatic="true" isReadOnly="true">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        <defaultValue xmi:type="uml:LiteralString" xmi:id="_y-6YUU-fEd-4lr3owcpZYg" value="company"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_y-6YUk-fEd-4lr3owcpZYg" name="JOB_TITLE" visibility="public" isStatic="true" isReadOnly="true">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        <defaultValue xmi:type="uml:LiteralString" xmi:id="_y-6YU0-fEd-4lr3owcpZYg" value="jobTitle"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_y-6YVE-fEd-4lr3owcpZYg" name="LAST_NAME" visibility="public" isStatic="true" isReadOnly="true">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        <defaultValue xmi:type="uml:LiteralString" xmi:id="_y-6YVU-fEd-4lr3owcpZYg" value="lastName"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_y_EJUE-fEd-4lr3owcpZYg" name="TITLE" visibility="public" isStatic="true" isReadOnly="true">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        <defaultValue xmi:type="uml:LiteralString" xmi:id="_y_EJUU-fEd-4lr3owcpZYg" value="title"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_y_EJUk-fEd-4lr3owcpZYg" name="FIRST_NAME" visibility="public" isStatic="true" isReadOnly="true">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        <defaultValue xmi:type="uml:LiteralString" xmi:id="_y_EJU0-fEd-4lr3owcpZYg" value="firstName"/>
+      </ownedAttribute>
+      <ownedOperation xmi:id="_y_N6UE-fEd-4lr3owcpZYg" name="findByCompany" visibility="public">
+        <ownedParameter xmi:id="_y_N6UU-fEd-4lr3owcpZYg" name="company" type="_yy2SQE-fEd-4lr3owcpZYg"/>
+        <ownedParameter xmi:id="_y_N6Uk-fEd-4lr3owcpZYg" name="return" type="_yy_cME-fEd-4lr3owcpZYg" direction="return"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_y_N6U0-fEd-4lr3owcpZYg" name="findByJobTitle" visibility="public">
+        <ownedParameter xmi:id="_y_N6VE-fEd-4lr3owcpZYg" name="jobTitle" type="_yy2SQE-fEd-4lr3owcpZYg"/>
+        <ownedParameter xmi:id="_y_N6VU-fEd-4lr3owcpZYg" name="return" type="_yy_cME-fEd-4lr3owcpZYg" direction="return"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_y_N6Vk-fEd-4lr3owcpZYg" name="findByLastName" visibility="public">
+        <ownedParameter xmi:id="_y_N6V0-fEd-4lr3owcpZYg" name="lastName" type="_yy2SQE-fEd-4lr3owcpZYg"/>
+        <ownedParameter xmi:id="_y_N6WE-fEd-4lr3owcpZYg" name="return" type="_yy_cME-fEd-4lr3owcpZYg" direction="return"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_y_N6WU-fEd-4lr3owcpZYg" name="findByTitle" visibility="public">
+        <ownedParameter xmi:id="_y_N6Wk-fEd-4lr3owcpZYg" name="title" type="_yy2SQE-fEd-4lr3owcpZYg"/>
+        <ownedParameter xmi:id="_y_N6W0-fEd-4lr3owcpZYg" name="return" type="_yy_cME-fEd-4lr3owcpZYg" direction="return"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_y_XEQE-fEd-4lr3owcpZYg" name="findByFirstName" visibility="public">
+        <ownedParameter xmi:id="_y_XEQU-fEd-4lr3owcpZYg" name="firstName" type="_yy2SQE-fEd-4lr3owcpZYg"/>
+        <ownedParameter xmi:id="_y_XEQk-fEd-4lr3owcpZYg" name="return" type="_yy_cME-fEd-4lr3owcpZYg" direction="return"/>
+      </ownedOperation>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_ytVgIk-fEd-4lr3owcpZYg" name="JournalistDAO">
+      <ownedComment xmi:id="_ytVgI0-fEd-4lr3owcpZYg">
+        <body>/** 
+ * A data access object (DAO) providing persistence and search support for Journalist entities.
+ * Transaction control of the save(), update() and delete() operations 
+ * can directly support Spring container-managed transactions or they can be augmented	to handle user-managed Spring transactions. 
+ * Each of these methods provides additional information for how to configure it for the desired type of transaction control. 	
+ * @see .Journalist
+ * @author MyEclipse Persistence Tools 
+ */
+</body>
+      </ownedComment>
+      <generalization xmi:id="_zEk7e0-fEd-4lr3owcpZYg" general="_zEk7ek-fEd-4lr3owcpZYg"/>
+      <ownedAttribute xmi:id="_zEuscE-fEd-4lr3owcpZYg" name="ENTITY_NAME" visibility="public" isStatic="true" isReadOnly="true">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        <defaultValue xmi:type="uml:LiteralString" xmi:id="_zEuscU-fEd-4lr3owcpZYg" value="entityName"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_zEusck-fEd-4lr3owcpZYg" name="PUBLICATION" visibility="public" isStatic="true" isReadOnly="true">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        <defaultValue xmi:type="uml:LiteralString" xmi:id="_zEusc0-fEd-4lr3owcpZYg" value="publication"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_zEusdE-fEd-4lr3owcpZYg" name="FREQUENCY" visibility="public" isStatic="true" isReadOnly="true">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        <defaultValue xmi:type="uml:LiteralString" xmi:id="_zEusdU-fEd-4lr3owcpZYg" value="frequency"/>
+      </ownedAttribute>
+      <ownedOperation xmi:id="_zEusdk-fEd-4lr3owcpZYg" name="findByEntityName" visibility="public">
+        <ownedParameter xmi:id="_zEusd0-fEd-4lr3owcpZYg" name="entityName" type="_yy2SQE-fEd-4lr3owcpZYg"/>
+        <ownedParameter xmi:id="_zEuseE-fEd-4lr3owcpZYg" name="return" type="_yy_cME-fEd-4lr3owcpZYg" direction="return"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_zE32YE-fEd-4lr3owcpZYg" name="findByPublication" visibility="public">
+        <ownedParameter xmi:id="_zE32YU-fEd-4lr3owcpZYg" name="publication" type="_yy2SQE-fEd-4lr3owcpZYg"/>
+        <ownedParameter xmi:id="_zE32Yk-fEd-4lr3owcpZYg" name="return" type="_yy_cME-fEd-4lr3owcpZYg" direction="return"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_zE32Y0-fEd-4lr3owcpZYg" name="findByFrequency" visibility="public">
+        <ownedParameter xmi:id="_zE32ZE-fEd-4lr3owcpZYg" name="frequency" type="_yy2SQE-fEd-4lr3owcpZYg"/>
+        <ownedParameter xmi:id="_zE32ZU-fEd-4lr3owcpZYg" name="return" type="_yy_cME-fEd-4lr3owcpZYg" direction="return"/>
+      </ownedOperation>
+    </packagedElement>
+  </packagedElement>
+  <packagedElement xmi:type="uml:DataType" xmi:id="_yyZmUE-fEd-4lr3owcpZYg" name="GenericHibernateDAOWhiInterface&lt;Company,CompanyH,ID>"/>
+  <packagedElement xmi:type="uml:DataType" xmi:id="_yy2SQE-fEd-4lr3owcpZYg" name="Object"/>
+  <packagedElement xmi:type="uml:DataType" xmi:id="_yy_cME-fEd-4lr3owcpZYg" name="List"/>
+  <packagedElement xmi:type="uml:DataType" xmi:id="_yy_cN0-fEd-4lr3owcpZYg" name="GenericHibernateDAO&lt;Coverage,ID>"/>
+  <packagedElement xmi:type="uml:DataType" xmi:id="_y6l5A0-fEd-4lr3owcpZYg" name="GenericHibernateDAOWhiInterface&lt;PhoneNumber,PhoneNumberH,ID>"/>
+  <packagedElement xmi:type="uml:DataType" xmi:id="_y7MV8E-fEd-4lr3owcpZYg" name="Class&lt;T>"/>
+  <packagedElement xmi:type="uml:DataType" xmi:id="_y7Vf4E-fEd-4lr3owcpZYg" name="Session"/>
+  <packagedElement xmi:type="uml:DataType" xmi:id="_y7fQ4U-fEd-4lr3owcpZYg" name="Logger"/>
+  <packagedElement xmi:type="uml:DataType" xmi:id="_y8O3xE-fEd-4lr3owcpZYg" name="Criterion"/>
+  <packagedElement xmi:type="uml:DataType" xmi:id="_y8YowU-fEd-4lr3owcpZYg" name="Query"/>
+  <packagedElement xmi:type="uml:DataType" xmi:id="_y9IPoE-fEd-4lr3owcpZYg" name="Class"/>
+  <packagedElement xmi:type="uml:DataType" xmi:id="_y9uFgE-fEd-4lr3owcpZYg" name="GenericHibernateDAOWhiInterface&lt;ContactGroup,ContactGroupH,ID>"/>
+  <packagedElement xmi:type="uml:DataType" xmi:id="_y932iE-fEd-4lr3owcpZYg" name="GenericHibernateDAOWhiInterface&lt;PRManager,PRManagerH,ID>"/>
+  <packagedElement xmi:type="uml:DataType" xmi:id="_y-Bnh0-fEd-4lr3owcpZYg" name="GenericHibernateDAOWhiInterface&lt;Region,RegionH,ID>"/>
+  <packagedElement xmi:type="uml:DataType" xmi:id="_y-Uidk-fEd-4lr3owcpZYg" name="GenericHibernateDAOWhiInterface&lt;Employee,EmployeeH,ID>"/>
+  <packagedElement xmi:type="uml:DataType" xmi:id="_y-eTc0-fEd-4lr3owcpZYg" name="GenericHibernateDAOWhiInterface&lt;Publication,PublicationH,ID>"/>
+  <packagedElement xmi:type="uml:DataType" xmi:id="_y-xOaU-fEd-4lr3owcpZYg" name="GenericHibernateDAOWhiInterface&lt;Person,PersonH,ID>"/>
+  <packagedElement xmi:type="uml:DataType" xmi:id="_y_XEQ0-fEd-4lr3owcpZYg" name="GenericHibernateDAOWhiInterface&lt;Country,CountryH,ID>"/>
+  <packagedElement xmi:type="uml:DataType" xmi:id="_y_qmTk-fEd-4lr3owcpZYg" name="GenericHibernateDAOWhiInterface&lt;Contactable,ContactableH,ID>"/>
+  <packagedElement xmi:type="uml:DataType" xmi:id="_zBS9-U-fEd-4lr3owcpZYg" name="GenericHibernateDAOWhiInterface&lt;PublicationType,PublicationTypeH,ID>"/>
+  <packagedElement xmi:type="uml:DataType" xmi:id="_zEbxg0-fEd-4lr3owcpZYg" name="GenericHibernateDAOWhiInterface&lt;ContactStatus,ContactStatusH,ID>"/>
+  <packagedElement xmi:type="uml:DataType" xmi:id="_zEk7ek-fEd-4lr3owcpZYg" name="GenericHibernateDAOWhiInterface&lt;Journalist,JournalistH,ID>"/>
+  <packagedElement xmi:type="uml:DataType" xmi:id="_zE32Zk-fEd-4lr3owcpZYg" name="GenericHibernateDAOWhiInterface&lt;Office,OfficeH,ID>"/>
+  <packagedElement xmi:type="uml:DataType" xmi:id="_zFUiUE-fEd-4lr3owcpZYg" name="GenericHibernateDAOWhiInterface&lt;Address,AddressH,ID>"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="_6I1BUE-fEd-4lr3owcpZYg" name="unamed"/>
+</uml:Model>

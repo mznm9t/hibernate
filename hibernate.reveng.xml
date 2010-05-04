@@ -87,4 +87,22 @@
 	<table name="com_fpdsavills_pr_publicationtype"
 		catalog="savillstest" class="PublicationTypeH">
 	</table>
+	<table name="com_fpdsavills_pr_division" catalog="savillstest"
+		class="Division">
+	</table>
+	<table name="com_fpdsavills_pr_featuretype" catalog="savillstest"
+		class="FeatureType">
+	</table>
+	<table name="com_fpdsavills_pr_mentiontype" catalog="savillstest"
+		class="MentionType">
+	</table>
+	<table name="com_fpdsavills_pr_story" catalog="savillstest"
+		class="Story">
+	</table>
+	<table name="com_fpdsavills_pr_message" catalog="savillstest"
+		class="Message">
+	</table>
+	<table name="com_fpdsavills_pr_contactgiventype"
+		catalog="savillstest" class="ContactGivenType">
+	</table>
 </hibernate-reverse-engineering>

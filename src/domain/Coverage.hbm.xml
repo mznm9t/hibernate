@@ -6,21 +6,12 @@
 -->
 <hibernate-mapping>
  <typedef class="core.DateLong" name="DateLong"/>
- <class catalog="savillstest" name="domain.Coverage" table="com_fpdsavills_pr_coverage">
+ <class catalog="savillstest" name="domain.CoverageH" table="com_fpdsavills_pr_coverage">
   <composite-id class="domain.ID" mapped="false" name="ID" unsaved-value="undefined">
    <key-property column="ID" name="identifier" type="java.lang.Long"/>
   </composite-id>
   <property generated="never" lazy="false" name="entityName" type="java.lang.String">
    <column name="EntityName"/>
-  </property>
-  <property generated="never" lazy="false" name="story" type="java.lang.Long">
-   <column name="story_"/>
-  </property>
-  <property generated="never" lazy="false" name="publication" type="java.lang.Long">
-   <column name="publication_"/>
-  </property>
-  <property generated="never" lazy="false" name="journalist" type="java.lang.Long">
-   <column name="journalist_"/>
   </property>
   <property generated="never" lazy="false" name="publicationDate" type="DateLong">
    <column name="publicationDate_"/>
@@ -58,17 +49,8 @@
   <property generated="never" lazy="false" name="pictureFile" type="java.lang.String">
    <column length="65535" name="pictureFile_"/>
   </property>
-  <property generated="never" lazy="false" name="mentionType" type="java.lang.Long">
-   <column name="mentionType_"/>
-  </property>
   <property generated="never" lazy="false" name="propertyNamed" type="java.lang.String">
    <column length="65535" name="propertyNamed_"/>
-  </property>
-  <property generated="never" lazy="false" name="office" type="java.lang.Long">
-   <column name="office_"/>
-  </property>
-  <property generated="never" lazy="false" name="division" type="java.lang.Long">
-   <column name="division_"/>
   </property>
   <property generated="never" lazy="false" name="researchReports" type="java.lang.Boolean">
    <column name="researchReports_"/>
@@ -76,35 +58,38 @@
   <property generated="never" lazy="false" name="marketComment" type="java.lang.Boolean">
    <column name="marketComment_"/>
   </property>
-  <property generated="never" lazy="false" name="contactGivenType" type="java.lang.Long">
-   <column name="contactGivenType_"/>
-  </property>
   <property generated="never" lazy="false" name="personNamed" type="java.lang.String">
    <column length="65535" name="personNamed_"/>
   </property>
   <property generated="never" lazy="false" name="pictureUsed" type="java.lang.Boolean">
    <column name="pictureUsed_"/>
   </property>
-  <property generated="never" lazy="false" name="pubDate" type="java.lang.String">
+  <property generated="never" lazy="false" name="pubDate" type="DateLong">
    <column length="50" name="pubDate"/>
   </property>
   <property generated="never" lazy="false" name="national" type="java.lang.Integer">
    <column name="national"/>
   </property>
-  <property generated="never" lazy="false" name="pubDate2" type="java.util.Date">
+  <property generated="never" lazy="false" name="pubDate2" type="DateLong">
    <column length="10" name="pubDate2"/>
-  </property>
-  <property generated="never" lazy="false" name="prManager" type="java.lang.Long">
-   <column name="prManager_"/>
-  </property>
-  <property generated="never" lazy="false" name="featureType" type="java.lang.Long">
-   <column name="featureType_"/>
-  </property>
-  <property generated="never" lazy="false" name="country" type="java.lang.Long">
-   <column name="country_"/>
   </property>
   <property generated="never" lazy="false" name="sequenceNumber" type="java.lang.String">
    <column name="sequenceNumber_"/>
   </property>
+  <many-to-one class="domain.StoryH" name="story">
+   <column name="story_"/>
+  </many-to-one>
+  <many-to-one class="domain.PublicationH" name="publication">
+   <column name="publication_"/>
+  </many-to-one>
+  <many-to-one class="domain.JournalistH" column="journalist_" name="journalist"/>
+  <many-to-one class="domain.MentionTypeH" column="mentionType_" name="mentionType"/>
+  <many-to-one class="domain.OfficeH" column="office_" name="office"/>
+  <many-to-one class="domain.DivisionH" column="division_" name="division"/>
+  <many-to-one class="domain.ContactGivenTypeH"
+   column="contactGivenType_" name="contactGivenType"/>
+  <many-to-one class="domain.PRManagerH" column="prManager_" name="prManager"/>
+  <many-to-one class="domain.FeatureTypeH" column="featureType_" name="featureType"/>
+  <many-to-one class="domain.CountryH" column="country_" name="country"/>
  </class>
 </hibernate-mapping>

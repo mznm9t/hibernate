@@ -65,11 +65,7 @@ public class ContactableH  implements interfaces.Contactable,java.io.Serializabl
         this.accountManager = accountManager;
         this.knownAs = knownAs;
     }
-
-   
-    // Property accessors
-
-
+    
     
     public ID getID() {
 		return id;

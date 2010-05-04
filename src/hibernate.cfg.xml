@@ -27,6 +27,15 @@
 	<mapping resource="domain/Country.hbm.xml" />
 	<mapping resource="domain/Region.hbm.xml" />
 	<mapping resource="domain/PublicationType.hbm.xml" />
-</session-factory>
+	
+	<mapping resource="domain/MentionType.hbm.xml" />
+	<mapping resource="domain/Division.hbm.xml" />
+	<mapping resource="domain/FeatureType.hbm.xml" />
+	
+	<mapping resource="domain/Message.hbm.xml" />
+	<mapping resource="domain/ContactGivenType.hbm.xml" />
+	<mapping resource="domain/Coverage.hbm.xml" />
+	<mapping resource="domain/Story.hbm.xml" />
+    </session-factory>
 
 </hibernate-configuration>

@@ -14,7 +14,6 @@ public class ContactStatusH  implements interfaces.ContactStatus,java.io.Seriali
     // Fields    
 
 	 private ID ID;
-	 private Long identifier;
      private String entityName;
      private String name;
      private String code;
@@ -54,17 +53,6 @@ public class ContactStatusH  implements interfaces.ContactStatus,java.io.Seriali
 	public void setID(ID iD) {
 		ID = iD;
 	}
-
-
-	public Long getIdentifier() {
-		return identifier;
-	}
-
-
-	public void setIdentifier(Long identifier) {
-		this.identifier = identifier;
-	}
-
     
     public String getName() {
         return this.name;

@@ -1,15 +1,4 @@
-package com.fpdsavills.pr.interfaces; 
-
-import java.util.Collection;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import java.util.Iterator;
-import java.util.HashMap;
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.HashSet;
-import com.inon.websuite.datamanager.runtime.business.BusinessObject;
+package interfaces; 
 import java.io.Serializable;
 
 /**

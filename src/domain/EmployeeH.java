@@ -11,9 +11,8 @@ package domain;
 public class EmployeeH extends PersonH implements interfaces.Employee, java.io.Serializable {
 
 
-    // Fields    
-
-     private Long id;
+    // Fields
+	 private ID ID;
      private String entityName;
      private Boolean current;
 
@@ -31,16 +30,15 @@ public class EmployeeH extends PersonH implements interfaces.Employee, java.io.S
         this.current = current;
     }
 
-   
-    // Property accessors
 
-    public Long getId() {
-        return this.id;
-    }
-    
-    public void setId(Long id) {
-        this.id = id;
-    }
+    public ID getID() {
+		return ID;
+	}
+
+
+	public void setID(ID iD) {
+		ID = iD;
+	}
 
     public String getEntityName() {
         return this.entityName;

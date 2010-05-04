@@ -13,8 +13,8 @@ public class ID implements Serializable {
 	}
 
 	@SuppressWarnings("unused")
-	private void setIdentifier(Long indentifier) {
-		this.identifier = indentifier;
+	private void setIdentifier(Long identifier) {
+		this.identifier = identifier;
 	}
 
 	public ID(){

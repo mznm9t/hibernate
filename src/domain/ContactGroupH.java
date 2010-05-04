@@ -14,7 +14,6 @@ public class ContactGroupH  implements interfaces.ContactGroup,java.io.Serializa
     // Fields    
 
 	 private ID ID;
-     private Long identifier;
      private String entityName;
      private String name;
      private String description;
@@ -44,16 +43,6 @@ public class ContactGroupH  implements interfaces.ContactGroup,java.io.Serializa
 
 	public void setID(ID iD) {
 		ID = iD;
-	}
-
-
-	public Long getIdentifier() {
-		return identifier;
-	}
-
-
-	public void setIdentifier(Long identifier) {
-		this.identifier = identifier;
 	}
 
     public String getEntityName() {

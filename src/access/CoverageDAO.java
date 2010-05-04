@@ -4,10 +4,13 @@ package access;
 
 
 
+import interfaces.Coverage;
+
 import java.util.List;
 
 
-import domain.Coverage;
+
+import domain.CoverageH;
 import domain.ID;
 
 /**
@@ -19,7 +22,7 @@ import domain.ID;
   * @author MyEclipse Persistence Tools 
  */
 
-public class CoverageDAO extends GenericHibernateDAO<Coverage, ID>  {
+public class CoverageDAO extends GenericHibernateDAOWhiInterface<Coverage,CoverageH, ID>  {
 	
 	public static final String ENTITY_NAME = "entityName";
 	public static final String STORY = "story";

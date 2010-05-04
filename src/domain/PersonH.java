@@ -16,7 +16,7 @@ public class PersonH extends ContactableH implements interfaces.Person,java.io.S
 
     // Fields    
 
-     private Long id;
+   
      private String entityName;
      private Company company;
      private String jobTitle;
@@ -45,13 +45,7 @@ public class PersonH extends ContactableH implements interfaces.Person,java.io.S
    
     // Property accessors
 
-    public Long getId() {
-        return this.id;
-    }
-    
-    public void setId(Long id) {
-        this.id = id;
-    }
+  
 
     public String getEntityName() {
         return this.entityName;
