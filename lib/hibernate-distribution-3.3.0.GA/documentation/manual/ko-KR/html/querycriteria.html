@@ -1,0 +1,69 @@
+<html>
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   
+      <title>15&#51109;. Criteria &#51656;&#51032;&#46308;</title>
+      <link rel="stylesheet" href="css/html.css" type="text/css">
+      <meta name="generator" content="DocBook XSL Stylesheets V1.72.0">
+      <link rel="start" href="index.html" title="HIBERNATE - &#44060;&#49457;&#51080;&#45716; &#51088;&#48148;&#47484; &#50948;&#54620; &#44288;&#44228; &#50689;&#49549;">
+      <link rel="up" href="index.html" title="HIBERNATE - &#44060;&#49457;&#51080;&#45716; &#51088;&#48148;&#47484; &#50948;&#54620; &#44288;&#44228; &#50689;&#49549;">
+      <link rel="prev" href="queryhql-tuple.html" title="14.18. Row value constructor &#44396;&#47928;">
+      <link rel="next" href="querycriteria-narrowing.html" title="15.2. &#44208;&#44284; &#49483; &#51228;&#54620;&#54616;&#44592;">
+   </head>
+   <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+      <div class="navheader">
+         <table width="100%" summary="Navigation header">
+            <tr>
+               <th colspan="3" align="center">15&#51109;. Criteria &#51656;&#51032;&#46308;</th>
+            </tr>
+            <tr>
+               <td width="20%" align="left"><a accesskey="p" href="queryhql-tuple.html">&#51060;&#51204;</a>&nbsp;
+               </td>
+               <th width="60%" align="center">&nbsp;</th>
+               <td width="20%" align="right">&nbsp;<a accesskey="n" href="querycriteria-narrowing.html">&#45796;&#51020;</a></td>
+            </tr>
+         </table>
+         <hr>
+      </div>
+      <div class="chapter" lang="ko-KR">
+         <div class="titlepage">
+            <div>
+               <div>
+                  <h2 class="title"><a name="querycriteria"></a>15&#51109;. Criteria &#51656;&#51032;&#46308;
+                  </h2>
+               </div>
+            </div>
+         </div>
+         <p>Hibernate&#45716; &#51649;&#44288;&#51201;&#51064;, &#54869;&#51109; &#44032;&#45733;&#54620; criteria query API&#47484; &#53945;&#51669; &#51667;&#45716;&#45796;. </p>
+         <div class="sect1" lang="ko-KR">
+            <div class="titlepage">
+               <div>
+                  <div>
+                     <h2 class="title" style="clear: both"><a name="querycriteria-creating"></a>15.1. <code class="literal">Criteria</code> &#51064;&#49828;&#53556;&#49828; &#49373;&#49457;&#54616;&#44592;
+                     </h2>
+                  </div>
+               </div>
+            </div>
+            <p><code class="literal">org.hibernate.Criteria</code>&#51064;&#53552;&#54168;&#51060;&#49828;&#45716; &#53945;&#51221; &#50689;&#49549; &#53364;&#47000;&#49828;&#50640; &#45824;&#54620; &#51656;&#51032;&#47484; &#54364;&#54788;&#54620;&#45796;. <code class="literal">Session</code>&#51008; <code class="literal">Criteria</code> &#51064;&#49828;&#53556;&#49828;&#46308;&#50640; &#45824;&#54620; &#54057;&#53664;&#47532;&#51060;&#45796;. 
+            </p><pre class="programlisting">Criteria crit = sess.createCriteria(Cat.class);
+crit.setMaxResults(50);
+List cats = crit.list();</pre></div>
+      </div>
+      <div class="navfooter">
+         <hr>
+         <table width="100%" summary="Navigation footer">
+            <tr>
+               <td width="40%" align="left"><a accesskey="p" href="queryhql-tuple.html">&#51060;&#51204;</a>&nbsp;
+               </td>
+               <td width="20%" align="center">&nbsp;</td>
+               <td width="40%" align="right">&nbsp;<a accesskey="n" href="querycriteria-narrowing.html">&#45796;&#51020;</a></td>
+            </tr>
+            <tr>
+               <td width="40%" align="left" valign="top">14.18. Row value constructor &#44396;&#47928;&nbsp;</td>
+               <td width="20%" align="center"><a accesskey="h" href="index.html">&#52376;&#51020;&#51004;&#47196;</a></td>
+               <td width="40%" align="right" valign="top">&nbsp;15.2. &#44208;&#44284; &#49483; &#51228;&#54620;&#54616;&#44592;</td>
+            </tr>
+         </table>
+      </div>
+   </body>
+</html>

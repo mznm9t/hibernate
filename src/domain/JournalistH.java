@@ -16,7 +16,7 @@ public class JournalistH extends PersonH implements interfaces.Journalist,java.i
 
     // Fields    
 
-     private Long id;
+     private ID id;
      private String entityName;
      private Publication publication;
      private Integer frequency;
@@ -37,21 +37,22 @@ public class JournalistH extends PersonH implements interfaces.Journalist,java.i
     }
 
    
-    // Property accessors
+    public ID getID() {
+		return id;
+	}
 
-    public Long getId() {
-        return this.id;
-    }
-    
-    public void setId(Long id) {
-        this.id = id;
-    }
-
+	@SuppressWarnings("unused")
+	private void setID(ID id) {
+		this.id = id;
+	}
+	
+	
     public String getEntityName() {
         return this.entityName;
     }
     
-    public void setEntityName(String entityName) {
+    @SuppressWarnings("unused")
+	private void setEntityName(String entityName) {
         this.entityName = entityName;
     }
 

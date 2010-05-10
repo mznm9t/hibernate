@@ -1,0 +1,71 @@
+<html>
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   
+      <title>14.12. group by &#51208;</title>
+      <link rel="stylesheet" href="css/html.css" type="text/css">
+      <meta name="generator" content="DocBook XSL Stylesheets V1.72.0">
+      <link rel="start" href="index.html" title="HIBERNATE - &#44060;&#49457;&#51080;&#45716; &#51088;&#48148;&#47484; &#50948;&#54620; &#44288;&#44228; &#50689;&#49549;">
+      <link rel="up" href="queryhql.html" title="14&#51109;. HQL: &#54616;&#51060;&#48260;&#45348;&#51060;&#53944; &#51656;&#51032; &#50616;&#50612;(Hibernate Query Language)">
+      <link rel="prev" href="queryhql-ordering.html" title="14.11. order by &#51208;">
+      <link rel="next" href="queryhql-subqueries.html" title="14.13. &#49436;&#48652;&#51656;&#51032;&#46308;">
+   </head>
+   <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+      <div class="navheader">
+         <table width="100%" summary="Navigation header">
+            <tr>
+               <th colspan="3" align="center">14.12. group by &#51208;</th>
+            </tr>
+            <tr>
+               <td width="20%" align="left"><a accesskey="p" href="queryhql-ordering.html">&#51060;&#51204;</a>&nbsp;
+               </td>
+               <th width="60%" align="center">14&#51109;. HQL: &#54616;&#51060;&#48260;&#45348;&#51060;&#53944; &#51656;&#51032; &#50616;&#50612;(Hibernate Query Language)</th>
+               <td width="20%" align="right">&nbsp;<a accesskey="n" href="queryhql-subqueries.html">&#45796;&#51020;</a></td>
+            </tr>
+         </table>
+         <hr>
+      </div>
+      <div class="sect1" lang="ko-KR">
+         <div class="titlepage">
+            <div>
+               <div>
+                  <h2 class="title" style="clear: both"><a name="queryhql-grouping"></a>14.12. group by &#51208;
+                  </h2>
+               </div>
+            </div>
+         </div>
+         <p>aggregate &#44050;&#46308;&#51012; &#48152;&#54872;&#54616;&#45716; &#51656;&#51032;&#45716; &#48152;&#54872;&#46108; &#53364;&#47000;&#49828;&#45208; &#52980;&#54252;&#45324;&#53944;&#46308;&#51032; &#54532;&#47196;&#54140;&#54000;&#50640; &#51032;&#54644; &#44536;&#47353;&#51648;&#50892;&#51656; &#49688; &#51080;&#45796;: </p><pre class="programlisting">select cat.color, sum(cat.weight), count(cat)
+from Cat cat
+group by cat.color</pre><pre class="programlisting">select foo.id, avg(name), max(name)
+from Foo foo join foo.names name
+group by foo.id</pre><p>&#46608;&#54620; <code class="literal">having</code> &#51208;&#51060; &#54728;&#50857;&#46108;&#45796;. 
+         </p><pre class="programlisting">select cat.color, sum(cat.weight), count(cat)
+from Cat cat
+group by cat.color
+having cat.color in (eg.Color.TABBY, eg.Color.BLACK)</pre><p>SQL &#54632;&#49688;&#46308;&#44284; &#51665;&#44228; &#54632;&#49688;&#46308;&#51060; &#44592;&#48376; &#45936;&#51060;&#53552;&#48288;&#51060;&#49828;&#50640; &#51032;&#54644; &#51648;&#50896;&#46112; &#44221;&#50864;(&#50696;&#47484; &#46308;&#50612; MySQL&#51008; &#51648;&#50896;&#46104;&#51648; &#50506;&#45716;&#45796;) <code class="literal">having</code> &#51208;&#44284; <code class="literal">order by</code> &#51208; &#49549;&#50640; &#54728;&#50857;&#46108;&#45796;. 
+         </p><pre class="programlisting">select cat
+from Cat cat
+    join cat.kittens kitten
+group by cat.id, cat.name, cat.other, cat.properties
+having avg(kitten.weight) &gt; 100
+order by count(kitten) asc, sum(kitten.weight) desc</pre><p><code class="literal">group by</code> &#51208;&#46020; <code class="literal">order by</code> &#51208; &#50612;&#45712; &#44163;&#46020; &#49328;&#49696; &#54364;&#54788;&#49885;&#46308;&#51012; &#54252;&#54632;&#54624; &#49688; &#50630;&#45796;&#45716; &#51216;&#51012; &#45432;&#53944;&#54616;&#46972;. &#46608;&#54620; Hibernate&#45716; &#54788;&#51116; &#44536;&#47353;&#51648;&#50892;&#51652; &#50644;&#54000;&#54000;&#47484; &#54869;&#51109;&#54616;&#51648; &#50506;&#50500;&#49436; &#47564;&#51068; <code class="literal">cat</code>&#51032; &#47784;&#46304; &#49549;&#49457;&#46308;&#51060; &#51665;&#44228;&#46104;&#51648; &#50506;&#51012; &#44221;&#50864;&#50640; &#45817;&#49888;&#51060; <code class="literal">group by cat</code>&#51012; &#50424;&#49688; &#50630;&#51020;&#51012; &#45432;&#53944;&#54616;&#46972;. &#45817;&#49888;&#51008; &#47749;&#49884;&#51201;&#51004;&#47196; &#47784;&#46304; &#51665;&#44228;&#46104;&#51648; &#50506;&#45716; &#49549;&#49457;&#46308;&#51012; &#47532;&#49828;&#53944;&#54644;&#50556; &#54620;&#45796;. 
+         </p>
+      </div>
+      <div class="navfooter">
+         <hr>
+         <table width="100%" summary="Navigation footer">
+            <tr>
+               <td width="40%" align="left"><a accesskey="p" href="queryhql-ordering.html">&#51060;&#51204;</a>&nbsp;
+               </td>
+               <td width="20%" align="center"><a accesskey="u" href="queryhql.html">&#50948;&#47196;</a></td>
+               <td width="40%" align="right">&nbsp;<a accesskey="n" href="queryhql-subqueries.html">&#45796;&#51020;</a></td>
+            </tr>
+            <tr>
+               <td width="40%" align="left" valign="top">14.11. order by &#51208;&nbsp;</td>
+               <td width="20%" align="center"><a accesskey="h" href="index.html">&#52376;&#51020;&#51004;&#47196;</a></td>
+               <td width="40%" align="right" valign="top">&nbsp;14.13. &#49436;&#48652;&#51656;&#51032;&#46308;</td>
+            </tr>
+         </table>
+      </div>
+   </body>
+</html>

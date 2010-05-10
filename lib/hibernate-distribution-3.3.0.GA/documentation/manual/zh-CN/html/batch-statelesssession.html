@@ -1,0 +1,74 @@
+<html>
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   
+      <title>13.3.&nbsp;StatelessSession (&aelig;&#151;&nbsp;&ccedil;&#138;&para;&aelig;&#128;&#129;session)&aelig;&#142;&yen;&aring;&#143;&pound;</title>
+      <link rel="stylesheet" href="css/html.css" type="text/css">
+      <meta name="generator" content="DocBook XSL Stylesheets V1.72.0">
+      <link rel="start" href="index.html" title="HIBERNATE - &#31526;&#21512;Java&#20064;&#24815;&#30340;&#20851;&#31995;&#25968;&#25454;&#24211;&#25345;&#20037;&#21270;">
+      <link rel="up" href="batch.html" title="&#31532;&nbsp;13&nbsp;&#31456;&nbsp;&aelig;&#137;&sup1;&eacute;&#135;&#143;&aring;&curren;&#132;&ccedil;&#144;&#134;&iuml;&frac14;&#136;Batch processing&iuml;&frac14;&#137;">
+      <link rel="prev" href="batch-update.html" title="13.2.&nbsp;&aelig;&#137;&sup1;&eacute;&#135;&#143;&aelig;&#155;&acute;&aelig;&#150;&deg;&iuml;&frac14;&#136;Batch updates&iuml;&frac14;&#137;">
+      <link rel="next" href="batch-direct.html" title="13.4.&nbsp;DML(&aelig;&#149;&deg;&aelig;&#141;&reg;&aelig;&#147;&#141;&auml;&frac12;&#156;&egrave;&macr;&shy;&egrave;&uml;&#128;)&eacute;&pound;&#142;&aelig;&nbsp;&frac14;&ccedil;&#154;&#132;&aelig;&#147;&#141;&auml;&frac12;&#156;(DML-style operations)">
+   </head>
+   <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+      <div class="navheader">
+         <table width="100%" summary="Navigation header">
+            <tr>
+               <th colspan="3" align="center">13.3.&nbsp;StatelessSession (&aelig;&#151;&nbsp;&ccedil;&#138;&para;&aelig;&#128;&#129;session)&aelig;&#142;&yen;&aring;&#143;&pound;</th>
+            </tr>
+            <tr>
+               <td width="20%" align="left"><a accesskey="p" href="batch-update.html">&#19978;&#19968;&#39029;</a>&nbsp;
+               </td>
+               <th width="60%" align="center">&#31532;&nbsp;13&nbsp;&#31456;&nbsp;&aelig;&#137;&sup1;&eacute;&#135;&#143;&aring;&curren;&#132;&ccedil;&#144;&#134;&iuml;&frac14;&#136;Batch processing&iuml;&frac14;&#137;</th>
+               <td width="20%" align="right">&nbsp;<a accesskey="n" href="batch-direct.html">&#19979;&#19968;&#39029;</a></td>
+            </tr>
+         </table>
+         <hr>
+      </div>
+      <div class="sect1" lang="zh-CN">
+         <div class="titlepage">
+            <div>
+               <div>
+                  <h2 class="title" style="clear: both"><a name="batch-statelesssession"></a>13.3.&nbsp;StatelessSession (&aelig;&#151;&nbsp;&ccedil;&#138;&para;&aelig;&#128;&#129;session)&aelig;&#142;&yen;&aring;&#143;&pound;
+                  </h2>
+               </div>
+            </div>
+         </div>
+         <p>&auml;&frac12;&#156;&auml;&cedil;&ordm;&eacute;&#128;&#137;&aelig;&#139;&copy;&iuml;&frac14;&#140;Hibernate&aelig;&#143;&#144;&auml;&frac34;&#155;&auml;&ordm;&#134;&aring;&#159;&ordm;&auml;&ordm;&#142;&aring;&#145;&frac12;&auml;&raquo;&curren;&ccedil;&#154;&#132;API&iuml;&frac14;&#140;&aring;&#143;&macr;&auml;&raquo;&yen;&ccedil;&#148;&uml;detached object&ccedil;&#154;&#132;&aring;&frac12;&cent;&aring;&frac14;&#143;&aelig;&#138;&#138;&aelig;&#149;&deg;&aelig;&#141;&reg;&auml;&raquo;&yen;&aelig;&micro;&#129;&ccedil;&#154;&#132;&aelig;&#150;&sup1;&aelig;&sup3;&#149;&aring;&#138;&nbsp;&aring;&#133;&yen;&aring;&#136;&deg;&aelig;&#149;&deg;&aelig;&#141;&reg;&aring;&ordm;&#147;&iuml;&frac14;&#140;&aelig;&#136;&#150;&auml;&raquo;&#142;&aelig;&#149;&deg;&aelig;&#141;&reg;&aring;&ordm;&#147;&egrave;&frac34;&#147;&aring;&#135;&ordm;&atilde;&#128;&#130;<code class="literal">StatelessSession</code>&aelig;&sup2;&iexcl;&aelig;&#156;&#137;&aelig;&#140;&#129;&auml;&sup1;&#133;&aring;&#140;&#150;&auml;&cedil;&#138;&auml;&cedil;&#139;&aelig;&#150;&#135;&iuml;&frac14;&#140;&auml;&sup1;&#159;&auml;&cedil;&#141;&aelig;&#143;&#144;&auml;&frac34;&#155;&aring;&curren;&#154;&aring;&deg;&#145;&eacute;&laquo;&#152;&aring;&plusmn;&#130;&ccedil;&#154;&#132;&ccedil;&#148;&#159;&aring;&#145;&frac12;&aring;&#145;&uml;&aelig;&#156;&#159;&egrave;&macr;&shy;&auml;&sup1;&#137;&atilde;&#128;&#130;&ccedil;&#137;&sup1;&aring;&#136;&laquo;&aelig;&#152;&macr;&iuml;&frac14;&#140;&aelig;&#151;&nbsp;&ccedil;&#138;&para;&aelig;&#128;&#129;session&auml;&cedil;&#141;&aring;&reg;&#158;&ccedil;&#142;&deg;&ccedil;&not;&not;&auml;&cedil;&#128;&ccedil;&ordm;&sect;cache,&auml;&sup1;&#159;&auml;&cedil;&#141;&aring;&#146;&#140;&ccedil;&not;&not;&auml;&ordm;&#140;&ccedil;&ordm;&sect;&ccedil;&frac14;&#147;&aring;&shy;&#152;&iuml;&frac14;&#140;&aelig;&#136;&#150;&egrave;&#128;&#133;&aelig;&#159;&yen;&egrave;&macr;&cent;&ccedil;&frac14;&#147;&aring;&shy;&#152;&auml;&ordm;&curren;&auml;&ordm;&#146;&atilde;&#128;&#130;&aring;&reg;&#131;&auml;&cedil;&#141;&aring;&reg;&#158;&ccedil;&#142;&deg;&auml;&ordm;&#139;&aring;&#138;&iexcl;&aring;&#140;&#150;&aring;&#134;&#153;&iuml;&frac14;&#140;&auml;&sup1;&#159;&auml;&cedil;&#141;&aring;&reg;&#158;&ccedil;&#142;&deg;&egrave;&#132;&#143;&aelig;&#149;&deg;&aelig;&#141;&reg;&aelig;&pound;&#128;&aelig;&#159;&yen;&atilde;&#128;&#130;&ccedil;&#148;&uml;stateless
+            session&egrave;&iquest;&#155;&egrave;&iexcl;&#140;&ccedil;&#154;&#132;&aelig;&#147;&#141;&auml;&frac12;&#156;&ccedil;&#148;&#154;&egrave;&#135;&sup3;&auml;&cedil;&#141;&ccedil;&ordm;&sect;&egrave;&#129;&#148;&aring;&#136;&deg;&aring;&#133;&sup3;&egrave;&#129;&#148;&aring;&reg;&#158;&auml;&frac34;&#139;&atilde;&#128;&#130;stateless session&aring;&iquest;&frac12;&ccedil;&#149;&yen;&eacute;&#155;&#134;&aring;&#144;&#136;&ccedil;&plusmn;&raquo;(Collections)&atilde;&#128;&#130;&eacute;&#128;&#154;&egrave;&iquest;&#135;stateless session&egrave;&iquest;&#155;&egrave;&iexcl;&#140;&ccedil;&#154;&#132;&aelig;&#147;&#141;&auml;&frac12;&#156;&auml;&cedil;&#141;&egrave;&sect;&brvbar;&aring;&#143;&#145;Hibernate&ccedil;&#154;&#132;&auml;&ordm;&#139;&auml;&raquo;&para;&aelig;&uml;&iexcl;&aring;&#158;&#139;&aring;&#146;&#140;&aelig;&#139;&brvbar;&aelig;&#136;&ordf;&aring;&#153;&uml;&atilde;&#128;&#130;&aelig;&#151;&nbsp;&ccedil;&#138;&para;&aelig;&#128;&#129;session&aring;&macr;&sup1;&aelig;&#149;&deg;&aelig;&#141;&reg;&ccedil;&#154;&#132;&aelig;&middot;&middot;&aelig;&middot;&#134;&ccedil;&#142;&deg;&egrave;&plusmn;&iexcl;&aring;&#133;&#141;&ccedil;&#150;&laquo;&iuml;&frac14;&#140;&aring;&#155;&nbsp;&auml;&cedil;&ordm;&aring;&reg;&#131;&aelig;&sup2;&iexcl;&aelig;&#156;&#137;&ccedil;&not;&not;&auml;&cedil;&#128;&ccedil;&ordm;&sect;&ccedil;&frac14;&#147;&aring;&shy;&#152;&atilde;&#128;&#130;&aelig;&#151;&nbsp;&ccedil;&#138;&para;&aelig;&#128;&#129;session&aelig;&#152;&macr;&auml;&frac12;&#142;&aring;&plusmn;&#130;&ccedil;&#154;&#132;&aelig;&#138;&frac12;&egrave;&plusmn;&iexcl;&iuml;&frac14;&#140;&aring;&#146;&#140;&auml;&frac12;&#142;&aring;&plusmn;&#130;JDBC&ccedil;&#155;&cedil;&aring;&frac12;&#147;&aelig;&#142;&yen;&egrave;&iquest;&#145;&atilde;&#128;&#130;
+            
+         </p><pre class="programlisting">StatelessSession session = sessionFactory.openStatelessSession();
+Transaction tx = session.beginTransaction();
+   
+ScrollableResults customers = session.getNamedQuery("GetCustomers")
+    .scroll(ScrollMode.FORWARD_ONLY);
+while ( customers.next() ) {
+    Customer customer = (Customer) customers.get(0);
+    customer.updateStuff(...);
+    session.update(customer);
+}
+   
+tx.commit();
+session.close();</pre><p>&aelig;&sup3;&uml;&aelig;&#132;&#143;&aring;&#156;&uml;&auml;&cedil;&#138;&eacute;&#157;&cent;&ccedil;&#154;&#132;&auml;&frac34;&#139;&aring;&shy;&#144;&auml;&cedil;&shy;&iuml;&frac14;&#140;&aelig;&#159;&yen;&egrave;&macr;&cent;&egrave;&iquest;&#148;&aring;&#155;&#158;&ccedil;&#154;&#132;<code class="literal">Customer</code>&aring;&reg;&#158;&auml;&frac34;&#139;&ccedil;&laquo;&#139;&aring;&#141;&sup3;&egrave;&cent;&laquo;&egrave;&#132;&plusmn;&ccedil;&reg;&iexcl;(detach)&atilde;&#128;&#130;&aring;&reg;&#131;&auml;&raquo;&not;&auml;&cedil;&#142;&auml;&raquo;&raquo;&auml;&frac12;&#149;&aelig;&#140;&#129;&auml;&sup1;&#133;&aring;&#140;&#150;&auml;&cedil;&#138;&auml;&cedil;&#139;&aelig;&#150;&#135;&eacute;&#131;&frac12;&aelig;&sup2;&iexcl;&aelig;&#156;&#137;&aring;&#133;&sup3;&ccedil;&sup3;&raquo;&atilde;&#128;&#130; 
+         </p>
+         <p><code class="literal">StatelessSession</code> &aelig;&#142;&yen;&aring;&#143;&pound;&aring;&reg;&#154;&auml;&sup1;&#137;&ccedil;&#154;&#132;<code class="literal">insert(), update()</code> &aring;&#146;&#140; <code class="literal">delete()</code>&aelig;&#147;&#141;&auml;&frac12;&#156;&aelig;&#152;&macr;&ccedil;&#155;&acute;&aelig;&#142;&yen;&ccedil;&#154;&#132;&aelig;&#149;&deg;&aelig;&#141;&reg;&aring;&ordm;&#147;&egrave;&iexcl;&#140;&ccedil;&ordm;&sect;&aring;&#136;&laquo;&aelig;&#147;&#141;&auml;&frac12;&#156;&iuml;&frac14;&#140;&aring;&#133;&para;&ccedil;&raquo;&#147;&aelig;&#158;&#156;&aelig;&#152;&macr;&ccedil;&laquo;&#139;&aring;&#136;&raquo;&aelig;&#137;&sect;&egrave;&iexcl;&#140;&auml;&cedil;&#128;&aelig;&#157;&iexcl;<code class="literal">INSERT, UPDATE</code> &aelig;&#136;&#150; <code class="literal">DELETE</code> &egrave;&macr;&shy;&aring;&#143;&yen;&atilde;&#128;&#130;&aring;&#155;&nbsp;&aelig;&shy;&curren;&iuml;&frac14;&#140;&aring;&reg;&#131;&auml;&raquo;&not;&ccedil;&#154;&#132;&egrave;&macr;&shy;&auml;&sup1;&#137;&aring;&#146;&#140;<code class="literal">Session</code> &aelig;&#142;&yen;&aring;&#143;&pound;&aring;&reg;&#154;&auml;&sup1;&#137;&ccedil;&#154;&#132;<code class="literal">save(), saveOrUpdate()</code> &aring;&#146;&#140;<code class="literal">delete()</code> &aelig;&#147;&#141;&auml;&frac12;&#156;&aelig;&#156;&#137;&aring;&frac34;&#136;&aring;&curren;&sect;&ccedil;&#154;&#132;&auml;&cedil;&#141;&aring;&#144;&#140;&atilde;&#128;&#130; 
+         </p>
+      </div>
+      <div class="navfooter">
+         <hr>
+         <table width="100%" summary="Navigation footer">
+            <tr>
+               <td width="40%" align="left"><a accesskey="p" href="batch-update.html">&#19978;&#19968;&#39029;</a>&nbsp;
+               </td>
+               <td width="20%" align="center"><a accesskey="u" href="batch.html">&#19978;&#19968;&#32423;</a></td>
+               <td width="40%" align="right">&nbsp;<a accesskey="n" href="batch-direct.html">&#19979;&#19968;&#39029;</a></td>
+            </tr>
+            <tr>
+               <td width="40%" align="left" valign="top">13.2.&nbsp;&aelig;&#137;&sup1;&eacute;&#135;&#143;&aelig;&#155;&acute;&aelig;&#150;&deg;&iuml;&frac14;&#136;Batch updates&iuml;&frac14;&#137;&nbsp;</td>
+               <td width="20%" align="center"><a accesskey="h" href="index.html">&#36215;&#22987;&#39029;</a></td>
+               <td width="40%" align="right" valign="top">&nbsp;13.4.&nbsp;DML(&aelig;&#149;&deg;&aelig;&#141;&reg;&aelig;&#147;&#141;&auml;&frac12;&#156;&egrave;&macr;&shy;&egrave;&uml;&#128;)&eacute;&pound;&#142;&aelig;&nbsp;&frac14;&ccedil;&#154;&#132;&aelig;&#147;&#141;&auml;&frac12;&#156;(DML-style operations)</td>
+            </tr>
+         </table>
+      </div>
+   </body>
+</html>

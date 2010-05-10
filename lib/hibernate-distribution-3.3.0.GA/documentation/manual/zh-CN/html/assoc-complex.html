@@ -1,0 +1,82 @@
+<html>
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   
+      <title>7.6.&nbsp;&#26356;&#22797;&#26434;&#30340;&#20851;&#32852;&#26144;&#23556;</title>
+      <link rel="stylesheet" href="css/html.css" type="text/css">
+      <meta name="generator" content="DocBook XSL Stylesheets V1.72.0">
+      <link rel="start" href="index.html" title="HIBERNATE - &#31526;&#21512;Java&#20064;&#24815;&#30340;&#20851;&#31995;&#25968;&#25454;&#24211;&#25345;&#20037;&#21270;">
+      <link rel="up" href="associations.html" title="&#31532;&nbsp;7&nbsp;&#31456;&nbsp;&#20851;&#32852;&#20851;&#31995;&#26144;&#23556;">
+      <link rel="prev" href="assoc-bidirectional-join.html" title="7.5.&nbsp;&#20351;&#29992;&#36830;&#25509;&#34920;&#30340;&#21452;&#21521;&#20851;&#32852;&#65288;Bidirectional associations with join tables&#65289;">
+      <link rel="next" href="components.html" title="&#31532;&nbsp;8&nbsp;&#31456;&nbsp;&#32452;&#20214;&#65288;Component&#65289;&#26144;&#23556;">
+   </head>
+   <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+      <div class="navheader">
+         <table width="100%" summary="Navigation header">
+            <tr>
+               <th colspan="3" align="center">7.6.&nbsp;&#26356;&#22797;&#26434;&#30340;&#20851;&#32852;&#26144;&#23556;</th>
+            </tr>
+            <tr>
+               <td width="20%" align="left"><a accesskey="p" href="assoc-bidirectional-join.html">&#19978;&#19968;&#39029;</a>&nbsp;
+               </td>
+               <th width="60%" align="center">&#31532;&nbsp;7&nbsp;&#31456;&nbsp;&#20851;&#32852;&#20851;&#31995;&#26144;&#23556;</th>
+               <td width="20%" align="right">&nbsp;<a accesskey="n" href="components.html">&#19979;&#19968;&#39029;</a></td>
+            </tr>
+         </table>
+         <hr>
+      </div>
+      <div class="sect1" lang="zh-CN">
+         <div class="titlepage">
+            <div>
+               <div>
+                  <h2 class="title" style="clear: both"><a name="assoc-complex"></a>7.6.&nbsp;&#26356;&#22797;&#26434;&#30340;&#20851;&#32852;&#26144;&#23556;
+                  </h2>
+               </div>
+            </div>
+         </div>
+         <p>&#26356;&#22797;&#26434;&#30340;&#20851;&#32852;&#36830;&#25509;<span class="emphasis"><em>&#26497;&#20026;</em></span>&#32597;&#35265;&#12290; &#36890;&#36807;&#22312;&#26144;&#23556;&#25991;&#26723;&#20013;&#23884;&#20837;SQL&#29255;&#26029;&#65292;Hibernate&#20063;&#21487;&#20197;&#22788;&#29702;&#26356;&#20026;&#22797;&#26434;&#30340;&#24773;&#20917;&#12290;&#27604;&#22914;&#65292;&#20551;&#33509;&#21253;&#21547;&#21382;&#21490;&#24080;&#25143;&#25968;&#25454;&#30340;&#34920;&#23450;&#20041;&#20102;<code class="literal">accountNumber</code>, <code class="literal">effectiveEndDate</code> &#21644;<code class="literal">effectiveStartDate</code>&#23383;&#27573;&#65292;&#25353;&#29031;&#19979;&#38754;&#26144;&#23556;&#65306; 
+         </p><pre class="programlisting">&lt;properties name="currentAccountKey"&gt;
+    &lt;property name="accountNumber" type="string" not-null="true"/&gt;
+    &lt;property name="currentAccount" type="boolean"&gt;
+        &lt;formula&gt;case when effectiveEndDate is null then 1 else 0 end&lt;/formula&gt;
+    &lt;/property&gt;
+&lt;/properties&gt;
+&lt;property name="effectiveEndDate" type="date"/&gt;
+&lt;property name="effectiveStateDate" type="date" not-null="true"/&gt;</pre><p>&#37027;&#20040;&#25105;&#20204;&#21487;&#20197;&#23545;<span class="emphasis"><em>&#30446;&#21069;(current)</em></span>&#23454;&#20363;(&#20854;<code class="literal">effectiveEndDate</code>&#20026;null)&#20351;&#29992;&#36825;&#26679;&#30340;&#20851;&#32852;&#26144;&#23556;: 
+         </p><pre class="programlisting">&lt;many-to-one name="currentAccountInfo" 
+        property-ref="currentAccountKey"
+        class="AccountInfo"&gt;
+    &lt;column name="accountNumber"/&gt;
+    &lt;formula&gt;'1'&lt;/formula&gt;
+&lt;/many-to-one&gt;</pre><p>&#26356;&#22797;&#26434;&#30340;&#20363;&#23376;,&#20551;&#24819;<code class="literal">Employee</code>&#21644;<code class="literal">Organization</code>&#20043;&#38388;&#30340;&#20851;&#32852;&#26159;&#36890;&#36807;&#19968;&#20010;<code class="literal">Employment</code>&#20013;&#38388;&#34920;&#32500;&#25252;&#30340;,&#32780;&#20013;&#38388;&#34920;&#20013;&#22635;&#20805;&#20102;&#24456;&#22810;&#21382;&#21490;&#38599;&#21592;&#25968;&#25454;&#12290;&#37027;&#8220;&#38599;&#21592;&#30340;<span class="emphasis"><em>&#26368;&#26032;</em></span>&#38599;&#20027;&#8221;&#36825;&#20010;&#20851;&#32852;&#65288;&#26368;&#26032;&#38599;&#20027;&#23601;&#26159;<code class="literal">startDate</code>&#26368;&#21518;&#30340;&#37027;&#20010;&#65289;&#21487;&#20197;&#36825;&#26679;&#26144;&#23556;&#65306; 
+         </p><pre class="programlisting">&lt;join&gt;
+    &lt;key column="employeeId"/&gt;
+    &lt;subselect&gt;
+        select employeeId, orgId 
+        from Employments 
+        group by orgId 
+        having startDate = max(startDate)
+    &lt;/subselect&gt;
+    &lt;many-to-one name="mostRecentEmployer" 
+            class="Organization" 
+            column="orgId"/&gt;
+&lt;/join&gt;</pre><p>&#20351;&#29992;&#36825;&#19968;&#21151;&#33021;&#26102;&#21487;&#20197;&#20805;&#28385;&#21019;&#24847;&#65292;&#20294;&#36890;&#24120;&#26356;&#21152;&#23454;&#29992;&#30340;&#26159;&#29992;HQL&#25110;&#26465;&#20214;&#26597;&#35810;&#26469;&#22788;&#29702;&#36825;&#20123;&#24773;&#24418;&#12290; </p>
+      </div>
+      <div class="navfooter">
+         <hr>
+         <table width="100%" summary="Navigation footer">
+            <tr>
+               <td width="40%" align="left"><a accesskey="p" href="assoc-bidirectional-join.html">&#19978;&#19968;&#39029;</a>&nbsp;
+               </td>
+               <td width="20%" align="center"><a accesskey="u" href="associations.html">&#19978;&#19968;&#32423;</a></td>
+               <td width="40%" align="right">&nbsp;<a accesskey="n" href="components.html">&#19979;&#19968;&#39029;</a></td>
+            </tr>
+            <tr>
+               <td width="40%" align="left" valign="top">7.5.&nbsp;&#20351;&#29992;&#36830;&#25509;&#34920;&#30340;&#21452;&#21521;&#20851;&#32852;&#65288;Bidirectional associations with join tables&#65289;&nbsp;</td>
+               <td width="20%" align="center"><a accesskey="h" href="index.html">&#36215;&#22987;&#39029;</a></td>
+               <td width="40%" align="right" valign="top">&nbsp;&#31532;&nbsp;8&nbsp;&#31456;&nbsp;&#32452;&#20214;&#65288;Component&#65289;&#26144;&#23556;</td>
+            </tr>
+         </table>
+      </div>
+   </body>
+</html>

@@ -1,0 +1,86 @@
+<html>
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   
+      <title>16.4.&nbsp;&#23450;&#21046;&#35013;&#36733;SQL</title>
+      <link rel="stylesheet" href="css/html.css" type="text/css">
+      <meta name="generator" content="DocBook XSL Stylesheets V1.72.0">
+      <link rel="start" href="index.html" title="HIBERNATE - &#31526;&#21512;Java&#20064;&#24815;&#30340;&#20851;&#31995;&#25968;&#25454;&#24211;&#25345;&#20037;&#21270;">
+      <link rel="up" href="querysql.html" title="&#31532;&nbsp;16&nbsp;&#31456;&nbsp;Native SQL&#26597;&#35810;">
+      <link rel="prev" href="querysql-cud.html" title="16.3.&nbsp;&#23450;&#21046;SQL&#29992;&#26469;create&#65292;update&#21644;delete">
+      <link rel="next" href="filters.html" title="&#31532;&nbsp;17&nbsp;&#31456;&nbsp;&#36807;&#28388;&#25968;&#25454;">
+   </head>
+   <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+      <div class="navheader">
+         <table width="100%" summary="Navigation header">
+            <tr>
+               <th colspan="3" align="center">16.4.&nbsp;&#23450;&#21046;&#35013;&#36733;SQL</th>
+            </tr>
+            <tr>
+               <td width="20%" align="left"><a accesskey="p" href="querysql-cud.html">&#19978;&#19968;&#39029;</a>&nbsp;
+               </td>
+               <th width="60%" align="center">&#31532;&nbsp;16&nbsp;&#31456;&nbsp;Native SQL&#26597;&#35810;</th>
+               <td width="20%" align="right">&nbsp;<a accesskey="n" href="filters.html">&#19979;&#19968;&#39029;</a></td>
+            </tr>
+         </table>
+         <hr>
+      </div>
+      <div class="sect1" lang="zh-CN">
+         <div class="titlepage">
+            <div>
+               <div>
+                  <h2 class="title" style="clear: both"><a name="querysql-load"></a>16.4.&nbsp;&#23450;&#21046;&#35013;&#36733;SQL
+                  </h2>
+               </div>
+            </div>
+         </div>
+         <p>&#20320;&#21487;&#33021;&#38656;&#35201;&#22768;&#26126;&#20320;&#33258;&#24049;&#30340;SQL(&#25110;HQL)&#26469;&#35013;&#36733;&#23454;&#20307;</p><pre class="programlisting">&lt;sql-query name="person"&gt;
+    &lt;return alias="pers" class="Person" lock-mode="upgrade"/&gt;
+    SELECT NAME AS {pers.name}, ID AS {pers.id}
+    FROM PERSON
+    WHERE ID=?
+    FOR UPDATE
+&lt;/sql-query&gt;</pre><p>&#36825;&#21482;&#26159;&#19968;&#20010;&#21069;&#38754;&#35752;&#35770;&#36807;&#30340;&#21629;&#21517;&#26597;&#35810;&#22768;&#26126;&#65292;&#20320;&#21487;&#20197;&#22312;&#31867;&#26144;&#23556;&#37324;&#24341;&#29992;&#36825;&#20010;&#21629;&#21517;&#26597;&#35810;&#12290;</p><pre class="programlisting">&lt;class name="Person"&gt;
+    &lt;id name="id"&gt;
+        &lt;generator class="increment"/&gt;
+    &lt;/id&gt;
+    &lt;property name="name" not-null="true"/&gt;
+    &lt;loader query-ref="person"/&gt;
+&lt;/class&gt;</pre><p>&#36825;&#20063;&#21487;&#20197;&#29992;&#20110;&#23384;&#20648;&#36807;&#31243;</p>
+         <p>&#20320;&#29978;&#33267;&#21487;&#20197;&#23450;&#19968;&#20010;&#29992;&#20110;&#38598;&#21512;&#35013;&#36733;&#30340;&#26597;&#35810;:</p><pre class="programlisting">&lt;set name="employments" inverse="true"&gt;
+    &lt;key/&gt;
+    &lt;one-to-many class="Employment"/&gt;
+    &lt;loader query-ref="employments"/&gt;
+&lt;/set&gt;</pre><pre class="programlisting">&lt;sql-query name="employments"&gt;
+    &lt;load-collection alias="emp" role="Person.employments"/&gt;
+    SELECT {emp.*}
+    FROM EMPLOYMENT emp
+    WHERE EMPLOYER = :id
+    ORDER BY STARTDATE ASC, EMPLOYEE ASC
+&lt;/sql-query&gt;</pre><p>&#20320;&#29978;&#33267;&#36824;&#21487;&#20197;&#23450;&#20041;&#19968;&#20010;&#23454;&#20307;&#35013;&#36733;&#22120;&#65292;&#23427;&#36890;&#36807;&#36830;&#25509;&#25235;&#21462;&#35013;&#36733;&#19968;&#20010;&#38598;&#21512;:</p><pre class="programlisting">&lt;sql-query name="person"&gt;
+    &lt;return alias="pers" class="Person"/&gt;
+    &lt;return-join alias="emp" property="pers.employments"/&gt;
+    SELECT NAME AS {pers.*}, {emp.*}
+    FROM PERSON pers
+    LEFT OUTER JOIN EMPLOYMENT emp
+        ON pers.ID = emp.PERSON_ID
+    WHERE ID=?
+&lt;/sql-query&gt;</pre></div>
+      <div class="navfooter">
+         <hr>
+         <table width="100%" summary="Navigation footer">
+            <tr>
+               <td width="40%" align="left"><a accesskey="p" href="querysql-cud.html">&#19978;&#19968;&#39029;</a>&nbsp;
+               </td>
+               <td width="20%" align="center"><a accesskey="u" href="querysql.html">&#19978;&#19968;&#32423;</a></td>
+               <td width="40%" align="right">&nbsp;<a accesskey="n" href="filters.html">&#19979;&#19968;&#39029;</a></td>
+            </tr>
+            <tr>
+               <td width="40%" align="left" valign="top">16.3.&nbsp;&#23450;&#21046;SQL&#29992;&#26469;create&#65292;update&#21644;delete&nbsp;</td>
+               <td width="20%" align="center"><a accesskey="h" href="index.html">&#36215;&#22987;&#39029;</a></td>
+               <td width="40%" align="right" valign="top">&nbsp;&#31532;&nbsp;17&nbsp;&#31456;&nbsp;&#36807;&#28388;&#25968;&#25454;</td>
+            </tr>
+         </table>
+      </div>
+   </body>
+</html>

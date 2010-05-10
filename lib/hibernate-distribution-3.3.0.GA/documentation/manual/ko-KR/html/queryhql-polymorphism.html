@@ -1,0 +1,59 @@
+<html>
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   
+      <title>14.8. Polymorphic(&#45796;&#54805;&#49457;) &#51656;&#51032;&#46308;</title>
+      <link rel="stylesheet" href="css/html.css" type="text/css">
+      <meta name="generator" content="DocBook XSL Stylesheets V1.72.0">
+      <link rel="start" href="index.html" title="HIBERNATE - &#44060;&#49457;&#51080;&#45716; &#51088;&#48148;&#47484; &#50948;&#54620; &#44288;&#44228; &#50689;&#49549;">
+      <link rel="up" href="queryhql.html" title="14&#51109;. HQL: &#54616;&#51060;&#48260;&#45348;&#51060;&#53944; &#51656;&#51032; &#50616;&#50612;(Hibernate Query Language)">
+      <link rel="prev" href="queryhql-aggregation.html" title="14.7. &#51665;&#44228; &#54632;&#49688;&#46308;">
+      <link rel="next" href="queryhql-where.html" title="14.9. where &#51208;">
+   </head>
+   <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+      <div class="navheader">
+         <table width="100%" summary="Navigation header">
+            <tr>
+               <th colspan="3" align="center">14.8. Polymorphic(&#45796;&#54805;&#49457;) &#51656;&#51032;&#46308;</th>
+            </tr>
+            <tr>
+               <td width="20%" align="left"><a accesskey="p" href="queryhql-aggregation.html">&#51060;&#51204;</a>&nbsp;
+               </td>
+               <th width="60%" align="center">14&#51109;. HQL: &#54616;&#51060;&#48260;&#45348;&#51060;&#53944; &#51656;&#51032; &#50616;&#50612;(Hibernate Query Language)</th>
+               <td width="20%" align="right">&nbsp;<a accesskey="n" href="queryhql-where.html">&#45796;&#51020;</a></td>
+            </tr>
+         </table>
+         <hr>
+      </div>
+      <div class="sect1" lang="ko-KR">
+         <div class="titlepage">
+            <div>
+               <div>
+                  <h2 class="title" style="clear: both"><a name="queryhql-polymorphism"></a>14.8. Polymorphic(&#45796;&#54805;&#49457;) &#51656;&#51032;&#46308;
+                  </h2>
+               </div>
+            </div>
+         </div>
+         <p>&#45796;&#51020;&#44284; &#44057;&#51008; &#51656;&#51032;: </p><pre class="programlisting">from Cat as cat</pre><p>&#51008; <code class="literal">Cat</code>&#51032; &#51064;&#49828;&#53556;&#49828;&#46308; &#49104;&#47564; &#50500;&#45768;&#46972;, &#46608;&#54620; <code class="literal">DomesticCat</code>&#44284; &#44057;&#51008; &#49436;&#48652;&#53364;&#47000;&#49828;&#46308; &#46608;&#54620; &#48152;&#54872;&#54620;&#45796;. Hibernate &#51656;&#51032;&#46308;&#51008; <code class="literal">from</code> &#51208; &#45236;&#50640; <span class="emphasis"><em>&#51076;&#51032;&#51032;</em></span> &#51088;&#48148; &#53364;&#47000;&#49828;&#45208; &#51064;&#53552;&#54168;&#51060;&#49828;&#47484; &#47749;&#47749;&#54624; &#49688; &#51080;&#45796;. &#51656;&#51032;&#45716; &#44536; &#53364;&#47000;&#49828;&#47484; &#54869;&#51109;&#54616;&#44144;&#45208; &#44536; &#51064;&#53552;&#54168;&#51060;&#49828;&#47484; &#44396;&#54788;&#54616;&#45716; &#47784;&#46304; &#50689;&#49549; &#53364;&#47000;&#49828;&#46308;&#51032; &#51064;&#49828;&#53556;&#49828;&#46308;&#51012; &#48152;&#54872;&#54624; &#44163;&#51060;&#45796;. &#45796;&#51020; &#51656;&#51032;&#45716; &#47784;&#46304; &#50689;&#49549; &#44061;&#52404;&#46308;&#51012; &#48152;&#54872;&#54624; &#44163;&#51060;&#45796;: 
+         </p><pre class="programlisting">from java.lang.Object o</pre><p>&#51064;&#53552;&#54168;&#51060;&#49828; <code class="literal">Named</code>&#45716; &#50668;&#47084; &#44032;&#51648; &#50689;&#49549; &#53364;&#47000;&#49828;&#46308;&#50640; &#51032;&#54644; &#44396;&#54788;&#46112; &#49688;&#46020; &#51080;&#45796;: 
+         </p><pre class="programlisting">from Named n, Named m where n.name = m.name</pre><p>&#51060;&#46308; &#47560;&#51648;&#47561; &#46160; &#44060;&#51032; &#51656;&#51032;&#46308;&#51008; &#54616;&#45208; &#51060;&#49345;&#51032; SQL <code class="literal">SELECT</code>&#47484; &#54596;&#50836;&#47196; &#54624; &#44163;&#51076;&#51012; &#45432;&#53944;&#54616;&#46972;. &#51060;&#44163;&#51008; <code class="literal">order by</code> &#51208;&#51060; &#51221;&#54869;&#54616;&#44172; &#51204;&#52404; &#44208;&#44284; &#49483;&#51012; &#49692;&#49436;&#51648;&#50864;&#51648; &#50506;&#51020;&#51012; &#51032;&#48120;&#54620;&#45796;.(&#44536;&#44163;&#51008; &#46608;&#54620; &#45817;&#49888;&#51060; <code class="literal">Query.scroll()</code>&#51012; &#49324;&#50857;&#54616;&#50668; &#51060;&#46308; &#51656;&#51032;&#46308;&#51012; &#54840;&#52636;&#54624; &#49688; &#50630;&#51020;&#51012; &#51032;&#48120;&#54620;&#45796;). 
+         </p>
+      </div>
+      <div class="navfooter">
+         <hr>
+         <table width="100%" summary="Navigation footer">
+            <tr>
+               <td width="40%" align="left"><a accesskey="p" href="queryhql-aggregation.html">&#51060;&#51204;</a>&nbsp;
+               </td>
+               <td width="20%" align="center"><a accesskey="u" href="queryhql.html">&#50948;&#47196;</a></td>
+               <td width="40%" align="right">&nbsp;<a accesskey="n" href="queryhql-where.html">&#45796;&#51020;</a></td>
+            </tr>
+            <tr>
+               <td width="40%" align="left" valign="top">14.7. &#51665;&#44228; &#54632;&#49688;&#46308;&nbsp;</td>
+               <td width="20%" align="center"><a accesskey="h" href="index.html">&#52376;&#51020;&#51004;&#47196;</a></td>
+               <td width="40%" align="right" valign="top">&nbsp;14.9. where &#51208;</td>
+            </tr>
+         </table>
+      </div>
+   </body>
+</html>

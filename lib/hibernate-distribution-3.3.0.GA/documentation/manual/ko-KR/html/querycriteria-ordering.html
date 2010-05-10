@@ -1,0 +1,66 @@
+<html>
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   
+      <title>15.3. &#44208;&#44284;&#46308;&#51012; &#49692;&#49436;&#51648;&#50864;&#44592;(ordering)</title>
+      <link rel="stylesheet" href="css/html.css" type="text/css">
+      <meta name="generator" content="DocBook XSL Stylesheets V1.72.0">
+      <link rel="start" href="index.html" title="HIBERNATE - &#44060;&#49457;&#51080;&#45716; &#51088;&#48148;&#47484; &#50948;&#54620; &#44288;&#44228; &#50689;&#49549;">
+      <link rel="up" href="querycriteria.html" title="15&#51109;. Criteria &#51656;&#51032;&#46308;">
+      <link rel="prev" href="querycriteria-narrowing.html" title="15.2. &#44208;&#44284; &#49483; &#51228;&#54620;&#54616;&#44592;">
+      <link rel="next" href="querycriteria-associations.html" title="15.4. &#50672;&#44288;&#46308;">
+   </head>
+   <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+      <div class="navheader">
+         <table width="100%" summary="Navigation header">
+            <tr>
+               <th colspan="3" align="center">15.3. &#44208;&#44284;&#46308;&#51012; &#49692;&#49436;&#51648;&#50864;&#44592;(ordering)</th>
+            </tr>
+            <tr>
+               <td width="20%" align="left"><a accesskey="p" href="querycriteria-narrowing.html">&#51060;&#51204;</a>&nbsp;
+               </td>
+               <th width="60%" align="center">15&#51109;. Criteria &#51656;&#51032;&#46308;</th>
+               <td width="20%" align="right">&nbsp;<a accesskey="n" href="querycriteria-associations.html">&#45796;&#51020;</a></td>
+            </tr>
+         </table>
+         <hr>
+      </div>
+      <div class="sect1" lang="ko-KR">
+         <div class="titlepage">
+            <div>
+               <div>
+                  <h2 class="title" style="clear: both"><a name="querycriteria-ordering"></a>15.3. &#44208;&#44284;&#46308;&#51012; &#49692;&#49436;&#51648;&#50864;&#44592;(ordering)
+                  </h2>
+               </div>
+            </div>
+         </div>
+         <p>&#45817;&#49888;&#51008; <code class="literal">org.hibernate.criterion.Order</code>&#47484; &#49324;&#50857;&#54616;&#50668; &#44208;&#44284;&#46308;&#51012; &#49692;&#49436;(ordering)&#51648;&#50872; &#49688; &#51080;&#45796;. 
+         </p><pre class="programlisting">List cats = sess.createCriteria(Cat.class)
+    .add( Restrictions.like("name", "F%")
+    .addOrder( Order.asc("name") )
+    .addOrder( Order.desc("age") )
+    .setMaxResults(50)
+    .list();</pre><pre class="programlisting">List cats = sess.createCriteria(Cat.class)
+    .add( Property.forName("name").like("F%") )
+    .addOrder( Property.forName("name").asc() )
+    .addOrder( Property.forName("age").desc() )
+    .setMaxResults(50)
+    .list();</pre></div>
+      <div class="navfooter">
+         <hr>
+         <table width="100%" summary="Navigation footer">
+            <tr>
+               <td width="40%" align="left"><a accesskey="p" href="querycriteria-narrowing.html">&#51060;&#51204;</a>&nbsp;
+               </td>
+               <td width="20%" align="center"><a accesskey="u" href="querycriteria.html">&#50948;&#47196;</a></td>
+               <td width="40%" align="right">&nbsp;<a accesskey="n" href="querycriteria-associations.html">&#45796;&#51020;</a></td>
+            </tr>
+            <tr>
+               <td width="40%" align="left" valign="top">15.2. &#44208;&#44284; &#49483; &#51228;&#54620;&#54616;&#44592;&nbsp;</td>
+               <td width="20%" align="center"><a accesskey="h" href="index.html">&#52376;&#51020;&#51004;&#47196;</a></td>
+               <td width="40%" align="right" valign="top">&nbsp;15.4. &#50672;&#44288;&#46308;</td>
+            </tr>
+         </table>
+      </div>
+   </body>
+</html>

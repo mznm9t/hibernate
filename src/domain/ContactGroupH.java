@@ -13,7 +13,7 @@ public class ContactGroupH  implements interfaces.ContactGroup,java.io.Serializa
 
     // Fields    
 
-	 private ID ID;
+	 private ID id;
      private String entityName;
      private String name;
      private String description;
@@ -37,12 +37,12 @@ public class ContactGroupH  implements interfaces.ContactGroup,java.io.Serializa
     // Property accessors
 
     public ID getID() {
-		return ID;
+		return id;
 	}
 
 
 	public void setID(ID iD) {
-		ID = iD;
+		id = iD;
 	}
 
     public String getEntityName() {

@@ -1,0 +1,157 @@
+<html>
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   
+      <title>7.2.&nbsp;&#21333;&#21521;&#20851;&#32852;&#65288;Unidirectional associations&#65289;</title>
+      <link rel="stylesheet" href="css/html.css" type="text/css">
+      <meta name="generator" content="DocBook XSL Stylesheets V1.72.0">
+      <link rel="start" href="index.html" title="HIBERNATE - &#31526;&#21512;Java&#20064;&#24815;&#30340;&#20851;&#31995;&#25968;&#25454;&#24211;&#25345;&#20037;&#21270;">
+      <link rel="up" href="associations.html" title="&#31532;&nbsp;7&nbsp;&#31456;&nbsp;&#20851;&#32852;&#20851;&#31995;&#26144;&#23556;">
+      <link rel="prev" href="associations.html" title="&#31532;&nbsp;7&nbsp;&#31456;&nbsp;&#20851;&#32852;&#20851;&#31995;&#26144;&#23556;">
+      <link rel="next" href="assoc-unidirectional-join.html" title="7.3.&nbsp;&#20351;&#29992;&#36830;&#25509;&#34920;&#30340;&#21333;&#21521;&#20851;&#32852;&#65288;Unidirectional associations with join tables&#65289;">
+   </head>
+   <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+      <div class="navheader">
+         <table width="100%" summary="Navigation header">
+            <tr>
+               <th colspan="3" align="center">7.2.&nbsp;&#21333;&#21521;&#20851;&#32852;&#65288;Unidirectional associations&#65289;</th>
+            </tr>
+            <tr>
+               <td width="20%" align="left"><a accesskey="p" href="associations.html">&#19978;&#19968;&#39029;</a>&nbsp;
+               </td>
+               <th width="60%" align="center">&#31532;&nbsp;7&nbsp;&#31456;&nbsp;&#20851;&#32852;&#20851;&#31995;&#26144;&#23556;</th>
+               <td width="20%" align="right">&nbsp;<a accesskey="n" href="assoc-unidirectional-join.html">&#19979;&#19968;&#39029;</a></td>
+            </tr>
+         </table>
+         <hr>
+      </div>
+      <div class="sect1" lang="zh-CN">
+         <div class="titlepage">
+            <div>
+               <div>
+                  <h2 class="title" style="clear: both"><a name="assoc-unidirectional"></a>7.2.&nbsp;&#21333;&#21521;&#20851;&#32852;&#65288;Unidirectional associations&#65289;
+                  </h2>
+               </div>
+            </div>
+         </div>
+         <div class="sect2" lang="zh-CN">
+            <div class="titlepage">
+               <div>
+                  <div>
+                     <h3 class="title"><a name="assoc-unidirectional-m21"></a>7.2.1.&nbsp;many to one
+                     </h3>
+                  </div>
+               </div>
+            </div>
+            <p><span class="emphasis"><em>&#21333;&#21521;many-to-one&#20851;&#32852;</em></span>&#26159;&#26368;&#24120;&#35265;&#30340;&#21333;&#21521;&#20851;&#32852;&#20851;&#31995;&#12290; 
+            </p><pre class="programlisting">&lt;class name="Person"&gt;
+    &lt;id name="id" column="personId"&gt;
+        &lt;generator class="native"/&gt;
+    &lt;/id&gt;
+    &lt;many-to-one name="address" 
+        column="addressId"
+        not-null="true"/&gt;
+&lt;/class&gt;
+
+&lt;class name="Address"&gt;
+    &lt;id name="id" column="addressId"&gt;
+        &lt;generator class="native"/&gt;
+    &lt;/id&gt;
+&lt;/class&gt;</pre><pre class="programlisting">
+create table Person ( personId bigint not null primary key, addressId bigint not null )
+create table Address ( addressId bigint not null primary key )
+        </pre></div>
+         <div class="sect2" lang="zh-CN">
+            <div class="titlepage">
+               <div>
+                  <div>
+                     <h3 class="title"><a name="assoc-unidirectional-121"></a>7.2.2.&nbsp;&#19968;&#23545;&#19968;&#65288;one to one&#65289;
+                     </h3>
+                  </div>
+               </div>
+            </div>
+            <p><span class="emphasis"><em>&#22522;&#20110;&#22806;&#38190;&#20851;&#32852;&#30340;&#21333;&#21521;&#19968;&#23545;&#19968;&#20851;&#32852;</em></span>&#21644;<span class="emphasis"><em>&#21333;&#21521;&#22810;&#23545;&#19968;&#20851;&#32852;</em></span>&#20960;&#20046;&#26159;&#19968;&#26679;&#30340;&#12290;&#21807;&#19968;&#30340;&#19981;&#21516;&#23601;&#26159;&#21333;&#21521;&#19968;&#23545;&#19968;&#20851;&#32852;&#20013;&#30340;&#22806;&#38190;&#23383;&#27573;&#20855;&#26377;&#21807;&#19968;&#24615;&#32422;&#26463;&#12290; 
+            </p><pre class="programlisting">&lt;class name="Person"&gt;
+    &lt;id name="id" column="personId"&gt;
+        &lt;generator class="native"/&gt;
+    &lt;/id&gt;
+    &lt;many-to-one name="address" 
+        column="addressId" 
+        unique="true"
+        not-null="true"/&gt;
+&lt;/class&gt;
+
+&lt;class name="Address"&gt;
+    &lt;id name="id" column="addressId"&gt;
+        &lt;generator class="native"/&gt;
+    &lt;/id&gt;
+&lt;/class&gt;</pre><pre class="programlisting">
+create table Person ( personId bigint not null primary key, addressId bigint not null unique )
+create table Address ( addressId bigint not null primary key )
+        </pre><p><span class="emphasis"><em>&#22522;&#20110;&#20027;&#38190;&#20851;&#32852;&#30340;&#21333;&#21521;&#19968;&#23545;&#19968;&#20851;&#32852;</em></span>&#36890;&#24120;&#20351;&#29992;&#19968;&#20010;&#29305;&#23450;&#30340;id&#29983;&#25104;&#22120;&#12290;&#65288;&#35831;&#27880;&#24847;&#65292;&#22312;&#36825;&#20010;&#20363;&#23376;&#20013;&#25105;&#20204;&#25481;&#25442;&#20102;&#20851;&#32852;&#30340;&#26041;&#21521;&#12290;&#65289; 
+            </p><pre class="programlisting">&lt;class name="Person"&gt;
+    &lt;id name="id" column="personId"&gt;
+        &lt;generator class="native"/&gt;
+    &lt;/id&gt;
+&lt;/class&gt;
+
+&lt;class name="Address"&gt;
+    &lt;id name="id" column="personId"&gt;
+        &lt;generator class="foreign"&gt;
+            &lt;param name="property"&gt;person&lt;/param&gt;
+        &lt;/generator&gt;
+    &lt;/id&gt;
+    &lt;one-to-one name="person" constrained="true"/&gt;
+&lt;/class&gt;</pre><pre class="programlisting">
+create table Person ( personId bigint not null primary key )
+create table Address ( personId bigint not null primary key )
+        </pre></div>
+         <div class="sect2" lang="zh-CN">
+            <div class="titlepage">
+               <div>
+                  <div>
+                     <h3 class="title"><a name="assoc-unidirectional-12m"></a>7.2.3.&nbsp;one to many
+                     </h3>
+                  </div>
+               </div>
+            </div>
+            <p><span class="emphasis"><em>&#22522;&#20110;&#22806;&#38190;&#20851;&#32852;&#30340;&#21333;&#21521;&#19968;&#23545;&#22810;&#20851;&#32852;</em></span>&#26159;&#19968;&#31181;&#24456;&#23569;&#35265;&#30340;&#24773;&#20917;&#65292;&#24182;&#19981;&#25512;&#33616;&#20351;&#29992;&#12290; 
+            </p><pre class="programlisting">&lt;class name="Person"&gt;
+    &lt;id name="id" column="personId"&gt;
+        &lt;generator class="native"/&gt;
+    &lt;/id&gt;
+    &lt;set name="addresses"&gt;
+        &lt;key column="personId" 
+            not-null="true"/&gt;
+        &lt;one-to-many class="Address"/&gt;
+    &lt;/set&gt;
+&lt;/class&gt;
+
+&lt;class name="Address"&gt;
+    &lt;id name="id" column="addressId"&gt;
+        &lt;generator class="native"/&gt;
+    &lt;/id&gt;
+&lt;/class&gt;</pre><pre class="programlisting">
+create table Person ( personId bigint not null primary key )
+create table Address ( addressId bigint not null primary key, personId bigint not null )
+        </pre><p>&#25105;&#20204;&#35748;&#20026;&#23545;&#20110;&#36825;&#31181;&#20851;&#32852;&#20851;&#31995;&#26368;&#22909;&#20351;&#29992;&#36830;&#25509;&#34920;&#12290; </p>
+         </div>
+      </div>
+      <div class="navfooter">
+         <hr>
+         <table width="100%" summary="Navigation footer">
+            <tr>
+               <td width="40%" align="left"><a accesskey="p" href="associations.html">&#19978;&#19968;&#39029;</a>&nbsp;
+               </td>
+               <td width="20%" align="center"><a accesskey="u" href="associations.html">&#19978;&#19968;&#32423;</a></td>
+               <td width="40%" align="right">&nbsp;<a accesskey="n" href="assoc-unidirectional-join.html">&#19979;&#19968;&#39029;</a></td>
+            </tr>
+            <tr>
+               <td width="40%" align="left" valign="top">&#31532;&nbsp;7&nbsp;&#31456;&nbsp;&#20851;&#32852;&#20851;&#31995;&#26144;&#23556;&nbsp;</td>
+               <td width="20%" align="center"><a accesskey="h" href="index.html">&#36215;&#22987;&#39029;</a></td>
+               <td width="40%" align="right" valign="top">&nbsp;7.3.&nbsp;&#20351;&#29992;&#36830;&#25509;&#34920;&#30340;&#21333;&#21521;&#20851;&#32852;&#65288;Unidirectional associations with join tables&#65289;</td>
+            </tr>
+         </table>
+      </div>
+   </body>
+</html>

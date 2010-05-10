@@ -2,6 +2,7 @@ package domain;
 
 import java.util.Collection;
 import java.util.Date;
+import java.util.Set;
 
 import interfaces.Address;
 import interfaces.ContactEvent;
@@ -38,6 +39,7 @@ public class ContactableH  implements interfaces.Contactable,java.io.Serializabl
      private Date lastUpdate;
      private Employee accountManager;
      private String knownAs;
+     private Set<ContactEvent> contactEvents;
      
 
     // Constructors
@@ -201,49 +203,43 @@ public class ContactableH  implements interfaces.Contactable,java.io.Serializabl
 
 	@Override
 	public void addContactEvent(ContactEvent aContactEvent) {
-		// TODO Auto-generated method stub
-		
+		contactEvents.add(aContactEvent);
 	}
 
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public void addContactEvents(Collection aContactEvents) {
-		// TODO Auto-generated method stub
-		
+		contactEvents.addAll(aContactEvents);	
 	}
-
 
 	@Override
 	public void clearContactEvents() {
-		// TODO Auto-generated method stub
-		
+		contactEvents.clear();
 	}
 
 
 	@Override
 	public boolean containsContactEvent(ContactEvent aContactEvent) {
-		// TODO Auto-generated method stub
-		return false;
+		return contactEvents.contains(aContactEvent);
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public Collection getContactEvents() {
-		// TODO Auto-generated method stub
-		return null;
+		return contactEvents;
 	}
 
 
 	@Override
 	public ContactEvent[] getContactEventsAsArray() {
-		// TODO Auto-generated method stub
-		return null;
+		return (ContactEvent[]) contactEvents.toArray(new ContactEvent[0]);
 	}
 
 
 	@Override
 	public void removeContactEvent(ContactEvent aContactEvent) {
-		// TODO Auto-generated method stub
-		
+		contactEvents.remove(aContactEvent);	
 	}
 
 }

@@ -1,0 +1,330 @@
+<html>
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   
+      <title>&#31532;&nbsp;16&nbsp;&#31456;&nbsp;Native SQL&#26597;&#35810;</title>
+      <link rel="stylesheet" href="css/html.css" type="text/css">
+      <meta name="generator" content="DocBook XSL Stylesheets V1.72.0">
+      <link rel="start" href="index.html" title="HIBERNATE - &#31526;&#21512;Java&#20064;&#24815;&#30340;&#20851;&#31995;&#25968;&#25454;&#24211;&#25345;&#20037;&#21270;">
+      <link rel="up" href="index.html" title="HIBERNATE - &#31526;&#21512;Java&#20064;&#24815;&#30340;&#20851;&#31995;&#25968;&#25454;&#24211;&#25345;&#20037;&#21270;">
+      <link rel="prev" href="query-criteria-naturalid.html" title="15.9.&nbsp;&#26681;&#25454;&#33258;&#28982;&#26631;&#35782;&#26597;&#35810;(Queries by natural identifier)">
+      <link rel="next" href="querysql-namedqueries.html" title="16.2.&nbsp;&#21629;&#21517;SQL&#26597;&#35810;">
+   </head>
+   <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+      <div class="navheader">
+         <table width="100%" summary="Navigation header">
+            <tr>
+               <th colspan="3" align="center">&#31532;&nbsp;16&nbsp;&#31456;&nbsp;Native SQL&#26597;&#35810;</th>
+            </tr>
+            <tr>
+               <td width="20%" align="left"><a accesskey="p" href="query-criteria-naturalid.html">&#19978;&#19968;&#39029;</a>&nbsp;
+               </td>
+               <th width="60%" align="center">&nbsp;</th>
+               <td width="20%" align="right">&nbsp;<a accesskey="n" href="querysql-namedqueries.html">&#19979;&#19968;&#39029;</a></td>
+            </tr>
+         </table>
+         <hr>
+      </div>
+      <div class="chapter" lang="zh-CN">
+         <div class="titlepage">
+            <div>
+               <div>
+                  <h2 class="title"><a name="querysql"></a>&#31532;&nbsp;16&nbsp;&#31456;&nbsp;Native SQL&#26597;&#35810;
+                  </h2>
+               </div>
+            </div>
+         </div>
+         <p>&#20320;&#20063;&#21487;&#20197;&#20351;&#29992;&#20320;&#30340;&#25968;&#25454;&#24211;&#30340;Native SQL&#35821;&#35328;&#26469;&#26597;&#35810;&#25968;&#25454;&#12290;&#36825;&#23545;&#20320;&#22312;&#35201;&#20351;&#29992;&#25968;&#25454;&#24211;&#30340;&#26576;&#20123;&#29305;&#24615;&#30340;&#26102;&#20505;(&#27604;&#22914;&#35828;&#22312;&#26597;&#35810;&#25552;&#31034;&#25110;&#32773;Oracle&#20013;&#30340; <code class="literal">CONNECT</code>&#20851;&#38190;&#23383;)&#65292;&#36825;&#26159;&#38750;&#24120;&#26377;&#29992;&#30340;&#12290;&#36825;&#23601;&#33021;&#22815;&#25195;&#28165;&#20320;&#25226;&#21407;&#26469;&#30452;&#25509;&#20351;&#29992;SQL/JDBC &#30340;&#31243;&#24207;&#36801;&#31227;&#21040;&#22522;&#20110; Hibernate&#24212;&#29992;&#30340;&#36947;&#36335;&#19978;&#30340;&#38556;&#30861;&#12290;
+         </p>
+         <p>Hibernate3&#20801;&#35768;&#20320;&#20351;&#29992;&#25163;&#20889;&#30340;sql&#26469;&#23436;&#25104;&#25152;&#26377;&#30340;create,update,delete,&#21644;load&#25805;&#20316;&#65288;&#21253;&#25324;&#23384;&#20648;&#36807;&#31243;&#65289;</p>
+         <div class="sect1" lang="zh-CN">
+            <div class="titlepage">
+               <div>
+                  <div>
+                     <h2 class="title" style="clear: both"><a name="querysql-creating"></a>16.1.&nbsp;&#20351;&#29992;<code class="literal">SQLQuery</code></h2>
+                  </div>
+               </div>
+            </div>
+            <p>&#23545;&#21407;&#29983;SQL&#26597;&#35810;&#25191;&#34892;&#30340;&#25511;&#21046;&#26159;&#36890;&#36807;<code class="literal">SQLQuery</code>&#25509;&#21475;&#36827;&#34892;&#30340;&#65292;&#36890;&#36807;&#25191;&#34892;<code class="literal">Session.createSQLQuery()</code>&#33719;&#21462;&#36825;&#20010;&#25509;&#21475;&#12290;&#19979;&#38754;&#26469;&#25551;&#36848;&#22914;&#20309;&#20351;&#29992;&#36825;&#20010;API&#36827;&#34892;&#26597;&#35810;&#12290;
+            </p>
+            <div class="sect2" lang="zh-CN">
+               <div class="titlepage">
+                  <div>
+                     <div>
+                        <h3 class="title"><a name="d0e13166"></a>16.1.1.&nbsp;&#26631;&#37327;&#26597;&#35810;&#65288;Scalar queries&#65289;
+                        </h3>
+                     </div>
+                  </div>
+               </div>
+               <p>&#26368;&#22522;&#26412;&#30340;SQL&#26597;&#35810;&#23601;&#26159;&#33719;&#24471;&#19968;&#20010;&#26631;&#37327;&#65288;&#25968;&#20540;&#65289;&#30340;&#21015;&#34920;&#12290;</p><pre class="programlisting">sess.createSQLQuery("SELECT * FROM CATS").list();
+sess.createSQLQuery("SELECT ID, NAME, BIRTHDATE FROM CATS").list();
+</pre><p>&#23427;&#20204;&#37117;&#23558;&#36820;&#22238;&#19968;&#20010;Object&#25968;&#32452;(Object[])&#32452;&#25104;&#30340;List&#65292;&#25968;&#32452;&#27599;&#20010;&#20803;&#32032;&#37117;&#26159;CATS&#34920;&#30340;&#19968;&#20010;&#23383;&#27573;&#20540;&#12290;Hibernate&#20250;&#20351;&#29992;ResultSetMetadata&#26469;&#21028;&#23450;&#36820;&#22238;&#30340;&#26631;&#37327;&#20540;&#30340;&#23454;&#38469;&#39034;&#24207;&#21644;&#31867;&#22411;&#12290;</p>
+               <p>&#22914;&#26524;&#35201;&#36991;&#20813;&#36807;&#22810;&#30340;&#20351;&#29992;<code class="literal">ResultSetMetadata</code>,&#25110;&#32773;&#21482;&#26159;&#20026;&#20102;&#26356;&#21152;&#26126;&#30830;&#30340;&#25351;&#21517;&#36820;&#22238;&#20540;&#65292;&#21487;&#20197;&#20351;&#29992;<code class="literal">addScalar()</code>&#12290;
+               </p><pre class="programlisting">sess.createSQLQuery("SELECT * FROM CATS")
+ .addScalar("ID", Hibernate.LONG)
+ .addScalar("NAME", Hibernate.STRING)
+ .addScalar("BIRTHDATE", Hibernate.DATE)
+</pre><p>This query specified:</p>
+               <div class="itemizedlist">
+                  <ul type="disc">
+                     <li>
+                        <p>SQL&#26597;&#35810;&#23383;&#31526;&#20018;</p>
+                     </li>
+                     <li>
+                        <p>&#35201;&#36820;&#22238;&#30340;&#23383;&#27573;&#21644;&#31867;&#22411;</p>
+                     </li>
+                  </ul>
+               </div>
+               <p>This will still return Object arrays, but now it will not use <code class="literal">ResultSetMetadata</code> but will instead explicitly get the ID, NAME and BIRTHDATE column as respectively a Long, String and a Short from the underlying
+                  resultset. This also means that only these three columns will be returned, even though the query is using <code class="literal">*</code> and could return more than the three listed columns.
+               </p>
+               <p>&#23545;&#20840;&#37096;&#25110;&#32773;&#37096;&#20998;&#30340;&#26631;&#37327;&#20540;&#19981;&#35774;&#32622;&#31867;&#22411;&#20449;&#24687;&#20063;&#26159;&#21487;&#20197;&#30340;&#12290;</p><pre class="programlisting">sess.createSQLQuery("SELECT * FROM CATS")
+ .addScalar("ID", Hibernate.LONG)
+ .addScalar("NAME")
+ .addScalar("BIRTHDATE")
+</pre><p>&#22522;&#26412;&#19978;&#36825;&#21644;&#21069;&#38754;&#19968;&#20010;&#26597;&#35810;&#30456;&#21516;,&#21482;&#26159;&#27492;&#26102;&#20351;&#29992;<code class="literal">ResultSetMetaData</code>&#26469;&#20915;&#23450;NAME&#21644;BIRTHDATE&#30340;&#31867;&#22411;&#65292;&#32780;ID&#30340;&#31867;&#22411;&#26159;&#26126;&#30830;&#25351;&#20986;&#30340;&#12290;
+               </p>
+               <p>&#20851;&#20110;&#20174;ResultSetMetaData&#36820;&#22238;&#30340;java.sql.Types&#26159;&#22914;&#20309;&#26144;&#23556;&#21040;Hibernate&#31867;&#22411;&#65292;&#26159;&#30001;&#26041;&#35328;(Dialect)&#25511;&#21046;&#30340;&#12290;&#20551;&#33509;&#26576;&#20010;&#25351;&#23450;&#30340;&#31867;&#22411;&#27809;&#26377;&#34987;&#26144;&#23556;&#65292;&#25110;&#32773;&#19981;&#26159;&#20320;&#25152;&#39044;&#26399;&#30340;&#31867;&#22411;&#65292;&#20320;&#21487;&#20197;&#36890;&#36807;Dialet&#30340;<code class="literal">registerHibernateType</code>&#35843;&#29992;&#33258;&#34892;&#23450;&#20041;&#12290;
+               </p>
+            </div>
+            <div class="sect2" lang="zh-CN">
+               <div class="titlepage">
+                  <div>
+                     <div>
+                        <h3 class="title"><a name="d0e13216"></a>16.1.2.&nbsp;&#23454;&#20307;&#26597;&#35810;(Entity queries)
+                        </h3>
+                     </div>
+                  </div>
+               </div>
+               <p>&#19978;&#38754;&#30340;&#26597;&#35810;&#37117;&#26159;&#36820;&#22238;&#26631;&#37327;&#20540;&#30340;&#65292;&#20063;&#23601;&#26159;&#20174;resultset&#20013;&#36820;&#22238;&#30340;&#8220;&#35064;&#8221;&#25968;&#25454;&#12290;&#19979;&#38754;&#23637;&#31034;&#22914;&#20309;&#36890;&#36807;<code class="literal">addEntity()</code>&#35753;&#21407;&#29983;&#26597;&#35810;&#36820;&#22238;&#23454;&#20307;&#23545;&#35937;&#12290;
+               </p><pre class="programlisting">sess.createSQLQuery("SELECT * FROM CATS").addEntity(Cat.class);
+sess.createSQLQuery("SELECT ID, NAME, BIRTHDATE FROM CATS").addEntity(Cat.class);
+</pre><p>This query specified:</p>
+               <div class="itemizedlist">
+                  <ul type="disc">
+                     <li>
+                        <p>SQL&#26597;&#35810;&#23383;&#31526;&#20018;</p>
+                     </li>
+                     <li>
+                        <p>&#35201;&#36820;&#22238;&#30340;&#23454;&#20307;</p>
+                     </li>
+                  </ul>
+               </div>
+               <p>&#20551;&#35774;Cat&#34987;&#26144;&#23556;&#20026;&#25317;&#26377;ID,NAME&#21644;BIRTHDATE&#19977;&#20010;&#23383;&#27573;&#30340;&#31867;&#65292;&#20197;&#19978;&#30340;&#20004;&#20010;&#26597;&#35810;&#37117;&#36820;&#22238;&#19968;&#20010;List&#65292;&#27599;&#20010;&#20803;&#32032;&#37117;&#26159;&#19968;&#20010;Cat&#23454;&#20307;&#12290;</p>
+               <p>&#20551;&#33509;&#23454;&#20307;&#22312;&#26144;&#23556;&#26102;&#26377;&#19968;&#20010;<code class="literal">many-to-one</code>&#30340;&#20851;&#32852;&#25351;&#21521;&#21478;&#22806;&#19968;&#20010;&#23454;&#20307;&#65292;&#22312;&#26597;&#35810;&#26102;&#24517;&#39035;&#20063;&#36820;&#22238;&#37027;&#20010;&#23454;&#20307;&#65292;&#21542;&#21017;&#20250;&#23548;&#33268;&#21457;&#29983;&#19968;&#20010;"column not found"&#30340;&#25968;&#25454;&#24211;&#38169;&#35823;&#12290;&#36825;&#20123;&#38468;&#21152;&#30340;&#23383;&#27573;&#21487;&#20197;&#20351;&#29992;*&#26631;&#27880;&#26469;&#33258;&#21160;&#36820;&#22238;&#65292;&#20294;&#25105;&#20204;&#24076;&#26395;&#36824;&#26159;&#26126;&#30830;&#25351;&#26126;&#65292;&#30475;&#19979;&#38754;&#36825;&#20010;&#20855;&#26377;&#25351;&#21521;<code class="literal">Dog</code>&#30340;<code class="literal">many-to-one</code>&#30340;&#20363;&#23376;&#65306;
+               </p><pre class="programlisting">sess.createSQLQuery("SELECT ID, NAME, BIRTHDATE, DOG_ID FROM CATS").addEntity(Cat.class);
+</pre><p>&#36825;&#26679;cat.getDog()&#23601;&#33021;&#27491;&#24120;&#36816;&#20316;&#12290;</p>
+            </div>
+            <div class="sect2" lang="zh-CN">
+               <div class="titlepage">
+                  <div>
+                     <div>
+                        <h3 class="title"><a name="d0e13252"></a>16.1.3.&nbsp;&#22788;&#29702;&#20851;&#32852;&#21644;&#38598;&#21512;&#31867;(Handling associations and collections)
+                        </h3>
+                     </div>
+                  </div>
+               </div>
+               <p>&#36890;&#36807;&#25552;&#21069;&#25235;&#21462;&#23558;<code class="literal">Dog</code>&#36830;&#25509;&#33719;&#24471;&#65292;&#32780;&#36991;&#20813;&#21021;&#22987;&#21270;proxy&#24102;&#26469;&#30340;&#39069;&#22806;&#24320;&#38144;&#20063;&#26159;&#21487;&#33021;&#30340;&#12290;&#36825;&#26159;&#36890;&#36807;<code class="literal">addJoin()</code>&#26041;&#27861;&#36827;&#34892;&#30340;&#65292;&#36825;&#20010;&#26041;&#27861;&#21487;&#20197;&#35753;&#20320;&#23558;&#20851;&#32852;&#25110;&#38598;&#21512;&#36830;&#25509;&#36827;&#26469;&#12290;
+               </p><pre class="programlisting">sess.createSQLQuery("SELECT c.ID, NAME, BIRTHDATE, DOG_ID, D_ID, D_NAME FROM CATS c, DOGS d WHERE c.DOG_ID = d.D_ID")
+ .addEntity("cat", Cat.class)
+ .addJoin("cat.dog");
+</pre><p>&#19978;&#38754;&#36825;&#20010;&#20363;&#23376;&#20013;&#65292;&#36820;&#22238;&#30340;<code class="literal">Cat</code>&#23545;&#35937;&#65292;&#20854;<code class="literal">dog</code>&#23646;&#24615;&#34987;&#23436;&#20840;&#21021;&#22987;&#21270;&#20102;&#65292;&#19981;&#20877;&#38656;&#35201;&#25968;&#25454;&#24211;&#30340;&#39069;&#22806;&#25805;&#20316;&#12290;&#27880;&#24847;&#65292;&#25105;&#20204;&#21152;&#20102;&#19968;&#20010;&#21035;&#21517;("cat")&#65292;&#20197;&#20415;&#25351;&#26126;join&#30340;&#30446;&#26631;&#23646;&#24615;&#36335;&#24452;&#12290;&#36890;&#36807;&#21516;&#26679;&#30340;&#25552;&#21069;&#36830;&#25509;&#20063;&#21487;&#20197;&#20316;&#29992;&#20110;&#38598;&#21512;&#31867;&#65292;&#20363;&#22914;&#65292;&#20551;&#33509;<code class="literal">Cat</code>&#26377;&#19968;&#20010;&#25351;&#21521;<code class="literal">Dog</code>&#30340;&#19968;&#23545;&#22810;&#20851;&#32852;&#12290;
+               </p><pre class="programlisting">sess.createSQLQuery("SELECT ID, NAME, BIRTHDATE, D_ID, D_NAME, CAT_ID FROM CATS c, DOGS d WHERE c.ID = d.CAT_ID")
+ .addEntity("cat", Cat.class)
+ .addJoin("cat.dogs");
+</pre><p>&#21040;&#27492;&#20026;&#27490;&#65292;&#25105;&#20204;&#30896;&#21040;&#20102;&#22825;&#33457;&#26495;&#65306;&#33509;&#19981;&#23545;SQL&#26597;&#35810;&#36827;&#34892;&#22686;&#24378;&#65292;&#36825;&#20123;&#24050;&#32463;&#26159;&#22312;Hibernate&#20013;&#20351;&#29992;&#21407;&#29983;SQL&#26597;&#35810;&#25152;&#33021;&#20570;&#21040;&#30340;&#26368;&#22823;&#21487;&#33021;&#20102;&#12290;&#19979;&#38754;&#30340;&#38382;&#39064;&#21363;&#23558;&#20986;&#29616;&#65306;&#36820;&#22238;&#22810;&#20010;&#21516;&#26679;&#31867;&#22411;&#30340;&#23454;&#20307;&#24590;&#20040;&#21150;&#65311;&#25110;&#32773;&#40664;&#35748;&#30340;&#21035;&#21517;/&#23383;&#27573;&#19981;&#22815;&#21448;&#24590;&#20040;&#21150;&#65311; </p>
+            </div>
+            <div class="sect2" lang="zh-CN">
+               <div class="titlepage">
+                  <div>
+                     <div>
+                        <h3 class="title"><a name="d0e13283"></a>16.1.4.&nbsp;&#36820;&#22238;&#22810;&#20010;&#23454;&#20307;(Returning multiple entities)
+                        </h3>
+                     </div>
+                  </div>
+               </div>
+               <p>&#21040;&#30446;&#21069;&#20026;&#27490;,&#32467;&#26524;&#38598;&#23383;&#27573;&#21517;&#34987;&#20551;&#23450;&#20026;&#21644;&#26144;&#23556;&#25991;&#20214;&#20013;&#25351;&#23450;&#30340;&#30340;&#23383;&#27573;&#21517;&#26159;&#19968;&#33268;&#30340;&#12290;&#20551;&#33509;SQL&#26597;&#35810;&#36830;&#25509;&#20102;&#22810;&#20010;&#34920;&#65292;&#21516;&#19968;&#20010;&#23383;&#27573;&#21517;&#21487;&#33021;&#22312;&#22810;&#20010;&#34920;&#20013;&#20986;&#29616;&#22810;&#27425;&#65292;&#36825;&#23601;&#20250;&#36896;&#25104;&#38382;&#39064;&#12290;</p>
+               <p>&#19979;&#38754;&#30340;&#26597;&#35810;&#20013;&#38656;&#35201;&#20351;&#29992;&#23383;&#27573;&#21035;&#21517;&#27880;&#23556;&#65288;&#36825;&#20010;&#20363;&#23376;&#26412;&#36523;&#20250;&#22833;&#36133;&#65289;&#65306;</p><pre class="programlisting">sess.createSQLQuery("SELECT c.*, m.*  FROM CATS c, CATS m WHERE c.MOTHER_ID = c.ID")
+ .addEntity("cat", Cat.class)
+ .addEntity("mother", Cat.class)
+</pre><p>The intention for this query is to return two Cat instances per row, a cat and its mother. This will fail since there is a
+                  conflict of names since they are mapped to the same column names and on some databases the returned column aliases will most
+                  likely be on the form "c.ID", "c.NAME", etc. which are not equal to the columns specified in the mappings ("ID" and "NAME").
+               </p>
+               <p>&#19979;&#38754;&#30340;&#24418;&#24335;&#21487;&#20197;&#35299;&#20915;&#23383;&#27573;&#21517;&#37325;&#22797;&#65306;</p><pre class="programlisting">sess.createSQLQuery("SELECT {cat.*}, {mother.*}  FROM CATS c, CATS m WHERE c.MOTHER_ID = c.ID")
+ .addEntity("cat", Cat.class)
+ .addEntity("mother", Cat.class)
+</pre><p>This query specified:</p>
+               <div class="itemizedlist">
+                  <ul type="disc">
+                     <li>
+                        <p>SQL&#26597;&#35810;&#35821;&#21477;&#65292;&#20854;&#20013;&#21253;&#21547;&#21344;&#20301;&#38468;&#26469;&#35753;Hibernate&#27880;&#23556;&#23383;&#27573;&#21035;&#21517;</p>
+                     </li>
+                     <li>
+                        <p>&#26597;&#35810;&#36820;&#22238;&#30340;&#23454;&#20307;</p>
+                     </li>
+                  </ul>
+               </div>
+               <p>The {cat.*} and {mother.*} notation used above is a shorthand for "all properties". Alternatively, you may list the columns
+                  explicitly, but even in this case we let Hibernate inject the SQL column aliases for each property. The placeholder for a
+                  column alias is just the property name qualified by the table alias. In the following example, we retrieve Cats and their
+                  mothers from a different table (cat_log) to the one declared in the mapping metadata. Notice that we may even use the property
+                  aliases in the where clause if we like.
+               </p><pre class="programlisting">String sql = "SELECT ID as {c.id}, NAME as {c.name}, " + 
+         "BIRTHDATE as {c.birthDate}, MOTHER_ID as {c.mother}, {mother.*} " +
+         "FROM CAT_LOG c, CAT_LOG m WHERE {c.mother} = c.ID";
+
+List loggedCats = sess.createSQLQuery(sql)
+        .addEntity("cat", Cat.class)
+        .addEntity("mother", Cat.class).list()
+</pre><div class="sect3" lang="zh-CN">
+                  <div class="titlepage">
+                     <div>
+                        <div>
+                           <h4 class="title"><a name="querysql-aliasreferences"></a>16.1.4.1.&nbsp;&#21035;&#21517;&#21644;&#23646;&#24615;&#24341;&#29992;(Alias and property references)
+                           </h4>
+                        </div>
+                     </div>
+                  </div>
+                  <p>&#22823;&#22810;&#25968;&#24773;&#20917;&#19979;&#65292;&#37117;&#38656;&#35201;&#19978;&#38754;&#30340;&#23646;&#24615;&#27880;&#23556;&#65292;&#20294;&#22312;&#20351;&#29992;&#26356;&#21152;&#22797;&#26434;&#30340;&#26144;&#23556;&#65292;&#27604;&#22914;&#22797;&#21512;&#23646;&#24615;&#12289;&#36890;&#36807;&#26631;&#35782;&#31526;&#26500;&#36896;&#32487;&#25215;&#26641;&#65292;&#20197;&#21450;&#38598;&#21512;&#31867;&#31561;&#31561;&#24773;&#20917;&#19979;&#65292;&#20063;&#26377;&#19968;&#20123;&#29305;&#21035;&#30340;&#21035;&#21517;&#65292;&#26469;&#20801;&#35768;Hibernate&#27880;&#23556;&#21512;&#36866;&#30340;&#21035;&#21517;&#12290;</p>
+                  <p>&#19979;&#34920;&#21015;&#20986;&#20102;&#20351;&#29992;&#21035;&#21517;&#27880;&#23556;&#21442;&#25968;&#30340;&#19981;&#21516;&#21487;&#33021;&#24615;&#12290;&#27880;&#24847;&#65306;&#19979;&#38754;&#32467;&#26524;&#20013;&#30340;&#21035;&#21517;&#21482;&#26159;&#31034;&#20363;&#65292;&#23454;&#29992;&#26102;&#27599;&#20010;&#21035;&#21517;&#38656;&#35201;&#21807;&#19968;&#24182;&#19988;&#19981;&#21516;&#30340;&#21517;&#23383;&#12290;</p>
+                  <div class="table"><a name="aliasinjection-summary"></a><p class="title"><b>&#34920;&nbsp;16.1.&nbsp;&#21035;&#21517;&#27880;&#23556;(alias injection names)</b></p>
+                     <div class="table-contents">
+                        <table summary="&#21035;&#21517;&#27880;&#23556;(alias injection names)" border="1">
+                           <colgroup>
+                              <col>
+                              <col>
+                              <col>
+                           </colgroup>
+                           <thead>
+                              <tr>
+                                 <th>&#25551;&#36848;</th>
+                                 <th>&#35821;&#27861;</th>
+                                 <th>&#31034;&#20363;</th>
+                              </tr>
+                           </thead>
+                           <tbody>
+                              <tr>
+                                 <td>&#31616;&#21333;&#23646;&#24615;</td>
+                                 <td><code class="literal">{[aliasname].[propertyname]</code></td>
+                                 <td><code class="literal">A_NAME as {item.name}</code></td>
+                              </tr>
+                              <tr>
+                                 <td>&#22797;&#21512;&#23646;&#24615;</td>
+                                 <td><code class="literal">{[aliasname].[componentname].[propertyname]}</code></td>
+                                 <td><code class="literal">CURRENCY as {item.amount.currency}, VALUE as {item.amount.value}</code></td>
+                              </tr>
+                              <tr>
+                                 <td>&#23454;&#20307;&#36776;&#21035;&#22120;(Discriminator of an entity)</td>
+                                 <td><code class="literal">{[aliasname].class}</code></td>
+                                 <td><code class="literal">DISC as {item.class}</code></td>
+                              </tr>
+                              <tr>
+                                 <td>&#23454;&#20307;&#30340;&#25152;&#26377;&#23646;&#24615;</td>
+                                 <td><code class="literal">{[aliasname].*}</code></td>
+                                 <td><code class="literal">{item.*}</code></td>
+                              </tr>
+                              <tr>
+                                 <td>&#38598;&#21512;&#38190;(collection key)</td>
+                                 <td><code class="literal">{[aliasname].key}</code></td>
+                                 <td><code class="literal">ORGID as {coll.key}</code></td>
+                              </tr>
+                              <tr>
+                                 <td>&#38598;&#21512;id</td>
+                                 <td><code class="literal">{[aliasname].id}</code></td>
+                                 <td><code class="literal">EMPID as {coll.id}</code></td>
+                              </tr>
+                              <tr>
+                                 <td>&#38598;&#21512;&#20803;&#32032;</td>
+                                 <td><code class="literal">{[aliasname].element}</code></td>
+                                 <td><code class="literal">XID as {coll.element}</code></td>
+                              </tr>
+                              <tr>
+                                 <td>&#38598;&#21512;&#20803;&#32032;&#30340;&#23646;&#24615;</td>
+                                 <td><code class="literal">{[aliasname].element.[propertyname]}</code></td>
+                                 <td><code class="literal">NAME as {coll.element.name}</code></td>
+                              </tr>
+                              <tr>
+                                 <td>&#38598;&#21512;&#20803;&#32032;&#30340;&#25152;&#26377;&#23646;&#24615;</td>
+                                 <td><code class="literal">{[aliasname].element.*}</code></td>
+                                 <td><code class="literal">{coll.element.*}</code></td>
+                              </tr>
+                              <tr>
+                                 <td>&#38598;&#21512;&#30340;&#25152;&#26377;&#23646;&#24615;</td>
+                                 <td><code class="literal">{[aliasname].*}</code></td>
+                                 <td><code class="literal">{coll.*}</code></td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                  </div><br class="table-break"></div>
+            </div>
+            <div class="sect2" lang="zh-CN">
+               <div class="titlepage">
+                  <div>
+                     <div>
+                        <h3 class="title"><a name="d0e13424"></a>16.1.5.&nbsp;&#36820;&#22238;&#38750;&#21463;&#31649;&#23454;&#20307;(Returning non-managed entities)
+                        </h3>
+                     </div>
+                  </div>
+               </div>
+               <p>&#21487;&#20197;&#23545;&#21407;&#29983;sql &#26597;&#35810;&#20351;&#29992;ResultTransformer&#12290;&#36825;&#20250;&#36820;&#22238;&#19981;&#21463;Hibernate&#31649;&#29702;&#30340;&#23454;&#20307;&#12290;</p><pre class="programlisting">sess.createSQLQuery("SELECT NAME, BIRTHDATE FROM CATS")
+        .setResultTransformer(Transformers.aliasToBean(CatDTO.class))</pre><p>This query specified:</p>
+               <div class="itemizedlist">
+                  <ul type="disc">
+                     <li>
+                        <p>SQL&#26597;&#35810;&#23383;&#31526;&#20018;</p>
+                     </li>
+                     <li>
+                        <p>&#32467;&#26524;&#36716;&#25442;&#22120;(result transformer)</p>
+                     </li>
+                  </ul>
+               </div>
+               <p>&#19978;&#38754;&#30340;&#26597;&#35810;&#23558;&#20250;&#36820;&#22238;<code class="literal">CatDTO</code>&#30340;&#21015;&#34920;,&#23427;&#23558;&#34987;&#23454;&#20363;&#21270;&#24182;&#19988;&#23558;NAME&#21644;BIRTHDAY&#30340;&#20540;&#27880;&#23556;&#20837;&#23545;&#24212;&#30340;&#23646;&#24615;&#25110;&#32773;&#23383;&#27573;&#12290; 
+               </p>
+            </div>
+            <div class="sect2" lang="zh-CN">
+               <div class="titlepage">
+                  <div>
+                     <div>
+                        <h3 class="title"><a name="d0e13445"></a>16.1.6.&nbsp;&#22788;&#29702;&#32487;&#25215;&#65288;Handling inheritance&#65289;
+                        </h3>
+                     </div>
+                  </div>
+               </div>
+               <p>&#21407;&#29983;SQL&#26597;&#35810;&#20551;&#33509;&#20854;&#26597;&#35810;&#32467;&#26524;&#23454;&#20307;&#26159;&#32487;&#25215;&#26641;&#20013;&#30340;&#19968;&#37096;&#20998;&#65292;&#23427;&#24517;&#39035;&#21253;&#21547;&#22522;&#31867;&#21644;&#25152;&#26377;&#23376;&#31867;&#30340;&#25152;&#26377;&#23646;&#24615;&#12290;</p>
+            </div>
+            <div class="sect2" lang="zh-CN">
+               <div class="titlepage">
+                  <div>
+                     <div>
+                        <h3 class="title"><a name="d0e13450"></a>16.1.7.&nbsp;&#21442;&#25968;&#65288;Parameters&#65289;
+                        </h3>
+                     </div>
+                  </div>
+               </div>
+               <p>&#21407;&#29983;&#26597;&#35810;&#25903;&#25345;&#20301;&#32622;&#21442;&#25968;&#21644;&#21629;&#21517;&#21442;&#25968;&#65306;</p><pre class="programlisting">Query query = sess.createSQLQuery("SELECT * FROM CATS WHERE NAME like ?").addEntity(Cat.class);
+List pusList = query.setString(0, "Pus%").list();
+     
+query = sess.createSQLQuery("SELECT * FROM CATS WHERE NAME like :name").addEntity(Cat.class);
+List pusList = query.setString("name", "Pus%").list();          </pre></div>
+         </div>
+      </div>
+      <div class="navfooter">
+         <hr>
+         <table width="100%" summary="Navigation footer">
+            <tr>
+               <td width="40%" align="left"><a accesskey="p" href="query-criteria-naturalid.html">&#19978;&#19968;&#39029;</a>&nbsp;
+               </td>
+               <td width="20%" align="center">&nbsp;</td>
+               <td width="40%" align="right">&nbsp;<a accesskey="n" href="querysql-namedqueries.html">&#19979;&#19968;&#39029;</a></td>
+            </tr>
+            <tr>
+               <td width="40%" align="left" valign="top">15.9.&nbsp;&#26681;&#25454;&#33258;&#28982;&#26631;&#35782;&#26597;&#35810;(Queries by natural identifier)&nbsp;</td>
+               <td width="20%" align="center"><a accesskey="h" href="index.html">&#36215;&#22987;&#39029;</a></td>
+               <td width="40%" align="right" valign="top">&nbsp;16.2.&nbsp;&#21629;&#21517;SQL&#26597;&#35810;</td>
+            </tr>
+         </table>
+      </div>
+   </body>
+</html>

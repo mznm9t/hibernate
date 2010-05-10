@@ -2,7 +2,10 @@ package core;
 
 
 import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
+import java.lang.Class;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -56,6 +59,7 @@ public abstract class ReflectiveUtil {
 	//this method will determine if a specific object is a virtual proxy created with CGLIB
 	private static boolean isAVirtualProxy(Object obj){
 		if(obj.getClass().getName().contains("EnhancerByCGLIB")) return true;
+		if(obj.getClass().getName().contains("javassist")) return true;
 		else return false;
 	}
 	
@@ -66,6 +70,12 @@ public abstract class ReflectiveUtil {
 	 */
 	private static Object getProxiedObject(Object srcObj,boolean load){
 		if(!isAVirtualProxy(srcObj))return null;
+		else if(srcObj.getClass().getName().contains("EnhancerByCGLIB")) return getLocallyProxiedObject(srcObj,load);
+		else if(srcObj.getClass().getName().contains("javassist")) return getHiberanteProxiedObject(srcObj);
+		else return null;
+	}
+	
+	private static Object getLocallyProxiedObject(Object srcObj,boolean load){
 		if(load)srcObj.toString();//this will force the load of the object
 		Field[] declaredfields = srcObj.getClass().getDeclaredFields();
 		for(Field f:declaredfields){
@@ -80,6 +90,28 @@ public abstract class ReflectiveUtil {
 		}return srcObj;
 	}
 	
+	
+	private static Object getHiberanteProxiedObject(Object srcObj){
+		try {
+			Field handlerAttribute=srcObj.getClass().getDeclaredField("handler");
+			handlerAttribute.setAccessible(true);
+			Object handler=handlerAttribute.get(srcObj);
+			Method initMethod= handler.getClass().getMethod("getImplementation",new Class[0]);
+			return initMethod.invoke(handler, new Object[0]);
+		} catch (SecurityException e1) {
+			e1.printStackTrace();
+		} catch (NoSuchFieldException e1) {
+			e1.printStackTrace();
+		} catch (IllegalArgumentException e) {		
+			e.printStackTrace();
+		} catch (NoSuchMethodException e) {		
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			e.printStackTrace();
+		} catch (InvocationTargetException e) {
+			e.printStackTrace();
+		}return null;
+	}
 	
 	/**
 	 * This method will make a shadow copy(copy on the references not recursive copy) of the source object into the destination object
@@ -197,7 +229,39 @@ public abstract class ReflectiveUtil {
 		else return false;	
 	}
 	
+	public static void setField(Object obj,String fieldName,Object value){
+		try {
+			Field field=obj.getClass().getDeclaredField(fieldName);
+			field.setAccessible(true);
+			field.set(obj, value);
+		} catch (SecurityException e) {
+			e.printStackTrace();
+		} catch (NoSuchFieldException e) {
+			e.printStackTrace();
+		} catch (IllegalArgumentException e) {
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			e.printStackTrace();
+		}
+		
+	}
 	
+	public static Object getField(Object obj,String fieldName){
+		try {
+			Field field=obj.getClass().getDeclaredField(fieldName);
+			field.setAccessible(true);
+			return field.get(obj);
+		} catch (SecurityException e) {
+			e.printStackTrace();
+		} catch (NoSuchFieldException e) {
+			e.printStackTrace();
+		} catch (IllegalArgumentException e) {
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			e.printStackTrace();
+		}return null;
+		
+	}
 
 }
 
@@ -301,6 +365,7 @@ class FieldNameAndType{
 		return result;
 	}
 
+	
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)

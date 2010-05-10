@@ -1,0 +1,371 @@
+<html>
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   
+      <title>23.4. &#31278;&#12293;&#38609;&#22810;&#12394;&#12510;&#12483;&#12500;&#12531;&#12464;&#20363;</title>
+      <link rel="stylesheet" href="css/html.css" type="text/css">
+      <meta name="generator" content="DocBook XSL Stylesheets V1.72.0">
+      <link rel="start" href="index.html" title="HIBERNATE - Relational Persistence for Idiomatic Java">
+      <link rel="up" href="example-mappings.html" title="&#31532;23&#31456; &#20363;&#65306;&#12356;&#12429;&#12356;&#12429;&#12394;&#12510;&#12483;&#12500;&#12531;&#12464;">
+      <link rel="prev" href="example-mappings-customerorderproduct.html" title="23.3. &#39015;&#23458;/&#27880;&#25991;/&#35069;&#21697;">
+      <link rel="next" href="best-practices.html" title="&#31532;24&#31456; &#12505;&#12473;&#12488;&#12503;&#12521;&#12463;&#12486;&#12451;&#12473;">
+   </head>
+   <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+      <div class="navheader">
+         <table width="100%" summary="Navigation header">
+            <tr>
+               <th colspan="3" align="center">23.4. &#31278;&#12293;&#38609;&#22810;&#12394;&#12510;&#12483;&#12500;&#12531;&#12464;&#20363;</th>
+            </tr>
+            <tr>
+               <td width="20%" align="left"><a accesskey="p" href="example-mappings-customerorderproduct.html">&#21069;&#12398;&#12506;&#12540;&#12472;</a>&nbsp;
+               </td>
+               <th width="60%" align="center">&#31532;23&#31456; &#20363;&#65306;&#12356;&#12429;&#12356;&#12429;&#12394;&#12510;&#12483;&#12500;&#12531;&#12464;</th>
+               <td width="20%" align="right">&nbsp;<a accesskey="n" href="best-practices.html">&#27425;&#12398;&#12506;&#12540;&#12472;</a></td>
+            </tr>
+         </table>
+         <hr>
+      </div>
+      <div class="sect1" lang="ja-JP">
+         <div class="titlepage">
+            <div>
+               <div>
+                  <h2 class="title" style="clear: both"><a name="misc"></a>23.4. &#31278;&#12293;&#38609;&#22810;&#12394;&#12510;&#12483;&#12500;&#12531;&#12464;&#20363;
+                  </h2>
+               </div>
+            </div>
+         </div>
+         <p>&#12371;&#12371;&#12395;&#12354;&#12427;&#20363;&#12399;&#12377;&#12409;&#12390;Hibernate&#12398;&#12486;&#12473;&#12488;&#12473;&#12452;&#12540;&#12488;&#12363;&#12425;&#21462;&#12426;&#12414;&#12375;&#12383;&#12290; &#12381;&#12371;&#12395;&#12399;&#12289;&#20182;&#12395;&#12418;&#12383;&#12367;&#12373;&#12435;&#12398;&#12510;&#12483;&#12500;&#12531;&#12464;&#12398;&#20363;&#12364;&#12354;&#12426;&#12414;&#12377;&#12290; Hibernate&#12487;&#12451;&#12473;&#12488;&#12522;&#12499;&#12517;&#12540;&#12471;&#12519;&#12531;&#12398; <code class="literal">test</code> &#12501;&#12457;&#12523;&#12480;&#12434;&#35211;&#12390;&#12367;&#12384;&#12373;&#12356;&#12290; 
+         </p>
+         <p>TODO: &#12371;&#12371;&#12395;&#25991;&#31456;&#12434;&#22475;&#12417;&#12427;</p>
+         <div class="sect2" lang="ja-JP">
+            <div class="titlepage">
+               <div>
+                  <div>
+                     <h3 class="title"><a name="example-mappings-typed-onetone"></a>23.4.1. &#12300;&#22411;&#20184;&#12369;&#12373;&#12428;&#12383;&#12301;&#19968;&#23550;&#19968;&#38306;&#36899;
+                     </h3>
+                  </div>
+               </div>
+            </div><pre class="programlisting">&lt;class name="Person"&gt;
+    &lt;id name="name"/&gt;
+    &lt;one-to-one name="address" 
+            cascade="all"&gt;
+        &lt;formula&gt;name&lt;/formula&gt;
+        &lt;formula&gt;'HOME'&lt;/formula&gt;
+    &lt;/one-to-one&gt;
+    &lt;one-to-one name="mailingAddress" 
+            cascade="all"&gt;
+        &lt;formula&gt;name&lt;/formula&gt;
+        &lt;formula&gt;'MAILING'&lt;/formula&gt;
+    &lt;/one-to-one&gt;
+&lt;/class&gt;
+
+&lt;class name="Address" batch-size="2" 
+        check="addressType in ('MAILING', 'HOME', 'BUSINESS')"&gt;
+    &lt;composite-id&gt;
+        &lt;key-many-to-one name="person" 
+                column="personName"/&gt;
+        &lt;key-property name="type" 
+                column="addressType"/&gt;
+    &lt;/composite-id&gt;
+    &lt;property name="street" type="text"/&gt;
+    &lt;property name="state"/&gt;
+    &lt;property name="zip"/&gt;
+&lt;/class&gt;</pre></div>
+         <div class="sect2" lang="ja-JP">
+            <div class="titlepage">
+               <div>
+                  <div>
+                     <h3 class="title"><a name="example-mappings-composite-key"></a>23.4.2. &#35079;&#21512;&#12461;&#12540;&#12398;&#20363;
+                     </h3>
+                  </div>
+               </div>
+            </div><pre class="programlisting">&lt;class name="Customer"&gt;
+
+    &lt;id name="customerId"
+        length="10"&gt;
+        &lt;generator class="assigned"/&gt;
+    &lt;/id&gt;
+
+    &lt;property name="name" not-null="true" length="100"/&gt;
+    &lt;property name="address" not-null="true" length="200"/&gt;
+
+    &lt;list name="orders"
+            inverse="true"
+            cascade="save-update"&gt;
+        &lt;key column="customerId"/&gt;
+        &lt;index column="orderNumber"/&gt;
+        &lt;one-to-many class="Order"/&gt;
+    &lt;/list&gt;
+
+&lt;/class&gt;
+
+&lt;class name="Order" table="CustomerOrder" lazy="true"&gt;
+    &lt;synchronize table="LineItem"/&gt;
+    &lt;synchronize table="Product"/&gt;
+    
+    &lt;composite-id name="id" 
+            class="Order$Id"&gt;
+        &lt;key-property name="customerId" length="10"/&gt;
+        &lt;key-property name="orderNumber"/&gt;
+    &lt;/composite-id&gt;
+    
+    &lt;property name="orderDate" 
+            type="calendar_date"
+            not-null="true"/&gt;
+    
+    &lt;property name="total"&gt;
+        &lt;formula&gt;
+            ( select sum(li.quantity*p.price) 
+            from LineItem li, Product p 
+            where li.productId = p.productId 
+                and li.customerId = customerId 
+                and li.orderNumber = orderNumber )
+        &lt;/formula&gt;
+    &lt;/property&gt;
+    
+    &lt;many-to-one name="customer"
+            column="customerId"
+            insert="false"
+            update="false" 
+            not-null="true"/&gt;
+        
+    &lt;bag name="lineItems"
+            fetch="join" 
+            inverse="true"
+            cascade="save-update"&gt;
+        &lt;key&gt;
+            &lt;column name="customerId"/&gt;
+            &lt;column name="orderNumber"/&gt;
+        &lt;/key&gt;
+        &lt;one-to-many class="LineItem"/&gt;
+    &lt;/bag&gt;
+    
+&lt;/class&gt;
+    
+&lt;class name="LineItem"&gt;
+    
+    &lt;composite-id name="id" 
+            class="LineItem$Id"&gt;
+        &lt;key-property name="customerId" length="10"/&gt;
+        &lt;key-property name="orderNumber"/&gt;
+        &lt;key-property name="productId" length="10"/&gt;
+    &lt;/composite-id&gt;
+    
+    &lt;property name="quantity"/&gt;
+    
+    &lt;many-to-one name="order"
+            insert="false"
+            update="false" 
+            not-null="true"&gt;
+        &lt;column name="customerId"/&gt;
+        &lt;column name="orderNumber"/&gt;
+    &lt;/many-to-one&gt;
+    
+    &lt;many-to-one name="product"
+            insert="false"
+            update="false" 
+            not-null="true"
+            column="productId"/&gt;
+        
+&lt;/class&gt;
+
+&lt;class name="Product"&gt;
+    &lt;synchronize table="LineItem"/&gt;
+
+    &lt;id name="productId"
+        length="10"&gt;
+        &lt;generator class="assigned"/&gt;
+    &lt;/id&gt;
+    
+    &lt;property name="description" 
+        not-null="true" 
+        length="200"/&gt;
+    &lt;property name="price" length="3"/&gt;
+    &lt;property name="numberAvailable"/&gt;
+    
+    &lt;property name="numberOrdered"&gt;
+        &lt;formula&gt;
+            ( select sum(li.quantity) 
+            from LineItem li 
+            where li.productId = productId )
+        &lt;/formula&gt;
+    &lt;/property&gt;
+    
+&lt;/class&gt;</pre></div>
+         <div class="sect2" lang="ja-JP">
+            <div class="titlepage">
+               <div>
+                  <div>
+                     <h3 class="title"><a name="example-mappings-composite-key-manytomany"></a>23.4.3. &#35079;&#21512;&#12461;&#12540;&#23646;&#24615;&#12434;&#20849;&#26377;&#12377;&#12427;&#22810;&#23550;&#22810;
+                     </h3>
+                  </div>
+               </div>
+            </div><pre class="programlisting">&lt;class name="User" table="`User`"&gt;
+    &lt;composite-id&gt;
+        &lt;key-property name="name"/&gt;
+        &lt;key-property name="org"/&gt;
+    &lt;/composite-id&gt;
+    &lt;set name="groups" table="UserGroup"&gt;
+        &lt;key&gt;
+            &lt;column name="userName"/&gt;
+            &lt;column name="org"/&gt;
+        &lt;/key&gt;
+        &lt;many-to-many class="Group"&gt;
+            &lt;column name="groupName"/&gt;
+            &lt;formula&gt;org&lt;/formula&gt;
+        &lt;/many-to-many&gt;
+    &lt;/set&gt;
+&lt;/class&gt;
+    
+&lt;class name="Group" table="`Group`"&gt;
+    &lt;composite-id&gt;
+        &lt;key-property name="name"/&gt;
+        &lt;key-property name="org"/&gt;
+    &lt;/composite-id&gt;
+    &lt;property name="description"/&gt;
+    &lt;set name="users" table="UserGroup" inverse="true"&gt;
+        &lt;key&gt;
+            &lt;column name="groupName"/&gt;
+            &lt;column name="org"/&gt;
+        &lt;/key&gt;
+        &lt;many-to-many class="User"&gt;
+            &lt;column name="userName"/&gt;
+            &lt;formula&gt;org&lt;/formula&gt;
+        &lt;/many-to-many&gt;
+    &lt;/set&gt;
+&lt;/class&gt;
+</pre></div>
+         <div class="sect2" lang="ja-JP">
+            <div class="titlepage">
+               <div>
+                  <div>
+                     <h3 class="title"><a name="example-mappings-content-discrimination"></a>23.4.4. discrimination&#12395;&#22522;&#12389;&#12367;&#20869;&#23481;
+                     </h3>
+                  </div>
+               </div>
+            </div><pre class="programlisting">&lt;class name="Person"
+    discriminator-value="P"&gt;
+    
+    &lt;id name="id" 
+        column="person_id" 
+        unsaved-value="0"&gt;
+        &lt;generator class="native"/&gt;
+    &lt;/id&gt;
+    
+            
+    &lt;discriminator 
+        type="character"&gt;
+        &lt;formula&gt;
+            case 
+                when title is not null then 'E' 
+                when salesperson is not null then 'C' 
+                else 'P' 
+            end
+        &lt;/formula&gt;
+    &lt;/discriminator&gt;
+
+    &lt;property name="name" 
+        not-null="true"
+        length="80"/&gt;
+        
+    &lt;property name="sex" 
+        not-null="true"
+        update="false"/&gt;
+    
+    &lt;component name="address"&gt;
+        &lt;property name="address"/&gt;
+        &lt;property name="zip"/&gt;
+        &lt;property name="country"/&gt;
+    &lt;/component&gt;
+    
+    &lt;subclass name="Employee" 
+        discriminator-value="E"&gt;
+            &lt;property name="title"
+                length="20"/&gt;
+            &lt;property name="salary"/&gt;
+            &lt;many-to-one name="manager"/&gt;
+    &lt;/subclass&gt;
+    
+    &lt;subclass name="Customer" 
+        discriminator-value="C"&gt;
+            &lt;property name="comments"/&gt;
+            &lt;many-to-one name="salesperson"/&gt;
+    &lt;/subclass&gt;
+    
+&lt;/class&gt;</pre></div>
+         <div class="sect2" lang="ja-JP">
+            <div class="titlepage">
+               <div>
+                  <div>
+                     <h3 class="title"><a name="example-mappings-association-alternatekeys"></a>23.4.5. &#20195;&#26367;&#12461;&#12540;&#12398;&#38306;&#36899;
+                     </h3>
+                  </div>
+               </div>
+            </div><pre class="programlisting">&lt;class name="Person"&gt;
+    
+    &lt;id name="id"&gt;
+        &lt;generator class="hilo"/&gt;
+    &lt;/id&gt;
+    
+    &lt;property name="name" length="100"/&gt;
+    
+    &lt;one-to-one name="address" 
+        property-ref="person"
+        cascade="all"
+        fetch="join"/&gt;
+    
+    &lt;set name="accounts" 
+        inverse="true"&gt;
+        &lt;key column="userId"
+            property-ref="userId"/&gt;
+        &lt;one-to-many class="Account"/&gt;
+    &lt;/set&gt;
+    
+    &lt;property name="userId" length="8"/&gt;
+
+&lt;/class&gt;
+
+&lt;class name="Address"&gt;
+
+    &lt;id name="id"&gt;
+        &lt;generator class="hilo"/&gt;
+    &lt;/id&gt;
+
+    &lt;property name="address" length="300"/&gt;
+    &lt;property name="zip" length="5"/&gt;
+    &lt;property name="country" length="25"/&gt;
+    &lt;many-to-one name="person" unique="true" not-null="true"/&gt;
+
+&lt;/class&gt;
+
+&lt;class name="Account"&gt;
+    &lt;id name="accountId" length="32"&gt;
+        &lt;generator class="uuid"/&gt;
+    &lt;/id&gt;
+    
+    &lt;many-to-one name="user"
+        column="userId"
+        property-ref="userId"/&gt;
+    
+    &lt;property name="type" not-null="true"/&gt;
+    
+&lt;/class&gt;</pre></div>
+      </div>
+      <div class="navfooter">
+         <hr>
+         <table width="100%" summary="Navigation footer">
+            <tr>
+               <td width="40%" align="left"><a accesskey="p" href="example-mappings-customerorderproduct.html">&#21069;&#12398;&#12506;&#12540;&#12472;</a>&nbsp;
+               </td>
+               <td width="20%" align="center"><a accesskey="u" href="example-mappings.html">&#19978;&#12395;&#25147;&#12427;</a></td>
+               <td width="40%" align="right">&nbsp;<a accesskey="n" href="best-practices.html">&#27425;&#12398;&#12506;&#12540;&#12472;</a></td>
+            </tr>
+            <tr>
+               <td width="40%" align="left" valign="top">23.3. &#39015;&#23458;/&#27880;&#25991;/&#35069;&#21697;&nbsp;</td>
+               <td width="20%" align="center"><a accesskey="h" href="index.html">&#12507;&#12540;&#12512;</a></td>
+               <td width="40%" align="right" valign="top">&nbsp;&#31532;24&#31456; &#12505;&#12473;&#12488;&#12503;&#12521;&#12463;&#12486;&#12451;&#12473;</td>
+            </tr>
+         </table>
+      </div>
+   </body>
+</html>

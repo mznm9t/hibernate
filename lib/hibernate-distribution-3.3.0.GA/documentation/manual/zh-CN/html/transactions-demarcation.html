@@ -1,0 +1,274 @@
+<html>
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   
+      <title>11.2.&nbsp;&#25968;&#25454;&#24211;&#20107;&#21153;&#22768;&#26126;</title>
+      <link rel="stylesheet" href="css/html.css" type="text/css">
+      <meta name="generator" content="DocBook XSL Stylesheets V1.72.0">
+      <link rel="start" href="index.html" title="HIBERNATE - &#31526;&#21512;Java&#20064;&#24815;&#30340;&#20851;&#31995;&#25968;&#25454;&#24211;&#25345;&#20037;&#21270;">
+      <link rel="up" href="transactions.html" title="&#31532;&nbsp;11&nbsp;&#31456;&nbsp;&#20107;&#21153;&#21644;&#24182;&#21457;">
+      <link rel="prev" href="transactions.html" title="&#31532;&nbsp;11&nbsp;&#31456;&nbsp;&#20107;&#21153;&#21644;&#24182;&#21457;">
+      <link rel="next" href="transactions-optimistic.html" title="11.3.&nbsp;&#20048;&#35266;&#24182;&#21457;&#25511;&#21046;(Optimistic concurrency control)">
+   </head>
+   <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+      <div class="navheader">
+         <table width="100%" summary="Navigation header">
+            <tr>
+               <th colspan="3" align="center">11.2.&nbsp;&#25968;&#25454;&#24211;&#20107;&#21153;&#22768;&#26126;</th>
+            </tr>
+            <tr>
+               <td width="20%" align="left"><a accesskey="p" href="transactions.html">&#19978;&#19968;&#39029;</a>&nbsp;
+               </td>
+               <th width="60%" align="center">&#31532;&nbsp;11&nbsp;&#31456;&nbsp;&#20107;&#21153;&#21644;&#24182;&#21457;</th>
+               <td width="20%" align="right">&nbsp;<a accesskey="n" href="transactions-optimistic.html">&#19979;&#19968;&#39029;</a></td>
+            </tr>
+         </table>
+         <hr>
+      </div>
+      <div class="sect1" lang="zh-CN">
+         <div class="titlepage">
+            <div>
+               <div>
+                  <h2 class="title" style="clear: both"><a name="transactions-demarcation"></a>11.2.&nbsp;&#25968;&#25454;&#24211;&#20107;&#21153;&#22768;&#26126;
+                  </h2>
+               </div>
+            </div>
+         </div>
+         <p>Database (or system) transaction boundaries are always necessary. No communication with the database can occur outside of
+            a database transaction (this seems to confuse many developers who are used to the auto-commit mode). Always use clear transaction
+            boundaries, even for read-only operations. Depending on your isolation level and database capabilities this might not be required
+            but there is no downside if you always demarcate transactions explicitly. Certainly, a single database transaction is going
+            to perform better than many small transactions, even for reading data. 
+         </p>
+         <p>&#19968;&#20010;Hibernate&#24212;&#29992;&#31243;&#24207;&#21487;&#20197;&#36816;&#34892;&#22312;&#38750;&#25176;&#31649;&#29615;&#22659;&#20013;&#65288;&#20063;&#23601;&#26159;&#29420;&#31435;&#36816;&#34892;&#30340;&#24212;&#29992;&#31243;&#24207;&#65292;&#31616;&#21333;Web&#24212;&#29992;&#31243;&#24207;&#65292; &#25110;&#32773;Swing&#22270;&#24418;&#26700;&#38754;&#24212;&#29992;&#31243;&#24207;&#65289;&#65292;&#20063;&#21487;&#20197;&#36816;&#34892;&#22312;&#25176;&#31649;&#30340;J2EE&#29615;&#22659;&#20013;&#12290;&#22312;&#19968;&#20010;&#38750;&#25176;&#31649;&#29615;&#22659;&#20013;&#65292;Hibernate &#36890;&#24120;&#33258;&#24049;&#36127;&#36131;&#31649;&#29702;&#25968;&#25454;&#24211;&#36830;&#25509;&#27744;&#12290;&#24212;&#29992;&#31243;&#24207;&#24320;&#21457;&#20154;&#21592;&#24517;&#39035;&#25163;&#24037;&#35774;&#32622;&#20107;&#21153;&#22768;&#26126;&#65292;&#25442;&#21477;&#35805;&#35828;&#65292;&#23601;&#26159;&#25163;&#24037;&#21551;
+            &#21160;&#65292;&#25552;&#20132;&#65292;&#25110;&#32773;&#22238;&#28378;&#25968;&#25454;&#24211;&#20107;&#21153;&#12290;&#19968;&#20010;&#25176;&#31649;&#30340;&#29615;&#22659;&#36890;&#24120;&#25552;&#20379;&#20102;&#23481;&#22120;&#31649;&#29702;&#20107;&#21153;(CMT)&#65292;&#20363;&#22914;&#20107;&#21153;&#35013;&#37197;&#36890;&#36807;&#21487;&#22768; &#26126;&#30340;&#26041;&#24335;&#23450;&#20041;&#22312;EJB session beans&#30340;&#37096;&#32626;&#25551;&#36848;&#31526;&#20013;&#12290;&#21487;&#32534;&#31243;&#24335;&#20107;&#21153;&#22768;&#26126;&#19981;&#20877;&#38656;&#35201;&#65292;&#21363;&#20351;&#26159; <code class="literal">Session</code> &#30340;&#21516;&#27493;&#20063;&#21487;&#20197;&#33258;&#21160;&#23436;&#25104;&#12290; 
+         </p>
+         <p>However, it is often desirable to keep your persistence layer portable between non-managed resource-local environments, and
+            systems that can rely on JTA but use BMT instead of CMT. In both cases you'd use programmatic transaction demarcation. Hibernate
+            offers a wrapper API called <code class="literal">Transaction</code> that translates into the native transaction system of your deployment environment. This API is actually optional, but we
+            strongly encourage its use unless you are in a CMT session bean. 
+         </p>
+         <p>&#36890;&#24120;&#24773;&#20917;&#19979;&#65292;&#32467;&#26463; <code class="literal">Session</code> &#21253;&#21547;&#20102;&#22235;&#20010;&#19981;&#21516;&#30340;&#38454;&#27573;: 
+         </p>
+         <div class="itemizedlist">
+            <ul type="disc" compact>
+               <li>
+                  <p>&#21516;&#27493;session(flush,&#21047;&#20986;&#21040;&#30913;&#30424;&#65289; </p>
+               </li>
+               <li>
+                  <p>&#25552;&#20132;&#20107;&#21153; </p>
+               </li>
+               <li>
+                  <p>&#20851;&#38381;session </p>
+               </li>
+               <li>
+                  <p>&#22788;&#29702;&#24322;&#24120; </p>
+               </li>
+            </ul>
+         </div>
+         <p>session&#30340;&#21516;&#27493;(flush,&#21047;&#20986;&#65289;&#21069;&#38754;&#24050;&#32463;&#35752;&#35770;&#36807;&#20102;&#65292;&#25105;&#20204;&#29616;&#22312;&#36827;&#19968;&#27493;&#32771;&#23519;&#22312;&#25176;&#31649;&#21644;&#38750;&#25176;&#31649;&#29615;&#22659;&#19979;&#30340;&#20107;&#21153;&#22768;&#26126;&#21644;&#24322;&#24120;&#22788;&#29702;&#12290; </p>
+         <div class="sect2" lang="zh-CN">
+            <div class="titlepage">
+               <div>
+                  <div>
+                     <h3 class="title"><a name="transactions-demarcation-nonmanaged"></a>11.2.1.&nbsp;&#38750;&#25176;&#31649;&#29615;&#22659;
+                     </h3>
+                  </div>
+               </div>
+            </div>
+            <p>&#22914;&#26524;Hibernat&#25345;&#20037;&#23618;&#36816;&#34892;&#22312;&#19968;&#20010;&#38750;&#25176;&#31649;&#29615;&#22659;&#20013;&#65292;&#25968;&#25454;&#24211;&#36830;&#25509;&#36890;&#24120;&#30001;Hibernate&#30340;&#31616;&#21333;&#65288;&#21363;&#38750;DataSource)&#36830;&#25509;&#27744;&#26426;&#21046; &#26469;&#22788;&#29702;&#12290;session/transaction&#22788;&#29702;&#26041;&#24335;&#22914;&#19979;&#25152;&#31034;&#65306; </p><pre class="programlisting">// Non-managed environment idiom
+Session sess = factory.openSession();
+Transaction tx = null;
+try {
+    tx = sess.beginTransaction();
+
+    // do some work
+    ...
+
+    tx.commit();
+}
+catch (RuntimeException e) {
+    if (tx != null) tx.rollback();
+    throw e; // or display error message
+}
+finally {
+    sess.close();
+}</pre><p>You don't have to <code class="literal">flush()</code> the <code class="literal">Session</code> explicitly - the call to <code class="literal">commit()</code> automatically triggers the synchronization (depending upon the <a href="objectstate-flushing.html" title="10.10.&nbsp;Session&#21047;&#20986;(flush)">FlushMode</a> for the session. A call to <code class="literal">close()</code> marks the end of a session. The main implication of <code class="literal">close()</code> is that the JDBC connection will be relinquished by the session. This Java code is portable and runs in both non-managed
+               and JTA environments. 
+            </p>
+            <p>&#26356;&#21152;&#28789;&#27963;&#30340;&#26041;&#26696;&#26159;Hibernate&#20869;&#32622;&#30340;"current session"&#19978;&#19979;&#25991;&#31649;&#29702;&#65292;&#21069;&#25991;&#24050;&#32463;&#35762;&#36807;&#65306; </p><pre class="programlisting">// Non-managed environment idiom with getCurrentSession()
+try {
+    factory.getCurrentSession().beginTransaction();
+
+    // do some work
+    ...
+
+    factory.getCurrentSession().getTransaction().commit();
+}
+catch (RuntimeException e) {
+    factory.getCurrentSession().getTransaction().rollback();
+    throw e; // or display error message
+}</pre><p>&#20320;&#24456;&#21487;&#33021;&#20174;&#26410;&#22312;&#19968;&#20010;&#36890;&#24120;&#30340;&#24212;&#29992;&#31243;&#24207;&#30340;&#19994;&#21153;&#20195;&#30721;&#20013;&#35265;&#36807;&#36825;&#26679;&#30340;&#20195;&#30721;&#29255;&#26029;&#65306;&#33268;&#21629;&#30340;&#65288;&#31995;&#32479;&#65289;&#24322;&#24120;&#24212;&#35813;&#24635;&#26159; &#22312;&#24212;&#29992;&#31243;&#24207;&#8220;&#39030;&#23618;&#8221;&#34987;&#25429;&#33719;&#12290;&#25442;&#21477;&#35805;&#35828;&#65292;&#25191;&#34892;Hibernate&#35843;&#29992;&#30340;&#20195;&#30721;&#65288;&#22312;&#25345;&#20037;&#23618;&#65289;&#21644;&#22788;&#29702; <code class="literal">RuntimeException</code>&#24322;&#24120;&#30340;&#20195;&#30721;&#65288;&#36890;&#24120;&#21482;&#33021;&#28165;&#29702;&#21644;&#36864;&#20986;&#24212;&#29992;&#31243;&#24207;&#65289;&#24212;&#35813;&#22312;&#19981;&#21516; &#30340;&#24212;&#29992;&#31243;&#24207;&#36923;&#36753;&#23618;&#12290;Hibernate&#30340;&#24403;&#21069;&#19978;&#19979;&#25991;&#31649;&#29702;&#21487;&#20197;&#26497;&#22823;&#22320;&#31616;&#21270;&#36825;&#19968;&#35774;&#35745;&#65292;&#20320;&#25152;&#26377;&#30340;&#19968;&#20999;&#23601;&#26159;<code class="literal">SessionFactory</code>&#12290; &#24322;&#24120;&#22788;&#29702;&#23558;&#22312;&#26412;&#31456;&#31245;&#21518;&#36827;&#34892;&#35752;&#35770;&#12290; 
+            </p>
+            <p>&#35831;&#27880;&#24847;&#65292;&#20320;&#24212;&#35813;&#36873;&#25321; <code class="literal">org.hibernate.transaction.JDBCTransactionFactory</code> (&#36825;&#26159;&#40664;&#35748;&#36873;&#39033;)&#65292;&#23545;&#31532;&#20108;&#20010;&#20363;&#23376;&#26469;&#35828;&#65292;<code class="literal">hibernate.current_session_context_class</code>&#24212;&#35813;&#26159;<code class="literal">"thread"</code> 
+            </p>
+         </div>
+         <div class="sect2" lang="zh-CN">
+            <div class="titlepage">
+               <div>
+                  <div>
+                     <h3 class="title"><a name="transactions-demarcation-jta"></a>11.2.2.&nbsp;&#20351;&#29992;JTA
+                     </h3>
+                  </div>
+               </div>
+            </div>
+            <p>&#22914;&#26524;&#20320;&#30340;&#25345;&#20037;&#23618;&#36816;&#34892;&#22312;&#19968;&#20010;&#24212;&#29992;&#26381;&#21153;&#22120;&#20013;&#65288;&#20363;&#22914;&#65292;&#22312;EJB session beans&#30340;&#21518;&#38754;&#65289;&#65292;Hibernate&#33719;&#21462; &#30340;&#27599;&#20010;&#25968;&#25454;&#28304;&#36830;&#25509;&#23558;&#33258;&#21160;&#25104;&#20026;&#20840;&#23616;JTA&#20107;&#21153;&#30340;&#19968;&#37096;&#20998;&#12290; &#20320;&#21487;&#20197;&#23433;&#35013;&#19968;&#20010;&#29420;&#31435;&#30340;JTA&#23454;&#29616;&#65292;&#20351;&#29992;&#23427;&#32780;&#19981;&#20351;&#29992;EJB&#12290;Hibernate&#25552;&#20379;&#20102;&#20004;&#31181;&#31574;&#30053;&#36827;&#34892;JTA&#38598;&#25104;&#12290;
+               
+            </p>
+            <p>&#22914;&#26524;&#20320;&#20351;&#29992;bean&#31649;&#29702;&#20107;&#21153;&#65288;BMT&#65289;&#65292;&#21487;&#20197;&#36890;&#36807;&#20351;&#29992;Hibernate&#30340; <code class="literal">Transaction</code> API&#26469;&#21578;&#35785; &#24212;&#29992;&#26381;&#21153;&#22120;&#21551;&#21160;&#21644;&#32467;&#26463;BMT&#20107;&#21153;&#12290;&#22240;&#27492;&#65292;&#20107;&#21153;&#31649;&#29702;&#20195;&#30721;&#21644;&#22312;&#38750;&#25176;&#31649;&#29615;&#22659;&#19979;&#26159;&#19968;&#26679;&#30340;&#12290; 
+            </p><pre class="programlisting">// BMT idiom
+Session sess = factory.openSession();
+Transaction tx = null;
+try {
+    tx = sess.beginTransaction();
+
+    // do some work
+    ...
+
+    tx.commit();
+}
+catch (RuntimeException e) {
+    if (tx != null) tx.rollback();
+    throw e; // or display error message
+}
+finally {
+    sess.close();
+}</pre><p>&#22914;&#26524;&#20320;&#24076;&#26395;&#20351;&#29992;&#19982;&#20107;&#21153;&#32465;&#23450;&#30340;<code class="literal">Session</code>&#65292;&#20063;&#23601;&#26159;&#20351;&#29992;<code class="literal">getCurrentSession()</code>&#26469;&#31616;&#21270;&#19978;&#19979;&#25991;&#31649;&#29702;&#65292;&#20320;&#23558;&#19981;&#24471;&#19981;&#30452;&#25509;&#20351;&#29992;JTA <code class="literal">UserTransaction</code>API&#12290; 
+            </p><pre class="programlisting">// BMT idiom with getCurrentSession()
+try {
+    UserTransaction tx = (UserTransaction)new InitialContext()
+                            .lookup("java:comp/UserTransaction");
+
+    tx.begin();
+
+    // Do some work on Session bound to transaction
+    factory.getCurrentSession().load(...);
+    factory.getCurrentSession().persist(...);
+
+    tx.commit();
+}
+catch (RuntimeException e) {
+    tx.rollback();
+    throw e; // or display error message
+}</pre><p>With CMT, transaction demarcation is done in session bean deployment descriptors, not programmatically, hence, the code is
+               reduced to: 
+            </p><pre class="programlisting">// CMT idiom
+ Session sess = factory.getCurrentSession();
+
+ // do some work
+ ...
+</pre><p>&#22312;CMT/EJB&#20013;&#29978;&#33267;&#20250;&#33258;&#21160;rollback&#65292;&#22240;&#20026;&#20551;&#33509;&#26377;&#26410;&#25429;&#33719;&#30340;<code class="literal">RuntimeException</code>&#20174;session bean&#26041;&#27861;&#20013;&#25243;&#20986;&#65292;&#36825;&#23601;&#20250;&#36890;&#30693;&#23481;&#22120;&#25226;&#20840;&#23616;&#20107;&#21153;&#22238;&#28378;&#12290;<span class="emphasis"><em>&#36825;&#23601;&#24847;&#21619;&#30528;&#65292;&#22312;BMT&#25110;&#32773;CMT&#20013;&#65292;&#20320;&#26681;&#26412;&#23601;&#19981;&#38656;&#35201;&#20351;&#29992;Hibernate <code class="literal">Transaction</code> API &#65292;&#20320;&#33258;&#21160;&#24471;&#21040;&#20102;&#32465;&#23450;&#21040;&#20107;&#21153;&#30340;&#8220;&#24403;&#21069;&#8221;Session&#12290; </em></span> 
+            </p>
+            <p>Note that you should choose <code class="literal">org.hibernate.transaction.JTATransactionFactory</code> if you use JTA directly (BMT), and <code class="literal">org.hibernate.transaction.CMTTransactionFactory</code> in a CMT session bean, when you configure Hibernate's transaction factory. Remember to also set <code class="literal">hibernate.transaction.manager_lookup_class</code>. Furthermore, make sure that your <code class="literal">hibernate.current_session_context_class</code> is either unset (backwards compatibility), or set to <code class="literal">"jta"</code>. 
+            </p>
+            <p>The <code class="literal">getCurrentSession()</code> operation has one downside in a JTA environment. There is one caveat to the use of <code class="literal">after_statement</code> connection release mode, which is then used by default. Due to a silly limitation of the JTA spec, it is not possible for
+               Hibernate to automatically clean up any unclosed <code class="literal">ScrollableResults</code> or <code class="literal">Iterator</code> instances returned by <code class="literal">scroll()</code> or <code class="literal">iterate()</code>. You <span class="emphasis"><em>must</em></span> release the underlying database cursor by calling <code class="literal">ScrollableResults.close()</code> or <code class="literal">Hibernate.close(Iterator)</code> explicitly from a <code class="literal">finally</code> block. (Of course, most applications can easily avoid using <code class="literal">scroll()</code> or <code class="literal">iterate()</code> at all from the JTA or CMT code.) 
+            </p>
+         </div>
+         <div class="sect2" lang="zh-CN">
+            <div class="titlepage">
+               <div>
+                  <div>
+                     <h3 class="title"><a name="transactions-demarcation-exceptions"></a>11.2.3.&nbsp;&#24322;&#24120;&#22788;&#29702;
+                     </h3>
+                  </div>
+               </div>
+            </div>
+            <p>&#22914;&#26524; <code class="literal">Session</code> &#25243;&#20986;&#24322;&#24120; (&#21253;&#25324;&#20219;&#20309;<code class="literal">SQLException</code>), &#20320;&#24212;&#35813;&#31435;&#21363;&#22238;&#28378;&#25968;&#25454;&#24211;&#20107;&#21153;&#65292;&#35843;&#29992; <code class="literal">Session.close()</code> &#65292;&#20002;&#24323;&#35813; <code class="literal">Session</code>&#23454;&#20363;&#12290;<code class="literal">Session</code>&#30340;&#26576;&#20123;&#26041;&#27861;&#21487;&#33021;&#20250;&#23548;&#33268;session &#22788;&#20110;&#19981;&#19968;&#33268;&#30340;&#29366;&#24577;&#12290;&#25152;&#26377;&#30001;Hibernate&#25243;&#20986;&#30340;&#24322;&#24120;&#37117;&#35270;&#20026;&#19981;&#21487;&#20197;&#24674;&#22797;&#30340;&#12290;&#30830;&#20445;&#22312; <code class="literal">finally</code> &#20195;&#30721;&#22359;&#20013;&#35843;&#29992;<code class="literal">close()</code>&#26041;&#27861;&#65292;&#20197;&#20851;&#38381;&#25481; <code class="literal">Session</code>&#12290; 
+            </p>
+            <p><code class="literal">HibernateException</code>&#26159;&#19968;&#20010;&#38750;&#26816;&#26597;&#26399;&#24322;&#24120;&#65288;&#36825;&#19981;&#21516;&#20110;Hibernate&#32769;&#30340;&#29256;&#26412;&#65289;&#65292; &#23427;&#23553;&#35013;&#20102;Hibernate&#25345;&#20037;&#23618;&#21487;&#33021;&#20986;&#29616;&#30340;&#22823;&#22810;&#25968;&#38169;&#35823;&#12290;&#25105;&#20204;&#30340;&#35266;&#28857;&#26159;&#65292;&#19981;&#24212;&#35813;&#24378;&#36843;&#24212;&#29992;&#31243;&#24207;&#24320;&#21457;&#20154;&#21592; &#22312;&#24213;&#23618;&#25429;&#33719;&#26080;&#27861;&#24674;&#22797;&#30340;&#24322;&#24120;&#12290;&#22312;&#22823;&#22810;&#25968;&#36719;&#20214;&#31995;&#32479;&#20013;&#65292;&#38750;&#26816;&#26597;&#26399;&#24322;&#24120;&#21644;&#33268;&#21629;&#24322;&#24120;&#37117;&#26159;&#22312;&#30456;&#24212;&#26041;&#27861;&#35843;&#29992;
+               &#30340;&#22534;&#26632;&#30340;&#39030;&#23618;&#34987;&#22788;&#29702;&#30340;&#65288;&#20063;&#23601;&#26159;&#35828;&#65292;&#22312;&#36719;&#20214;&#19978;&#38754;&#30340;&#36923;&#36753;&#23618;&#65289;&#65292;&#24182;&#19988;&#25552;&#20379;&#19968;&#20010;&#38169;&#35823;&#20449;&#24687;&#32473;&#24212;&#29992;&#36719;&#20214;&#30340;&#29992;&#25143; &#65288;&#25110;&#32773;&#37319;&#21462;&#20854;&#20182;&#26576;&#20123;&#30456;&#24212;&#30340;&#25805;&#20316;&#65289;&#12290;&#35831;&#27880;&#24847;&#65292;Hibernate&#20063;&#26377;&#21487;&#33021;&#25243;&#20986;&#20854;&#20182;&#24182;&#19981;&#23646;&#20110; <code class="literal">HibernateException</code>&#30340;&#38750;&#26816;&#26597;&#26399;&#24322;&#24120;&#12290;&#36825;&#20123;&#24322;&#24120;&#21516;&#26679;&#20063;&#26159;&#26080;&#27861;&#24674;&#22797;&#30340;&#65292;&#24212;&#35813; &#37319;&#21462;&#26576;&#20123;&#30456;&#24212;&#30340;&#25805;&#20316;&#21435;&#22788;&#29702;&#12290; 
+            </p>
+            <p>Hibernate wraps <code class="literal">SQLException</code>s thrown while interacting with the database in a <code class="literal">JDBCException</code>. In fact, Hibernate will attempt to convert the exception into a more meaningful subclass of <code class="literal">JDBCException</code>. The underlying <code class="literal">SQLException</code> is always available via <code class="literal">JDBCException.getCause()</code>. Hibernate converts the <code class="literal">SQLException</code> into an appropriate <code class="literal">JDBCException</code> subclass using the <code class="literal">SQLExceptionConverter</code> attached to the <code class="literal">SessionFactory</code>. By default, the <code class="literal">SQLExceptionConverter</code> is defined by the configured dialect; however, it is also possible to plug in a custom implementation (see the javadocs for
+               the <code class="literal">SQLExceptionConverterFactory</code> class for details). The standard <code class="literal">JDBCException</code> subtypes are: 
+            </p>
+            <div class="itemizedlist">
+               <ul type="disc" compact>
+                  <li>
+                     <p><code class="literal">JDBCConnectionException</code> - &#25351;&#26126;&#24213;&#23618;&#30340;JDBC&#36890;&#35759;&#20986;&#29616;&#38169;&#35823; 
+                     </p>
+                  </li>
+                  <li>
+                     <p><code class="literal">SQLGrammarException</code> - &#25351;&#26126;&#21457;&#36865;&#30340;SQL&#35821;&#21477;&#30340;&#35821;&#27861;&#25110;&#32773;&#26684;&#24335;&#38169;&#35823; 
+                     </p>
+                  </li>
+                  <li>
+                     <p><code class="literal">ConstraintViolationException</code> - &#25351;&#26126;&#26576;&#31181;&#31867;&#22411;&#30340;&#32422;&#26463;&#36829;&#20363;&#38169;&#35823; 
+                     </p>
+                  </li>
+                  <li>
+                     <p><code class="literal">LockAcquisitionException</code> - &#25351;&#26126;&#20102;&#22312;&#25191;&#34892;&#35831;&#27714;&#25805;&#20316;&#26102;&#65292;&#33719;&#21462; &#25152;&#38656;&#30340;&#38145;&#32423;&#21035;&#26102;&#20986;&#29616;&#30340;&#38169;&#35823;&#12290; 
+                     </p>
+                  </li>
+                  <li>
+                     <p><code class="literal">GenericJDBCException</code> - &#19981;&#23646;&#20110;&#20219;&#20309;&#20854;&#20182;&#31181;&#31867;&#30340;&#21407;&#29983;&#24322;&#24120; 
+                     </p>
+                  </li>
+               </ul>
+            </div>
+         </div>
+         <div class="sect2" lang="zh-CN">
+            <div class="titlepage">
+               <div>
+                  <div>
+                     <h3 class="title"><a name="transactions-demarcation-timeout"></a>11.2.4.&nbsp;&#20107;&#21153;&#36229;&#26102;
+                     </h3>
+                  </div>
+               </div>
+            </div>
+            <p>One extremely important feature provided by a managed environment like EJB that is never provided for non-managed code is
+               transaction timeout. Transaction timeouts ensure that no misbehaving transaction can indefinitely tie up resources while returning
+               no response to the user. Outside a managed (JTA) environment, Hibernate cannot fully provide this functionality. However,
+               Hibernate can at least control data access operations, ensuring that database level deadlocks and queries with huge result
+               sets are limited by a defined timeout. In a managed environment, Hibernate can delegate transaction timeout to JTA. This functionality
+               is abstracted by the Hibernate <code class="literal">Transaction</code> object. 
+            </p><pre class="programlisting">
+Session sess = factory.openSession();
+try {
+    //set transaction timeout to 3 seconds
+    sess.getTransaction().setTimeout(3);
+    sess.getTransaction().begin();
+
+    // do some work
+    ...
+
+    sess.getTransaction().commit()
+}
+catch (RuntimeException e) {
+    sess.getTransaction().rollback();
+    throw e; // or display error message
+}
+finally {
+    sess.close();
+}</pre><p>&#27880;&#24847;<code class="literal">setTimeout()</code>&#19981;&#24212;&#35813;&#22312;CMT bean&#20013;&#35843;&#29992;&#65292;&#27492;&#26102;&#20107;&#21153;&#36229;&#26102;&#20540;&#24212;&#35813;&#26159;&#34987;&#22768;&#26126;&#24335;&#23450;&#20041;&#30340;&#12290; 
+            </p>
+         </div>
+      </div>
+      <div class="navfooter">
+         <hr>
+         <table width="100%" summary="Navigation footer">
+            <tr>
+               <td width="40%" align="left"><a accesskey="p" href="transactions.html">&#19978;&#19968;&#39029;</a>&nbsp;
+               </td>
+               <td width="20%" align="center"><a accesskey="u" href="transactions.html">&#19978;&#19968;&#32423;</a></td>
+               <td width="40%" align="right">&nbsp;<a accesskey="n" href="transactions-optimistic.html">&#19979;&#19968;&#39029;</a></td>
+            </tr>
+            <tr>
+               <td width="40%" align="left" valign="top">&#31532;&nbsp;11&nbsp;&#31456;&nbsp;&#20107;&#21153;&#21644;&#24182;&#21457;&nbsp;</td>
+               <td width="20%" align="center"><a accesskey="h" href="index.html">&#36215;&#22987;&#39029;</a></td>
+               <td width="40%" align="right" valign="top">&nbsp;11.3.&nbsp;&#20048;&#35266;&#24182;&#21457;&#25511;&#21046;(Optimistic concurrency control)</td>
+            </tr>
+         </table>
+      </div>
+   </body>
+</html>

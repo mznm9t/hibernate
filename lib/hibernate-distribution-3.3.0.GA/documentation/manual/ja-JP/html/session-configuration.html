@@ -1,0 +1,108 @@
+<html>
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   
+      <title>&#31532;3&#31456; &#35373;&#23450;</title>
+      <link rel="stylesheet" href="css/html.css" type="text/css">
+      <meta name="generator" content="DocBook XSL Stylesheets V1.72.0">
+      <link rel="start" href="index.html" title="HIBERNATE - Relational Persistence for Idiomatic Java">
+      <link rel="up" href="index.html" title="HIBERNATE - Relational Persistence for Idiomatic Java">
+      <link rel="prev" href="architecture-current-session.html" title="2.5. &#12467;&#12531;&#12486;&#12461;&#12473;&#12488;&#19978;&#12398;&#12475;&#12483;&#12471;&#12519;&#12531;">
+      <link rel="next" href="configuration-sessionfactory.html" title="3.2. SessionFactory&#12434;&#21462;&#24471;&#12377;&#12427;">
+   </head>
+   <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+      <div class="navheader">
+         <table width="100%" summary="Navigation header">
+            <tr>
+               <th colspan="3" align="center">&#31532;3&#31456; &#35373;&#23450;</th>
+            </tr>
+            <tr>
+               <td width="20%" align="left"><a accesskey="p" href="architecture-current-session.html">&#21069;&#12398;&#12506;&#12540;&#12472;</a>&nbsp;
+               </td>
+               <th width="60%" align="center">&nbsp;</th>
+               <td width="20%" align="right">&nbsp;<a accesskey="n" href="configuration-sessionfactory.html">&#27425;&#12398;&#12506;&#12540;&#12472;</a></td>
+            </tr>
+         </table>
+         <hr>
+      </div>
+      <div class="chapter" lang="ja-JP">
+         <div class="titlepage">
+            <div>
+               <div>
+                  <h2 class="title"><a name="session-configuration"></a>&#31532;3&#31456; &#35373;&#23450;
+                  </h2>
+               </div>
+            </div>
+         </div>
+         <p>Hibernate&#12399;&#12373;&#12414;&#12374;&#12414;&#12394;&#29872;&#22659;&#12391;&#21205;&#20316;&#12377;&#12427;&#12424;&#12358;&#12395;&#12487;&#12470;&#12452;&#12531;&#12373;&#12428;&#12390;&#12356;&#12427;&#12383;&#12417;&#12289;&#38750;&#24120;&#12395;&#22810;&#12367;&#12398;&#35373;&#23450;&#35201;&#32032;&#12364;&#12354;&#12426;&#12414;&#12377;&#12290; &#24184;&#12356;&#12394;&#12371;&#12392;&#12395;&#12289;Hibernate&#12399;&#12289;&#20844;&#38283;&#12373;&#12428;&#12390;&#12356;&#12427;&#12497;&#12483;&#12465;&#12540;&#12472;&#12398; <code class="literal">etc/</code> &#12501;&#12457;&#12523;&#12480;&#12398; <code class="literal">hibernate.properties</code> &#12395;&#12289;&#12411;&#12392;&#12435;&#12393;&#12398;&#35373;&#23450;&#35201;&#32032;&#12398;&#36969;&#20999;&#12394;&#12487;&#12501;&#12457;&#12523;&#12488;&#20516;&#12364;&#35352;&#36848;&#12373;&#12428;&#12390;&#12356;&#12414;&#12377;&#12290; &#12371;&#12398; <code class="literal">hibernate.properties</code> &#12434;&#12463;&#12521;&#12473;&#12497;&#12473;&#12395;&#35373;&#23450;&#12375;&#12289;&#35373;&#23450;&#35201;&#32032;&#12434;&#12459;&#12473;&#12479;&#12510;&#12452;&#12474;&#12377;&#12427;&#12384;&#12369;&#12391;&#12377;&#12290; 
+         </p>
+         <div class="sect1" lang="ja-JP">
+            <div class="titlepage">
+               <div>
+                  <div>
+                     <h2 class="title" style="clear: both"><a name="configuration-programmatic"></a>3.1. &#12503;&#12525;&#12464;&#12521;&#12512;&#19978;&#12398;&#35373;&#23450;
+                     </h2>
+                  </div>
+               </div>
+            </div>
+            <p>An instance of <code class="classname">org.hibernate.cfg.Configuration</code> represents an entire set of mappings of an application's Java types to an SQL database. The <code class="classname">org.hibernate.cfg.Configuration</code> is used to build an (immutable) <code class="interfacename">org.hibernate.SessionFactory</code>. The mappings are compiled from various XML mapping files. 
+            </p>
+            <p>You may obtain a <code class="classname">org.hibernate.cfg.Configuration</code> instance by instantiating it directly and specifying XML mapping documents. If the mapping files are in the classpath, use
+               <code class="literal">addResource()</code>: 
+            </p><pre class="programlisting">Configuration cfg = new Configuration()
+    .addResource("Item.hbm.xml")
+    .addResource("Bid.hbm.xml");</pre><p>&#20195;&#26367;&#26696;(&#12371;&#12385;&#12425;&#12398;&#12411;&#12358;&#12364;&#33391;&#12356;&#12392;&#12365;&#12418;&#12354;&#12426;&#12414;&#12377;)&#12392;&#12375;&#12390;&#12510;&#12483;&#12500;&#12531;&#12464;&#12463;&#12521;&#12473;&#12434;&#25351;&#23450;&#12377;&#12427;&#26041;&#27861;&#12418;&#12354;&#12426;&#12414;&#12377;&#12290;Hibernate&#12395;&#12289;&#12510;&#12483;&#12500;&#12531;&#12464;&#12501;&#12449;&#12452;&#12523;&#12434; &#35211;&#12388;&#12369;&#12373;&#12379;&#12390;&#12367;&#12384;&#12373;&#12356;&#65306; </p><pre class="programlisting">Configuration cfg = new Configuration()
+    .addClass(org.hibernate.auction.Item.class)
+    .addClass(org.hibernate.auction.Bid.class);</pre><p>Then Hibernate will look for mapping files named <code class="filename">/org/hibernate/auction/Item.hbm.xml</code> and <code class="filename">/org/hibernate/auction/Bid.hbm.xml</code> in the classpath. This approach eliminates any hardcoded filenames. 
+            </p>
+            <p>A <code class="classname">org.hibernate.cfg.Configuration</code> also allows you to specify configuration properties: 
+            </p><pre class="programlisting">Configuration cfg = new Configuration()
+    .addClass(org.hibernate.auction.Item.class)
+    .addClass(org.hibernate.auction.Bid.class)
+    .setProperty("hibernate.dialect", "org.hibernate.dialect.MySQLInnoDBDialect")
+    .setProperty("hibernate.connection.datasource", "java:comp/env/jdbc/test")
+    .setProperty("hibernate.order_updates", "true");</pre><p>Hibernate&#12395;&#35373;&#23450;&#12503;&#12525;&#12497;&#12486;&#12451;&#12434;&#36890;&#12377;&#26041;&#27861;&#12399;1&#12388;&#12391;&#12399;&#12354;&#12426;&#12414;&#12379;&#12435;&#12290; &#12373;&#12414;&#12374;&#12414;&#12394;&#12458;&#12503;&#12471;&#12519;&#12531;&#12434;&#29992;&#24847;&#12375;&#12390;&#12356;&#12414;&#12377;&#65306; </p>
+            <div class="orderedlist">
+               <ol type="1" compact>
+                  <li>
+                     <p>Pass an instance of <code class="classname">java.util.Properties</code> to <code class="literal">Configuration.setProperties()</code>. 
+                     </p>
+                  </li>
+                  <li>
+                     <p>Place a file named <code class="filename">hibernate.properties</code> in a root directory of the classpath. 
+                     </p>
+                  </li>
+                  <li>
+                     <p><code class="literal">System</code> &#12503;&#12525;&#12497;&#12486;&#12451;&#12364; <code class="literal">java -Dproperty=value</code> &#12434;&#20351;&#12358;&#12424;&#12358;&#12395;&#35373;&#23450;&#12375;&#12414;&#12377;&#12290; 
+                     </p>
+                  </li>
+                  <li>
+                     <p><code class="literal">&lt;property&gt;</code> &#35201;&#32032;&#12434; <code class="literal">hibernate.cfg.xml</code> &#65288;&#24460;&#36848;&#65289;&#12395;&#35373;&#23450;&#12375;&#12414;&#12377;&#12290; 
+                     </p>
+                  </li>
+               </ol>
+            </div>
+            <p><code class="filename">hibernate.properties</code> is the easiest approach if you want to get started quickly. 
+            </p>
+            <p>The <code class="classname">org.hibernate.cfg.Configuration</code> is intended as a startup-time object, to be discarded once a <code class="literal">SessionFactory</code> is created. 
+            </p>
+         </div>
+      </div>
+      <div class="navfooter">
+         <hr>
+         <table width="100%" summary="Navigation footer">
+            <tr>
+               <td width="40%" align="left"><a accesskey="p" href="architecture-current-session.html">&#21069;&#12398;&#12506;&#12540;&#12472;</a>&nbsp;
+               </td>
+               <td width="20%" align="center">&nbsp;</td>
+               <td width="40%" align="right">&nbsp;<a accesskey="n" href="configuration-sessionfactory.html">&#27425;&#12398;&#12506;&#12540;&#12472;</a></td>
+            </tr>
+            <tr>
+               <td width="40%" align="left" valign="top">2.5. &#12467;&#12531;&#12486;&#12461;&#12473;&#12488;&#19978;&#12398;&#12475;&#12483;&#12471;&#12519;&#12531;&nbsp;</td>
+               <td width="20%" align="center"><a accesskey="h" href="index.html">&#12507;&#12540;&#12512;</a></td>
+               <td width="40%" align="right" valign="top">&nbsp;3.2. SessionFactory&#12434;&#21462;&#24471;&#12377;&#12427;</td>
+            </tr>
+         </table>
+      </div>
+   </body>
+</html>

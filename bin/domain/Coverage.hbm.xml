@@ -6,7 +6,7 @@
 -->
 <hibernate-mapping>
  <typedef class="core.DateLong" name="DateLong"/>
- <class catalog="savillstest" name="domain.CoverageH" table="com_fpdsavills_pr_coverage">
+ <class name="domain.CoverageH" table="com_fpdsavills_pr_coverage">
   <composite-id class="domain.ID" mapped="false" name="ID" unsaved-value="undefined">
    <key-property column="ID" name="identifier" type="java.lang.Long"/>
   </composite-id>

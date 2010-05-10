@@ -1,0 +1,122 @@
+<html>
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   
+      <title>14.14. HQL&#12398;&#20363;</title>
+      <link rel="stylesheet" href="css/html.css" type="text/css">
+      <meta name="generator" content="DocBook XSL Stylesheets V1.72.0">
+      <link rel="start" href="index.html" title="HIBERNATE - Relational Persistence for Idiomatic Java">
+      <link rel="up" href="queryhql.html" title="&#31532;14&#31456; HQL: The Hibernate Query Language">
+      <link rel="prev" href="queryhql-subqueries.html" title="14.13. &#21103;&#21839;&#12356;&#21512;&#12431;&#12379;">
+      <link rel="next" href="queryhql-bulk.html" title="14.15. &#22823;&#37327;&#12398;UPDATE&#12392;DELETE">
+   </head>
+   <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+      <div class="navheader">
+         <table width="100%" summary="Navigation header">
+            <tr>
+               <th colspan="3" align="center">14.14. HQL&#12398;&#20363;</th>
+            </tr>
+            <tr>
+               <td width="20%" align="left"><a accesskey="p" href="queryhql-subqueries.html">&#21069;&#12398;&#12506;&#12540;&#12472;</a>&nbsp;
+               </td>
+               <th width="60%" align="center">&#31532;14&#31456; HQL: The Hibernate Query Language</th>
+               <td width="20%" align="right">&nbsp;<a accesskey="n" href="queryhql-bulk.html">&#27425;&#12398;&#12506;&#12540;&#12472;</a></td>
+            </tr>
+         </table>
+         <hr>
+      </div>
+      <div class="sect1" lang="ja-JP">
+         <div class="titlepage">
+            <div>
+               <div>
+                  <h2 class="title" style="clear: both"><a name="queryhql-examples"></a>14.14. HQL&#12398;&#20363;
+                  </h2>
+               </div>
+            </div>
+         </div>
+         <p>Hibernate&#12463;&#12456;&#12522;&#12399;&#38750;&#24120;&#12395;&#24375;&#21147;&#12391;&#35079;&#38609;&#12395;&#12391;&#12365;&#12414;&#12377;&#12290;&#23455;&#38555;&#12289;&#12463;&#12456;&#12522;&#35328;&#35486;&#12398;&#23041;&#21147;&#12399;Hibernate&#12398;&#20027;&#35201;&#12394;&#12475;&#12540;&#12523;&#12473;&#12509;&#12452;&#12531;&#12488;&#12398;&#19968;&#12388;&#12391;&#12377;&#12290; &#12371;&#12371;&#12395;&#26368;&#36817;&#12398;&#12503;&#12525;&#12472;&#12455;&#12463;&#12488;&#12391;&#20351;&#29992;&#12375;&#12383;&#12463;&#12456;&#12522;&#12392;&#38750;&#24120;&#12395;&#12424;&#12367;&#20284;&#12383;&#20363;&#12364;&#12354;&#12426;&#12414;&#12377;&#12290; &#12411;&#12392;&#12435;&#12393;&#12398;&#12463;&#12456;&#12522;&#12399;&#12371;&#12428;&#12425;&#12398;&#20363;&#12424;&#12426;&#31777;&#21336;&#12395;&#35352;&#36848;&#12391;&#12365;&#12427;&#12371;&#12392;&#12395;&#27880;&#24847;&#12375;&#12390;&#12367;&#12384;&#12373;&#12356;!
+            
+         </p>
+         <p>&#20197;&#19979;&#12398;&#12463;&#12456;&#12522;&#12399;&#29305;&#23450;&#12398;&#39015;&#23458;&#12392;&#19982;&#12360;&#12425;&#12428;&#12383;&#26368;&#23567;&#12398;&#21512;&#35336;&#20516;&#12395;&#23550;&#12377;&#12427;&#26410;&#25173;&#12356;&#27880;&#25991;&#12398;&#27880;&#25991;ID&#12289; &#21830;&#21697;&#12398;&#25968;&#12289;&#27880;&#25991;&#12398;&#21512;&#35336;&#12434;&#21512;&#35336;&#20516;&#12391;&#25972;&#21015;&#12375;&#12390;&#36820;&#12375;&#12414;&#12377;&#12290; &#20385;&#26684;&#12434;&#27770;&#23450;&#12377;&#12427;&#38555;&#12289;&#29694;&#22312;&#12398;&#12459;&#12479;&#12525;&#12464;&#12434;&#20351;&#12356;&#12414;&#12377;&#12290;&#32080;&#26524;&#12392;&#12375;&#12390;&#36820;&#12373;&#12428;&#12427;SQL&#12463;&#12456;&#12522;&#12399; <code class="literal">ORDER</code>, <code class="literal">ORDER_LINE</code>, <code class="literal">PRODUCT</code>, <code class="literal">CATALOG</code> &#12362;&#12424;&#12403; <code class="literal">PRICE</code> &#12486;&#12540;&#12502;&#12523;&#12395;&#23550;&#12375;4&#12388;&#12398;&#20869;&#37096;&#32080;&#21512;&#12392; (&#38306;&#36899;&#12375;&#12394;&#12356;)&#21103;&#21839;&#12356;&#21512;&#12431;&#12379;&#12434;&#25345;&#12385;&#12414;&#12377;&#12290; 
+         </p><pre class="programlisting">select order.id, sum(price.amount), count(item)
+from Order as order
+    join order.lineItems as item
+    join item.product as product,
+    Catalog as catalog
+    join catalog.prices as price
+where order.paid = false
+    and order.customer = :customer
+    and price.product = product
+    and catalog.effectiveDate &lt; sysdate
+    and catalog.effectiveDate &gt;= all (
+        select cat.effectiveDate
+        from Catalog as cat
+        where cat.effectiveDate &lt; sysdate
+    )
+group by order
+having sum(price.amount) &gt; :minAmount
+order by sum(price.amount) desc</pre><p>&#20309;&#12390;&#24040;&#22823;&#12394;&#12463;&#12456;&#12522;&#12394;&#12398;&#12391;&#12375;&#12423;&#12358;! &#26222;&#27573;&#31169;&#12399;&#21103;&#21839;&#12356;&#21512;&#12431;&#12379;&#12434;&#12354;&#12414;&#12426;&#20351;&#12356;&#12414;&#12379;&#12435;&#12290;&#12375;&#12383;&#12364;&#12387;&#12390;&#31169;&#12398;&#12463;&#12456;&#12522;&#12399;&#23455;&#38555;&#12395;&#12399;&#20197;&#19979;&#12398;&#12424;&#12358;&#12395;&#12394;&#12426;&#12414;&#12377;&#12290;: </p><pre class="programlisting">select order.id, sum(price.amount), count(item)
+from Order as order
+    join order.lineItems as item
+    join item.product as product,
+    Catalog as catalog
+    join catalog.prices as price
+where order.paid = false
+    and order.customer = :customer
+    and price.product = product
+    and catalog = :currentCatalog
+group by order
+having sum(price.amount) &gt; :minAmount
+order by sum(price.amount) desc</pre><p>&#27425;&#12398;&#12463;&#12456;&#12522;&#12399;&#21508;&#12473;&#12486;&#12540;&#12479;&#12473;&#12398;&#25903;&#25173;&#12356;&#25968;&#12434;&#25968;&#12360;&#12414;&#12377;&#12290;&#12383;&#12384;&#12375;&#12377;&#12409;&#12390;&#12398;&#25903;&#25173;&#12356;&#12364;&#29694;&#22312;&#12398;&#21033;&#29992;&#32773;&#12395;&#12424;&#12427; &#26368;&#26032;&#12398;&#12473;&#12486;&#12540;&#12479;&#12473;&#22793;&#26356;&#12391;&#12354;&#12427; <code class="literal">AWAITING_APPROVAL</code> &#12391;&#12354;&#12427;&#22580;&#21512;&#12434;&#38500;&#12365;&#12414;&#12377;&#12290; &#12371;&#12398;&#12463;&#12456;&#12522;&#12399;2&#12388;&#12398;&#20869;&#37096;&#32080;&#21512;&#12392; <code class="literal">PAYMENT</code>, <code class="literal">PAYMENT_STATUS</code> &#12362;&#12424;&#12403; <code class="literal">PAYMENT_STATUS_CHANGE</code> &#12486;&#12540;&#12502;&#12523;&#12395;&#23550;&#12377;&#12427;&#38306;&#36899;&#21103;&#21839;&#12356;&#21512;&#12431;&#12379;&#12434;&#20633;&#12360;&#12383;SQL&#12463;&#12456;&#12522;&#12395;&#22793;&#25563;&#12373;&#12428;&#12414;&#12377;&#12290; 
+         </p><pre class="programlisting">select count(payment), status.name
+from Payment as payment
+    join payment.currentStatus as status
+    join payment.statusChanges as statusChange
+where payment.status.name &lt;&gt; PaymentStatus.AWAITING_APPROVAL
+    or (
+        statusChange.timeStamp = (
+            select max(change.timeStamp)
+            from PaymentStatusChange change
+            where change.payment = payment
+        )
+        and statusChange.user &lt;&gt; :currentUser
+    )
+group by status.name, status.sortOrder
+order by status.sortOrder</pre><p>&#12418;&#12375;&#31169;&#12364;set&#12398;&#20195;&#12431;&#12426;&#12395;list&#12392;&#12375;&#12390; <code class="literal">statusChanges</code> &#12467;&#12524;&#12463;&#12471;&#12519;&#12531;&#12434; &#12510;&#12483;&#12500;&#12531;&#12464;&#12375;&#12383;&#12394;&#12425;&#12400;&#12289;&#12399;&#12427;&#12363;&#12395;&#31777;&#21336;&#12395;&#12463;&#12456;&#12522;&#12434;&#35352;&#36848;&#12391;&#12365;&#12427;&#12391;&#12375;&#12423;&#12358;&#12290; 
+         </p><pre class="programlisting">select count(payment), status.name
+from Payment as payment
+    join payment.currentStatus as status
+where payment.status.name &lt;&gt; PaymentStatus.AWAITING_APPROVAL
+    or payment.statusChanges[ maxIndex(payment.statusChanges) ].user &lt;&gt; :currentUser
+group by status.name, status.sortOrder
+order by status.sortOrder</pre><p>&#27425;&#12398;&#12463;&#12456;&#12522;&#12399;&#29694;&#22312;&#12398;&#12518;&#12540;&#12470;&#12364;&#25152;&#23646;&#12377;&#12427;&#32068;&#32340;&#12395;&#23550;&#12377;&#12427;&#12450;&#12459;&#12454;&#12531;&#12488;&#12362;&#12424;&#12403;&#26410;&#25173;&#12356;&#12398;&#25903;&#25173;&#12356;&#12434; &#12377;&#12409;&#12390;&#36820;&#12377;MS SQL Server &#12398; <code class="literal">isNull()</code> &#38306;&#25968;&#12434;&#20351;&#29992;&#12375;&#12390;&#12356;&#12414;&#12377;&#12290; &#12371;&#12398;&#12463;&#12456;&#12522;&#12399;3&#12388;&#12398;&#20869;&#37096;&#32080;&#21512;&#12392;1&#12388;&#12398;&#22806;&#37096;&#32080;&#21512; &#12289; &#12381;&#12375;&#12390; <code class="literal">ACCOUNT</code>, <code class="literal">PAYMENT</code>, <code class="literal">PAYMENT_STATUS</code>, <code class="literal">ACCOUNT_TYPE</code>, <code class="literal">ORGANIZATION</code> &#12362;&#12424;&#12403; <code class="literal">ORG_USER</code> &#12486;&#12540;&#12502;&#12523;&#12395;&#23550;&#12377;&#12427;&#21103;&#21839;&#12356;&#21512;&#12431;&#12379;&#25345;&#12387;&#12383;SQL&#12395;&#22793;&#25563;&#12373;&#12428;&#12414;&#12377;&#12290; 
+         </p><pre class="programlisting">select account, payment
+from Account as account
+    left outer join account.payments as payment
+where :currentUser in elements(account.holder.users)
+    and PaymentStatus.UNPAID = isNull(payment.currentStatus.name, PaymentStatus.UNPAID)
+order by account.type.sortOrder, account.accountNumber, payment.dueDate</pre><p>&#12356;&#12367;&#12388;&#12363;&#12398;&#12487;&#12540;&#12479;&#12505;&#12540;&#12473;&#12395;&#12388;&#12356;&#12390;&#12399;&#12289;(&#38306;&#36899;&#12373;&#12379;&#12425;&#12428;&#12383;)&#21103;&#21839;&#12356;&#21512;&#12431;&#12379;&#12398;&#20351;&#29992;&#12434;&#36991;&#12369;&#12427;&#24517;&#35201;&#12364;&#12354;&#12427;&#12391;&#12375;&#12423;&#12358;&#12290; </p><pre class="programlisting">select account, payment
+from Account as account
+    join account.holder.users as user
+    left outer join account.payments as payment
+where :currentUser = user
+    and PaymentStatus.UNPAID = isNull(payment.currentStatus.name, PaymentStatus.UNPAID)
+order by account.type.sortOrder, account.accountNumber, payment.dueDate</pre></div>
+      <div class="navfooter">
+         <hr>
+         <table width="100%" summary="Navigation footer">
+            <tr>
+               <td width="40%" align="left"><a accesskey="p" href="queryhql-subqueries.html">&#21069;&#12398;&#12506;&#12540;&#12472;</a>&nbsp;
+               </td>
+               <td width="20%" align="center"><a accesskey="u" href="queryhql.html">&#19978;&#12395;&#25147;&#12427;</a></td>
+               <td width="40%" align="right">&nbsp;<a accesskey="n" href="queryhql-bulk.html">&#27425;&#12398;&#12506;&#12540;&#12472;</a></td>
+            </tr>
+            <tr>
+               <td width="40%" align="left" valign="top">14.13. &#21103;&#21839;&#12356;&#21512;&#12431;&#12379;&nbsp;</td>
+               <td width="20%" align="center"><a accesskey="h" href="index.html">&#12507;&#12540;&#12512;</a></td>
+               <td width="40%" align="right" valign="top">&nbsp;14.15. &#22823;&#37327;&#12398;UPDATE&#12392;DELETE</td>
+            </tr>
+         </table>
+      </div>
+   </body>
+</html>

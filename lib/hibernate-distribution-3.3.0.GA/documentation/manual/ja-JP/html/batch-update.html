@@ -1,0 +1,75 @@
+<html>
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   
+      <title>13.2. &atilde;&#131;&#144;&atilde;&#131;&#131;&atilde;&#131;&#129;&aelig;&#155;&acute;&aelig;&#150;&deg;</title>
+      <link rel="stylesheet" href="css/html.css" type="text/css">
+      <meta name="generator" content="DocBook XSL Stylesheets V1.72.0">
+      <link rel="start" href="index.html" title="HIBERNATE - Relational Persistence for Idiomatic Java">
+      <link rel="up" href="batch.html" title="&#31532;13&#31456; &atilde;&#131;&#144;&atilde;&#131;&#131;&atilde;&#131;&#129;&aring;&#135;&brvbar;&ccedil;&#144;&#134;">
+      <link rel="prev" href="batch.html" title="&#31532;13&#31456; &atilde;&#131;&#144;&atilde;&#131;&#131;&atilde;&#131;&#129;&aring;&#135;&brvbar;&ccedil;&#144;&#134;">
+      <link rel="next" href="batch-statelesssession.html" title="13.3. StatelessSession&atilde;&#130;&curren;&atilde;&#131;&sup3;&atilde;&#130;&iquest;&atilde;&#131;&frac14;&atilde;&#131;&#149;&atilde;&#130;&sect;&atilde;&#130;&curren;&atilde;&#130;&sup1;">
+   </head>
+   <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+      <div class="navheader">
+         <table width="100%" summary="Navigation header">
+            <tr>
+               <th colspan="3" align="center">13.2. &atilde;&#131;&#144;&atilde;&#131;&#131;&atilde;&#131;&#129;&aelig;&#155;&acute;&aelig;&#150;&deg;</th>
+            </tr>
+            <tr>
+               <td width="20%" align="left"><a accesskey="p" href="batch.html">&#21069;&#12398;&#12506;&#12540;&#12472;</a>&nbsp;
+               </td>
+               <th width="60%" align="center">&#31532;13&#31456; &atilde;&#131;&#144;&atilde;&#131;&#131;&atilde;&#131;&#129;&aring;&#135;&brvbar;&ccedil;&#144;&#134;</th>
+               <td width="20%" align="right">&nbsp;<a accesskey="n" href="batch-statelesssession.html">&#27425;&#12398;&#12506;&#12540;&#12472;</a></td>
+            </tr>
+         </table>
+         <hr>
+      </div>
+      <div class="sect1" lang="ja-JP">
+         <div class="titlepage">
+            <div>
+               <div>
+                  <h2 class="title" style="clear: both"><a name="batch-update"></a>13.2. &atilde;&#131;&#144;&atilde;&#131;&#131;&atilde;&#131;&#129;&aelig;&#155;&acute;&aelig;&#150;&deg;
+                  </h2>
+               </div>
+            </div>
+         </div>
+         <p>&atilde;&#131;&#135;&atilde;&#131;&frac14;&atilde;&#130;&iquest;&atilde;&#130;&#146;&aring;&frac34;&copy;&aring;&#133;&#131;&atilde;&#129;&#151;&atilde;&#129;&#159;&atilde;&#130;&#138;&aelig;&#155;&acute;&aelig;&#150;&deg;&atilde;&#129;&#151;&atilde;&#129;&#159;&atilde;&#130;&#138;&atilde;&#129;&#153;&atilde;&#130;&#139;&atilde;&#129;&laquo;&atilde;&#129;&macr;&aring;&#144;&#140;&atilde;&#129;&#152;&atilde;&#130;&cent;&atilde;&#130;&curren;&atilde;&#131;&#135;&atilde;&#130;&pound;&atilde;&#130;&cent;&atilde;&#130;&#146;&eacute;&#129;&copy;&ccedil;&#148;&uml;&atilde;&#129;&#151;&atilde;&#129;&frac34;&atilde;&#129;&#153;&atilde;&#128;&#130; &atilde;&#129;&#157;&atilde;&#130;&#140;&atilde;&#129;&laquo;&aring;&#138;&nbsp;&atilde;&#129;&#136;&atilde;&#129;&brvbar;&atilde;&#128;&#129;&atilde;&#131;&#135;&atilde;&#131;&frac14;&atilde;&#130;&iquest;&atilde;&#129;&reg;&egrave;&iexcl;&#140;&atilde;&#130;&#146;&aring;&curren;&#154;&atilde;&#129;&#143;&egrave;&iquest;&#148;&atilde;&#129;&#153;&atilde;&#130;&macr;&atilde;&#130;&uml;&atilde;&#131;&ordf;&atilde;&#129;&laquo;&aring;&macr;&frac34;&atilde;&#129;&#151;&atilde;&#129;&brvbar;&aelig;&#156;&#137;&aring;&#138;&sup1;&atilde;&#129;&ordf;
+            &atilde;&#130;&micro;&atilde;&#131;&frac14;&atilde;&#131;&#144;&atilde;&#131;&frac14;&atilde;&#130;&micro;&atilde;&#130;&curren;&atilde;&#131;&#137;&atilde;&#129;&reg;&atilde;&#130;&laquo;&atilde;&#131;&frac14;&atilde;&#130;&frac12;&atilde;&#131;&laquo;&atilde;&#129;&reg;&aring;&#136;&copy;&ccedil;&#130;&sup1;&atilde;&#130;&#146;&ccedil;&#148;&#159;&atilde;&#129;&#139;&atilde;&#129;&#151;&atilde;&#129;&#159;&atilde;&#129;&#145;&atilde;&#130;&#140;&atilde;&#129;&deg; <code class="literal">scroll()</code> &atilde;&#130;&#146;&auml;&frac12;&iquest;&atilde;&#129;&#134;&aring;&iquest;&#133;&egrave;&brvbar;&#129;&atilde;&#129;&#140;&atilde;&#129;&#130;&atilde;&#130;&#138;&atilde;&#129;&frac34;&atilde;&#129;&#153;&atilde;&#128;&#130; 
+         </p><pre class="programlisting">Session session = sessionFactory.openSession();
+Transaction tx = session.beginTransaction();
+   
+ScrollableResults customers = session.getNamedQuery("GetCustomers")
+    .setCacheMode(CacheMode.IGNORE)
+    .scroll(ScrollMode.FORWARD_ONLY);
+int count=0;
+while ( customers.next() ) {
+    Customer customer = (Customer) customers.get(0);
+    customer.updateStuff(...);
+    if ( ++count % 20 == 0 ) {
+        //flush a batch of updates and release memory:
+        session.flush();
+        session.clear();
+    }
+}
+   
+tx.commit();
+session.close();</pre></div>
+      <div class="navfooter">
+         <hr>
+         <table width="100%" summary="Navigation footer">
+            <tr>
+               <td width="40%" align="left"><a accesskey="p" href="batch.html">&#21069;&#12398;&#12506;&#12540;&#12472;</a>&nbsp;
+               </td>
+               <td width="20%" align="center"><a accesskey="u" href="batch.html">&#19978;&#12395;&#25147;&#12427;</a></td>
+               <td width="40%" align="right">&nbsp;<a accesskey="n" href="batch-statelesssession.html">&#27425;&#12398;&#12506;&#12540;&#12472;</a></td>
+            </tr>
+            <tr>
+               <td width="40%" align="left" valign="top">&#31532;13&#31456; &atilde;&#131;&#144;&atilde;&#131;&#131;&atilde;&#131;&#129;&aring;&#135;&brvbar;&ccedil;&#144;&#134;&nbsp;</td>
+               <td width="20%" align="center"><a accesskey="h" href="index.html">&#12507;&#12540;&#12512;</a></td>
+               <td width="40%" align="right" valign="top">&nbsp;13.3. StatelessSession&atilde;&#130;&curren;&atilde;&#131;&sup3;&atilde;&#130;&iquest;&atilde;&#131;&frac14;&atilde;&#131;&#149;&atilde;&#130;&sect;&atilde;&#130;&curren;&atilde;&#130;&sup1;</td>
+            </tr>
+         </table>
+      </div>
+   </body>
+</html>

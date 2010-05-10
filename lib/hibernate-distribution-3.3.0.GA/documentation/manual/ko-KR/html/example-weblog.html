@@ -1,0 +1,134 @@
+<html>
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   
+      <title>22&#51109;. &#50696;&#51228;: Weblog &#50612;&#54540;&#47532;&#52992;&#51060;&#49496;</title>
+      <link rel="stylesheet" href="css/html.css" type="text/css">
+      <meta name="generator" content="DocBook XSL Stylesheets V1.72.0">
+      <link rel="start" href="index.html" title="HIBERNATE - &#44060;&#49457;&#51080;&#45716; &#51088;&#48148;&#47484; &#50948;&#54620; &#44288;&#44228; &#50689;&#49549;">
+      <link rel="up" href="index.html" title="HIBERNATE - &#44060;&#49457;&#51080;&#45716; &#51088;&#48148;&#47484; &#50948;&#54620; &#44288;&#44228; &#50689;&#49549;">
+      <link rel="prev" href="example-parentchild-conclusion.html" title="21.5. &#44208;&#47200;">
+      <link rel="next" href="example-weblog-mappings.html" title="22.2. Hibernate &#47588;&#54609;&#46308;">
+   </head>
+   <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+      <div class="navheader">
+         <table width="100%" summary="Navigation header">
+            <tr>
+               <th colspan="3" align="center">22&#51109;. &#50696;&#51228;: Weblog &#50612;&#54540;&#47532;&#52992;&#51060;&#49496;</th>
+            </tr>
+            <tr>
+               <td width="20%" align="left"><a accesskey="p" href="example-parentchild-conclusion.html">&#51060;&#51204;</a>&nbsp;
+               </td>
+               <th width="60%" align="center">&nbsp;</th>
+               <td width="20%" align="right">&nbsp;<a accesskey="n" href="example-weblog-mappings.html">&#45796;&#51020;</a></td>
+            </tr>
+         </table>
+         <hr>
+      </div>
+      <div class="chapter" lang="ko-KR">
+         <div class="titlepage">
+            <div>
+               <div>
+                  <h2 class="title"><a name="example-weblog"></a>22&#51109;. &#50696;&#51228;: Weblog &#50612;&#54540;&#47532;&#52992;&#51060;&#49496;
+                  </h2>
+               </div>
+            </div>
+         </div>
+         <div class="sect1" lang="ko-KR">
+            <div class="titlepage">
+               <div>
+                  <div>
+                     <h2 class="title" style="clear: both"><a name="example-weblog-classes"></a>22.1. &#50689;&#49549; &#53364;&#47000;&#49828;&#46308;
+                     </h2>
+                  </div>
+               </div>
+            </div>
+            <p>&#50689;&#49549; &#53364;&#47000;&#49828;&#46308;&#51008; &#50937;&#47196;&#44536;, &#44536;&#47532;&#44256; &#50937; &#47196;&#44536; &#45236;&#50640; &#44172;&#49884;&#46108; &#54637;&#47785;&#51012; &#54364;&#54788;&#54620;&#45796;.&#44536;&#44163;&#46308;&#51008; &#54364;&#51456; &#48512;&#47784;/&#51088;&#49885; &#44288;&#44228;&#47196; &#47784;&#54805;&#54868; &#46112; &#44163;&#51060;&#51648;&#47564;, &#50864;&#47532;&#45716; set &#45824;&#49888;&#50640; &#49692;&#49436;&#51648;&#50892;&#51652; bag&#47484; &#49324;&#50857;&#54624; &#44163;&#51060;&#45796;. </p><pre class="programlisting">package eg;
+
+import java.util.List;
+
+public class Blog {
+    private Long _id;
+    private String _name;
+    private List _items;
+
+    public Long getId() {
+        return _id;
+    }
+    public List getItems() {
+        return _items;
+    }
+    public String getName() {
+        return _name;
+    }
+    public void setId(Long long1) {
+        _id = long1;
+    }
+    public void setItems(List list) {
+        _items = list;
+    }
+    public void setName(String string) {
+        _name = string;
+    }
+}</pre><pre class="programlisting">package eg;
+
+import java.text.DateFormat;
+import java.util.Calendar;
+
+public class BlogItem {
+    private Long _id;
+    private Calendar _datetime;
+    private String _text;
+    private String _title;
+    private Blog _blog;
+
+    public Blog getBlog() {
+        return _blog;
+    }
+    public Calendar getDatetime() {
+        return _datetime;
+    }
+    public Long getId() {
+        return _id;
+    }
+    public String getText() {
+        return _text;
+    }
+    public String getTitle() {
+        return _title;
+    }
+    public void setBlog(Blog blog) {
+        _blog = blog;
+    }
+    public void setDatetime(Calendar calendar) {
+        _datetime = calendar;
+    }
+    public void setId(Long long1) {
+        _id = long1;
+    }
+    public void setText(String string) {
+        _text = string;
+    }
+    public void setTitle(String string) {
+        _title = string;
+    }
+}</pre></div>
+      </div>
+      <div class="navfooter">
+         <hr>
+         <table width="100%" summary="Navigation footer">
+            <tr>
+               <td width="40%" align="left"><a accesskey="p" href="example-parentchild-conclusion.html">&#51060;&#51204;</a>&nbsp;
+               </td>
+               <td width="20%" align="center">&nbsp;</td>
+               <td width="40%" align="right">&nbsp;<a accesskey="n" href="example-weblog-mappings.html">&#45796;&#51020;</a></td>
+            </tr>
+            <tr>
+               <td width="40%" align="left" valign="top">21.5. &#44208;&#47200;&nbsp;</td>
+               <td width="20%" align="center"><a accesskey="h" href="index.html">&#52376;&#51020;&#51004;&#47196;</a></td>
+               <td width="40%" align="right" valign="top">&nbsp;22.2. Hibernate &#47588;&#54609;&#46308;</td>
+            </tr>
+         </table>
+      </div>
+   </body>
+</html>

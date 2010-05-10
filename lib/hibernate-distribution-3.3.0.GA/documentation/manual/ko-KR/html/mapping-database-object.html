@@ -1,0 +1,77 @@
+<html>
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   
+      <title>5.7. &#48372;&#51312; &#45936;&#51060;&#53552;&#48288;&#51060;&#49828; &#44061;&#52404;&#46308;</title>
+      <link rel="stylesheet" href="css/html.css" type="text/css">
+      <meta name="generator" content="DocBook XSL Stylesheets V1.72.0">
+      <link rel="start" href="index.html" title="HIBERNATE - &#44060;&#49457;&#51080;&#45716; &#51088;&#48148;&#47484; &#50948;&#54620; &#44288;&#44228; &#50689;&#49549;">
+      <link rel="up" href="mapping.html" title="5&#51109;. &#44592;&#48376; O/R &#47588;&#54609;">
+      <link rel="prev" href="mapping-generated.html" title="5.6. &#49328;&#52636;&#46104;&#45716; &#54532;&#47196;&#54140;&#54000;&#46308;">
+      <link rel="next" href="collections.html" title="6&#51109;. &#53084;&#47113;&#49496; &#47588;&#54609;">
+   </head>
+   <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+      <div class="navheader">
+         <table width="100%" summary="Navigation header">
+            <tr>
+               <th colspan="3" align="center">5.7. &#48372;&#51312; &#45936;&#51060;&#53552;&#48288;&#51060;&#49828; &#44061;&#52404;&#46308;</th>
+            </tr>
+            <tr>
+               <td width="20%" align="left"><a accesskey="p" href="mapping-generated.html">&#51060;&#51204;</a>&nbsp;
+               </td>
+               <th width="60%" align="center">5&#51109;. &#44592;&#48376; O/R &#47588;&#54609;</th>
+               <td width="20%" align="right">&nbsp;<a accesskey="n" href="collections.html">&#45796;&#51020;</a></td>
+            </tr>
+         </table>
+         <hr>
+      </div>
+      <div class="sect1" lang="ko-KR">
+         <div class="titlepage">
+            <div>
+               <div>
+                  <h2 class="title" style="clear: both"><a name="mapping-database-object"></a>5.7. &#48372;&#51312; &#45936;&#51060;&#53552;&#48288;&#51060;&#49828; &#44061;&#52404;&#46308;
+                  </h2>
+               </div>
+            </div>
+         </div>
+         <p>Hibernate &#47588;&#54609; &#54028;&#51068;&#46308; &#45236;&#50640; &#49324;&#50857;&#51088; &#49828;&#53412;&#47560;&#47484; &#50756;&#51204;&#54616;&#44172; &#51221;&#51032;&#54616;&#44592; &#50948;&#54620; &#45733;&#47141;&#51012; &#51228;&#44277;&#54616;&#44592; &#50948;&#54644;&#49436;, Hibernate&#51032; &#49828;&#53412;&#47560; &#48169;&#52636; &#46020;&#44396;&#46308;&#44284; &#54632;&#44760; &#51076;&#51032;&#51201;&#51064; &#45936;&#51060;&#53552;&#48288;&#51060;&#49828; &#44061;&#52404;&#46308;&#50640; &#45824;&#54620; CREATE&#50752; DROP&#51012; &#54728;&#50857;&#54644;&#51456;&#45796;.
+            &#48708;&#47197; &#53944;&#47532;&#44144;&#46308; &#46608;&#45716; &#45236;&#51109; &#54532;&#47196;&#49884;&#51200;&#46308;&#44284; &#44057;&#51008; &#44163;&#46308;&#51012; &#49373;&#49457;&#49884;&#53412;&#44256; &#46300;&#47213;&#49884;&#53412;&#44592; &#51060;&#54644; &#53945;&#48324;&#55176; &#44256;&#50504;&#46104;&#50632;&#51012;&#51648;&#46972;&#46020; &#54616;&#45208;&#51032; <code class="literal">java.sql.Statement.execute()</code> &#47700;&#49548;&#46300;&#47484; &#53685;&#54644; &#49892;&#54665;&#46112; &#49688; &#51080;&#45716; SQL &#47749;&#47161;&#51060; &#50668;&#44592;&#49436; &#50976;&#54952;&#54616;&#45796;(ALTERs, INSERTS, &#44592;&#53440;). &#48372;&#51312; &#45936;0&#51060;&#53552;&#48288;&#51060;&#49828; &#44061;&#52404;&#46308;&#51012; &#51221;&#51032;&#54616;&#45716; &#46160; &#44032;&#51648; &#47784;&#46300;&#46308;&#51060; &#48376;&#51656;&#51201;&#51004;&#47196; &#51316;&#51116;&#54620;&#45796;... 
+         </p>
+         <p>&#52395; &#48264;&#51704; &#47784;&#46300;&#45716; &#47588;&#54609; &#54028;&#51068; &#48148;&#44645;&#50640;&#49436; CREATE &#48143; DROP &#47749;&#47161;&#46308;&#51012; &#47749;&#49884;&#51201;&#51004;&#47196; &#45208;&#50676;&#54616;&#45716; &#44163;&#51060;&#45796;: </p><pre class="programlisting">&lt;hibernate-mapping&gt;
+    ...
+    &lt;database-object&gt;
+        &lt;create&gt;CREATE TRIGGER my_trigger ...&lt;/create&gt;
+        &lt;drop&gt;DROP TRIGGER my_trigger&lt;/drop&gt;
+    &lt;/database-object&gt;
+&lt;/hibernate-mapping&gt;</pre><p>&#46160;&#48264;&#51704; &#47784;&#46300;&#45716; CREATE &#48143; DROP &#47749;&#47161;&#46308;&#51012; &#49373;&#49457;&#49884;&#53412;&#45716; &#48169;&#48277;&#51012; &#50508;&#44256; &#51080;&#45716; &#54616;&#45208;&#51032; &#47582;&#52644; &#53364;&#47000;&#49828;&#47484; &#51228;&#44277;&#54616;&#45716; &#44163;&#51060;&#45796;. &#51060; &#47582;&#52644; &#53364;&#47000;&#49828;&#45716; <code class="literal">org.hibernate.mapping.AuxiliaryDatabaseObject</code> &#51064;&#53552;&#54168;&#51060;&#49828;&#47484; &#44396;&#54788;&#54644;&#50556; &#54620;&#45796;. 
+         </p><pre class="programlisting">&lt;hibernate-mapping&gt;
+    ...
+    &lt;database-object&gt;
+        &lt;definition class="MyTriggerDefinition"/&gt;
+    &lt;/database-object&gt;
+&lt;/hibernate-mapping&gt;</pre><p>&#45927;&#48537;&#50668; &#51060;&#46308; &#45936;&#51060;&#53552;&#48288;&#51060;&#49828; &#44061;&#52404;&#46308;&#51008; &#50612;&#46500; dialect&#46308;&#51060; &#49324;&#50857;&#46112; &#46412; &#44536;&#44163;&#46308;&#51060; &#45800;&#51648; &#51201;&#50857;&#46112; &#49688; &#51080;&#46020;&#47197; &#49440;&#53469;&#51201;&#51004;&#47196; &#48320;&#46041;&#46112; &#49688; &#51080;&#45796;. </p><pre class="programlisting">&lt;hibernate-mapping&gt;
+    ...
+    &lt;database-object&gt;
+        &lt;definition class="MyTriggerDefinition"/&gt;
+        &lt;dialect-scope name="org.hibernate.dialect.Oracle9Dialect"/&gt;
+        &lt;dialect-scope name="org.hibernate.dialect.OracleDialect"/&gt;
+    &lt;/database-object&gt;
+&lt;/hibernate-mapping&gt;</pre></div>
+      <div class="navfooter">
+         <hr>
+         <table width="100%" summary="Navigation footer">
+            <tr>
+               <td width="40%" align="left"><a accesskey="p" href="mapping-generated.html">&#51060;&#51204;</a>&nbsp;
+               </td>
+               <td width="20%" align="center"><a accesskey="u" href="mapping.html">&#50948;&#47196;</a></td>
+               <td width="40%" align="right">&nbsp;<a accesskey="n" href="collections.html">&#45796;&#51020;</a></td>
+            </tr>
+            <tr>
+               <td width="40%" align="left" valign="top">5.6. &#49328;&#52636;&#46104;&#45716; &#54532;&#47196;&#54140;&#54000;&#46308;&nbsp;</td>
+               <td width="20%" align="center"><a accesskey="h" href="index.html">&#52376;&#51020;&#51004;&#47196;</a></td>
+               <td width="40%" align="right" valign="top">&nbsp;6&#51109;. &#53084;&#47113;&#49496; &#47588;&#54609;</td>
+            </tr>
+         </table>
+      </div>
+   </body>
+</html>

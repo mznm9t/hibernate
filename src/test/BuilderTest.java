@@ -1,6 +1,8 @@
 package test;
 
 
+import java.util.Date;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -44,6 +46,7 @@ public class BuilderTest {
 	
 	@Test
 	public void simpleBuilderWithSuperClass(){
+		 Date NOW=new Date();
 		 String entityName = "Contactable";
 		 String notes = "No notes";
 		 Address address = anAddress().build();
@@ -60,7 +63,7 @@ public class BuilderTest {
 		 ContactStatus status = aContactStatus()
 		.build();
 		 
-		 Company company=aCompany().build();
+		 Company company=aCompany().withCreated(NOW).withLastUpdate(NOW).build();
 	     String jobTitle="Engineer";
 	     String lastName="Nahhas";
 	     String title="Mr";
@@ -86,7 +89,7 @@ public class BuilderTest {
 	     assertTrue(hasSameValues(mainGroup,c.getMainGroup()));
 	     
 	     
-	     PersonH p=(PersonH) aPerson().build();
+	     PersonH p=(PersonH) aPerson().withCompany(aCompany().withCreated(NOW).withLastUpdate(NOW).build()).build();
 	     assertEquals(personEntityName, p.getEntityName());
 	     assertEquals(notes, p.getNotes());
 	     assertTrue(hasSameValues(address,p.getAddress()));
@@ -110,6 +113,7 @@ public class BuilderTest {
 	
 	@Test
 	public void simpleBuilderWithSuperClassWithDifferntValues(){
+		 Date NOW=new Date();
 		 String entityName = "Contactable";
 		 String notes = "No notes";
 		 Address address = anAddress().build();
@@ -129,7 +133,7 @@ public class BuilderTest {
 		 ContactStatus status = aContactStatus()
 		.build();
 		 
-		 Company company=aCompany().build();
+		 Company company=aCompany().withCreated(NOW).withLastUpdate(NOW).build();
 	     String jobTitle="Engineer";
 	     String lastName="Nahhas";
 	     String title="Mr";
@@ -155,7 +159,7 @@ public class BuilderTest {
 	     assertTrue(hasSameValues(mainGroup,c.getMainGroup()));
 	     
 	     
-	     PersonH p=(PersonH) aPerson().build();
+	     PersonH p=(PersonH) aPerson().withCompany(aCompany().withCreated(NOW).withLastUpdate(NOW).build()).build();
 	     assertEquals(personEntityName, p.getEntityName());
 	     assertEquals(notes, p.getNotes());
 	     assertFalse(hasSameValues(address,p.getAddress()));

@@ -1,0 +1,313 @@
+<html>
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   
+      <title>19.2.&nbsp;&#20108;&#32423;&#32531;&#23384;&#65288;The Second Level Cache&#65289;</title>
+      <link rel="stylesheet" href="css/html.css" type="text/css">
+      <meta name="generator" content="DocBook XSL Stylesheets V1.72.0">
+      <link rel="start" href="index.html" title="HIBERNATE - &#31526;&#21512;Java&#20064;&#24815;&#30340;&#20851;&#31995;&#25968;&#25454;&#24211;&#25345;&#20037;&#21270;">
+      <link rel="up" href="performance.html" title="&#31532;&nbsp;19&nbsp;&#31456;&nbsp;&#25552;&#21319;&#24615;&#33021;">
+      <link rel="prev" href="performance.html" title="&#31532;&nbsp;19&nbsp;&#31456;&nbsp;&#25552;&#21319;&#24615;&#33021;">
+      <link rel="next" href="performance-sessioncache.html" title="19.3.&nbsp;&#31649;&#29702;&#32531;&#23384;&#65288;Managing the caches&#65289;">
+   </head>
+   <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+      <div class="navheader">
+         <table width="100%" summary="Navigation header">
+            <tr>
+               <th colspan="3" align="center">19.2.&nbsp;&#20108;&#32423;&#32531;&#23384;&#65288;The Second Level Cache&#65289;</th>
+            </tr>
+            <tr>
+               <td width="20%" align="left"><a accesskey="p" href="performance.html">&#19978;&#19968;&#39029;</a>&nbsp;
+               </td>
+               <th width="60%" align="center">&#31532;&nbsp;19&nbsp;&#31456;&nbsp;&#25552;&#21319;&#24615;&#33021;</th>
+               <td width="20%" align="right">&nbsp;<a accesskey="n" href="performance-sessioncache.html">&#19979;&#19968;&#39029;</a></td>
+            </tr>
+         </table>
+         <hr>
+      </div>
+      <div class="sect1" lang="zh-CN">
+         <div class="titlepage">
+            <div>
+               <div>
+                  <h2 class="title" style="clear: both"><a name="performance-cache"></a>19.2.&nbsp;&#20108;&#32423;&#32531;&#23384;&#65288;The Second Level Cache&#65289;
+                  </h2>
+               </div>
+            </div>
+         </div>
+         <p>Hibernate&#30340;<code class="literal">Session</code>&#22312;&#20107;&#21153;&#32423;&#21035;&#36827;&#34892;&#25345;&#20037;&#21270;&#25968;&#25454;&#30340;&#32531;&#23384;&#25805;&#20316;&#12290; &#24403;&#28982;&#65292;&#20063;&#26377;&#21487;&#33021;&#20998;&#21035;&#20026;&#27599;&#20010;&#31867;&#65288;&#25110;&#38598;&#21512;)&#65292;&#37197;&#32622;&#38598;&#32676;&#12289;&#25110;JVM&#32423;&#21035;(<code class="literal">SessionFactory&#32423;&#21035;</code>)&#30340;&#32531;&#23384;&#12290; &#20320;&#29978;&#33267;&#21487;&#20197;&#20026;&#20043;&#25554;&#20837;&#19968;&#20010;&#38598;&#32676;&#30340;&#32531;&#23384;&#12290;&#27880;&#24847;&#65292;&#32531;&#23384;&#27704;&#36828;&#19981;&#30693;&#36947;&#20854;&#20182;&#24212;&#29992;&#31243;&#24207;&#23545;&#25345;&#20037;&#21270;&#20179;&#24211;&#65288;&#25968;&#25454;&#24211;&#65289;&#21487;&#33021;&#36827;&#34892;&#30340;&#20462;&#25913; &#65288;&#21363;&#20351;&#21487;&#20197;&#23558;&#32531;&#23384;&#25968;&#25454;&#35774;&#23450;&#20026;&#23450;&#26399;&#22833;&#25928;&#65289;&#12290; 
+         </p>
+         <p>&#36890;&#36807;&#22312;<code class="literal">hibernate.cache.provider_class</code>&#23646;&#24615;&#20013;&#25351;&#23450;<code class="literal">org.hibernate.cache.CacheProvider</code>&#30340;&#26576;&#20010;&#23454;&#29616;&#30340;&#31867;&#21517;,&#20320;&#21487;&#20197;&#36873;&#25321;&#35753;Hibernate&#20351;&#29992;&#21738;&#20010;&#32531;&#23384;&#23454;&#29616;&#12290;Hibernate&#25171;&#21253;&#19968;&#20123;&#24320;&#28304;&#32531;&#23384;&#23454;&#29616;&#65292;&#25552;&#20379;&#23545;&#23427;&#20204;&#30340;&#20869;&#32622;&#25903;&#25345;&#65288;&#35265;&#19979;&#34920;&#65289;&#12290;&#38500;&#27492;&#20043;&#22806;&#65292;&#20320;&#20063;&#21487;&#20197;&#23454;&#29616;&#20320;&#33258;&#24049;&#30340;&#23454;&#29616;&#65292;&#23558;&#23427;&#20204;&#25554;&#20837;&#21040;&#31995;&#32479;&#20013;&#12290;&#27880;&#24847;&#65292;&#22312;3.2&#29256;&#26412;&#20043;&#21069;&#65292;&#40664;&#35748;&#20351;&#29992;EhCache &#20316;&#20026;&#32531;&#23384;&#23454;&#29616;&#65292;&#20294;&#20174;3.2&#36215;&#23601;&#19981;&#20877;&#36825;&#26679;&#20102;&#12290;
+            
+         </p>
+         <div class="table"><a name="cacheproviders"></a><p class="title"><b>&#34920;&nbsp;19.1.&nbsp;&#32531;&#23384;&#31574;&#30053;&#25552;&#20379;&#21830;&#65288;Cache Providers&#65289;</b></p>
+            <div class="table-contents">
+               <table summary="&#32531;&#23384;&#31574;&#30053;&#25552;&#20379;&#21830;&#65288;Cache Providers&#65289;" border="1">
+                  <colgroup>
+                     <col align="left">
+                     <col align="left">
+                     <col align="left">
+                     <col align="left">
+                     <col align="left">
+                  </colgroup>
+                  <thead>
+                     <tr>
+                        <th align="left">Cache</th>
+                        <th align="left">Provider class</th>
+                        <th align="left">Type</th>
+                        <th align="left">Cluster Safe</th>
+                        <th align="left">Query Cache Supported</th>
+                     </tr>
+                  </thead>
+                  <tbody>
+                     <tr>
+                        <td align="left">Hashtable (not intended for production use)</td>
+                        <td align="left"><code class="literal">org.hibernate.cache.HashtableCacheProvider</code></td>
+                        <td align="left">memory</td>
+                        <td align="left">&nbsp;</td>
+                        <td align="left">yes</td>
+                     </tr>
+                     <tr>
+                        <td align="left">EHCache</td>
+                        <td align="left"><code class="literal">org.hibernate.cache.EhCacheProvider</code></td>
+                        <td align="left">memory, disk</td>
+                        <td align="left">&nbsp;</td>
+                        <td align="left">yes</td>
+                     </tr>
+                     <tr>
+                        <td align="left">OSCache</td>
+                        <td align="left"><code class="literal">org.hibernate.cache.OSCacheProvider</code></td>
+                        <td align="left">memory, disk</td>
+                        <td align="left">&nbsp;</td>
+                        <td align="left">yes</td>
+                     </tr>
+                     <tr>
+                        <td align="left">SwarmCache</td>
+                        <td align="left"><code class="literal">org.hibernate.cache.SwarmCacheProvider</code></td>
+                        <td align="left">clustered (ip multicast)</td>
+                        <td align="left">yes (clustered invalidation)</td>
+                        <td align="left">&nbsp;</td>
+                     </tr>
+                     <tr>
+                        <td align="left">JBoss Cache 1.x</td>
+                        <td align="left"><code class="literal">org.hibernate.cache.TreeCacheProvider</code></td>
+                        <td align="left">clustered (ip multicast), transactional</td>
+                        <td align="left">yes (replication)</td>
+                        <td align="left">yes (clock sync req.)</td>
+                     </tr>
+                     <tr>
+                        <td align="left">JBoss Cache 2</td>
+                        <td align="left"><code class="literal">org.hibernate.cache.jbc2.JBossCacheRegionFactory</code></td>
+                        <td align="left">clustered (ip multicast), transactional</td>
+                        <td align="left">yes (replication or invalidation)</td>
+                        <td align="left">yes (clock sync req.)</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </div>
+         </div><br class="table-break"><div class="sect2" lang="zh-CN">
+            <div class="titlepage">
+               <div>
+                  <div>
+                     <h3 class="title"><a name="performance-cache-mapping"></a>19.2.1.&nbsp;&#32531;&#23384;&#26144;&#23556;&#65288;Cache mappings&#65289;
+                     </h3>
+                  </div>
+               </div>
+            </div>
+            <p>&#31867;&#25110;&#32773;&#38598;&#21512;&#26144;&#23556;&#30340;&#8220;<code class="literal">&lt;cache&gt;</code>&#20803;&#32032;&#8221;&#21487;&#20197;&#26377;&#19979;&#21015;&#24418;&#24335;&#65306; 
+            </p>
+            <div class="programlistingco"><pre class="programlisting">&lt;cache 
+    usage="transactional|read-write|nonstrict-read-write|read-only"  <span class="co">(1)</span>
+    region="RegionName"                                              <span class="co">(2)</span>
+    include="all|non-lazy"                                           <span class="co">(3)</span>
+/&gt;</pre><div class="calloutlist">
+                  <table border="0" summary="Callout list">
+                     <tr>
+                        <td width="5%" valign="top" align="left">
+                           <fo:inline xmlns:fo="http://www.w3.org/1999/XSL/Format" color="black" padding-top="0.1em" padding-bottom="0.1em" padding-start="0.2em" padding-end="0.2em" baseline-shift="0.1em" font-weight="bold" font-size="75%">(1)</fo:inline>
+                        </td>
+                        <td valign="top" align="left">
+                           <p><code class="literal">usage</code>(&#24517;&#39035;)&#35828;&#26126;&#20102;&#32531;&#23384;&#30340;&#31574;&#30053;: <code class="literal">transactional</code>&#12289; <code class="literal">read-write</code>&#12289; <code class="literal">nonstrict-read-write</code>&#25110; <code class="literal">read-only</code>&#12290; 
+                           </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td width="5%" valign="top" align="left">
+                           <fo:inline xmlns:fo="http://www.w3.org/1999/XSL/Format" color="black" padding-top="0.1em" padding-bottom="0.1em" padding-start="0.2em" padding-end="0.2em" baseline-shift="0.1em" font-weight="bold" font-size="75%">(2)</fo:inline>
+                        </td>
+                        <td valign="top" align="left">
+                           <p><code class="literal">region</code> (&#21487;&#36873;, &#40664;&#35748;&#20026;&#31867;&#25110;&#32773;&#38598;&#21512;&#30340;&#21517;&#23383;(class or collection role name)) &#25351;&#23450;&#31532;&#20108;&#32423;&#32531;&#23384;&#30340;&#21306;&#22495;&#21517;(name of the second level cache region) 
+                           </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td width="5%" valign="top" align="left">
+                           <fo:inline xmlns:fo="http://www.w3.org/1999/XSL/Format" color="black" padding-top="0.1em" padding-bottom="0.1em" padding-start="0.2em" padding-end="0.2em" baseline-shift="0.1em" font-weight="bold" font-size="75%">(3)</fo:inline>
+                        </td>
+                        <td valign="top" align="left">
+                           <p><code class="literal">include</code> (&#21487;&#36873;,&#40664;&#35748;&#20026; <code class="literal">all</code>) <code class="literal">non-lazy</code> &#24403;&#23646;&#24615;&#32423;&#24310;&#36831;&#25235;&#21462;&#25171;&#24320;&#26102;, &#26631;&#35760;&#20026;<code class="literal">lazy="true"</code>&#30340;&#23454;&#20307;&#30340;&#23646;&#24615;&#21487;&#33021;&#26080;&#27861;&#34987;&#32531;&#23384; 
+                           </p>
+                        </td>
+                     </tr>
+                  </table>
+               </div>
+            </div>
+            <p>Alternatively (preferably?), you may specify <code class="literal">&lt;class-cache&gt;</code> and <code class="literal">&lt;collection-cache&gt;</code> elements in <code class="literal">hibernate.cfg.xml</code>. 
+            </p>
+            <p>&#36825;&#37324;&#30340;<code class="literal">usage</code> &#23646;&#24615;&#25351;&#26126;&#20102;<span class="emphasis"><em>&#32531;&#23384;&#24182;&#21457;&#31574;&#30053;&#65288;cache concurrency strategy&#65289;</em></span>&#12290; 
+            </p>
+         </div>
+         <div class="sect2" lang="zh-CN">
+            <div class="titlepage">
+               <div>
+                  <div>
+                     <h3 class="title"><a name="performance-cache-readonly"></a>19.2.2.&nbsp;&#31574;&#30053;&#65306;&#21482;&#35835;&#32531;&#23384;&#65288;Strategy: read only&#65289;
+                     </h3>
+                  </div>
+               </div>
+            </div>
+            <p>&#22914;&#26524;&#20320;&#30340;&#24212;&#29992;&#31243;&#24207;&#21482;&#38656;&#35835;&#21462;&#19968;&#20010;&#25345;&#20037;&#21270;&#31867;&#30340;&#23454;&#20363;&#65292;&#32780;&#26080;&#38656;&#23545;&#20854;&#20462;&#25913;&#65292; &#37027;&#20040;&#23601;&#21487;&#20197;&#23545;&#20854;&#36827;&#34892;<code class="literal">&#21482;&#35835;</code> &#32531;&#23384;&#12290;&#36825;&#26159;&#26368;&#31616;&#21333;&#65292;&#20063;&#26159;&#23454;&#29992;&#24615;&#26368;&#22909;&#30340;&#26041;&#27861;&#12290;&#29978;&#33267;&#22312;&#38598;&#32676;&#20013;&#65292;&#23427;&#20063;&#33021;&#23436;&#32654;&#22320;&#36816;&#20316;&#12290; 
+            </p><pre class="programlisting">&lt;class name="eg.Immutable" mutable="false"&gt;
+    &lt;cache usage="read-only"/&gt;
+    ....
+&lt;/class&gt;</pre></div>
+         <div class="sect2" lang="zh-CN">
+            <div class="titlepage">
+               <div>
+                  <div>
+                     <h3 class="title"><a name="performance-cache-readwrite"></a>19.2.3.&nbsp;&#31574;&#30053;:&#35835;/&#20889;&#32531;&#23384;&#65288;Strategy: read/write&#65289;
+                     </h3>
+                  </div>
+               </div>
+            </div>
+            <p>&#22914;&#26524;&#24212;&#29992;&#31243;&#24207;&#38656;&#35201;&#26356;&#26032;&#25968;&#25454;&#65292;&#37027;&#20040;&#20351;&#29992;<code class="literal">&#35835;/&#20889;&#32531;&#23384;</code> &#27604;&#36739;&#21512;&#36866;&#12290; &#22914;&#26524;&#24212;&#29992;&#31243;&#24207;&#35201;&#27714;&#8220;&#24207;&#21015;&#21270;&#20107;&#21153;&#8221;&#30340;&#38548;&#31163;&#32423;&#21035;&#65288;serializable transaction isolation level&#65289;&#65292;&#37027;&#20040;&#23601;&#20915;&#19981;&#33021;&#20351;&#29992;&#36825;&#31181;&#32531;&#23384;&#31574;&#30053;&#12290; &#22914;&#26524;&#22312;JTA&#29615;&#22659;&#20013;&#20351;&#29992;&#32531;&#23384;&#65292;&#20320;&#24517;&#39035;&#25351;&#23450;<code class="literal">hibernate.transaction.manager_lookup_class</code>&#23646;&#24615;&#30340;&#20540;&#65292; &#36890;&#36807;&#23427;&#65292;Hibernate&#25165;&#33021;&#30693;&#36947;&#35813;&#24212;&#29992;&#31243;&#24207;&#20013;JTA&#30340;<code class="literal">TransactionManager</code>&#30340;&#20855;&#20307;&#31574;&#30053;&#12290; &#22312;&#20854;&#23427;&#29615;&#22659;&#20013;&#65292;&#20320;&#24517;&#39035;&#20445;&#35777;&#22312;<code class="literal">Session.close()</code>&#12289;&#25110;<code class="literal">Session.disconnect()</code>&#35843;&#29992;&#21069;&#65292; &#25972;&#20010;&#20107;&#21153;&#24050;&#32463;&#32467;&#26463;&#12290; &#22914;&#26524;&#20320;&#24819;&#22312;&#38598;&#32676;&#29615;&#22659;&#20013;&#20351;&#29992;&#27492;&#31574;&#30053;&#65292;&#20320;&#24517;&#39035;&#20445;&#35777;&#24213;&#23618;&#30340;&#32531;&#23384;&#23454;&#29616;&#25903;&#25345;&#38145;&#23450;(locking)&#12290;Hibernate&#20869;&#32622;&#30340;&#32531;&#23384;&#31574;&#30053;&#24182;&#19981;&#25903;&#25345;&#38145;&#23450;&#21151;&#33021;&#12290; 
+            </p><pre class="programlisting">&lt;class name="eg.Cat" .... &gt;
+    &lt;cache usage="read-write"/&gt;
+    ....
+    &lt;set name="kittens" ... &gt;
+        &lt;cache usage="read-write"/&gt;
+        ....
+    &lt;/set&gt;
+&lt;/class&gt;</pre></div>
+         <div class="sect2" lang="zh-CN">
+            <div class="titlepage">
+               <div>
+                  <div>
+                     <h3 class="title"><a name="performance-cache-nonstrict"></a>19.2.4.&nbsp;&#31574;&#30053;:&#38750;&#20005;&#26684;&#35835;/&#20889;&#32531;&#23384;&#65288;Strategy: nonstrict read/write&#65289;
+                     </h3>
+                  </div>
+               </div>
+            </div>
+            <p>&#22914;&#26524;&#24212;&#29992;&#31243;&#24207;&#21482;&#20598;&#23572;&#38656;&#35201;&#26356;&#26032;&#25968;&#25454;&#65288;&#20063;&#23601;&#26159;&#35828;&#65292;&#20004;&#20010;&#20107;&#21153;&#21516;&#26102;&#26356;&#26032;&#21516;&#19968;&#35760;&#24405;&#30340;&#24773;&#20917;&#24456;&#19981;&#24120;&#35265;&#65289;&#65292;&#20063;&#19981;&#38656;&#35201;&#21313;&#20998;&#20005;&#26684;&#30340;&#20107;&#21153;&#38548;&#31163;&#65292; &#37027;&#20040;&#27604;&#36739;&#36866;&#21512;&#20351;&#29992;<code class="literal">&#38750;&#20005;&#26684;&#35835;/&#20889;&#32531;&#23384;</code>&#31574;&#30053;&#12290;&#22914;&#26524;&#22312;JTA&#29615;&#22659;&#20013;&#20351;&#29992;&#35813;&#31574;&#30053;&#65292; &#20320;&#24517;&#39035;&#20026;&#20854;&#25351;&#23450;<code class="literal">hibernate.transaction.manager_lookup_class</code>&#23646;&#24615;&#30340;&#20540;&#65292; &#22312;&#20854;&#23427;&#29615;&#22659;&#20013;&#65292;&#20320;&#24517;&#39035;&#20445;&#35777;&#22312;<code class="literal">Session.close()</code>&#12289;&#25110;<code class="literal">Session.disconnect()</code>&#35843;&#29992;&#21069;&#65292; &#25972;&#20010;&#20107;&#21153;&#24050;&#32463;&#32467;&#26463;&#12290; 
+            </p>
+         </div>
+         <div class="sect2" lang="zh-CN">
+            <div class="titlepage">
+               <div>
+                  <div>
+                     <h3 class="title"><a name="performance-cache-transactional"></a>19.2.5.&nbsp;&#31574;&#30053;:&#20107;&#21153;&#32531;&#23384;&#65288;transactional&#65289;
+                     </h3>
+                  </div>
+               </div>
+            </div>
+            <p>Hibernate&#30340;<code class="literal">&#20107;&#21153;&#32531;&#23384;</code>&#31574;&#30053;&#25552;&#20379;&#20102;&#20840;&#20107;&#21153;&#30340;&#32531;&#23384;&#25903;&#25345;&#65292; &#20363;&#22914;&#23545;JBoss TreeCache&#30340;&#25903;&#25345;&#12290;&#36825;&#26679;&#30340;&#32531;&#23384;&#21482;&#33021;&#29992;&#20110;JTA&#29615;&#22659;&#20013;&#65292;&#20320;&#24517;&#39035;&#25351;&#23450; &#20026;&#20854;<code class="literal">hibernate.transaction.manager_lookup_class</code>&#23646;&#24615;&#12290; 
+            </p>
+         </div>
+         <div class="sect2" lang="zh-CN">
+            <div class="titlepage">
+               <div>
+                  <div>
+                     <h3 class="title"><a name="performance-cache-compat-matrix"></a>19.2.6.&nbsp;Cache-provider/concurrency-strategy compatibility
+                     </h3>
+                  </div>
+               </div>
+            </div>
+            <div class="important" style="margin-left: 0.5in; margin-right: 0.5in;">
+               <h3 class="title">&#37325;&#35201;</h3>
+               <p>None of the cache providers support all of the cache concurrency strategies. </p>
+            </div>
+            <p>The following table shows which providers are compatible with which concurrency strategies. </p>
+            <div class="table"><a name="d0e14675"></a><p class="title"><b>&#34920;&nbsp;19.2.&nbsp;&#21508;&#31181;&#32531;&#23384;&#25552;&#20379;&#21830;&#23545;&#32531;&#23384;&#24182;&#21457;&#31574;&#30053;&#30340;&#25903;&#25345;&#24773;&#20917;&#65288;Cache Concurrency Strategy Support&#65289;</b></p>
+               <div class="table-contents">
+                  <table summary="&#21508;&#31181;&#32531;&#23384;&#25552;&#20379;&#21830;&#23545;&#32531;&#23384;&#24182;&#21457;&#31574;&#30053;&#30340;&#25903;&#25345;&#24773;&#20917;&#65288;Cache Concurrency Strategy Support&#65289;" border="1">
+                     <colgroup>
+                        <col align="left">
+                        <col align="left">
+                        <col align="left">
+                        <col align="left">
+                        <col align="left">
+                     </colgroup>
+                     <thead>
+                        <tr>
+                           <th align="left">Cache</th>
+                           <th align="left">read-only</th>
+                           <th align="left">nonstrict-read-write</th>
+                           <th align="left">read-write</th>
+                           <th align="left">transactional</th>
+                        </tr>
+                     </thead>
+                     <tbody>
+                        <tr>
+                           <td align="left">Hashtable (not intended for production use)</td>
+                           <td align="left">yes</td>
+                           <td align="left">yes</td>
+                           <td align="left">yes</td>
+                           <td align="left">&nbsp;</td>
+                        </tr>
+                        <tr>
+                           <td align="left">EHCache</td>
+                           <td align="left">yes</td>
+                           <td align="left">yes</td>
+                           <td align="left">yes</td>
+                           <td align="left">&nbsp;</td>
+                        </tr>
+                        <tr>
+                           <td align="left">OSCache</td>
+                           <td align="left">yes</td>
+                           <td align="left">yes</td>
+                           <td align="left">yes</td>
+                           <td align="left">&nbsp;</td>
+                        </tr>
+                        <tr>
+                           <td align="left">SwarmCache</td>
+                           <td align="left">yes</td>
+                           <td align="left">yes</td>
+                           <td align="left">&nbsp;</td>
+                           <td align="left">&nbsp;</td>
+                        </tr>
+                        <tr>
+                           <td align="left">JBoss Cache 1.x</td>
+                           <td align="left">yes</td>
+                           <td align="left">&nbsp;</td>
+                           <td align="left">&nbsp;</td>
+                           <td align="left">yes</td>
+                        </tr>
+                        <tr>
+                           <td align="left">JBoss Cache 2</td>
+                           <td align="left">yes</td>
+                           <td align="left">&nbsp;</td>
+                           <td align="left">&nbsp;</td>
+                           <td align="left">yes</td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </div><br class="table-break"></div>
+      </div>
+      <div class="navfooter">
+         <hr>
+         <table width="100%" summary="Navigation footer">
+            <tr>
+               <td width="40%" align="left"><a accesskey="p" href="performance.html">&#19978;&#19968;&#39029;</a>&nbsp;
+               </td>
+               <td width="20%" align="center"><a accesskey="u" href="performance.html">&#19978;&#19968;&#32423;</a></td>
+               <td width="40%" align="right">&nbsp;<a accesskey="n" href="performance-sessioncache.html">&#19979;&#19968;&#39029;</a></td>
+            </tr>
+            <tr>
+               <td width="40%" align="left" valign="top">&#31532;&nbsp;19&nbsp;&#31456;&nbsp;&#25552;&#21319;&#24615;&#33021;&nbsp;</td>
+               <td width="20%" align="center"><a accesskey="h" href="index.html">&#36215;&#22987;&#39029;</a></td>
+               <td width="40%" align="right" valign="top">&nbsp;19.3.&nbsp;&#31649;&#29702;&#32531;&#23384;&#65288;Managing the caches&#65289;</td>
+            </tr>
+         </table>
+      </div>
+   </body>
+</html>

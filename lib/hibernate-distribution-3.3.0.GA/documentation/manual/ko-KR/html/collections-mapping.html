@@ -1,0 +1,621 @@
+<html>
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   
+      <title>6.2. &#53084;&#47113;&#49496; &#47588;&#54609;&#46308;</title>
+      <link rel="stylesheet" href="css/html.css" type="text/css">
+      <meta name="generator" content="DocBook XSL Stylesheets V1.72.0">
+      <link rel="start" href="index.html" title="HIBERNATE - &#44060;&#49457;&#51080;&#45716; &#51088;&#48148;&#47484; &#50948;&#54620; &#44288;&#44228; &#50689;&#49549;">
+      <link rel="up" href="collections.html" title="6&#51109;. &#53084;&#47113;&#49496; &#47588;&#54609;">
+      <link rel="prev" href="collections.html" title="6&#51109;. &#53084;&#47113;&#49496; &#47588;&#54609;">
+      <link rel="next" href="collections-advancedmappings.html" title="6.3. &#44060;&#49440;&#46108; &#53084;&#47113;&#49496; &#47588;&#54609;&#46308;">
+   </head>
+   <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+      <div class="navheader">
+         <table width="100%" summary="Navigation header">
+            <tr>
+               <th colspan="3" align="center">6.2. &#53084;&#47113;&#49496; &#47588;&#54609;&#46308;</th>
+            </tr>
+            <tr>
+               <td width="20%" align="left"><a accesskey="p" href="collections.html">&#51060;&#51204;</a>&nbsp;
+               </td>
+               <th width="60%" align="center">6&#51109;. &#53084;&#47113;&#49496; &#47588;&#54609;</th>
+               <td width="20%" align="right">&nbsp;<a accesskey="n" href="collections-advancedmappings.html">&#45796;&#51020;</a></td>
+            </tr>
+         </table>
+         <hr>
+      </div>
+      <div class="sect1" lang="ko-KR">
+         <div class="titlepage">
+            <div>
+               <div>
+                  <h2 class="title" style="clear: both"><a name="collections-mapping"></a>6.2. &#53084;&#47113;&#49496; &#47588;&#54609;&#46308;
+                  </h2>
+               </div>
+            </div>
+         </div>
+         <div class="tip" style="margin-left: 0.5in; margin-right: 0.5in;">
+            <h3 class="title">&#51089;&#51008; &#51221;&#48372;</h3>
+            <p>&#47566;&#51008; &#44277;&#53685;&#46108; &#44288;&#44228;&#54805; &#47784;&#54805;&#46308;&#51012; &#45796;&#47336;&#45716;, &#53084;&#47113;&#49496;&#46308;&#50640; &#45824;&#54644; &#49373;&#49457;&#46112; &#49688; &#51080;&#45716; &#47588;&#54609;&#46308;&#51032; &#50689;&#50669;&#51060; &#44900; &#51316;&#51116;&#54620;&#45796;. &#50668;&#47084;&#44032;&#51648; &#47588;&#54609; &#49440;&#50616;&#46308;&#51060; &#45936;&#51060;&#53552;&#48288;&#51060;&#49828; &#53580;&#51060;&#48660;&#46308;&#47196; &#48320;&#54872;&#46104;&#45716; &#48169;&#48277;&#51012; &#45817;&#49888;&#51060; &#45712;&#45180;&#47140;&#47732; &#49828;&#53412;&#47560; &#49373;&#49457; &#46020;&#44396;&#47196; &#49892;&#54744;&#54624; &#44163;&#51012; &#50864;&#47532;&#45716;
+               &#51228;&#50504;&#54620;&#45796;. 
+            </p>
+         </div>
+         <p>&#53084;&#47113;&#49496;&#51012; &#47588;&#54609;&#54616;&#45716;&#45936; &#49324;&#50857;&#46104;&#45716; Hiberante &#47588;&#54609; &#50836;&#49548;&#45716; &#51064;&#53552;&#54168;&#51060;&#49828;&#51032; &#53440;&#51077;&#50640; &#51032;&#51316;&#54620;&#45796;. &#50696;&#47484; &#46308;&#50612;<code class="literal">&lt;set&gt;</code> &#50836;&#49548;&#45716; <code class="literal">Set</code> &#53440;&#51077;&#51032; &#47588;&#54609; &#54532;&#47196;&#54140;&#54000;&#46308;&#50640; &#49324;&#50857;&#46108;&#45796; 
+         </p><pre class="programlisting">&lt;class name="Product"&gt;
+    &lt;id name="serialNumber" column="productSerialNumber"/&gt;
+    &lt;set name="parts"&gt;
+        &lt;key column="productSerialNumber" not-null="true"/&gt;
+        &lt;one-to-many class="Part"/&gt;
+    &lt;/set&gt;
+&lt;/class&gt;</pre><p><code class="literal">&lt;set&gt;</code>&#44284;&#45716; &#48324;&#46020;&#47196;, &#46608;&#54620; <code class="literal">&lt;list&gt;</code>, <code class="literal">&lt;map&gt;</code>, <code class="literal">&lt;bag&gt;</code>, <code class="literal">&lt;array&gt;</code>, &#44536;&#47532;&#44256; <code class="literal">&lt;map&gt;</code> &#47588;&#54609; &#50836;&#49548;&#46308;&#51060; &#51316;&#51116;&#54620;&#45796;. <code class="literal">&lt;map&gt;</code> &#50836;&#49548;&#44032; &#45824;&#54364;&#51201;&#51060;&#45796;: 
+         </p>
+         <div class="programlistingco"><pre class="programlisting">&lt;map
+    name="propertyName"                                         <span class="co">(1)</span>
+    table="table_name"                                          <span class="co">(2)</span>
+    schema="schema_name"                                        <span class="co">(3)</span>
+    lazy="true|extra|false"                                     <span class="co">(4)</span>
+    inverse="true|false"                                        <span class="co">(5)</span>
+    cascade="all|none|save-update|delete|all-delete-orphan|delet<span class="co">(6)</span>e-orphan"
+    sort="unsorted|natural|comparatorClass"                     <span class="co">(7)</span>
+    order-by="column_name asc|desc"                             <span class="co">(8)</span>
+    where="arbitrary sql where condition"                       <span class="co">(9)</span>
+    fetch="join|select|subselect"                               <span class="co">(10)</span>
+    batch-size="N"                                              <span class="co">(11)</span>
+    access="field|property|ClassName"                           <span class="co">(12)</span>
+    optimistic-lock="true|false"                                <span class="co">(13)</span>
+    mutable="true|false"                                        <span class="co">(14)</span>
+    node="element-name|."
+    embed-xml="true|false"
+&gt;
+
+    &lt;key .... /&gt;
+    &lt;map-key .... /&gt;
+    &lt;element .... /&gt;
+&lt;/map&gt;</pre><div class="calloutlist">
+               <table border="0" summary="Callout list">
+                  <tr>
+                     <td width="5%" valign="top" align="left">
+                        <fo:inline xmlns:fo="http://www.w3.org/1999/XSL/Format" color="black" padding-top="0.1em" padding-bottom="0.1em" padding-start="0.2em" padding-end="0.2em" baseline-shift="0.1em" font-weight="bold" font-size="75%">(1)</fo:inline>
+                     </td>
+                     <td valign="top" align="left">
+                        <p><code class="literal">name</code> &#53084;&#47113;&#49496; &#54532;&#47196;&#54140;&#54000; &#51060;&#47492; 
+                        </p>
+                     </td>
+                  </tr>
+                  <tr>
+                     <td width="5%" valign="top" align="left">
+                        <fo:inline xmlns:fo="http://www.w3.org/1999/XSL/Format" color="black" padding-top="0.1em" padding-bottom="0.1em" padding-start="0.2em" padding-end="0.2em" baseline-shift="0.1em" font-weight="bold" font-size="75%">(2)</fo:inline>
+                     </td>
+                     <td valign="top" align="left">
+                        <p><code class="literal">table</code> (&#50741;&#49496; - &#46356;&#54260;&#53944;&#45716; &#54532;&#47196;&#54140;&#54000; &#51060;&#47492;) &#53084;&#47113;&#49496; &#53580;&#51060;&#48660;&#51032; &#51060;&#47492;(one-to-many &#50672;&#44288;&#44288;&#44228;&#46308;&#50640; &#45824;&#54644;&#49436;&#45716; &#49324;&#50857;&#46104;&#51648; &#50506;&#51020;) 
+                        </p>
+                     </td>
+                  </tr>
+                  <tr>
+                     <td width="5%" valign="top" align="left">
+                        <fo:inline xmlns:fo="http://www.w3.org/1999/XSL/Format" color="black" padding-top="0.1em" padding-bottom="0.1em" padding-start="0.2em" padding-end="0.2em" baseline-shift="0.1em" font-weight="bold" font-size="75%">(3)</fo:inline>
+                     </td>
+                     <td valign="top" align="left">
+                        <p><code class="literal">schema</code> (&#50741;&#49496;) &#47336;&#53944; &#50836;&#49548; &#49345;&#50640; &#49440;&#50616;&#46108; &#49828;&#53412;&#47560;&#47484; &#50724;&#48260;&#46972;&#51060;&#46300; &#49884;&#53412;&#45716; &#53580;&#51060;&#48660; &#49828;&#53412;&#47560;&#51032; &#51060;&#47492; 
+                        </p>
+                     </td>
+                  </tr>
+                  <tr>
+                     <td width="5%" valign="top" align="left">
+                        <fo:inline xmlns:fo="http://www.w3.org/1999/XSL/Format" color="black" padding-top="0.1em" padding-bottom="0.1em" padding-start="0.2em" padding-end="0.2em" baseline-shift="0.1em" font-weight="bold" font-size="75%">(4)</fo:inline>
+                     </td>
+                     <td valign="top" align="left">
+                        <p><code class="literal">lazy</code> (&#50741;&#49496; - &#46356;&#54260;&#53944;&#45716; <code class="literal">true</code>)&#45716; lazy &#54168;&#52845;&#51012; &#49324;&#50857; &#48520;&#44032;&#45733;&#54616;&#46020;&#47197; &#54616;&#44256; &#44536; &#50672;&#44288;&#51060; &#54637;&#49345; eagerly &#54168;&#52824;&#46120;&#51012; &#51648;&#51221;&#54616;&#45716;&#45936; , &#46608;&#45716; &#45824;&#48512;&#48516;&#51032; &#50672;&#49328;&#46308;&#51060; &#53084;&#47113;&#49496;&#51012; &#52488;&#44592;&#54868;&#49884;&#53412;&#51648; &#50506;&#45716; &#44275;&#50640;&#49436; "extra-lazy" &#54168;&#52845;&#51012; &#51060;&#50857; &#44032;&#45733;&#54616;&#46020;&#47197; &#54616;&#45716;&#45936;(&#47588;&#50864; &#53360;
+                           &#53084;&#47113;&#49496;&#46308;&#50640; &#51201;&#45817;&#54632;) &#49324;&#50857;&#46112; &#49688; &#51080;&#45796; 
+                        </p>
+                     </td>
+                  </tr>
+                  <tr>
+                     <td width="5%" valign="top" align="left">
+                        <fo:inline xmlns:fo="http://www.w3.org/1999/XSL/Format" color="black" padding-top="0.1em" padding-bottom="0.1em" padding-start="0.2em" padding-end="0.2em" baseline-shift="0.1em" font-weight="bold" font-size="75%">(5)</fo:inline>
+                     </td>
+                     <td valign="top" align="left">
+                        <p><code class="literal">inverse</code> (&#50741;&#49496; - &#46356;&#54260;&#53944;&#45716; <code class="literal">false</code>) &#51060; &#53084;&#47113;&#49496;&#51012; &#50577;&#48169;&#54693; &#50672;&#44288;&#44288;&#44228;&#51032; "inverse" &#45149;(end)&#51004;&#47196; &#54364;&#49884;&#54620;&#45796; 
+                        </p>
+                     </td>
+                  </tr>
+                  <tr>
+                     <td width="5%" valign="top" align="left">
+                        <fo:inline xmlns:fo="http://www.w3.org/1999/XSL/Format" color="black" padding-top="0.1em" padding-bottom="0.1em" padding-start="0.2em" padding-end="0.2em" baseline-shift="0.1em" font-weight="bold" font-size="75%">(6)</fo:inline>
+                     </td>
+                     <td valign="top" align="left">
+                        <p><code class="literal">cascade</code> (&#50741;&#49496; - &#46356;&#54260;&#53944;&#45716; <code class="literal">none</code>) &#50724;&#54140;&#47112;&#51060;&#49496;&#46308;&#51060; &#51088;&#49885; &#50644;&#54000;&#54000;&#46308;&#50640; &#45824;&#54644; &#52992;&#49828;&#52992;&#51060;&#46300;&#54616;&#45716; &#44163;&#51012; &#51060;&#50857; &#44032;&#45733;&#54616;&#44172; &#54620;&#45796; 
+                        </p>
+                     </td>
+                  </tr>
+                  <tr>
+                     <td width="5%" valign="top" align="left">
+                        <fo:inline xmlns:fo="http://www.w3.org/1999/XSL/Format" color="black" padding-top="0.1em" padding-bottom="0.1em" padding-start="0.2em" padding-end="0.2em" baseline-shift="0.1em" font-weight="bold" font-size="75%">(7)</fo:inline>
+                     </td>
+                     <td valign="top" align="left">
+                        <p><code class="literal">sort</code> (&#50741;&#49496;) <code class="literal">natural</code> &#51221;&#47148; &#49692;&#49436;&#47196; &#51221;&#47148;&#46108;(sorted) &#53084;&#47113;&#49496; &#46608;&#45716; &#51452;&#50612;&#51652; comparator &#53364;&#47000;&#49828;&#47484; &#51648;&#51221;&#54620;&#45796; 
+                        </p>
+                     </td>
+                  </tr>
+                  <tr>
+                     <td width="5%" valign="top" align="left">
+                        <fo:inline xmlns:fo="http://www.w3.org/1999/XSL/Format" color="black" padding-top="0.1em" padding-bottom="0.1em" padding-start="0.2em" padding-end="0.2em" baseline-shift="0.1em" font-weight="bold" font-size="75%">(8)</fo:inline>
+                     </td>
+                     <td valign="top" align="left">
+                        <p><code class="literal">order-by</code> (&#50741;&#49496;, JDK1.4&#50640;&#49436;&#47564;) <code class="literal">asc</code> &#46608;&#45716; <code class="literal">desc</code> &#50741;&#49496;&#44284; &#54632;&#44760; <code class="literal">Map</code>, <code class="literal">Set</code> &#46608;&#45716; bag&#51032; &#48152;&#48373; &#49692;&#49436;&#47484; &#51221;&#51032;&#54616;&#45716; &#53580;&#51060;&#48660; &#52972;&#47100;(&#46608;&#45716; &#52972;&#47100;&#46308;)&#51012; &#51648;&#51221;&#54620;&#45796; 
+                        </p>
+                     </td>
+                  </tr>
+                  <tr>
+                     <td width="5%" valign="top" align="left">
+                        <fo:inline xmlns:fo="http://www.w3.org/1999/XSL/Format" color="black" padding-top="0.1em" padding-bottom="0.1em" padding-start="0.2em" padding-end="0.2em" baseline-shift="0.1em" font-weight="bold" font-size="75%">(9)</fo:inline>
+                     </td>
+                     <td valign="top" align="left">
+                        <p><code class="literal">where</code> (&#50741;&#49496;) &#53084;&#47113;&#49496;&#51012; &#44160;&#49353;&#54616;&#44144;&#45208; &#51228;&#44144;&#54624; &#46412; &#49324;&#50857;&#46112; &#51076;&#51032;&#51201;&#51064; SQL <code class="literal">WHERE</code> &#51312;&#44148;&#51012; &#51648;&#51221;&#54620;&#45796; (&#53084;&#47113;&#49496;&#51060; &#50724;&#51649; &#51060;&#50857; &#44032;&#45733;&#54620; &#45936;&#51060;&#53552;&#51032; &#48512;&#48516;&#51665;&#54633; &#47564;&#51012; &#54252;&#54632;&#54624; &#44221;&#50864;&#50640; &#50976;&#50857;&#54616;&#45796;) 
+                        </p>
+                     </td>
+                  </tr>
+                  <tr>
+                     <td width="5%" valign="top" align="left">
+                        <fo:inline xmlns:fo="http://www.w3.org/1999/XSL/Format" color="black" padding-top="0.1em" padding-bottom="0.1em" padding-start="0.2em" padding-end="0.2em" baseline-shift="0.1em" font-weight="bold" font-size="75%">(10)</fo:inline>
+                     </td>
+                     <td valign="top" align="left">
+                        <p><code class="literal">fetch</code> (&#50741;&#49496;, &#46356;&#54260;&#53944;&#45716; <code class="literal">select</code>) outer-join &#54168;&#52845;, sequential select &#54168;&#52845;, &#44536;&#47532;&#44256; sequential subselect &#54168;&#52845; &#49324;&#51060;&#50640;&#49436; &#49440;&#53469;&#54616;&#46972;. 
+                        </p>
+                     </td>
+                  </tr>
+                  <tr>
+                     <td width="5%" valign="top" align="left">
+                        <fo:inline xmlns:fo="http://www.w3.org/1999/XSL/Format" color="black" padding-top="0.1em" padding-bottom="0.1em" padding-start="0.2em" padding-end="0.2em" baseline-shift="0.1em" font-weight="bold" font-size="75%">(11)</fo:inline>
+                     </td>
+                     <td valign="top" align="left">
+                        <p><code class="literal">batch-size</code> (&#50741;&#49496;, &#46356;&#54260;&#53944;&#45716; <code class="literal">1</code>) &#51060; &#53084;&#47113;&#49496;&#51032; lazily fetching &#51064;&#49828;&#53556;&#49828;&#50640; &#45824;&#54644; "&#48176;&#52824; &#49324;&#51060;&#51592;"&#47484; &#51648;&#51221;&#54616;&#46972;. 
+                        </p>
+                     </td>
+                  </tr>
+                  <tr>
+                     <td width="5%" valign="top" align="left">
+                        <fo:inline xmlns:fo="http://www.w3.org/1999/XSL/Format" color="black" padding-top="0.1em" padding-bottom="0.1em" padding-start="0.2em" padding-end="0.2em" baseline-shift="0.1em" font-weight="bold" font-size="75%">(12)</fo:inline>
+                     </td>
+                     <td valign="top" align="left">
+                        <p><code class="literal">access</code> (&#50741;&#49496; - &#46356;&#54260;&#53944;&#45716; <code class="literal">property</code>): Hibernate&#44032; &#53084;&#47113;&#49496; &#54532;&#47196;&#54140;&#54000; &#44050;&#50640; &#51217;&#44540;&#54616;&#45716;&#45936; &#49324;&#50857;&#54624; &#48169;&#46020;. 
+                        </p>
+                     </td>
+                  </tr>
+                  <tr>
+                     <td width="5%" valign="top" align="left">
+                        <fo:inline xmlns:fo="http://www.w3.org/1999/XSL/Format" color="black" padding-top="0.1em" padding-bottom="0.1em" padding-start="0.2em" padding-end="0.2em" baseline-shift="0.1em" font-weight="bold" font-size="75%">(13)</fo:inline>
+                     </td>
+                     <td valign="top" align="left">
+                        <p><code class="literal">optimistic-lock</code> (&#50741;&#49496; - &#46356;&#54260;&#53944;&#45716; <code class="literal">true</code>): &#53084;&#47113;&#49496;&#51032; &#49345;&#53468;&#50640; &#45824;&#54620; &#48320;&#44221;&#46308;&#51060; &#49548;&#50976;&#54616;&#45716; &#50644;&#54000;&#54000;&#51032; &#48260;&#51204;&#51032; &#51613;&#44032;&#47196; &#44480;&#44208;&#46112; &#44163;&#51064;&#51648;&#47484; &#51648;&#51221;&#54620;&#45796;. (one to many &#50672;&#44288;&#46308;&#50640; &#45824;&#54644;, &#51060; &#49444;&#51221;&#51012; &#49324;&#50857; &#48520;&#44032;&#45733;&#54616;&#44172; &#54616;&#45716; &#44163;&#51060; &#51333;&#51333; &#54633;&#45817;&#54616;&#45796;.) 
+                        </p>
+                     </td>
+                  </tr>
+                  <tr>
+                     <td width="5%" valign="top" align="left">
+                        <fo:inline xmlns:fo="http://www.w3.org/1999/XSL/Format" color="black" padding-top="0.1em" padding-bottom="0.1em" padding-start="0.2em" padding-end="0.2em" baseline-shift="0.1em" font-weight="bold" font-size="75%">(14)</fo:inline>
+                     </td>
+                     <td valign="top" align="left">
+                        <p><code class="literal">mutable</code> (&#50741;&#49496; - &#46356;&#54260;&#53944;&#45716; <code class="literal">true</code>): <code class="literal">false</code> &#44050;&#51008; &#53084;&#47113;&#49496;&#51032; &#50836;&#49548;&#46308;&#51060; &#44208;&#53076; &#48320;&#44221;&#46104;&#51648; &#50506;&#51020;&#51012; &#51648;&#51221;&#54620;&#45796;. (&#47751;&#47751; &#44221;&#50864;&#46308;&#50640;&#49436; &#47560;&#51060;&#45320; &#54140;&#54252;&#47676;&#49828; &#52572;&#51201;&#54868;). 
+                        </p>
+                     </td>
+                  </tr>
+               </table>
+            </div>
+         </div>
+         <div class="sect2" lang="ko-KR">
+            <div class="titlepage">
+               <div>
+                  <div>
+                     <h3 class="title"><a name="collections-foreignkeys"></a>6.2.1. &#53084;&#47113;&#49496; foreign &#53412;&#46308;
+                     </h3>
+                  </div>
+               </div>
+            </div>
+            <p>&#53084;&#47113;&#49496; &#51064;&#49828;&#53556;&#49828;&#46308;&#51008; &#44536; &#53084;&#47113;&#49496;&#51012; &#49548;&#50976;&#54616;&#45716; &#50644;&#54000;&#54000;&#51032; foreign &#53412;&#50640; &#51032;&#54644; &#45936;&#51060;&#53552;&#48288;&#51060;&#49828; &#45236;&#50640;&#49436; &#44396;&#48324;&#51648;&#50892;&#51652;&#45796;. &#51060; foreign &#53412;&#45716; &#44536; &#53084;&#47113;&#49496; &#53580;&#51060;&#48660;&#51032; <span class="emphasis"><em>&#53084;&#47113;&#49496; &#53412; &#52972;&#47100;</em></span> (&#46608;&#45716; &#52972;&#47100;&#46308;)&#47196;&#49436; &#52280;&#51312;&#46108;&#45796;. &#44536; &#53084;&#47113;&#49496; &#53412; &#52972;&#47100;&#51008; <code class="literal">&lt;key&gt;</code> &#50836;&#49548;&#50640; &#51032;&#54644; &#47588;&#54609;&#46108;&#45796;. 
+            </p>
+            <p>foreign &#53412; &#52972;&#47100;&#50640; &#45824;&#54620; null &#54728;&#50857; &#44032;&#45733; &#52968;&#49828;&#53944;&#47112;&#51064;&#53944;&#44032; &#51316;&#51116;&#54624; &#49688; &#51080;&#45796;. &#45824;&#48512;&#48516;&#51032; &#53084;&#47113;&#49496;&#46308;&#50640; &#45824;&#54644;, &#51060;&#44163;&#51060; &#45817;&#50672;&#55176; &#49688;&#48152;&#46108;&#45796;. &#45800;&#48169;&#54693; one to many &#50672;&#44288;&#46308;&#51032; &#44221;&#50864;, foreign &#53412;&#45716; &#46356;&#54260;&#53944;&#47196; null &#54728;&#50857;
+               &#44032;&#45733;&#54616;&#50668;&#49436;, &#45817;&#49888;&#51008; <code class="literal">not-null="true"</code>&#47484; &#51648;&#51221;&#54624; &#54596;&#50836;&#44032; &#51080;&#51012; &#49688; &#51080;&#45796;. 
+            </p><pre class="programlisting">&lt;key column="productSerialNumber" not-null="true"/&gt;</pre><p>foreign &#53412; &#52968;&#49828;&#53944;&#47112;&#51064;&#53944;&#45716; <code class="literal">ON DELETE CASCADE</code>&#47484; &#49324;&#50857;&#54624; &#49688;&#46020; &#51080;&#45796;. 
+            </p><pre class="programlisting">&lt;key column="productSerialNumber" on-delete="cascade"/&gt;</pre><p><code class="literal">&lt;key&gt;</code> &#50836;&#49548;&#50640; &#45824;&#54620; &#51204;&#52404; &#51221;&#51032;&#45716; &#50526; &#51109;&#51012; &#48372;&#46972;. 
+            </p>
+         </div>
+         <div class="sect2" lang="ko-KR">
+            <div class="titlepage">
+               <div>
+                  <div>
+                     <h3 class="title"><a name="collections-elements"></a>6.2.2. &#53084;&#47113;&#49496; &#50836;&#49548;&#46308;
+                     </h3>
+                  </div>
+               </div>
+            </div>
+            <p>&#53084;&#47113;&#49496;&#46308;&#51008; &#47784;&#46304; &#44592;&#48376; &#53440;&#51077;&#46308;, &#52980;&#54252;&#45324;&#53944;&#46308;, &#44536;&#47532;&#44256; &#47932;&#47200; &#45796;&#47480; &#50644;&#54000;&#54000;&#46308;&#50640; &#45824;&#54620; &#52280;&#51312;&#46308;&#51012; &#54252;&#54632;&#54616;&#50668; &#44144;&#51032; &#45824;&#48512;&#48516;&#51032; &#50612;&#46500; &#45796;&#47480; Hibernate &#53440;&#51077;&#51012; &#54252;&#54632;&#54624; &#49688;&#46020; &#51080;&#45796;. &#51060;&#44163;&#51008; &#51473;&#50836;&#54620; &#44396;&#48516;&#51060;&#45796;: &#53084;&#47113;&#49496; &#45236;&#50640; &#51080;&#45716; &#44061;&#52404;&#45716; "&#44050;(value)"
+               &#51032;&#48120;&#47196; &#52376;&#47532;&#46112; &#49688;&#46020; &#51080;&#44144;&#45208;(&#44536;&#44163;&#51032; &#49373;&#47749;&#51452;&#44592;&#45716; &#53084;&#47113;&#49496; &#49548;&#50976;&#51088;&#50640; &#51032;&#51316;&#54620;&#45796;) &#44536;&#44163;&#51008; &#44536;&#44163; &#51088;&#49888;&#51032; &#49373;&#47749;&#51452;&#44592;&#47484; &#44032;&#51652; &#46608; &#45796;&#47480; &#50644;&#54000;&#54000;&#50640; &#45824;&#54620; &#52280;&#51312;&#51068; &#49688; &#51080;&#45796;. &#54980;&#51088;&#51032; &#44221;&#50864;, &#46160; &#44060;&#51032; &#44061;&#52404;&#46308; &#49324;&#51060;&#51032; "&#47553;&#53356;" &#47564;&#51060; &#44536; &#53084;&#47113;&#49496;&#50640; &#51032;&#54644;
+               &#49548;&#50976;&#46108; &#49345;&#53468;&#47196; &#44036;&#51452;&#46108;&#45796;. 
+            </p>
+            <p>&#54252;&#54632;&#46108; &#53440;&#51077;&#51008; &#53084;&#47113;&#49496; &#50836;&#49548; &#53440;&#51077;&#51004;&#47196;&#49436; &#48520;&#47140;&#51652;&#45796;. &#53084;&#47113;&#49496; &#50836;&#49548;&#46308;&#51008; <code class="literal">&lt;element&gt;</code> &#46608;&#45716; <code class="literal">&lt;composite-element&gt;</code>&#50640; &#51032;&#54644; &#47588;&#54609;&#46104;&#44144;&#45208;, &#50644;&#54000;&#54000; &#52280;&#51312;&#46308;&#51032; &#44221;&#50864;&#50640; <code class="literal">&lt;one-to-many&gt;</code> &#46608;&#45716; <code class="literal">&lt;many-to-many&gt;</code>&#47196;&#49436; &#47588;&#54609;&#46108;&#45796;. &#50526;&#51032; &#46160; &#44060;&#45716; value &#51032;&#48120;&#47484; &#44032;&#51652; &#50836;&#49548;&#46308;&#51012; &#47588;&#54609;&#49884;&#53412;&#44256;, &#46244;&#51032; &#46160;&#44060;&#45716; &#50644;&#54000;&#54000; &#50672;&#44288;&#46308;&#51012; &#47588;&#54609;&#54616;&#45716;&#45936; &#49324;&#50857;&#46108;&#45796;. 
+            </p>
+         </div>
+         <div class="sect2" lang="ko-KR">
+            <div class="titlepage">
+               <div>
+                  <div>
+                     <h3 class="title"><a name="collections-indexed"></a>6.2.3. &#51064;&#45937;&#49905; &#46108; &#53084;&#47113;&#49496;&#46308;
+                     </h3>
+                  </div>
+               </div>
+            </div>
+            <p>set &#44284; bag &#51032;&#48120;&#46308;&#51012; &#44032;&#51652; &#44163;&#46308;&#51012; &#51228;&#50808;&#54616;&#47732;, &#47784;&#46304; &#53084;&#47113;&#49496; &#47588;&#54609;&#46308;&#51008; &#53084;&#47113;&#49496; &#53580;&#51060;&#48660; &#45236;&#50640; <span class="emphasis"><em>&#51064;&#45937;&#49828; &#52972;&#47100;</em></span>- &#48176;&#50676; &#51064;&#45937;&#49828;, &#46608;&#45716; <code class="literal">List</code> &#51064;&#45937;&#49828; &#46608;&#45716; <code class="literal">Map</code> &#53412;&#47196; &#47588;&#54609;&#46104;&#45716; &#52972;&#47100;-&#51012; &#54596;&#50836;&#47196; &#54620;&#45796;. <code class="literal">Map</code>&#51032; &#51064;&#45937;&#49828;&#45716; <code class="literal">&lt;map-key&gt;</code>&#47196; &#47588;&#54609;&#46108;, &#50612;&#46500; &#44592;&#48376; &#53440;&#51077;&#51068; &#49688; &#51080;&#44256;, &#44536;&#44163;&#51008; <code class="literal">&lt;map-key-many-to-many&gt;</code>&#47196; &#47588;&#54609;&#46108; &#50644;&#54000;&#54000; &#52280;&#51312;&#51068; &#49688; &#51080;&#44144;&#45208;, &#44536;&#44163;&#51008; <code class="literal">&lt;composite-map-key&gt;</code>&#47196; &#47588;&#54609;&#46108; composite &#53440;&#51077;&#51068; &#49688; &#51080;&#45796;. &#48176;&#50676; &#46608;&#45716; &#47532;&#49828;&#53944;&#51032; &#51064;&#45937;&#49828;&#45716; &#54637;&#49345; <code class="literal">integer</code> &#53440;&#51077;&#51060;&#44256; <code class="literal">&lt;list-index&gt;</code> &#50836;&#49548;&#47484; &#49324;&#50857;&#54616;&#50668; &#47588;&#54609;&#46108;&#45796;. &#47588;&#54609;&#46108; &#52972;&#47100;&#51008; &#49692;&#52264;&#51201;&#51064; &#51221;&#49688;&#46308;&#51012; &#54252;&#54632;&#54620;&#45796;(&#46356;&#54260;&#53944;&#47196; 0&#50640;&#49436; &#49884;&#51089;&#54616;&#45716; &#48264;&#54840;&#44032; &#48537;&#50668;&#51664;). 
+            </p>
+            <div class="programlistingco"><pre class="programlisting">&lt;list-index 
+        column="column_name"                <span class="co">(1)</span>
+        base="0|1|..."/&gt;</pre><div class="calloutlist">
+                  <table border="0" summary="Callout list">
+                     <tr>
+                        <td width="5%" valign="top" align="left">
+                           <fo:inline xmlns:fo="http://www.w3.org/1999/XSL/Format" color="black" padding-top="0.1em" padding-bottom="0.1em" padding-start="0.2em" padding-end="0.2em" baseline-shift="0.1em" font-weight="bold" font-size="75%">(1)</fo:inline>
+                        </td>
+                        <td valign="top" align="left">
+                           <p> <code class="literal">column_name</code> (required): The name of the column holding the collection index values. 
+                           </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td width="5%" valign="top" align="left">
+                           <fo:inline xmlns:fo="http://www.w3.org/1999/XSL/Format" color="black" padding-top="0.1em" padding-bottom="0.1em" padding-start="0.2em" padding-end="0.2em" baseline-shift="0.1em" font-weight="bold" font-size="75%">(1)</fo:inline>
+                        </td>
+                        <td valign="top" align="left">
+                           <p> <code class="literal">base</code> (optional, defaults to <code class="literal">0</code>): The value of the index column that corresponds to the first element of the list or array. 
+                           </p>
+                        </td>
+                     </tr>
+                  </table>
+               </div>
+            </div>
+            <div class="programlistingco"><pre class="programlisting">&lt;map-key 
+        column="column_name"                <span class="co">(1)</span>
+        formula="any SQL expression"        <span class="co">(2)</span>
+        type="type_name"                    <span class="co">(3)</span>
+        node="@attribute-name"
+        length="N"/&gt;</pre><div class="calloutlist">
+                  <table border="0" summary="Callout list">
+                     <tr>
+                        <td width="5%" valign="top" align="left">
+                           <fo:inline xmlns:fo="http://www.w3.org/1999/XSL/Format" color="black" padding-top="0.1em" padding-bottom="0.1em" padding-start="0.2em" padding-end="0.2em" baseline-shift="0.1em" font-weight="bold" font-size="75%">(1)</fo:inline>
+                        </td>
+                        <td valign="top" align="left">
+                           <p> <code class="literal">column</code> (optional): The name of the column holding the collection index values. 
+                           </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td width="5%" valign="top" align="left">
+                           <fo:inline xmlns:fo="http://www.w3.org/1999/XSL/Format" color="black" padding-top="0.1em" padding-bottom="0.1em" padding-start="0.2em" padding-end="0.2em" baseline-shift="0.1em" font-weight="bold" font-size="75%">(2)</fo:inline>
+                        </td>
+                        <td valign="top" align="left">
+                           <p> <code class="literal">formula</code> (optional): A SQL formula used to evaluate the key of the map. 
+                           </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td width="5%" valign="top" align="left">
+                           <fo:inline xmlns:fo="http://www.w3.org/1999/XSL/Format" color="black" padding-top="0.1em" padding-bottom="0.1em" padding-start="0.2em" padding-end="0.2em" baseline-shift="0.1em" font-weight="bold" font-size="75%">(3)</fo:inline>
+                        </td>
+                        <td valign="top" align="left">
+                           <p> <code class="literal">type</code> (reguired): The type of the map keys. 
+                           </p>
+                        </td>
+                     </tr>
+                  </table>
+               </div>
+            </div>
+            <div class="programlistingco"><pre class="programlisting">&lt;map-key-many-to-many
+        column="column_name"                <span class="co">(1)</span>
+        formula="any SQL expression"        <span class="co">(2)</span><span class="co">(3)</span>
+        class="ClassName"
+/&gt;</pre><div class="calloutlist">
+                  <table border="0" summary="Callout list">
+                     <tr>
+                        <td width="5%" valign="top" align="left">
+                           <fo:inline xmlns:fo="http://www.w3.org/1999/XSL/Format" color="black" padding-top="0.1em" padding-bottom="0.1em" padding-start="0.2em" padding-end="0.2em" baseline-shift="0.1em" font-weight="bold" font-size="75%">(1)</fo:inline>
+                        </td>
+                        <td valign="top" align="left">
+                           <p> <code class="literal">column</code> (optional): The name of the foreign key column for the collection index values. 
+                           </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td width="5%" valign="top" align="left">
+                           <fo:inline xmlns:fo="http://www.w3.org/1999/XSL/Format" color="black" padding-top="0.1em" padding-bottom="0.1em" padding-start="0.2em" padding-end="0.2em" baseline-shift="0.1em" font-weight="bold" font-size="75%">(2)</fo:inline>
+                        </td>
+                        <td valign="top" align="left">
+                           <p> <code class="literal">formula</code> (optional): A SQL formula used to evaluate the foreign key of the map key. 
+                           </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td width="5%" valign="top" align="left">
+                           <fo:inline xmlns:fo="http://www.w3.org/1999/XSL/Format" color="black" padding-top="0.1em" padding-bottom="0.1em" padding-start="0.2em" padding-end="0.2em" baseline-shift="0.1em" font-weight="bold" font-size="75%">(3)</fo:inline>
+                        </td>
+                        <td valign="top" align="left">
+                           <p> <code class="literal">class</code> (required): The entity class used as the map key. 
+                           </p>
+                        </td>
+                     </tr>
+                  </table>
+               </div>
+            </div>
+            <p>&#47564;&#51068; &#45817;&#49888;&#51032; &#53580;&#51060;&#48660;&#51060; &#51064;&#45937;&#49828; &#52972;&#47100;&#51012; &#44032;&#51648; &#50506;&#44256;, &#45817;&#49888;&#51060; &#50668;&#51204;&#55176; &#54532;&#47196;&#54140;&#54000; &#53440;&#51077;&#51004;&#47196;&#49436; <code class="literal">List</code>&#47484; &#49324;&#50857;&#54616;&#44256;&#51088; &#50896;&#54624; &#44221;&#50864;, &#45817;&#49888;&#51008; &#44536; &#54532;&#47196;&#54140;&#54000;&#47484; Hibernate <span class="emphasis"><em>&lt;bag&gt;</em></span>&#51004;&#47196;&#49436; &#47588;&#54609;&#54644;&#50556; &#54620;&#45796;. bag&#51060; &#45936;&#51060;&#53552;&#48288;&#51060;&#49828;&#47196;&#48512;&#53552; &#44160;&#49353;&#46112; &#46412; &#44536;&#44163;&#51008; &#44536;&#44163;&#51032; &#49692;&#49436;&#47484; &#48372;&#50976;&#54616;&#51648; &#50506;&#51648;&#47564;, &#44536;&#44163;&#51008; &#49440;&#53469;&#51201;&#51004;&#47196; &#51221;&#47148;(sorting)&#46104;&#44144;&#45208; ordering&#46112; &#49688;&#46020; &#51080;&#45796;. 
+            </p>
+         </div>
+         <div class="sect2" lang="ko-KR">
+            <div class="titlepage">
+               <div>
+                  <div>
+                     <h3 class="title"><a name="collections-ofvalues"></a>6.2.4. &#44050;&#46308;&#51012; &#44032;&#51652; &#53084;&#47113;&#49496;&#46308;&#44284; many-to-many &#50672;&#44288;&#46308;
+                     </h3>
+                  </div>
+               </div>
+            </div>
+            <p>&#50612;&#46500; &#44050;&#46308;&#51012; &#44032;&#51652; &#53084;&#47113;&#49496; &#46608;&#45716; many-to-many &#50672;&#44288;&#51008; foreign &#53412; &#52972;&#47100;&#51060;&#45208; &#52972;&#47100;&#46308;, <span class="emphasis"><em>&#53084;&#47113;&#49496; &#50836;&#49548; &#52972;&#47100;</em></span>&#51060;&#45208; &#52972;&#47100;&#46308; &#44536;&#47532;&#44256; &#44032;&#45733;&#54616;&#47732; &#51064;&#45937;&#49828; &#52972;&#47100;&#46308;&#51060;&#45208; &#52972;&#47100;&#46308;&#51012; &#44032;&#51652; &#51204;&#50857; <span class="emphasis"><em>&#53084;&#47113;&#49496; &#53580;&#51060;&#48660;</em></span>&#51012; &#54596;&#50836;&#47196; &#54620;&#45796;. 
+            </p>
+            <p>&#44050;&#46308;&#51012; &#44032;&#51652; &#53084;&#47113;&#49496;&#51032; &#44221;&#50864;, &#50864;&#47532;&#45716; <code class="literal">&lt;element&gt;</code> &#53468;&#44536;&#47484; &#49324;&#50857;&#54620;&#45796;. 
+            </p>
+            <div class="programlistingco"><pre class="programlisting">&lt;element
+        column="column_name"                     <span class="co">(1)</span>
+        formula="any SQL expression"             <span class="co">(2)</span>
+        type="typename"                          <span class="co">(3)</span>
+        length="L"
+        precision="P"
+        scale="S"
+        not-null="true|false"
+        unique="true|false"
+        node="element-name"
+/&gt;</pre><div class="calloutlist">
+                  <table border="0" summary="Callout list">
+                     <tr>
+                        <td width="5%" valign="top" align="left">
+                           <fo:inline xmlns:fo="http://www.w3.org/1999/XSL/Format" color="black" padding-top="0.1em" padding-bottom="0.1em" padding-start="0.2em" padding-end="0.2em" baseline-shift="0.1em" font-weight="bold" font-size="75%">(1)</fo:inline>
+                        </td>
+                        <td valign="top" align="left">
+                           <p> <code class="literal">column</code> (optional): The name of the column holding the collection element values. 
+                           </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td width="5%" valign="top" align="left">
+                           <fo:inline xmlns:fo="http://www.w3.org/1999/XSL/Format" color="black" padding-top="0.1em" padding-bottom="0.1em" padding-start="0.2em" padding-end="0.2em" baseline-shift="0.1em" font-weight="bold" font-size="75%">(2)</fo:inline>
+                        </td>
+                        <td valign="top" align="left">
+                           <p> <code class="literal">formula</code> (optional): An SQL formula used to evaluate the element. 
+                           </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td width="5%" valign="top" align="left">
+                           <fo:inline xmlns:fo="http://www.w3.org/1999/XSL/Format" color="black" padding-top="0.1em" padding-bottom="0.1em" padding-start="0.2em" padding-end="0.2em" baseline-shift="0.1em" font-weight="bold" font-size="75%">(3)</fo:inline>
+                        </td>
+                        <td valign="top" align="left">
+                           <p> <code class="literal">type</code> (required): The type of the collection element. 
+                           </p>
+                        </td>
+                     </tr>
+                  </table>
+               </div>
+            </div>
+            <p> A <span class="emphasis"><em>many-to-many association</em></span> is specified using the <code class="literal">&lt;many-to-many&gt;</code> element. 
+            </p>
+            <div class="programlistingco"><pre class="programlisting">&lt;many-to-many
+        column="column_name"                               <span class="co">(1)</span>
+        formula="any SQL expression"                       <span class="co">(2)</span>
+        class="ClassName"                                  <span class="co">(3)</span>
+        fetch="select|join"                                <span class="co">(4)</span>
+        unique="true|false"                                <span class="co">(5)</span>
+        not-found="ignore|exception"                       <span class="co">(6)</span>
+        entity-name="EntityName"                           <span class="co">(7)</span>
+        property-ref="propertyNameFromAssociatedClass"     <span class="co">(8)</span>
+        node="element-name"
+        embed-xml="true|false"
+    /&gt;</pre><div class="calloutlist">
+                  <table border="0" summary="Callout list">
+                     <tr>
+                        <td width="5%" valign="top" align="left">
+                           <fo:inline xmlns:fo="http://www.w3.org/1999/XSL/Format" color="black" padding-top="0.1em" padding-bottom="0.1em" padding-start="0.2em" padding-end="0.2em" baseline-shift="0.1em" font-weight="bold" font-size="75%">(1)</fo:inline>
+                        </td>
+                        <td valign="top" align="left">
+                           <p> <code class="literal">column</code> (optional): The name of the element foreign key column. 
+                           </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td width="5%" valign="top" align="left">
+                           <fo:inline xmlns:fo="http://www.w3.org/1999/XSL/Format" color="black" padding-top="0.1em" padding-bottom="0.1em" padding-start="0.2em" padding-end="0.2em" baseline-shift="0.1em" font-weight="bold" font-size="75%">(2)</fo:inline>
+                        </td>
+                        <td valign="top" align="left">
+                           <p> <code class="literal">formula</code> (optional): An SQL formula used to evaluate the element foreign key value. 
+                           </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td width="5%" valign="top" align="left">
+                           <fo:inline xmlns:fo="http://www.w3.org/1999/XSL/Format" color="black" padding-top="0.1em" padding-bottom="0.1em" padding-start="0.2em" padding-end="0.2em" baseline-shift="0.1em" font-weight="bold" font-size="75%">(3)</fo:inline>
+                        </td>
+                        <td valign="top" align="left">
+                           <p> <code class="literal">class</code> (required): The name of the associated class. 
+                           </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td width="5%" valign="top" align="left">
+                           <fo:inline xmlns:fo="http://www.w3.org/1999/XSL/Format" color="black" padding-top="0.1em" padding-bottom="0.1em" padding-start="0.2em" padding-end="0.2em" baseline-shift="0.1em" font-weight="bold" font-size="75%">(4)</fo:inline>
+                        </td>
+                        <td valign="top" align="left">
+                           <p> <code class="literal">fetch</code> (optional - defaults to <code class="literal">join</code>): enables outer-join or sequential select fetching for this association. This is a special case; for full eager fetching
+                              (in a single <code class="literal">SELECT</code>) of an entity and its many-to-many relationships to other entities, you would enable <code class="literal">join</code> fetching not only of the collection itself, but also with this attribute on the <code class="literal">&lt;many-to-many&gt;</code> nested element. 
+                           </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td width="5%" valign="top" align="left">
+                           <fo:inline xmlns:fo="http://www.w3.org/1999/XSL/Format" color="black" padding-top="0.1em" padding-bottom="0.1em" padding-start="0.2em" padding-end="0.2em" baseline-shift="0.1em" font-weight="bold" font-size="75%">(5)</fo:inline>
+                        </td>
+                        <td valign="top" align="left">
+                           <p> <code class="literal">unique</code> (optional): Enable the DDL generation of a unique constraint for the foreign-key column. This makes the association multiplicity
+                              effectively one to many. 
+                           </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td width="5%" valign="top" align="left">
+                           <fo:inline xmlns:fo="http://www.w3.org/1999/XSL/Format" color="black" padding-top="0.1em" padding-bottom="0.1em" padding-start="0.2em" padding-end="0.2em" baseline-shift="0.1em" font-weight="bold" font-size="75%">(6)</fo:inline>
+                        </td>
+                        <td valign="top" align="left">
+                           <p> <code class="literal">not-found</code> (optional - defaults to <code class="literal">exception</code>): Specifies how foreign keys that reference missing rows will be handled: <code class="literal">ignore</code> will treat a missing row as a null association. 
+                           </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td width="5%" valign="top" align="left">
+                           <fo:inline xmlns:fo="http://www.w3.org/1999/XSL/Format" color="black" padding-top="0.1em" padding-bottom="0.1em" padding-start="0.2em" padding-end="0.2em" baseline-shift="0.1em" font-weight="bold" font-size="75%">(7)</fo:inline>
+                        </td>
+                        <td valign="top" align="left">
+                           <p> <code class="literal">entity-name</code> (optional): The entity name of the associated class, as an alternative to <code class="literal">class</code>. 
+                           </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td width="5%" valign="top" align="left">
+                           <fo:inline xmlns:fo="http://www.w3.org/1999/XSL/Format" color="black" padding-top="0.1em" padding-bottom="0.1em" padding-start="0.2em" padding-end="0.2em" baseline-shift="0.1em" font-weight="bold" font-size="75%">(8)</fo:inline>
+                        </td>
+                        <td valign="top" align="left">
+                           <p> <code class="literal">property-ref</code>: (optional) The name of a property of the associated class that is joined to this foreign key. If not specified, the primary
+                              key of the associated class is used. 
+                           </p>
+                        </td>
+                     </tr>
+                  </table>
+               </div>
+            </div>
+            <p>&#47751;&#47751; &#50696;&#51228;&#46308;, &#47676;&#51200; &#47928;&#51088;&#50676;&#46308;&#51012; &#44032;&#51652; set: </p><pre class="programlisting">&lt;set name="names" table="person_names"&gt;
+    &lt;key column="person_id"/&gt;
+    &lt;element column="person_name" type="string"/&gt;
+&lt;/set&gt;</pre><p>(<code class="literal">order-by</code> &#49549;&#49457;&#50640; &#51032;&#54644; &#44208;&#51221;&#46104;&#45716; &#48152;&#48373; &#49692;&#49436;&#47484; &#44032;&#51652;) &#51221;&#49688;&#46308;&#51012; &#54252;&#54632;&#54616;&#45716; bag : 
+            </p><pre class="programlisting">&lt;bag name="sizes" 
+        table="item_sizes" 
+        order-by="size asc"&gt;
+    &lt;key column="item_id"/&gt;
+    &lt;element column="size" type="integer"/&gt;
+&lt;/bag&gt;</pre><p>&#50644;&#54000;&#54000;&#46308;&#51012; &#44032;&#51652; &#48176;&#50676; - &#51060; &#44221;&#50864;&#50640;, many to many &#50672;&#44288; : </p><pre class="programlisting">&lt;array name="addresses" 
+        table="PersonAddress" 
+        cascade="persist"&gt;
+    &lt;key column="personId"/&gt;
+    &lt;list-index column="sortOrder"/&gt;
+    &lt;many-to-many column="addressId" class="Address"/&gt;
+&lt;/array&gt;</pre><p>&#45216;&#51676;&#46308;&#50640; &#45824;&#54620; &#47928;&#51088;&#50676; &#51064;&#45937;&#49828;&#46308;&#51012; &#44032;&#51652; map : </p><pre class="programlisting">&lt;map name="holidays" 
+        table="holidays" 
+        schema="dbo" 
+        order-by="hol_name asc"&gt;
+    &lt;key column="id"/&gt;
+    &lt;map-key column="hol_name" type="string"/&gt;
+    &lt;element column="hol_date" type="date"/&gt;
+&lt;/map&gt;</pre><p>&#52980;&#54252;&#45324;&#53944;&#46308;&#51032; &#47532;&#49828;&#53944;(&#45796;&#51020; &#51109;&#50640;&#49436; &#45436;&#51032;&#46120;): </p><pre class="programlisting">&lt;list name="carComponents" 
+        table="CarComponents"&gt;
+    &lt;key column="carId"/&gt;
+    &lt;list-index column="sortOrder"/&gt;
+    &lt;composite-element class="CarComponent"&gt;
+        &lt;property name="price"/&gt;
+        &lt;property name="type"/&gt;
+        &lt;property name="serialNumber" column="serialNum"/&gt;
+    &lt;/composite-element&gt;
+&lt;/list&gt;</pre></div>
+         <div class="sect2" lang="ko-KR">
+            <div class="titlepage">
+               <div>
+                  <div>
+                     <h3 class="title"><a name="collections-onetomany"></a>6.2.5. One-to-many &#50672;&#44288;&#46308;
+                     </h3>
+                  </div>
+               </div>
+            </div>
+            <p><span class="emphasis"><em>one to many &#50672;&#44288;</em></span>&#51008; &#51473;&#51116;&#54616;&#45716; &#53084;&#47113;&#49496; &#53580;&#51060;&#48660; &#50630;&#51060; foreign &#53412;&#47484; &#53685;&#54644; &#46160; &#44060;&#51032; &#53364;&#47000;&#49828;&#46308;&#51032; &#53580;&#51060;&#48660;&#46308;&#51012; &#50672;&#44208;&#49884;&#53416;&#45796;. &#51060; &#47588;&#54609;&#51008; &#53685;&#49345;&#51032; &#51088;&#48148; &#53084;&#47113;&#49496;&#46308;&#51032; &#50612;&#46500; &#51032;&#48120;&#47484; &#49345;&#49892;&#54620;&#45796;: 
+            </p>
+            <div class="itemizedlist">
+               <ul type="disc" compact>
+                  <li>
+                     <p>&#54252;&#54632;&#46108; &#50644;&#54000;&#54000; &#53364;&#47000;&#49828;&#51032; &#51064;&#49828;&#53556;&#49828;&#45716; &#44536; &#53084;&#47113;&#49496;&#51032; &#54616;&#45208; &#51060;&#49345;&#51032; &#51064;&#49828;&#53556;&#49828;&#50640; &#49549;&#54616;&#51648; &#50506;&#51012; &#49688; &#51080;&#45796; </p>
+                  </li>
+                  <li>
+                     <p>&#54252;&#54632;&#46108; &#50644;&#54000;&#54000; &#53364;&#47000;&#49828;&#51032; &#51064;&#49828;&#53556;&#49828;&#45716; &#53084;&#47113;&#49496; &#51064;&#45937;&#49828;&#51032; &#54616;&#45208; &#51060;&#49345;&#51032; &#44050;&#50640;&#49436; &#45208;&#53440;&#45208;&#51648; &#50506;&#51012; &#49688; &#51080;&#45796; </p>
+                  </li>
+               </ul>
+            </div>
+            <p><code class="literal">Product</code>&#47196;&#48512;&#53552; <code class="literal">Part</code>&#47196;&#51032; &#50672;&#44288;&#51008; foreign &#53412; &#52972;&#47100;&#44284; <code class="literal">Part</code> &#53580;&#51060;&#48660;&#50640; &#45824;&#54620; &#51064;&#45937;&#49828; &#52972;&#47100;&#51032; &#51316;&#51116;&#47484; &#54596;&#50836;&#47196; &#54620;&#45796;. <code class="literal">&lt;one-to-many&gt;</code> &#53468;&#44536;&#45716; &#51060;&#44163;&#51060; one to many &#50672;&#44288;&#51076;&#51012; &#45208;&#53440;&#45240;&#45796;. 
+            </p>
+            <div class="programlistingco"><pre class="programlisting">&lt;one-to-many 
+        class="ClassName"                                  <span class="co">(1)</span>
+        not-found="ignore|exception"                       <span class="co">(2)</span>
+        entity-name="EntityName"                           <span class="co">(3)</span>
+        node="element-name"
+        embed-xml="true|false"
+    /&gt;</pre><div class="calloutlist">
+                  <table border="0" summary="Callout list">
+                     <tr>
+                        <td width="5%" valign="top" align="left">
+                           <fo:inline xmlns:fo="http://www.w3.org/1999/XSL/Format" color="black" padding-top="0.1em" padding-bottom="0.1em" padding-start="0.2em" padding-end="0.2em" baseline-shift="0.1em" font-weight="bold" font-size="75%">(1)</fo:inline>
+                        </td>
+                        <td valign="top" align="left">
+                           <p><code class="literal">class</code> (&#54596;&#49688;): &#50672;&#44288;&#46108; &#53364;&#47000;&#49828;&#51032; &#51060;&#47492;. 
+                           </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td width="5%" valign="top" align="left">
+                           <fo:inline xmlns:fo="http://www.w3.org/1999/XSL/Format" color="black" padding-top="0.1em" padding-bottom="0.1em" padding-start="0.2em" padding-end="0.2em" baseline-shift="0.1em" font-weight="bold" font-size="75%">(2)</fo:inline>
+                        </td>
+                        <td valign="top" align="left">
+                           <p><code class="literal">not-found</code> (&#50741;&#49496; - &#46356;&#54260;&#53944;&#45716; <code class="literal">exception</code>): &#45572;&#46973;&#46108; &#54665;&#46308;&#51012; &#52280;&#51312;&#54616;&#45716; &#52880;&#49884;&#46108; &#49885;&#48324;&#51088;&#46308;&#51060; &#50612;&#46523;&#44172; &#52376;&#47532;&#46112; &#44163;&#51064;&#51648;&#47484; &#51648;&#51221;&#54620;&#45796;: <code class="literal">ignore</code>&#45716; &#45572;&#46973;&#46108; &#54620; &#54665;&#51012; &#54620; &#44060;&#51032; &#50672;&#44288;&#51004;&#47196; &#45796;&#47344; &#44163;&#51060;&#45796;. 
+                           </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td width="5%" valign="top" align="left">
+                           <fo:inline xmlns:fo="http://www.w3.org/1999/XSL/Format" color="black" padding-top="0.1em" padding-bottom="0.1em" padding-start="0.2em" padding-end="0.2em" baseline-shift="0.1em" font-weight="bold" font-size="75%">(3)</fo:inline>
+                        </td>
+                        <td valign="top" align="left">
+                           <p><code class="literal">entity-name</code> (optional): The entity name of the associated class, as an alternative to <code class="literal">class</code>. 
+                           </p>
+                        </td>
+                     </tr>
+                  </table>
+               </div>
+            </div>
+            <p><code class="literal">&lt;one-to-many&gt;</code> &#50836;&#49548;&#45716; &#50612;&#46500; &#52972;&#47100;&#46308;&#51012; &#49440;&#50616;&#54616;&#45716;&#45936; &#54596;&#50836;&#54616;&#51648; &#50506;&#51020;&#51012; &#51452;&#47785;&#54616;&#46972;. &#50612;&#46360;&#44032;&#50640; <code class="literal">table</code> &#51060;&#47492;&#51012; &#51648;&#51221;&#54616;&#45716; &#44163;&#46020; &#54596;&#49688;&#51201;&#51060;&#51648; &#50506;&#45796;. 
+            </p>
+            <p><span class="emphasis"><em>&#47588;&#50864; &#51473;&#50836;&#54620; &#45432;&#53944;</em></span>: &#47564;&#51068; <code class="literal">&lt;one-to-many&gt;</code> &#50672;&#44288;&#51032; foreign &#53412; &#52972;&#47100;&#51060; <code class="literal">NOT NULL</code>&#47196; &#49440;&#50616;&#46112; &#44221;&#50864;, &#45817;&#49888;&#51008; <code class="literal">&lt;key&gt;</code> &#47588;&#54609;&#51012; <code class="literal">not-null="true"</code>&#47196; &#49440;&#50616;&#54644;&#50556; &#54616;&#44144;&#45208; <code class="literal">inverse="true"</code>&#47196; &#47560;&#53356;&#46108; &#53084;&#47113;&#49496; &#47588;&#54609;&#51012; &#44032;&#51652; <span class="emphasis"><em>&#50577;&#48169;&#54693; &#50672;&#44288;&#51012; &#49324;&#50857;&#54644;&#50556; &#54620;&#45796;</em></span>. &#50577;&#48169;&#54693; &#50672;&#44288;&#46308;&#50640; &#45824;&#54620; &#45436;&#51032;&#45716; &#51060; &#51109;&#51032; &#46263;&#48512;&#48516;&#51012; &#48372;&#46972;. 
+            </p>
+            <p>&#51060; &#50696;&#51228;&#45716; name&#51004;&#47196; <code class="literal">Part</code> &#50644;&#54000;&#54000;&#46308;&#51012; &#44032;&#51652; map&#51012; &#48372;&#50668;&#51456;&#45796;(&#50668;&#44592;&#49436; <code class="literal">partName</code>&#51008; <code class="literal">Part</code>&#51032; &#50689;&#49549; &#54532;&#47196;&#54140;&#54000;&#51060;&#45796;). formula-&#44592;&#48152; index&#51032; &#49324;&#50857;&#51012; &#51452;&#47785;&#54616;&#46972;. 
+            </p><pre class="programlisting">&lt;map name="parts"
+        cascade="all"&gt;
+    &lt;key column="productId" not-null="true"/&gt;
+    &lt;map-key formula="partName"/&gt;
+    &lt;one-to-many class="Part"/&gt;
+&lt;/map&gt;</pre></div>
+      </div>
+      <div class="navfooter">
+         <hr>
+         <table width="100%" summary="Navigation footer">
+            <tr>
+               <td width="40%" align="left"><a accesskey="p" href="collections.html">&#51060;&#51204;</a>&nbsp;
+               </td>
+               <td width="20%" align="center"><a accesskey="u" href="collections.html">&#50948;&#47196;</a></td>
+               <td width="40%" align="right">&nbsp;<a accesskey="n" href="collections-advancedmappings.html">&#45796;&#51020;</a></td>
+            </tr>
+            <tr>
+               <td width="40%" align="left" valign="top">6&#51109;. &#53084;&#47113;&#49496; &#47588;&#54609;&nbsp;</td>
+               <td width="20%" align="center"><a accesskey="h" href="index.html">&#52376;&#51020;&#51004;&#47196;</a></td>
+               <td width="40%" align="right" valign="top">&nbsp;6.3. &#44060;&#49440;&#46108; &#53084;&#47113;&#49496; &#47588;&#54609;&#46308;</td>
+            </tr>
+         </table>
+      </div>
+   </body>
+</html>

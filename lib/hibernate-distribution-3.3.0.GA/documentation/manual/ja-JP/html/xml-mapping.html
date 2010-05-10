@@ -1,0 +1,138 @@
+<html>
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   
+      <title>18.2. XML&#12510;&#12483;&#12500;&#12531;&#12464;&#12398;&#12513;&#12479;&#12487;&#12540;&#12479;</title>
+      <link rel="stylesheet" href="css/html.css" type="text/css">
+      <meta name="generator" content="DocBook XSL Stylesheets V1.72.0">
+      <link rel="start" href="index.html" title="HIBERNATE - Relational Persistence for Idiomatic Java">
+      <link rel="up" href="xml.html" title="&#31532;18&#31456; XML&#12510;&#12483;&#12500;&#12531;&#12464;">
+      <link rel="prev" href="xml.html" title="&#31532;18&#31456; XML&#12510;&#12483;&#12500;&#12531;&#12464;">
+      <link rel="next" href="xml-manipulation.html" title="18.3. XML&#12487;&#12540;&#12479;&#12434;&#25201;&#12358;">
+   </head>
+   <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+      <div class="navheader">
+         <table width="100%" summary="Navigation header">
+            <tr>
+               <th colspan="3" align="center">18.2. XML&#12510;&#12483;&#12500;&#12531;&#12464;&#12398;&#12513;&#12479;&#12487;&#12540;&#12479;</th>
+            </tr>
+            <tr>
+               <td width="20%" align="left"><a accesskey="p" href="xml.html">&#21069;&#12398;&#12506;&#12540;&#12472;</a>&nbsp;
+               </td>
+               <th width="60%" align="center">&#31532;18&#31456; XML&#12510;&#12483;&#12500;&#12531;&#12464;</th>
+               <td width="20%" align="right">&nbsp;<a accesskey="n" href="xml-manipulation.html">&#27425;&#12398;&#12506;&#12540;&#12472;</a></td>
+            </tr>
+         </table>
+         <hr>
+      </div>
+      <div class="sect1" lang="ja-JP">
+         <div class="titlepage">
+            <div>
+               <div>
+                  <h2 class="title" style="clear: both"><a name="xml-mapping"></a>18.2. XML&#12510;&#12483;&#12500;&#12531;&#12464;&#12398;&#12513;&#12479;&#12487;&#12540;&#12479;
+                  </h2>
+               </div>
+            </div>
+         </div>
+         <p>&#22810;&#12367;&#12398;Hibernate&#12398;&#12510;&#12483;&#12500;&#12531;&#12464;&#35201;&#32032;&#12399;&#12288;<code class="literal">node</code>&#12288;&#23646;&#24615;&#12364;&#20351;&#29992;&#12391;&#12365;&#12414;&#12377;&#12290; &#12371;&#12428;&#12395;&#12424;&#12426;XML&#23646;&#24615;&#12398;&#21517;&#21069;&#12420;&#12503;&#12525;&#12497;&#12486;&#12451;&#12420;&#12456;&#12531;&#12486;&#12451;&#12486;&#12451;&#12487;&#12540;&#12479;&#12434;&#20445;&#25345;&#12377;&#12427;&#35201;&#32032;&#12434;&#25351;&#23450;&#12391;&#12365;&#12414;&#12377;&#12290; <code class="literal">node</code>&#12288;&#23646;&#24615;&#12398;&#12501;&#12457;&#12540;&#12510;&#12483;&#12488;&#12399;&#20197;&#19979;&#12398;&#20013;&#12398;1&#12388;&#12391;&#12394;&#12369;&#12428;&#12400;&#12394;&#12426;&#12414;&#12379;&#12435;&#12290;&#65306; 
+         </p>
+         <div class="itemizedlist">
+            <ul type="disc" compact>
+               <li>
+                  <p><code class="literal">"element-name"</code> - &#25351;&#23450;&#12375;&#12383;XML&#35201;&#32032;&#12408;&#12510;&#12483;&#12500;&#12531;&#12464;&#12375;&#12414;&#12377;
+                  </p>
+               </li>
+               <li>
+                  <p><code class="literal">"@attribute-name"</code> - &#25351;&#23450;&#12375;&#12383;XML&#23646;&#24615;&#12408;&#12510;&#12483;&#12500;&#12531;&#12464;&#12375;&#12414;&#12377;
+                  </p>
+               </li>
+               <li>
+                  <p><code class="literal">"."</code> -&#12288;&#35242;&#35201;&#32032;&#12408;&#12510;&#12483;&#12500;&#12531;&#12464;&#12375;&#12414;&#12377;
+                  </p>
+               </li>
+               <li>
+                  <p><code class="literal">"element-name/@attribute-name"</code> - &#25351;&#23450;&#12375;&#12383;&#12456;&#12524;&#12513;&#12531;&#12488;&#12398;&#25351;&#23450;&#12375;&#12383;&#23646;&#24615;&#12408;&#12510;&#12483;&#12500;&#12531;&#12464;&#12375;&#12414;&#12377; 
+                  </p>
+               </li>
+            </ul>
+         </div>
+         <p>&#12467;&#12524;&#12463;&#12471;&#12519;&#12531;&#12392;&#21336;&#19968;&#12398;&#20516;&#12398;&#38306;&#36899;&#12395;&#23550;&#12375;&#12390;&#12289; &#12362;&#12414;&#12369;&#12398; <code class="literal">embed-xml</code> &#23646;&#24615;&#12364;&#12354;&#12426;&#12414;&#12377;&#12290; &#12487;&#12501;&#12457;&#12523;&#12488;&#12398; <code class="literal">embed-xml="true"</code> &#12392;&#35373;&#23450;&#12375;&#12383;&#22580;&#21512;&#12289; &#38306;&#36899;&#12377;&#12427;&#12456;&#12531;&#12486;&#12451;&#12486;&#12451;(&#20516;&#22411;&#12398;&#12467;&#12524;&#12463;&#12471;&#12519;&#12531;)&#12398;XML&#12484;&#12522;&#12540;&#12399;&#12289; &#30452;&#25509;&#38306;&#36899;&#12434;&#25152;&#26377;&#12377;&#12427;&#12456;&#12531;&#12486;&#12451;&#12486;&#12451;&#12398;XML&#12484;&#12522;&#12540;&#20869;&#12395;&#22475;&#12417;&#36796;&#12414;&#12428;&#12414;&#12377;&#12290; &#21453;&#23550;&#12395;&#12289;<code class="literal">embed-xml="false"</code> &#12392;&#35373;&#23450;&#12375;&#12383;&#22580;&#21512;&#12289; &#21442;&#29031;&#12373;&#12428;&#12427;&#35672;&#21029;&#23376;&#12398;&#20516;&#12384;&#12369;&#12364;&#22810;&#37325;&#24230;&#65297;&#20596;&#12398;&#38306;&#36899;&#12395;&#23550;&#12377;&#12427;XML&#12395;&#29694;&#12428;&#12289; &#21336;&#32020;&#12395;&#12467;&#12524;&#12463;&#12471;&#12519;&#12531;&#12399;&#12414;&#12387;&#12383;&#12367;&#29694;&#12428;&#12394;&#12367;&#12394;&#12426;&#12414;&#12377;&#12290; 
+         </p>
+         <p>&#12354;&#12414;&#12426;&#12395;&#22810;&#12367;&#12398;&#38306;&#36899;&#12395;&#23550;&#12375;&#12390; <code class="literal">embed-xml="true"</code> &#12392;&#12375;&#12383;&#12414;&#12414;&#12395;&#12377;&#12427;&#12398;&#12399;&#27880;&#24847;&#12377;&#12409;&#12365;&#12391;&#12377;&#12290; XML&#12399;&#24490;&#29872;&#12434;&#12358;&#12414;&#12367;&#25201;&#12360;&#12414;&#12379;&#12435;&#12290; 
+         </p><pre class="programlisting">&lt;class name="Customer" 
+        table="CUSTOMER" 
+        node="customer"&gt;
+        
+    &lt;id name="id" 
+            column="CUST_ID" 
+            node="@id"/&gt;
+            
+    &lt;map name="accounts" 
+            node="." 
+            embed-xml="true"&gt;
+        &lt;key column="CUSTOMER_ID" 
+                not-null="true"/&gt;
+        &lt;map-key column="SHORT_DESC" 
+                node="@short-desc" 
+                type="string"/&gt;
+        &lt;one-to-many entity-name="Account"
+                embed-xml="false" 
+                node="account"/&gt;
+    &lt;/map&gt;
+    
+    &lt;component name="name" 
+            node="name"&gt;
+        &lt;property name="firstName" 
+                node="first-name"/&gt;
+        &lt;property name="initial" 
+                node="initial"/&gt;
+        &lt;property name="lastName" 
+                node="last-name"/&gt;
+    &lt;/component&gt;
+    
+    ...
+    
+&lt;/class&gt;</pre><p>&#12371;&#12398;&#20363;&#12391;&#12399;&#12289;&#23455;&#38555;&#12398;account&#12398;&#12487;&#12540;&#12479;&#12391;&#12399;&#12394;&#12367;&#12289; account&#12398;id&#12398;&#12467;&#12524;&#12463;&#12471;&#12519;&#12531;&#12434;&#22475;&#12417;&#36796;&#12416;&#12371;&#12392;&#12395;&#12375;&#12414;&#12375;&#12383;&#12290; &#32154;&#12365;&#12398;HQL&#12463;&#12456;&#12522;&#12391;&#12377;&#65306; </p><pre class="programlisting">from Customer c left join fetch c.accounts where c.lastName like :lastName</pre><p>&#12371;&#12398;&#12424;&#12358;&#12394;&#12487;&#12540;&#12479;&#12475;&#12483;&#12488;&#12434;&#36820;&#12377;&#12391;&#12375;&#12423;&#12358; </p><pre class="programlisting">&lt;customer id="123456789"&gt;
+    &lt;account short-desc="Savings"&gt;987632567&lt;/account&gt;
+    &lt;account short-desc="Credit Card"&gt;985612323&lt;/account&gt;
+    &lt;name&gt;
+        &lt;first-name&gt;Gavin&lt;/first-name&gt;
+        &lt;initial&gt;A&lt;/initial&gt;
+        &lt;last-name&gt;King&lt;/last-name&gt;
+    &lt;/name&gt;
+    ...
+&lt;/customer&gt;</pre><p><code class="literal">&lt;one-to-many&gt;</code> &#12510;&#12483;&#12500;&#12531;&#12464;&#12391; <code class="literal">embed-xml="true"</code> &#12392;&#35373;&#23450;&#12375;&#12383;&#22580;&#21512;&#12289; &#12487;&#12540;&#12479;&#12399;&#12371;&#12398;&#12424;&#12358;&#12395;&#12394;&#12427;&#12391;&#12375;&#12423;&#12358;&#12290; 
+         </p><pre class="programlisting">&lt;customer id="123456789"&gt;
+    &lt;account id="987632567" short-desc="Savings"&gt;
+        &lt;customer id="123456789"/&gt;
+        &lt;balance&gt;100.29&lt;/balance&gt;
+    &lt;/account&gt;
+    &lt;account id="985612323" short-desc="Credit Card"&gt;
+        &lt;customer id="123456789"/&gt;
+        &lt;balance&gt;-2370.34&lt;/balance&gt;
+    &lt;/account&gt;
+    &lt;name&gt;
+        &lt;first-name&gt;Gavin&lt;/first-name&gt;
+        &lt;initial&gt;A&lt;/initial&gt;
+        &lt;last-name&gt;King&lt;/last-name&gt;
+    &lt;/name&gt;
+    ...
+&lt;/customer&gt;</pre></div>
+      <div class="navfooter">
+         <hr>
+         <table width="100%" summary="Navigation footer">
+            <tr>
+               <td width="40%" align="left"><a accesskey="p" href="xml.html">&#21069;&#12398;&#12506;&#12540;&#12472;</a>&nbsp;
+               </td>
+               <td width="20%" align="center"><a accesskey="u" href="xml.html">&#19978;&#12395;&#25147;&#12427;</a></td>
+               <td width="40%" align="right">&nbsp;<a accesskey="n" href="xml-manipulation.html">&#27425;&#12398;&#12506;&#12540;&#12472;</a></td>
+            </tr>
+            <tr>
+               <td width="40%" align="left" valign="top">&#31532;18&#31456; XML&#12510;&#12483;&#12500;&#12531;&#12464;&nbsp;</td>
+               <td width="20%" align="center"><a accesskey="h" href="index.html">&#12507;&#12540;&#12512;</a></td>
+               <td width="40%" align="right" valign="top">&nbsp;18.3. XML&#12487;&#12540;&#12479;&#12434;&#25201;&#12358;</td>
+            </tr>
+         </table>
+      </div>
+   </body>
+</html>

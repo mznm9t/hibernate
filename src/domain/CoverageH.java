@@ -27,7 +27,7 @@ public class CoverageH implements interfaces.Coverage , java.io.Serializable {
 
     // Fields    
 
-	 private ID ID;
+	 private ID id;
      private String entityName;
      private Story story;
      private Publication publication;
@@ -109,12 +109,12 @@ public class CoverageH implements interfaces.Coverage , java.io.Serializable {
     // Property accessors
     
     public ID getID() {
-		return ID;
+		return id;
 	}
 
 
 	public void setID(ID iD) {
-		ID = iD;
+		id = iD;
 	}
 	
     public String getEntityName() {

@@ -1,0 +1,62 @@
+<html>
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   
+      <title>15.5. &#46041;&#51201;&#51064; &#50672;&#44288; &#54168;&#52845;</title>
+      <link rel="stylesheet" href="css/html.css" type="text/css">
+      <meta name="generator" content="DocBook XSL Stylesheets V1.72.0">
+      <link rel="start" href="index.html" title="HIBERNATE - &#44060;&#49457;&#51080;&#45716; &#51088;&#48148;&#47484; &#50948;&#54620; &#44288;&#44228; &#50689;&#49549;">
+      <link rel="up" href="querycriteria.html" title="15&#51109;. Criteria &#51656;&#51032;&#46308;">
+      <link rel="prev" href="querycriteria-associations.html" title="15.4. &#50672;&#44288;&#46308;">
+      <link rel="next" href="querycriteria-examples.html" title="15.6. &#50696;&#51228; &#51656;&#51032;&#46308;">
+   </head>
+   <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+      <div class="navheader">
+         <table width="100%" summary="Navigation header">
+            <tr>
+               <th colspan="3" align="center">15.5. &#46041;&#51201;&#51064; &#50672;&#44288; &#54168;&#52845;</th>
+            </tr>
+            <tr>
+               <td width="20%" align="left"><a accesskey="p" href="querycriteria-associations.html">&#51060;&#51204;</a>&nbsp;
+               </td>
+               <th width="60%" align="center">15&#51109;. Criteria &#51656;&#51032;&#46308;</th>
+               <td width="20%" align="right">&nbsp;<a accesskey="n" href="querycriteria-examples.html">&#45796;&#51020;</a></td>
+            </tr>
+         </table>
+         <hr>
+      </div>
+      <div class="sect1" lang="ko-KR">
+         <div class="titlepage">
+            <div>
+               <div>
+                  <h2 class="title" style="clear: both"><a name="querycriteria-dynamicfetching"></a>15.5. &#46041;&#51201;&#51064; &#50672;&#44288; &#54168;&#52845;
+                  </h2>
+               </div>
+            </div>
+         </div>
+         <p>&#45817;&#49888;&#51008; <code class="literal">setFetchMode()</code>&#47484; &#49324;&#50857;&#54616;&#50668; &#49892;&#54665; &#49884;&#50640; &#50672;&#44288; &#54168;&#52845; &#51032;&#48120;&#47484; &#51648;&#51221;&#54624; &#49688; &#51080;&#45796;. 
+         </p><pre class="programlisting">List cats = sess.createCriteria(Cat.class)
+    .add( Restrictions.like("name", "Fritz%") )
+    .setFetchMode("mate", FetchMode.EAGER)
+    .setFetchMode("kittens", FetchMode.EAGER)
+    .list();</pre><p>&#51060; &#51656;&#51032;&#45716; outer &#51312;&#51064;&#51004;&#47196; <code class="literal">mate</code>&#50752; <code class="literal">kittens</code> &#47784;&#46160;&#47484; &#54168;&#52824;&#54624; &#44163;&#51060;&#45796;. &#52628;&#44032; &#51221;&#48372;&#45716; <a href="performance.html#performance-fetching" title="19.1. &#54168;&#52845; &#48169;&#46020;&#46308;">19.1&#51208;. &#8220;&#54168;&#52845; &#48169;&#46020;&#46308;&#8221;</a>&#51012; &#48372;&#46972;. 
+         </p>
+      </div>
+      <div class="navfooter">
+         <hr>
+         <table width="100%" summary="Navigation footer">
+            <tr>
+               <td width="40%" align="left"><a accesskey="p" href="querycriteria-associations.html">&#51060;&#51204;</a>&nbsp;
+               </td>
+               <td width="20%" align="center"><a accesskey="u" href="querycriteria.html">&#50948;&#47196;</a></td>
+               <td width="40%" align="right">&nbsp;<a accesskey="n" href="querycriteria-examples.html">&#45796;&#51020;</a></td>
+            </tr>
+            <tr>
+               <td width="40%" align="left" valign="top">15.4. &#50672;&#44288;&#46308;&nbsp;</td>
+               <td width="20%" align="center"><a accesskey="h" href="index.html">&#52376;&#51020;&#51004;&#47196;</a></td>
+               <td width="40%" align="right" valign="top">&nbsp;15.6. &#50696;&#51228; &#51656;&#51032;&#46308;</td>
+            </tr>
+         </table>
+      </div>
+   </body>
+</html>

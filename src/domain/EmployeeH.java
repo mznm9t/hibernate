@@ -12,7 +12,7 @@ public class EmployeeH extends PersonH implements interfaces.Employee, java.io.S
 
 
     // Fields
-	 private ID ID;
+	 private ID id;
      private String entityName;
      private Boolean current;
 
@@ -32,12 +32,12 @@ public class EmployeeH extends PersonH implements interfaces.Employee, java.io.S
 
 
     public ID getID() {
-		return ID;
+		return id;
 	}
 
 
 	public void setID(ID iD) {
-		ID = iD;
+		id = iD;
 	}
 
     public String getEntityName() {

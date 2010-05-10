@@ -25,14 +25,6 @@ public class GenericBuilderTest {
 	}
 	
 	@Test
-	public void create(){
-		 ContactableH c=(ContactableH) aContactable().build();	
-		 
-		 PersonH p=(PersonH) aPerson().build();
-	}
-
-	
-	@Test
 	public void simpleBuilderWithSuperClass(){
 		 String entityName = "Contactable";
 		 String notes = "No notes";

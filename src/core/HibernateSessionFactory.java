@@ -26,7 +26,8 @@ public class HibernateSessionFactory {
     private static org.hibernate.SessionFactory sessionFactory;
     private static String configFile = CONFIG_FILE_LOCATION;
 
-	static {
+    
+	private static void initSessionFactory(){
     	try {
 			configuration.configure(configFile);
 			sessionFactory = configuration.buildSessionFactory();
@@ -36,6 +37,7 @@ public class HibernateSessionFactory {
 			e.printStackTrace();
 		}
     }
+	
     private HibernateSessionFactory() {
     }
 	
@@ -47,6 +49,9 @@ public class HibernateSessionFactory {
      *  @throws HibernateException
      */
     public static Session getSession() throws HibernateException {
+    	
+    	if(sessionFactory==null) initSessionFactory();
+    	
         Session session = (Session) threadLocal.get();
 
 		if (session == null || !session.isOpen()) {

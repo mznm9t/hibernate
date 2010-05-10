@@ -1,0 +1,804 @@
+<html>
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   
+      <title>3.4.&nbsp;&#21487;&#36873;&#30340;&#37197;&#32622;&#23646;&#24615;</title>
+      <link rel="stylesheet" href="css/html.css" type="text/css">
+      <meta name="generator" content="DocBook XSL Stylesheets V1.72.0">
+      <link rel="start" href="index.html" title="HIBERNATE - &#31526;&#21512;Java&#20064;&#24815;&#30340;&#20851;&#31995;&#25968;&#25454;&#24211;&#25345;&#20037;&#21270;">
+      <link rel="up" href="session-configuration.html" title="&#31532;&nbsp;3&nbsp;&#31456;&nbsp;&#37197;&#32622;">
+      <link rel="prev" href="configuration-hibernatejdbc.html" title="3.3.&nbsp;JDBC&#36830;&#25509;">
+      <link rel="next" href="configuration-logging.html" title="3.5.&nbsp;&#26085;&#24535;">
+   </head>
+   <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+      <div class="navheader">
+         <table width="100%" summary="Navigation header">
+            <tr>
+               <th colspan="3" align="center">3.4.&nbsp;&#21487;&#36873;&#30340;&#37197;&#32622;&#23646;&#24615;</th>
+            </tr>
+            <tr>
+               <td width="20%" align="left"><a accesskey="p" href="configuration-hibernatejdbc.html">&#19978;&#19968;&#39029;</a>&nbsp;
+               </td>
+               <th width="60%" align="center">&#31532;&nbsp;3&nbsp;&#31456;&nbsp;&#37197;&#32622;</th>
+               <td width="20%" align="right">&nbsp;<a accesskey="n" href="configuration-logging.html">&#19979;&#19968;&#39029;</a></td>
+            </tr>
+         </table>
+         <hr>
+      </div>
+      <div class="sect1" lang="zh-CN">
+         <div class="titlepage">
+            <div>
+               <div>
+                  <h2 class="title" style="clear: both"><a name="configuration-optional"></a>3.4.&nbsp;&#21487;&#36873;&#30340;&#37197;&#32622;&#23646;&#24615;
+                  </h2>
+               </div>
+            </div>
+         </div>
+         <p>&#26377;&#22823;&#37327;&#23646;&#24615;&#33021;&#29992;&#26469;&#25511;&#21046;Hibernate&#22312;&#36816;&#34892;&#26399;&#30340;&#34892;&#20026;. &#23427;&#20204;&#37117;&#26159;&#21487;&#36873;&#30340;, &#24182;&#25317;&#26377;&#36866;&#24403;&#30340;&#40664;&#35748;&#20540;. </p>
+         <p><span class="emphasis"><em>Warning: some of these properties are "system-level" only.</em></span> System-level properties can be set only via <code class="literal">java -Dproperty=value</code> or <code class="filename">hibernate.properties</code>. They may <span class="emphasis"><em>not</em></span> be set by the other techniques described above. 
+         </p>
+         <div class="table"><a name="configuration-optional-properties"></a><p class="title"><b>&#34920;&nbsp;3.3.&nbsp;Hibernate&#37197;&#32622;&#23646;&#24615;</b></p>
+            <div class="table-contents">
+               <table summary="Hibernate&#37197;&#32622;&#23646;&#24615;" border="1">
+                  <colgroup>
+                     <col>
+                     <col>
+                  </colgroup>
+                  <thead>
+                     <tr>
+                        <th>&#23646;&#24615;&#21517;</th>
+                        <th>&#29992;&#36884;</th>
+                     </tr>
+                  </thead>
+                  <tbody>
+                     <tr>
+                        <td>
+                                                       <span class="property">hibernate.dialect</span>
+                                                   
+                        </td>
+                        <td>The classname of a Hibernate <code class="classname">org.hibernate.dialect.Dialect</code> which allows Hibernate to generate SQL optimized for a particular relational database. 
+                           <p><span class="strong"><strong>eg.</strong></span> <code class="literal">full.classname.of.Dialect</code> 
+                           </p>
+                                                       
+                           <p>In most cases Hibernate will actually be able to chose the correct <code class="classname">org.hibernate.dialect.Dialect</code> implementation to use based on the <code class="literal">JDBC metadata</code> returned by the JDBC driver. 
+                           </p>
+                                                   
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                                                       <span class="property">hibernate.show_sql</span>
+                                                   
+                        </td>
+                        <td>Write all SQL statements to console. This is an alternative to setting the log category <code class="literal">org.hibernate.SQL</code> to <code class="literal">debug</code>. 
+                           <p><span class="strong"><strong>eg.</strong></span> <code class="literal">true</code> | <code class="literal">false</code> 
+                           </p>
+                                                   
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                                                       <span class="property">hibernate.format_sql</span>
+                                                   
+                        </td>
+                        <td>Pretty print the SQL in the log and console. 
+                           <p><span class="strong"><strong>eg.</strong></span> <code class="literal">true</code> | <code class="literal">false</code> 
+                           </p>
+                                                   
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                                                       <span class="property">hibernate.default_schema</span>
+                                                   
+                        </td>
+                        <td>Qualify unqualified table names with the given schema/tablespace in generated SQL. 
+                           <p><span class="strong"><strong>eg.</strong></span> <code class="literal">SCHEMA_NAME</code> 
+                           </p>
+                                                   
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                                                       <span class="property">hibernate.default_catalog</span>
+                                                   
+                        </td>
+                        <td>Qualify unqualified table names with the given catalog in generated SQL. 
+                           <p><span class="strong"><strong>eg.</strong></span> <code class="literal">CATALOG_NAME</code> 
+                           </p>
+                                                   
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                                                       <span class="property">hibernate.session_factory_name</span>
+                                                   
+                        </td>
+                        <td>The <code class="interfacename">org.hibernate.SessionFactory</code> will be automatically bound to this name in JNDI after it has been created. 
+                           <p><span class="strong"><strong>eg.</strong></span> <code class="literal">jndi/composite/name</code> 
+                           </p>
+                                                   
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                                                       <span class="property">hibernate.max_fetch_depth</span>
+                                                   
+                        </td>
+                        <td>Set a maximum "depth" for the outer join fetch tree for single-ended associations (one-to-one, many-to-one). A <code class="literal">0</code> disables default outer join fetching. 
+                           <p><span class="strong"><strong>&#21462;&#20540;</strong></span> &#24314;&#35758;&#22312;<code class="literal">0</code>&#21040;<code class="literal">3</code>&#20043;&#38388;&#21462;&#20540; 
+                           </p>
+                                                   
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                                                       <span class="property">hibernate.default_batch_fetch_size</span>
+                                                   
+                        </td>
+                        <td>Set a default size for Hibernate batch fetching of associations. 
+                           <p><span class="strong"><strong>&#21462;&#20540;</strong></span> &#24314;&#35758;&#30340;&#21462;&#20540;&#20026;<code class="literal">4</code>, <code class="literal">8</code>, &#21644;<code class="literal">16</code> 
+                           </p>
+                                                   
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                                                       <span class="property">hibernate.default_entity_mode</span>
+                                                   
+                        </td>
+                        <td>Set a default mode for entity representation for all sessions opened from this <code class="literal">SessionFactory</code> 
+                           <p><span class="strong"><strong>&#21462;&#20540;</strong></span><code class="literal">dynamic-map</code>, <code class="literal">dom4j</code>, <code class="literal">pojo</code> 
+                           </p>
+                                                   
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                                                       <span class="property">hibernate.order_updates</span>
+                                                   
+                        </td>
+                        <td>Force Hibernate to order SQL updates by the primary key value of the items being updated. This will result in fewer transaction
+                           deadlocks in highly concurrent systems. 
+                           <p><span class="strong"><strong>eg.</strong></span> <code class="literal">true</code> | <code class="literal">false</code> 
+                           </p>
+                                                   
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                                                       <span class="property">hibernate.generate_statistics</span>
+                                                   
+                        </td>
+                        <td>If enabled, Hibernate will collect statistics useful for performance tuning. 
+                           <p><span class="strong"><strong>eg.</strong></span> <code class="literal">true</code> | <code class="literal">false</code> 
+                           </p>
+                                                   
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                                                       <span class="property">hibernate.use_identifer_rollback</span>
+                                                   
+                        </td>
+                        <td>If enabled, generated identifier properties will be reset to default values when objects are deleted. 
+                           <p><span class="strong"><strong>eg.</strong></span> <code class="literal">true</code> | <code class="literal">false</code> 
+                           </p>
+                                                   
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                                                       <span class="property">hibernate.use_sql_comments</span>
+                                                   
+                        </td>
+                        <td>If turned on, Hibernate will generate comments inside the SQL, for easier debugging, defaults to <code class="literal">false</code>. 
+                           <p><span class="strong"><strong>eg.</strong></span> <code class="literal">true</code> | <code class="literal">false</code> 
+                           </p>
+                                                   
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </div>
+         </div><br class="table-break"><div class="table"><a name="configuration-jdbc-properties"></a><p class="title"><b>&#34920;&nbsp;3.4.&nbsp;Hibernate JDBC&#21644;&#36830;&#25509;(connection)&#23646;&#24615;</b></p>
+            <div class="table-contents">
+               <table summary="Hibernate JDBC&#21644;&#36830;&#25509;(connection)&#23646;&#24615;" border="1">
+                  <colgroup>
+                     <col>
+                     <col>
+                  </colgroup>
+                  <thead>
+                     <tr>
+                        <th>&#23646;&#24615;&#21517;</th>
+                        <th>&#29992;&#36884;</th>
+                     </tr>
+                  </thead>
+                  <tbody>
+                     <tr>
+                        <td>
+                                                       <span class="property">hibernate.jdbc.fetch_size</span>
+                                                   
+                        </td>
+                        <td>A non-zero value determines the JDBC fetch size (calls <code class="literal">Statement.setFetchSize()</code>). 
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                                                       <span class="property">hibernate.jdbc.batch_size</span>
+                                                   
+                        </td>
+                        <td>A non-zero value enables use of JDBC2 batch updates by Hibernate. 
+                           <p><span class="strong"><strong>&#21462;&#20540;</strong></span> &#24314;&#35758;&#21462;<code class="literal">5</code>&#21040;<code class="literal">30</code>&#20043;&#38388;&#30340;&#20540; 
+                           </p>
+                                                   
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                                                       <span class="property">hibernate.jdbc.batch_versioned_data</span>
+                                                   
+                        </td>
+                        <td>Set this property to <code class="literal">true</code> if your JDBC driver returns correct row counts from <code class="literal">executeBatch()</code> (it is usually safe to turn this option on). Hibernate will then use batched DML for automatically versioned data. Defaults
+                           to <code class="literal">false</code>. 
+                           <p><span class="strong"><strong>eg.</strong></span> <code class="literal">true</code> | <code class="literal">false</code> 
+                           </p>
+                                                   
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                                                       <span class="property">hibernate.jdbc.factory_class</span>
+                                                   
+                        </td>
+                        <td>Select a custom <code class="interfacename">org.hibernate.jdbc.Batcher</code>. Most applications will not need this configuration property. 
+                           <p><span class="strong"><strong>eg.</strong></span> <code class="literal">classname.of.BatcherFactory</code> 
+                           </p>
+                                                   
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                                                       <span class="property">hibernate.jdbc.use_scrollable_resultset</span>
+                                                   
+                        </td>
+                        <td>Enables use of JDBC2 scrollable resultsets by Hibernate. This property is only necessary when using user supplied JDBC connections,
+                           Hibernate uses connection metadata otherwise. 
+                           <p><span class="strong"><strong>eg.</strong></span> <code class="literal">true</code> | <code class="literal">false</code> 
+                           </p>
+                                                   
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                                                       <span class="property">hibernate.jdbc.use_streams_for_binary</span>
+                                                   
+                        </td>
+                        <td>Use streams when writing/reading <code class="literal">binary</code> or <code class="literal">serializable</code> types to/from JDBC. <span class="emphasis"><em>*system-level property*</em></span> 
+                           <p><span class="strong"><strong>eg.</strong></span> <code class="literal">true</code> | <code class="literal">false</code> 
+                           </p>
+                                                   
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                                                       <span class="property">hibernate.jdbc.use_get_generated_keys</span>
+                                                   
+                        </td>
+                        <td>Enable use of JDBC3 <code class="literal">PreparedStatement.getGeneratedKeys()</code> to retrieve natively generated keys after insert. Requires JDBC3+ driver and JRE1.4+, set to false if your driver has problems
+                           with the Hibernate identifier generators. By default, tries to determine the driver capabilities using connection metadata.
+                           
+                           <p><span class="strong"><strong>eg.</strong></span> <code class="literal">true|false</code> 
+                           </p>
+                                                   
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                                                       <span class="property">hibernate.connection.provider_class</span>
+                                                   
+                        </td>
+                        <td>The classname of a custom <code class="interfacename">org.hibernate.connection.ConnectionProvider</code> which provides JDBC connections to Hibernate. 
+                           <p><span class="strong"><strong>eg.</strong></span> <code class="literal">classname.of.ConnectionProvider</code> 
+                           </p>
+                                                   
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                                                   <span class="property">hibernate.connection.isolation</span>
+                                               
+                        </td>
+                        <td>Set the JDBC transaction isolation level. Check <code class="interfacename">java.sql.Connection</code> for meaningful values but note that most databases do not support all isolation levels and some define additional, non-standard
+                           isolations. 
+                           <p><span class="strong"><strong>eg.</strong></span> <code class="literal">1, 2, 4, 8</code> 
+                           </p>
+                                               
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                                                       <span class="property">hibernate.connection.autocommit</span>
+                                                   
+                        </td>
+                        <td>Enables autocommit for JDBC pooled connections (not recommended). 
+                           <p><span class="strong"><strong>eg.</strong></span> <code class="literal">true</code> | <code class="literal">false</code> 
+                           </p>
+                                                   
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                                                       <span class="property">hibernate.connection.release_mode</span>
+                                                   
+                        </td>
+                        <td>Specify when Hibernate should release JDBC connections. By default, a JDBC connection is held until the session is explicitly
+                           closed or disconnected. For an application server JTA datasource, you should use <code class="literal">after_statement</code> to aggressively release connections after every JDBC call. For a non-JTA connection, it often makes sense to release the
+                           connection at the end of each transaction, by using <code class="literal">after_transaction</code>. <code class="literal">auto</code> will choose <code class="literal">after_statement</code> for the JTA and CMT transaction strategies and <code class="literal">after_transaction</code> for the JDBC transaction strategy. 
+                           <p><span class="strong"><strong>eg.</strong></span> <code class="literal">auto</code> (default) | <code class="literal">on_close</code> | <code class="literal">after_transaction</code> | <code class="literal">after_statement</code> 
+                           </p>
+                                                       
+                           <p>Note that this setting only affects <code class="literal">Session</code>s returned from <code class="literal">SessionFactory.openSession</code>. For <code class="literal">Session</code>s obtained through <code class="literal">SessionFactory.getCurrentSession</code>, the <code class="literal">CurrentSessionContext</code> implementation configured for use controls the connection release mode for those <code class="literal">Session</code>s. See <a href="architecture-current-session.html" title="2.5.&nbsp;&#19978;&#19979;&#25991;&#30456;&#20851;&#30340;&#65288;Contextual&#65289;Session">&#31532;&nbsp;2.5&nbsp;&#33410; &#8220;&#19978;&#19979;&#25991;&#30456;&#20851;&#30340;&#65288;Contextual&#65289;Session&#8221;</a> 
+                           </p>
+                                                   
+                        </td>
+                     </tr>
+                     <tr>
+                        <td><span class="property">hibernate.connection.</span><span class="emphasis"><em>&lt;propertyName&gt;</em></span> 
+                        </td>
+                        <td>Pass the JDBC property <span class="emphasis"><em>&lt;propertyName&gt;</em></span> to <code class="literal">DriverManager.getConnection()</code>. 
+                        </td>
+                     </tr>
+                     <tr>
+                        <td><span class="property">hibernate.jndi.</span><span class="emphasis"><em>&lt;propertyName&gt;</em></span> 
+                        </td>
+                        <td>Pass the property <span class="emphasis"><em>&lt;propertyName&gt;</em></span> to the JNDI <code class="literal">InitialContextFactory</code>. 
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </div>
+         </div><br class="table-break"><div class="table"><a name="configuration-cache-properties"></a><p class="title"><b>&#34920;&nbsp;3.5.&nbsp;Hibernate&#32531;&#23384;&#23646;&#24615;</b></p>
+            <div class="table-contents">
+               <table summary="Hibernate&#32531;&#23384;&#23646;&#24615;" border="1">
+                  <colgroup>
+                     <col>
+                     <col>
+                  </colgroup>
+                  <thead>
+                     <tr>
+                        <th>&#23646;&#24615;&#21517;</th>
+                        <th>&#29992;&#36884;</th>
+                     </tr>
+                  </thead>
+                  <tbody>
+                     <tr>
+                        <td>
+                                                       <code class="literal">hibernate.cache.provider_class</code>
+                                                   
+                        </td>
+                        <td>The classname of a custom <code class="literal">CacheProvider</code>. 
+                           <p><span class="strong"><strong>eg.</strong></span> <code class="literal">classname.of.CacheProvider</code> 
+                           </p>
+                                                   
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                                                       <code class="literal">hibernate.cache.use_minimal_puts</code>
+                                                   
+                        </td>
+                        <td>Optimize second-level cache operation to minimize writes, at the cost of more frequent reads. This setting is most useful
+                           for clustered caches and, in Hibernate3, is enabled by default for clustered cache implementations. 
+                           <p><span class="strong"><strong>eg.</strong></span> <code class="literal">true|false</code> 
+                           </p>
+                                                   
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                                                       <code class="literal">hibernate.cache.use_query_cache</code>
+                                                   
+                        </td>
+                        <td>Enable the query cache, individual queries still have to be set cachable. 
+                           <p><span class="strong"><strong>eg.</strong></span> <code class="literal">true|false</code> 
+                           </p>
+                                                   
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                                                       <code class="literal">hibernate.cache.use_second_level_cache</code>
+                                                   
+                        </td>
+                        <td>May be used to completely disable the second level cache, which is enabled by default for classes which specify a <code class="literal">&lt;cache&gt;</code> mapping. 
+                           <p><span class="strong"><strong>eg.</strong></span> <code class="literal">true|false</code> 
+                           </p>
+                                                   
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                                                       <code class="literal">hibernate.cache.query_cache_factory</code>
+                                                   
+                        </td>
+                        <td>The classname of a custom <code class="literal">QueryCache</code> interface, defaults to the built-in <code class="literal">StandardQueryCache</code>. 
+                           <p><span class="strong"><strong>eg.</strong></span> <code class="literal">classname.of.QueryCache</code> 
+                           </p>
+                                                   
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                                                       <code class="literal">hibernate.cache.region_prefix</code>
+                                                   
+                        </td>
+                        <td>A prefix to use for second-level cache region names. 
+                           <p><span class="strong"><strong>eg.</strong></span> <code class="literal">prefix</code> 
+                           </p>
+                                                   
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                                                       <code class="literal">hibernate.cache.use_structured_entries</code>
+                                                   
+                        </td>
+                        <td>Forces Hibernate to store data in the second-level cache in a more human-friendly format. 
+                           <p><span class="strong"><strong>eg.</strong></span> <code class="literal">true|false</code> 
+                           </p>
+                                                   
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </div>
+         </div><br class="table-break"><div class="table"><a name="configuration-transaction-properties"></a><p class="title"><b>&#34920;&nbsp;3.6.&nbsp;Hibernate&#20107;&#21153;&#23646;&#24615;</b></p>
+            <div class="table-contents">
+               <table summary="Hibernate&#20107;&#21153;&#23646;&#24615;" border="1">
+                  <colgroup>
+                     <col>
+                     <col>
+                  </colgroup>
+                  <thead>
+                     <tr>
+                        <th>&#23646;&#24615;&#21517;</th>
+                        <th>&#29992;&#36884;</th>
+                     </tr>
+                  </thead>
+                  <tbody>
+                     <tr>
+                        <td>
+                                                       <code class="literal">hibernate.transaction.factory_class</code>
+                                                   
+                        </td>
+                        <td>The classname of a <code class="literal">TransactionFactory</code> to use with Hibernate <code class="literal">Transaction</code> API (defaults to <code class="literal">JDBCTransactionFactory</code>). 
+                           <p><span class="strong"><strong>eg.</strong></span> <code class="literal">classname.of.TransactionFactory</code> 
+                           </p>
+                                                   
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                                                       <code class="literal">jta.UserTransaction</code>
+                                                   
+                        </td>
+                        <td>A JNDI name used by <code class="literal">JTATransactionFactory</code> to obtain the JTA <code class="literal">UserTransaction</code> from the application server. 
+                           <p><span class="strong"><strong>eg.</strong></span> <code class="literal">jndi/composite/name</code> 
+                           </p>
+                                                   
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                                                       <code class="literal">hibernate.transaction.manager_lookup_class</code>
+                                                   
+                        </td>
+                        <td>The classname of a <code class="literal">TransactionManagerLookup</code> - required when JVM-level caching is enabled or when using hilo generator in a JTA environment. 
+                           <p><span class="strong"><strong>eg.</strong></span> <code class="literal">classname.of.TransactionManagerLookup</code> 
+                           </p>
+                                                   
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                                                       <code class="literal">hibernate.transaction.flush_before_completion</code>
+                                                   
+                        </td>
+                        <td>If enabled, the session will be automatically flushed during the before completion phase of the transaction. Built-in and
+                           automatic session context management is preferred, see <a href="architecture-current-session.html" title="2.5.&nbsp;&#19978;&#19979;&#25991;&#30456;&#20851;&#30340;&#65288;Contextual&#65289;Session">&#31532;&nbsp;2.5&nbsp;&#33410; &#8220;&#19978;&#19979;&#25991;&#30456;&#20851;&#30340;&#65288;Contextual&#65289;Session&#8221;</a>. 
+                           <p><span class="strong"><strong>eg.</strong></span> <code class="literal">true</code> | <code class="literal">false</code> 
+                           </p>
+                                                   
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                                                       <code class="literal">hibernate.transaction.auto_close_session</code>
+                                                   
+                        </td>
+                        <td>If enabled, the session will be automatically closed during the after completion phase of the transaction. Built-in and utomatic
+                           session context management is preferred, see <a href="architecture-current-session.html" title="2.5.&nbsp;&#19978;&#19979;&#25991;&#30456;&#20851;&#30340;&#65288;Contextual&#65289;Session">&#31532;&nbsp;2.5&nbsp;&#33410; &#8220;&#19978;&#19979;&#25991;&#30456;&#20851;&#30340;&#65288;Contextual&#65289;Session&#8221;</a>. 
+                           <p><span class="strong"><strong>eg.</strong></span> <code class="literal">true</code> | <code class="literal">false</code> 
+                           </p>
+                                                   
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </div>
+         </div><br class="table-break"><div class="table"><a name="configuration-misc-properties"></a><p class="title"><b>&#34920;&nbsp;3.7.&nbsp;&#20854;&#20182;&#23646;&#24615;</b></p>
+            <div class="table-contents">
+               <table summary="&#20854;&#20182;&#23646;&#24615;" border="1">
+                  <colgroup>
+                     <col>
+                     <col>
+                  </colgroup>
+                  <thead>
+                     <tr>
+                        <th>&#23646;&#24615;&#21517;</th>
+                        <th>&#29992;&#36884;</th>
+                     </tr>
+                  </thead>
+                  <tbody>
+                     <tr>
+                        <td>
+                                                       <code class="literal">hibernate.current_session_context_class</code>
+                                                   
+                        </td>
+                        <td>Supply a (custom) strategy for the scoping of the "current" <code class="literal">Session</code>. See <a href="architecture-current-session.html" title="2.5.&nbsp;&#19978;&#19979;&#25991;&#30456;&#20851;&#30340;&#65288;Contextual&#65289;Session">&#31532;&nbsp;2.5&nbsp;&#33410; &#8220;&#19978;&#19979;&#25991;&#30456;&#20851;&#30340;&#65288;Contextual&#65289;Session&#8221;</a> for more information about the built-in strategies. 
+                           <p><span class="strong"><strong>eg.</strong></span> <code class="literal">jta</code> | <code class="literal">thread</code> | <code class="literal">managed</code> | <code class="literal">custom.Class</code> 
+                           </p>
+                                                   
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                                                       <code class="literal">hibernate.query.factory_class</code>
+                                                   
+                        </td>
+                        <td>Chooses the HQL parser implementation. 
+                           <p><span class="strong"><strong>eg.</strong></span> <code class="literal">org.hibernate.hql.ast.ASTQueryTranslatorFactory</code> or <code class="literal">org.hibernate.hql.classic.ClassicQueryTranslatorFactory</code> 
+                           </p>
+                                                   
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                                                       <code class="literal">hibernate.query.substitutions</code>
+                                                   
+                        </td>
+                        <td>Mapping from tokens in Hibernate queries to SQL tokens (tokens might be function or literal names, for example). 
+                           <p><span class="strong"><strong>eg.</strong></span> <code class="literal">hqlLiteral=SQL_LITERAL, hqlFunction=SQLFUNC</code> 
+                           </p>
+                                                   
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                                                       <code class="literal">hibernate.hbm2ddl.auto</code>
+                                                   
+                        </td>
+                        <td>Automatically validate or export schema DDL to the database when the <code class="literal">SessionFactory</code> is created. With <code class="literal">create-drop</code>, the database schema will be dropped when the <code class="literal">SessionFactory</code> is closed explicitly. 
+                           <p><span class="strong"><strong>eg.</strong></span> <code class="literal">validate</code> | <code class="literal">update</code> | <code class="literal">create</code> | <code class="literal">create-drop</code> 
+                           </p>
+                                                   
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                                                       <code class="literal">hibernate.cglib.use_reflection_optimizer</code>
+                                                   
+                        </td>
+                        <td>Enables use of CGLIB instead of runtime reflection (System-level property). Reflection can sometimes be useful when troubleshooting,
+                           note that Hibernate always requires CGLIB even if you turn off the optimizer. You can not set this property in <code class="literal">hibernate.cfg.xml</code>. 
+                           <p><span class="strong"><strong>eg.</strong></span> <code class="literal">true</code> | <code class="literal">false</code> 
+                           </p>
+                                                   
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </div>
+         </div><br class="table-break"><div class="sect2" lang="zh-CN">
+            <div class="titlepage">
+               <div>
+                  <div>
+                     <h3 class="title"><a name="configuration-optional-dialects"></a>3.4.1.&nbsp;SQL&#26041;&#35328;
+                     </h3>
+                  </div>
+               </div>
+            </div>
+            <p>&#20320;&#24212;&#24403;&#24635;&#26159;&#20026;&#20320;&#30340;&#25968;&#25454;&#24211;&#23558;<code class="literal">hibernate.dialect</code>&#23646;&#24615;&#35774;&#32622;&#25104;&#27491;&#30830;&#30340; <code class="literal">org.hibernate.dialect.Dialect</code>&#23376;&#31867;. &#22914;&#26524;&#20320;&#25351;&#23450;&#19968;&#31181;&#26041;&#35328;, Hibernate&#23558;&#20026;&#19978;&#38754;&#21015;&#20986;&#30340;&#19968;&#20123;&#23646;&#24615;&#20351;&#29992;&#21512;&#29702;&#30340;&#40664;&#35748;&#20540;, &#20026;&#20320;&#30465;&#21435;&#20102;&#25163;&#24037;&#25351;&#23450;&#23427;&#20204;&#30340;&#21151;&#22827;. 
+            </p>
+            <div class="table"><a name="sql-dialects"></a><p class="title"><b>&#34920;&nbsp;3.8.&nbsp;Hibernate SQL&#26041;&#35328; (<code class="literal">hibernate.dialect</code>)</b></p>
+               <div class="table-contents">
+                  <table summary="Hibernate SQL&#26041;&#35328; (hibernate.dialect)" border="1">
+                     <colgroup>
+                        <col>
+                        <col>
+                     </colgroup>
+                     <thead>
+                        <tr>
+                           <th>RDBMS</th>
+                           <th>Dialect</th>
+                        </tr>
+                     </thead>
+                     <tbody>
+                        <tr>
+                           <td>DB2</td>
+                           <td><code class="literal">org.hibernate.dialect.DB2Dialect</code></td>
+                        </tr>
+                        <tr>
+                           <td>DB2 AS/400</td>
+                           <td><code class="literal">org.hibernate.dialect.DB2400Dialect</code></td>
+                        </tr>
+                        <tr>
+                           <td>DB2 OS390</td>
+                           <td><code class="literal">org.hibernate.dialect.DB2390Dialect</code></td>
+                        </tr>
+                        <tr>
+                           <td>PostgreSQL</td>
+                           <td><code class="literal">org.hibernate.dialect.PostgreSQLDialect</code></td>
+                        </tr>
+                        <tr>
+                           <td>MySQL</td>
+                           <td><code class="literal">org.hibernate.dialect.MySQLDialect</code></td>
+                        </tr>
+                        <tr>
+                           <td>MySQL with InnoDB</td>
+                           <td><code class="literal">org.hibernate.dialect.MySQLInnoDBDialect</code></td>
+                        </tr>
+                        <tr>
+                           <td>MySQL with MyISAM</td>
+                           <td><code class="literal">org.hibernate.dialect.MySQLMyISAMDialect</code></td>
+                        </tr>
+                        <tr>
+                           <td>Oracle (any version)</td>
+                           <td><code class="literal">org.hibernate.dialect.OracleDialect</code></td>
+                        </tr>
+                        <tr>
+                           <td>Oracle 9i/10g</td>
+                           <td><code class="literal">org.hibernate.dialect.Oracle9Dialect</code></td>
+                        </tr>
+                        <tr>
+                           <td>Sybase</td>
+                           <td><code class="literal">org.hibernate.dialect.SybaseDialect</code></td>
+                        </tr>
+                        <tr>
+                           <td>Sybase Anywhere</td>
+                           <td><code class="literal">org.hibernate.dialect.SybaseAnywhereDialect</code></td>
+                        </tr>
+                        <tr>
+                           <td>Microsoft SQL Server</td>
+                           <td><code class="literal">org.hibernate.dialect.SQLServerDialect</code></td>
+                        </tr>
+                        <tr>
+                           <td>SAP DB</td>
+                           <td><code class="literal">org.hibernate.dialect.SAPDBDialect</code></td>
+                        </tr>
+                        <tr>
+                           <td>Informix</td>
+                           <td><code class="literal">org.hibernate.dialect.InformixDialect</code></td>
+                        </tr>
+                        <tr>
+                           <td>HypersonicSQL</td>
+                           <td><code class="literal">org.hibernate.dialect.HSQLDialect</code></td>
+                        </tr>
+                        <tr>
+                           <td>Ingres</td>
+                           <td><code class="literal">org.hibernate.dialect.IngresDialect</code></td>
+                        </tr>
+                        <tr>
+                           <td>Progress</td>
+                           <td><code class="literal">org.hibernate.dialect.ProgressDialect</code></td>
+                        </tr>
+                        <tr>
+                           <td>Mckoi SQL</td>
+                           <td><code class="literal">org.hibernate.dialect.MckoiDialect</code></td>
+                        </tr>
+                        <tr>
+                           <td>Interbase</td>
+                           <td><code class="literal">org.hibernate.dialect.InterbaseDialect</code></td>
+                        </tr>
+                        <tr>
+                           <td>Pointbase</td>
+                           <td><code class="literal">org.hibernate.dialect.PointbaseDialect</code></td>
+                        </tr>
+                        <tr>
+                           <td>FrontBase</td>
+                           <td><code class="literal">org.hibernate.dialect.FrontbaseDialect</code></td>
+                        </tr>
+                        <tr>
+                           <td>Firebird</td>
+                           <td><code class="literal">org.hibernate.dialect.FirebirdDialect</code></td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </div><br class="table-break"></div>
+         <div class="sect2" lang="zh-CN">
+            <div class="titlepage">
+               <div>
+                  <div>
+                     <h3 class="title"><a name="configuration-optional-outerjoin"></a>3.4.2.&nbsp;&#22806;&#36830;&#25509;&#25235;&#21462;(Outer Join Fetching)
+                     </h3>
+                  </div>
+               </div>
+            </div>
+            <p>&#22914;&#26524;&#20320;&#30340;&#25968;&#25454;&#24211;&#25903;&#25345;ANSI, Oracle&#25110;Sybase&#39118;&#26684;&#30340;&#22806;&#36830;&#25509;, <span class="emphasis"><em>&#22806;&#36830;&#25509;&#25235;&#21462;</em></span>&#36890;&#24120;&#33021;&#36890;&#36807;&#38480;&#21046;&#24448;&#36820;&#25968;&#25454;&#24211;&#27425;&#25968; (&#26356;&#22810;&#30340;&#24037;&#20316;&#20132;&#30001;&#25968;&#25454;&#24211;&#33258;&#24049;&#26469;&#23436;&#25104;)&#26469;&#25552;&#39640;&#25928;&#29575;. &#22806;&#36830;&#25509;&#25235;&#21462;&#20801;&#35768;&#22312;&#21333;&#20010;<code class="literal">SELECT</code>SQL&#35821;&#21477;&#20013;&#65292; &#36890;&#36807;many-to-one, one-to-many, many-to-many&#21644;one-to-one&#20851;&#32852;&#33719;&#21462;&#36830;&#25509;&#23545;&#35937;&#30340;&#25972;&#20010;&#23545;&#35937;&#22270;. 
+            </p>
+            <p>&#23558;<code class="literal">hibernate.max_fetch_depth</code>&#35774;&#20026;<code class="literal">0</code>&#33021;&#22312;<span class="emphasis"><em>&#20840;&#23616;</em></span> &#33539;&#22260;&#20869;&#31105;&#27490;&#22806;&#36830;&#25509;&#25235;&#21462;. &#35774;&#20026;<code class="literal">1</code>&#25110;&#26356;&#39640;&#20540;&#33021;&#21551;&#29992;one-to-one&#21644;many-to-oneouter&#20851;&#32852;&#30340;&#22806;&#36830;&#25509;&#25235;&#21462;, &#23427;&#20204;&#36890;&#36807; <code class="literal">fetch="join"</code>&#26469;&#26144;&#23556;. 
+            </p>
+            <p>&#21442;&#35265;<a href="performance.html#performance-fetching" title="19.1.&nbsp;&#25235;&#21462;&#31574;&#30053;(Fetching strategies)">&#31532;&nbsp;19.1&nbsp;&#33410; &#8220;&#25235;&#21462;&#31574;&#30053;(Fetching strategies)&#8221;</a>&#33719;&#24471;&#26356;&#22810;&#20449;&#24687;. 
+            </p>
+         </div>
+         <div class="sect2" lang="zh-CN">
+            <div class="titlepage">
+               <div>
+                  <div>
+                     <h3 class="title"><a name="configuration-optional-binarystreams"></a>3.4.3.&nbsp;&#20108;&#36827;&#21046;&#27969; (Binary Streams)
+                     </h3>
+                  </div>
+               </div>
+            </div>
+            <p>Oracle&#38480;&#21046;&#37027;&#20123;&#36890;&#36807;JDBC&#39537;&#21160;&#20256;&#36755;&#30340;<code class="literal">&#23383;&#33410;</code>&#25968;&#32452;&#30340;&#25968;&#30446;. &#22914;&#26524;&#20320;&#24076;&#26395;&#20351;&#29992;<code class="literal">&#20108;&#36827;&#20540; (binary)</code>&#25110; <code class="literal">&#21487;&#24207;&#21015;&#21270;&#30340; (serializable)</code>&#31867;&#22411;&#30340;&#22823;&#23545;&#35937;, &#20320;&#24212;&#35813;&#24320;&#21551; <code class="literal">hibernate.jdbc.use_streams_for_binary</code>&#23646;&#24615;. <span class="emphasis"><em>&#36825;&#26159;&#31995;&#32479;&#32423;&#23646;&#24615;.</em></span> 
+            </p>
+         </div>
+         <div class="sect2" lang="zh-CN">
+            <div class="titlepage">
+               <div>
+                  <div>
+                     <h3 class="title"><a name="configuration-optional-cacheprovider"></a>3.4.4.&nbsp;&#20108;&#32423;&#32531;&#23384;&#19982;&#26597;&#35810;&#32531;&#23384;
+                     </h3>
+                  </div>
+               </div>
+            </div>
+            <p>&#20197;<code class="literal">hibernate.cache</code>&#20026;&#21069;&#32512;&#30340;&#23646;&#24615;&#20801;&#35768;&#20320;&#22312;Hibernate&#20013;&#65292;&#20351;&#29992;&#36827;&#31243;&#25110;&#32676;&#38598;&#33539;&#22260;&#20869;&#30340;&#20108;&#32423;&#32531;&#23384;&#31995;&#32479;. &#21442;&#35265;<a href="performance-cache.html" title="19.2.&nbsp;&#20108;&#32423;&#32531;&#23384;&#65288;The Second Level Cache&#65289;">&#31532;&nbsp;19.2&nbsp;&#33410; &#8220;&#20108;&#32423;&#32531;&#23384;&#65288;The Second Level Cache&#65289;&#8221;</a>&#33719;&#21462;&#26356;&#22810;&#30340;&#35814;&#24773;. 
+            </p>
+         </div>
+         <div class="sect2" lang="zh-CN">
+            <div class="titlepage">
+               <div>
+                  <div>
+                     <h3 class="title"><a name="configuration-optional-querysubstitution"></a>3.4.5.&nbsp;&#26597;&#35810;&#35821;&#35328;&#20013;&#30340;&#26367;&#25442;
+                     </h3>
+                  </div>
+               </div>
+            </div>
+            <p>&#20320;&#21487;&#20197;&#20351;&#29992;<code class="literal">hibernate.query.substitutions</code>&#22312;Hibernate&#20013;&#23450;&#20041;&#26032;&#30340;&#26597;&#35810;&#31526;&#21495;. &#20363;&#22914;: 
+            </p><pre class="programlisting">hibernate.query.substitutions true=1, false=0</pre><p>&#23558;&#23548;&#33268;&#31526;&#21495;<code class="literal">true</code>&#21644;<code class="literal">false</code>&#22312;&#29983;&#25104;&#30340;SQL&#20013;&#34987;&#32763;&#35793;&#25104;&#25972;&#25968;&#24120;&#37327;. 
+            </p><pre class="programlisting">hibernate.query.substitutions toLowercase=LOWER</pre><p>&#23558;&#20801;&#35768;&#20320;&#37325;&#21629;&#21517;SQL&#20013;&#30340;<code class="literal">LOWER</code>&#20989;&#25968;. 
+            </p>
+         </div>
+         <div class="sect2" lang="zh-CN">
+            <div class="titlepage">
+               <div>
+                  <div>
+                     <h3 class="title"><a name="configuration-optional-statistics"></a>3.4.6.&nbsp;Hibernate&#30340;&#32479;&#35745;(statistics)&#26426;&#21046;
+                     </h3>
+                  </div>
+               </div>
+            </div>
+            <p>&#22914;&#26524;&#20320;&#24320;&#21551;<code class="literal">hibernate.generate_statistics</code>, &#37027;&#20040;&#24403;&#20320;&#36890;&#36807; <code class="literal">SessionFactory.getStatistics()</code>&#35843;&#25972;&#27491;&#22312;&#36816;&#34892;&#30340;&#31995;&#32479;&#26102;&#65292;Hibernate&#23558;&#23548;&#20986;&#22823;&#37327;&#26377;&#29992;&#30340;&#25968;&#25454;. Hibernate&#29978;&#33267;&#33021;&#34987;&#37197;&#32622;&#25104;&#36890;&#36807;JMX&#23548;&#20986;&#36825;&#20123;&#32479;&#35745;&#20449;&#24687;. &#21442;&#32771;<code class="literal">org.hibernate.stats</code>&#20013;&#25509;&#21475;&#30340;Javadoc&#65292;&#20197;&#33719;&#24471;&#26356;&#22810;&#20449;&#24687;. 
+            </p>
+         </div>
+      </div>
+      <div class="navfooter">
+         <hr>
+         <table width="100%" summary="Navigation footer">
+            <tr>
+               <td width="40%" align="left"><a accesskey="p" href="configuration-hibernatejdbc.html">&#19978;&#19968;&#39029;</a>&nbsp;
+               </td>
+               <td width="20%" align="center"><a accesskey="u" href="session-configuration.html">&#19978;&#19968;&#32423;</a></td>
+               <td width="40%" align="right">&nbsp;<a accesskey="n" href="configuration-logging.html">&#19979;&#19968;&#39029;</a></td>
+            </tr>
+            <tr>
+               <td width="40%" align="left" valign="top">3.3.&nbsp;JDBC&#36830;&#25509;&nbsp;</td>
+               <td width="20%" align="center"><a accesskey="h" href="index.html">&#36215;&#22987;&#39029;</a></td>
+               <td width="40%" align="right" valign="top">&nbsp;3.5.&nbsp;&#26085;&#24535;</td>
+            </tr>
+         </table>
+      </div>
+   </body>
+</html>

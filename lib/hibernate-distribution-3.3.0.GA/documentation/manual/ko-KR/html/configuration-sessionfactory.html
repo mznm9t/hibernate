@@ -1,0 +1,58 @@
+<html>
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   
+      <title>3.2. SessionFactory &#50619;&#44592;</title>
+      <link rel="stylesheet" href="css/html.css" type="text/css">
+      <meta name="generator" content="DocBook XSL Stylesheets V1.72.0">
+      <link rel="start" href="index.html" title="HIBERNATE - &#44060;&#49457;&#51080;&#45716; &#51088;&#48148;&#47484; &#50948;&#54620; &#44288;&#44228; &#50689;&#49549;">
+      <link rel="up" href="session-configuration.html" title="3&#51109;. &#44396;&#49457;">
+      <link rel="prev" href="session-configuration.html" title="3&#51109;. &#44396;&#49457;">
+      <link rel="next" href="configuration-hibernatejdbc.html" title="3.3. JDBC &#52964;&#45349;&#49496;&#46308;">
+   </head>
+   <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+      <div class="navheader">
+         <table width="100%" summary="Navigation header">
+            <tr>
+               <th colspan="3" align="center">3.2. SessionFactory &#50619;&#44592;</th>
+            </tr>
+            <tr>
+               <td width="20%" align="left"><a accesskey="p" href="session-configuration.html">&#51060;&#51204;</a>&nbsp;
+               </td>
+               <th width="60%" align="center">3&#51109;. &#44396;&#49457;</th>
+               <td width="20%" align="right">&nbsp;<a accesskey="n" href="configuration-hibernatejdbc.html">&#45796;&#51020;</a></td>
+            </tr>
+         </table>
+         <hr>
+      </div>
+      <div class="sect1" lang="ko-KR">
+         <div class="titlepage">
+            <div>
+               <div>
+                  <h2 class="title" style="clear: both"><a name="configuration-sessionfactory"></a>3.2. SessionFactory &#50619;&#44592;
+                  </h2>
+               </div>
+            </div>
+         </div>
+         <p>When all mappings have been parsed by the <code class="classname">org.hibernate.cfg.Configuration</code>, the application must obtain a factory for <code class="interfacename">org.hibernate.Session</code> instances. This factory is intended to be shared by all application threads: 
+         </p><pre class="programlisting">SessionFactory sessions = cfg.buildSessionFactory();</pre><p>Hibernate does allow your application to instantiate more than one <code class="interfacename">org.hibernate.SessionFactory</code>. This is useful if you are using more than one database. 
+         </p>
+      </div>
+      <div class="navfooter">
+         <hr>
+         <table width="100%" summary="Navigation footer">
+            <tr>
+               <td width="40%" align="left"><a accesskey="p" href="session-configuration.html">&#51060;&#51204;</a>&nbsp;
+               </td>
+               <td width="20%" align="center"><a accesskey="u" href="session-configuration.html">&#50948;&#47196;</a></td>
+               <td width="40%" align="right">&nbsp;<a accesskey="n" href="configuration-hibernatejdbc.html">&#45796;&#51020;</a></td>
+            </tr>
+            <tr>
+               <td width="40%" align="left" valign="top">3&#51109;. &#44396;&#49457;&nbsp;</td>
+               <td width="20%" align="center"><a accesskey="h" href="index.html">&#52376;&#51020;&#51004;&#47196;</a></td>
+               <td width="40%" align="right" valign="top">&nbsp;3.3. JDBC &#52964;&#45349;&#49496;&#46308;</td>
+            </tr>
+         </table>
+      </div>
+   </body>
+</html>

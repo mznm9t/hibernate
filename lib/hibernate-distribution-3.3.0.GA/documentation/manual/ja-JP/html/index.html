@@ -1,0 +1,636 @@
+<html>
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   
+      <title>HIBERNATE - Relational Persistence for Idiomatic Java</title>
+      <link rel="stylesheet" href="css/html.css" type="text/css">
+      <meta name="generator" content="DocBook XSL Stylesheets V1.72.0">
+      <link rel="start" href="index.html" title="HIBERNATE - Relational Persistence for Idiomatic Java">
+      <link rel="next" href="preface.html" title="&#21069;&#26360;&#12365;">
+   </head>
+   <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+      <div class="navheader">
+         <table width="100%" summary="Navigation header">
+            <tr>
+               <th colspan="3" align="center">HIBERNATE - Relational Persistence for Idiomatic Java</th>
+            </tr>
+            <tr>
+               <td width="20%" align="left">&nbsp;</td>
+               <th width="60%" align="center">&nbsp;</th>
+               <td width="20%" align="right">&nbsp;<a accesskey="n" href="preface.html">&#27425;&#12398;&#12506;&#12540;&#12472;</a></td>
+            </tr>
+         </table>
+         <hr>
+      </div>
+      <div class="book" lang="ja-JP">
+         <div class="titlepage">
+            <div>
+               <div class="mediaobject">
+                  <table border="0" summary="manufactured viewport for HTML img" cellspacing="0" cellpadding="0">
+                     <tr style="height: 106px">
+                        <td><img src="images/hibernate_logo_a.png" height="106"></td>
+                     </tr>
+                  </table>
+               </div>
+               <div>
+                  <h1 class="title"><a name="d0e2"></a>HIBERNATE - Relational Persistence for Idiomatic Java
+                  </h1>
+               </div>
+               <div>
+                  <h2 class="subtitle">Hibernate Reference Documentation</h2>
+               </div>
+               <div>
+                  <p class="releaseinfo">3.3.0.GA</p>
+               </div>
+               <div>
+                  <p class="copyright">&#35069;&#20316;&#33879;&#20316; &copy; 2004 Red Hat Middleware, LLC.</p>
+               </div>
+               <div>
+                  <div class="legalnotice"><a name="Legal_Notice"></a><p class="legalnotice-title"><b>Legal Notice</b></p>
+                     <p>
+                                
+                     </p>
+                     <div class="address">
+                        <p><span class="street">1801&nbsp;Varsity&nbsp;Drive</span>&nbsp;<span class="city">Raleigh</span>,&nbsp;<span class="state">NC</span><span class="postcode">27606-2072</span><span class="country">USA</span>&nbsp;<span class="phone">Phone:&nbsp;+1&nbsp;919&nbsp;754&nbsp;3700</span>&nbsp;<span class="phone">Phone:&nbsp;888&nbsp;733&nbsp;4281</span>&nbsp;<span class="fax">Fax:&nbsp;+1&nbsp;919&nbsp;754&nbsp;3701</span>&nbsp;<span class="pob">PO&nbsp;Box&nbsp;13588</span><span class="city">Research&nbsp;Triangle&nbsp;Park</span>,&nbsp;<span class="state">NC</span><span class="postcode">27709</span><span class="country">USA</span>&nbsp;
+                        </p>
+                     </div>
+                     <p>
+                            
+                     </p>
+                     <p>Copyright <span class="trademark"></span>&copy; 2007 by Red Hat, Inc. This copyrighted material is made available to anyone wishing to use, modify, copy, or redistribute
+                        it subject to the terms and conditions of the GNU <a xmlns:xlink="http://www.w3.org/1999/xlink" href="http://www.gnu.org/licenses/lgpl-2.1.html" target="_top">Lesser General Public License</a>, as published by the Free Software Foundation. 
+                     </p>
+                     <p>Red Hat and the Red Hat "Shadow Man" logo are registered trademarks of Red Hat, Inc. in the United States and other countries.
+                        
+                     </p>
+                     <p>All other trademarks referenced herein are the property of their respective owners. </p>
+                     <p>The GPG fingerprint of the security@redhat.com key is: </p>
+                     <p>CA 20 86 86 2B D6 9D FC 65 F6 EC C4 21 91 80 CD DB 42 A6 0E </p>
+                  </div>
+               </div>
+            </div>
+            <hr>
+         </div>
+         <div class="toc">
+            <dl>
+               <dt><span class="preface"><a href="preface.html">&#21069;&#26360;&#12365;</a></span></dt>
+               <dt><span class="chapter"><a href="tutorial.html">1.  Hibernate&#12398;&#23566;&#20837;</a></span></dt>
+               <dd>
+                  <dl>
+                     <dt><span class="sect1"><a href="tutorial.html#tutorial-intro">1.1.  &#21069;&#26360;&#12365;</a></span></dt>
+                     <dt><span class="sect1"><a href="tutorial-firstapp.html">1.2.  &#12497;&#12540;&#12488;1 - &#21021;&#12417;&#12390;&#12398;Hibernate&#12450;&#12503;&#12522;&#12465;&#12540;&#12471;&#12519;&#12531;</a></span></dt>
+                     <dd>
+                        <dl>
+                           <dt><span class="sect2"><a href="tutorial-firstapp.html#tutorial-firstapp-firstclass">1.2.1.  &#26368;&#21021;&#12398;&#12463;&#12521;&#12473;</a></span></dt>
+                           <dt><span class="sect2"><a href="tutorial-firstapp.html#tutorial-firstapp-mapping">1.2.2.  &#12510;&#12483;&#12500;&#12531;&#12464;&#12501;&#12449;&#12452;&#12523;</a></span></dt>
+                           <dt><span class="sect2"><a href="tutorial-firstapp.html#tutorial-firstapp-configuration">1.2.3.  Hibernate&#12398;&#35373;&#23450;</a></span></dt>
+                           <dt><span class="sect2"><a href="tutorial-firstapp.html#tutorial-firstapp-ant">1.2.4.  Ant&#12395;&#12424;&#12427;&#12499;&#12523;&#12489;</a></span></dt>
+                           <dt><span class="sect2"><a href="tutorial-firstapp.html#tutorial-firstapp-helpers">1.2.5.  &#12473;&#12479;&#12540;&#12488;&#12450;&#12483;&#12503;&#12392;&#12504;&#12523;&#12497;</a></span></dt>
+                           <dt><span class="sect2"><a href="tutorial-firstapp.html#tutorial-firstapp-workingpersistence">1.2.6.  &#12458;&#12502;&#12472;&#12455;&#12463;&#12488;&#12398;&#12525;&#12540;&#12489;&#12392;&#26684;&#32013;</a></span></dt>
+                        </dl>
+                     </dd>
+                     <dt><span class="sect1"><a href="tutorial-associations.html">1.3.  &#12497;&#12540;&#12488;2 - &#38306;&#36899;&#12398;&#12510;&#12483;&#12500;&#12531;&#12464;</a></span></dt>
+                     <dd>
+                        <dl>
+                           <dt><span class="sect2"><a href="tutorial-associations.html#tutorial-associations-mappinguser">1.3.1.  Person&#12463;&#12521;&#12473;&#12398;&#12510;&#12483;&#12500;&#12531;&#12464;</a></span></dt>
+                           <dt><span class="sect2"><a href="tutorial-associations.html#tutorial-associations-unidirset">1.3.2.  &#21336;&#26041;&#21521;Set&#12505;&#12540;&#12473;&#38306;&#36899;</a></span></dt>
+                           <dt><span class="sect2"><a href="tutorial-associations.html#tutorial-associations-working">1.3.3.  &#38306;&#36899;&#12434;&#20685;&#12363;&#12379;&#12427;</a></span></dt>
+                           <dt><span class="sect2"><a href="tutorial-associations.html#tutorial-associations-valuecollections">1.3.4.  &#20516;&#12398;&#12467;&#12524;&#12463;&#12471;&#12519;&#12531;</a></span></dt>
+                           <dt><span class="sect2"><a href="tutorial-associations.html#tutorial-associations-bidirectional">1.3.5.  &#21452;&#26041;&#21521;&#38306;&#36899;</a></span></dt>
+                           <dt><span class="sect2"><a href="tutorial-associations.html#tutorial-associations-usingbidir">1.3.6.  &#21452;&#26041;&#21521;&#12522;&#12531;&#12463;&#12398;&#21205;&#20316;</a></span></dt>
+                        </dl>
+                     </dd>
+                     <dt><span class="sect1"><a href="tutorial-webapp.html">1.4.  &#12497;&#12540;&#12488;3 - EventManager Web&#12450;&#12503;&#12522;&#12465;&#12540;&#12471;&#12519;&#12531;</a></span></dt>
+                     <dd>
+                        <dl>
+                           <dt><span class="sect2"><a href="tutorial-webapp.html#tutorial-webapp-servlet">1.4.1.  &#22522;&#26412;&#30340;&#12394;Servlet&#12398;&#35352;&#36848;</a></span></dt>
+                           <dt><span class="sect2"><a href="tutorial-webapp.html#tutorial-webapp-processing">1.4.2.  &#20966;&#29702;&#12392;&#25551;&#30011;</a></span></dt>
+                           <dt><span class="sect2"><a href="tutorial-webapp.html#tutorial-webapp-deploy">1.4.3.  &#12487;&#12503;&#12525;&#12452;&#12392;&#12486;&#12473;&#12488;</a></span></dt>
+                        </dl>
+                     </dd>
+                     <dt><span class="sect1"><a href="tutorial-summary.html">1.5.  &#35201;&#32004;</a></span></dt>
+                  </dl>
+               </dd>
+               <dt><span class="chapter"><a href="architecture.html">2.  &#12450;&#12540;&#12461;&#12486;&#12463;&#12481;&#12515;</a></span></dt>
+               <dd>
+                  <dl>
+                     <dt><span class="sect1"><a href="architecture.html#architecture-overview">2.1.  &#27010;&#35251;</a></span></dt>
+                     <dt><span class="sect1"><a href="architecture-states.html">2.2.  &#12452;&#12531;&#12473;&#12479;&#12531;&#12473;&#12398;&#29366;&#24907;</a></span></dt>
+                     <dt><span class="sect1"><a href="architecture-jmx.html">2.3.  JMX&#12392;&#12398;&#32113;&#21512;</a></span></dt>
+                     <dt><span class="sect1"><a href="architecture-jca.html">2.4.  JCA &#12469;&#12509;&#12540;&#12488;</a></span></dt>
+                     <dt><span class="sect1"><a href="architecture-current-session.html">2.5.  &#12467;&#12531;&#12486;&#12461;&#12473;&#12488;&#19978;&#12398;&#12475;&#12483;&#12471;&#12519;&#12531;</a></span></dt>
+                  </dl>
+               </dd>
+               <dt><span class="chapter"><a href="session-configuration.html">3.  &#35373;&#23450;</a></span></dt>
+               <dd>
+                  <dl>
+                     <dt><span class="sect1"><a href="session-configuration.html#configuration-programmatic">3.1.  &#12503;&#12525;&#12464;&#12521;&#12512;&#19978;&#12398;&#35373;&#23450;</a></span></dt>
+                     <dt><span class="sect1"><a href="configuration-sessionfactory.html">3.2.  SessionFactory&#12434;&#21462;&#24471;&#12377;&#12427;</a></span></dt>
+                     <dt><span class="sect1"><a href="configuration-hibernatejdbc.html">3.3.  JDBC&#12467;&#12493;&#12463;&#12471;&#12519;&#12531;</a></span></dt>
+                     <dt><span class="sect1"><a href="configuration-optional.html">3.4.  &#12458;&#12503;&#12471;&#12519;&#12531;&#35373;&#23450;&#12503;&#12525;&#12497;&#12486;&#12451;</a></span></dt>
+                     <dd>
+                        <dl>
+                           <dt><span class="sect2"><a href="configuration-optional.html#configuration-optional-dialects">3.4.1.  SQL &#26041;&#35328;&#65288;Dialect&#65289;</a></span></dt>
+                           <dt><span class="sect2"><a href="configuration-optional.html#configuration-optional-outerjoin">3.4.2.  &#22806;&#37096;&#32080;&#21512;&#12501;&#12455;&#12483;&#12481;</a></span></dt>
+                           <dt><span class="sect2"><a href="configuration-optional.html#configuration-optional-binarystreams">3.4.3.  &#12496;&#12452;&#12490;&#12522;&#12473;&#12488;&#12522;&#12540;&#12512;</a></span></dt>
+                           <dt><span class="sect2"><a href="configuration-optional.html#configuration-optional-cacheprovider">3.4.4.  2&#27425;&#12461;&#12515;&#12483;&#12471;&#12517;&#12392;&#12463;&#12456;&#12522;&#12540;&#12461;&#12515;&#12483;&#12471;&#12517;</a></span></dt>
+                           <dt><span class="sect2"><a href="configuration-optional.html#configuration-optional-querysubstitution">3.4.5.  &#12463;&#12456;&#12522;&#12540;&#35328;&#35486;&#12398;&#32622;&#12365;&#25563;&#12360;</a></span></dt>
+                           <dt><span class="sect2"><a href="configuration-optional.html#configuration-optional-statistics">3.4.6.  Hibernate &#32113;&#35336;</a></span></dt>
+                        </dl>
+                     </dd>
+                     <dt><span class="sect1"><a href="configuration-logging.html">3.5.  &#12525;&#12462;&#12531;&#12464;</a></span></dt>
+                     <dt><span class="sect1"><a href="configuration-namingstrategy.html">3.6.  <code class="literal">NamingStrategy</code> &#12398;&#23455;&#35013;</a></span></dt>
+                     <dt><span class="sect1"><a href="configuration-xmlconfig.html">3.7.  XML&#35373;&#23450;&#12501;&#12449;&#12452;&#12523;</a></span></dt>
+                     <dt><span class="sect1"><a href="configuration-j2ee.html">3.8.  J2EE&#12450;&#12503;&#12522;&#12465;&#12540;&#12471;&#12519;&#12531;&#12469;&#12540;&#12496;&#12392;&#12398;&#32113;&#21512;</a></span></dt>
+                     <dd>
+                        <dl>
+                           <dt><span class="sect2"><a href="configuration-j2ee.html#configuration-optional-transactionstrategy">3.8.1.  &#12488;&#12521;&#12531;&#12470;&#12463;&#12471;&#12519;&#12531;&#25126;&#30053;&#35373;&#23450;</a></span></dt>
+                           <dt><span class="sect2"><a href="configuration-j2ee.html#configuration-optional-jndi">3.8.2.  <code class="literal">SessionFactory</code> &#12398;JNDI&#12408;&#12398;&#30331;&#37682;</a></span></dt>
+                           <dt><span class="sect2"><a href="configuration-j2ee.html#configuration-j2ee-currentsession">3.8.3.  JTA&#12395;&#12424;&#12427;&#29694;&#22312;&#12398;&#12475;&#12483;&#12471;&#12519;&#12531;&#12467;&#12531;&#12486;&#12461;&#12473;&#12488;&#12510;&#12493;&#12540;&#12472;&#12513;&#12531;&#12488;</a></span></dt>
+                           <dt><span class="sect2"><a href="configuration-j2ee.html#configuration-j2ee-jmx">3.8.4.  JMX&#12487;&#12503;&#12525;&#12452;&#12513;&#12531;&#12488;</a></span></dt>
+                        </dl>
+                     </dd>
+                  </dl>
+               </dd>
+               <dt><span class="chapter"><a href="persistent-classes.html">4.  &#27704;&#32154;&#12463;&#12521;&#12473;</a></span></dt>
+               <dd>
+                  <dl>
+                     <dt><span class="sect1"><a href="persistent-classes.html#persistent-classes-pojo">4.1.  &#21336;&#32020;&#12394;POJO&#12398;&#20363;</a></span></dt>
+                     <dd>
+                        <dl>
+                           <dt><span class="sect2"><a href="persistent-classes.html#persistent-classes-pojo-constructor">4.1.1.  &#24341;&#25968;&#12398;&#12394;&#12356;&#12467;&#12531;&#12473;&#12488;&#12521;&#12463;&#12479;&#12434;&#23455;&#35013;&#12377;&#12427;</a></span></dt>
+                           <dt><span class="sect2"><a href="persistent-classes.html#persistent-classes-pojo-identifier">4.1.2.  &#35672;&#21029;&#23376;&#12503;&#12525;&#12497;&#12486;&#12451;&#12434;&#29992;&#24847;&#12377;&#12427;&#65288;&#12458;&#12503;&#12471;&#12519;&#12531;&#65289;</a></span></dt>
+                           <dt><span class="sect2"><a href="persistent-classes.html#persistent-classes-pojo-final">4.1.3.  final&#12463;&#12521;&#12473;&#12395;&#12375;&#12394;&#12356;&#65288;&#12458;&#12503;&#12471;&#12519;&#12531;&#65289;</a></span></dt>
+                           <dt><span class="sect2"><a href="persistent-classes.html#persistent-classes-pojo-accessors">4.1.4.  &#27704;&#32154;&#12501;&#12451;&#12540;&#12523;&#12489;&#12395;&#23550;&#12377;&#12427;&#12450;&#12463;&#12475;&#12469;&#12392;&#12511;&#12517;&#12540;&#12486;&#12540;&#12479;&#12434;&#23450;&#32681;&#12377;&#12427;&#65288;&#12458;&#12503;&#12471;&#12519;&#12531;&#65289;</a></span></dt>
+                        </dl>
+                     </dd>
+                     <dt><span class="sect1"><a href="persistent-classes-inheritance.html">4.2.  &#32153;&#25215;&#12398;&#23455;&#35013;</a></span></dt>
+                     <dt><span class="sect1"><a href="persistent-classes-equalshashcode.html">4.3.  <code class="literal">equals()</code> &#12392; <code class="literal">hashCode()</code> &#12398;&#23455;&#35013;</a></span></dt>
+                     <dt><span class="sect1"><a href="persistent-classes-dynamicmodels.html">4.4.  &#21205;&#30340;&#12514;&#12487;&#12523;</a></span></dt>
+                     <dt><span class="sect1"><a href="persistent-classes-tuplizers.html">4.5.  Tuplizer</a></span></dt>
+                     <dt><span class="sect1"><a href="persistent-classes-extensions.html">4.6.  Extentsions</a></span></dt>
+                  </dl>
+               </dd>
+               <dt><span class="chapter"><a href="mapping.html">5.  &#22522;&#26412;&#30340;&#12394;O/R&#12510;&#12483;&#12500;&#12531;&#12464;</a></span></dt>
+               <dd>
+                  <dl>
+                     <dt><span class="sect1"><a href="mapping.html#mapping-declaration">5.1.  &#12510;&#12483;&#12500;&#12531;&#12464;&#23450;&#32681;</a></span></dt>
+                     <dd>
+                        <dl>
+                           <dt><span class="sect2"><a href="mapping.html#mapping-declaration-doctype">5.1.1.  Doctype</a></span></dt>
+                           <dd>
+                              <dl>
+                                 <dt><span class="sect3"><a href="mapping.html#mapping-declaration-entity-resolution">5.1.1.1.  &#12456;&#12531;&#12486;&#12451;&#12486;&#12451;&#12539;&#12522;&#12478;&#12523;&#12496;</a></span></dt>
+                              </dl>
+                           </dd>
+                           <dt><span class="sect2"><a href="mapping.html#mapping-declaration-mapping">5.1.2.  hibernate-mapping</a></span></dt>
+                           <dt><span class="sect2"><a href="mapping.html#mapping-declaration-class">5.1.3.  class</a></span></dt>
+                           <dt><span class="sect2"><a href="mapping.html#mapping-declaration-id">5.1.4.  id</a></span></dt>
+                           <dd>
+                              <dl>
+                                 <dt><span class="sect3"><a href="mapping.html#mapping-declaration-id-generator">5.1.4.1.  &#12472;&#12455;&#12493;&#12524;&#12540;&#12479;</a></span></dt>
+                                 <dt><span class="sect3"><a href="mapping.html#mapping-declaration-id-hilo">5.1.4.2.  Hi/lo &#12450;&#12523;&#12468;&#12522;&#12474;&#12512;</a></span></dt>
+                                 <dt><span class="sect3"><a href="mapping.html#mapping-declaration-id-uuid">5.1.4.3.  UUID &#12450;&#12523;&#12468;&#12522;&#12474;&#12512;</a></span></dt>
+                                 <dt><span class="sect3"><a href="mapping.html#mapping-declaration-id-sequences">5.1.4.4.  &#35672;&#21029;&#23376;&#12459;&#12521;&#12512;&#12392;&#12471;&#12540;&#12465;&#12531;&#12473;</a></span></dt>
+                                 <dt><span class="sect3"><a href="mapping.html#mapping-declaration-id-assigned">5.1.4.5.  &#35672;&#21029;&#23376;&#12398;&#21106;&#12426;&#24403;&#12390;</a></span></dt>
+                                 <dt><span class="sect3"><a href="mapping.html#mapping-declaration-id-select">5.1.4.6.  &#12488;&#12522;&#12460;&#12395;&#12424;&#12426;&#21106;&#12426;&#24403;&#12390;&#12425;&#12428;&#12383;&#20027;&#12461;&#12540;</a></span></dt>
+                              </dl>
+                           </dd>
+                           <dt><span class="sect2"><a href="mapping.html#mapping-declaration-id-enhanced">5.1.5.  Enhanced identifier generators</a></span></dt>
+                           <dt><span class="sect2"><a href="mapping.html#mapping-declaration-id-enhanced-optimizers">5.1.6.  Identifier generator optimization</a></span></dt>
+                           <dt><span class="sect2"><a href="mapping.html#mapping-declaration-compositeid">5.1.7.  composite-id</a></span></dt>
+                           <dt><span class="sect2"><a href="mapping.html#mapping-declaration-discriminator">5.1.8.  discriminator</a></span></dt>
+                           <dt><span class="sect2"><a href="mapping.html#mapping-declaration-version">5.1.9.  version&#65288;&#12458;&#12503;&#12471;&#12519;&#12531;&#65289;</a></span></dt>
+                           <dt><span class="sect2"><a href="mapping.html#mapping-declaration-timestamp">5.1.10.  timestamp&#65288;&#12458;&#12503;&#12471;&#12519;&#12531;&#65289;</a></span></dt>
+                           <dt><span class="sect2"><a href="mapping.html#mapping-declaration-property">5.1.11.  property</a></span></dt>
+                           <dt><span class="sect2"><a href="mapping.html#mapping-declaration-manytoone">5.1.12.  many-to-one</a></span></dt>
+                           <dt><span class="sect2"><a href="mapping.html#mapping-declaration-onetoone">5.1.13.  one-to-one</a></span></dt>
+                           <dt><span class="sect2"><a href="mapping.html#mapping-declaration-naturalid">5.1.14.  natural-id</a></span></dt>
+                           <dt><span class="sect2"><a href="mapping.html#mapping-declaration-component">5.1.15.  component, dynamic-component</a></span></dt>
+                           <dt><span class="sect2"><a href="mapping.html#mapping-declaration-properties">5.1.16.  properties</a></span></dt>
+                           <dt><span class="sect2"><a href="mapping.html#mapping-declaration-subclass">5.1.17.  subclass</a></span></dt>
+                           <dt><span class="sect2"><a href="mapping.html#mapping-declaration-joinedsubclass">5.1.18.  joined-subclass</a></span></dt>
+                           <dt><span class="sect2"><a href="mapping.html#mapping-declaration-unionsubclass">5.1.19.  union-subclass</a></span></dt>
+                           <dt><span class="sect2"><a href="mapping.html#mapping-declaration-join">5.1.20.  join</a></span></dt>
+                           <dt><span class="sect2"><a href="mapping.html#mapping-declaration-key">5.1.21.  key</a></span></dt>
+                           <dt><span class="sect2"><a href="mapping.html#mapping-column">5.1.22.  column &#12392; formula &#35201;&#32032;</a></span></dt>
+                           <dt><span class="sect2"><a href="mapping.html#mapping-declaration-import">5.1.23.  import</a></span></dt>
+                           <dt><span class="sect2"><a href="mapping.html#mapping-types-anymapping">5.1.24.  any</a></span></dt>
+                        </dl>
+                     </dd>
+                     <dt><span class="sect1"><a href="mapping-types.html">5.2.  Hibernate&#12398;&#22411;</a></span></dt>
+                     <dd>
+                        <dl>
+                           <dt><span class="sect2"><a href="mapping-types.html#mapping-types-entitiesvalues">5.2.1.  &#12456;&#12531;&#12486;&#12451;&#12486;&#12451;&#12392;&#20516;</a></span></dt>
+                           <dt><span class="sect2"><a href="mapping-types.html#mapping-types-basictypes">5.2.2.  &#22522;&#26412;&#30340;&#12394;&#22411;</a></span></dt>
+                           <dt><span class="sect2"><a href="mapping-types.html#mapping-types-custom">5.2.3.  &#12459;&#12473;&#12479;&#12512;&#22411;</a></span></dt>
+                        </dl>
+                     </dd>
+                     <dt><span class="sect1"><a href="mapping-entityname.html">5.3.  &#65297;&#12388;&#12398;&#12463;&#12521;&#12473;&#12395;&#65297;&#12388;&#20197;&#19978;&#12398;&#12510;&#12483;&#12500;&#12531;&#12464;</a></span></dt>
+                     <dt><span class="sect1"><a href="mapping-quotedidentifiers.html">5.4.  &#12496;&#12483;&#12463;&#12463;&#12457;&#12540;&#12488;&#12391;&#22258;&#12435;&#12384; SQL &#35672;&#21029;&#23376;</a></span></dt>
+                     <dt><span class="sect1"><a href="mapping-alternatives.html">5.5.  &#12513;&#12479;&#12487;&#12540;&#12479;&#12398;&#20195;&#26367;&#25163;&#27573;</a></span></dt>
+                     <dd>
+                        <dl>
+                           <dt><span class="sect2"><a href="mapping-alternatives.html#mapping-xdoclet">5.5.1.  XDoclet &#12510;&#12540;&#12463;&#12450;&#12483;&#12503;&#12398;&#20351;&#29992;</a></span></dt>
+                           <dt><span class="sect2"><a href="mapping-alternatives.html#mapping-annotations">5.5.2.  JDK 5.0 &#12450;&#12494;&#12486;&#12540;&#12471;&#12519;&#12531;&#12398;&#20351;&#29992;</a></span></dt>
+                        </dl>
+                     </dd>
+                     <dt><span class="sect1"><a href="mapping-generated.html">5.6.  &#29983;&#25104;&#12503;&#12525;&#12497;&#12486;&#12451;</a></span></dt>
+                     <dt><span class="sect1"><a href="mapping-database-object.html">5.7.  &#35036;&#21161;&#30340;&#12394;&#12487;&#12540;&#12479;&#12505;&#12540;&#12473;&#12539;&#12458;&#12502;&#12472;&#12455;&#12463;&#12488;</a></span></dt>
+                  </dl>
+               </dd>
+               <dt><span class="chapter"><a href="collections.html">6.  &#12467;&#12524;&#12463;&#12471;&#12519;&#12531;&#12398;&#12510;&#12483;&#12500;&#12531;&#12464;</a></span></dt>
+               <dd>
+                  <dl>
+                     <dt><span class="sect1"><a href="collections.html#collections-persistent">6.1.  &#12467;&#12524;&#12463;&#12471;&#12519;&#12531;&#12398;&#27704;&#32154;&#21270;</a></span></dt>
+                     <dt><span class="sect1"><a href="collections-mapping.html">6.2.  &#12467;&#12524;&#12463;&#12471;&#12519;&#12531;&#12398;&#12510;&#12483;&#12500;&#12531;&#12464;</a></span></dt>
+                     <dd>
+                        <dl>
+                           <dt><span class="sect2"><a href="collections-mapping.html#collections-foreignkeys">6.2.1.  &#12467;&#12524;&#12463;&#12471;&#12519;&#12531;&#12398;&#22806;&#37096;&#12461;&#12540;</a></span></dt>
+                           <dt><span class="sect2"><a href="collections-mapping.html#collections-elements">6.2.2.  &#12467;&#12524;&#12463;&#12471;&#12519;&#12531;&#12398;&#35201;&#32032;</a></span></dt>
+                           <dt><span class="sect2"><a href="collections-mapping.html#collections-indexed">6.2.3.  &#12452;&#12531;&#12487;&#12483;&#12463;&#12473;&#20184;&#12365;&#12398;&#12467;&#12524;&#12463;&#12471;&#12519;&#12531;</a></span></dt>
+                           <dt><span class="sect2"><a href="collections-mapping.html#collections-ofvalues">6.2.4.  &#20516;&#12398;&#12467;&#12524;&#12463;&#12471;&#12519;&#12531;&#12392;&#22810;&#23550;&#22810;&#38306;&#36899;</a></span></dt>
+                           <dt><span class="sect2"><a href="collections-mapping.html#collections-onetomany">6.2.5.  &#19968;&#23550;&#22810;&#38306;&#36899;</a></span></dt>
+                        </dl>
+                     </dd>
+                     <dt><span class="sect1"><a href="collections-advancedmappings.html">6.3.  &#39640;&#24230;&#12394;&#12467;&#12524;&#12463;&#12471;&#12519;&#12531;&#65381;&#12510;&#12483;&#12500;&#12531;&#12464;</a></span></dt>
+                     <dd>
+                        <dl>
+                           <dt><span class="sect2"><a href="collections-advancedmappings.html#collections-sorted">6.3.1.  &#12477;&#12540;&#12488;&#12373;&#12428;&#12383;&#12467;&#12524;&#12463;&#12471;&#12519;&#12531;</a></span></dt>
+                           <dt><span class="sect2"><a href="collections-advancedmappings.html#collections-bidirectional">6.3.2.  &#21452;&#26041;&#21521;&#38306;&#36899;</a></span></dt>
+                           <dt><span class="sect2"><a href="collections-advancedmappings.html#collections-indexedbidirectional">6.3.3.  &#12452;&#12531;&#12487;&#12483;&#12463;&#12473;&#20184;&#12365;&#12467;&#12524;&#12463;&#12471;&#12519;&#12531;&#12392;&#21452;&#26041;&#21521;&#38306;&#36899;</a></span></dt>
+                           <dt><span class="sect2"><a href="collections-advancedmappings.html#collections-ternary">6.3.4.  3&#38917;&#38306;&#36899;</a></span></dt>
+                           <dt><span class="sect2"><a href="collections-advancedmappings.html#collections-idbag">6.3.5.  <code class="literal"><code class="literal">&lt;idbag&gt;</code>&#12398;&#20351;&#29992;</code></a></span></dt>
+                        </dl>
+                     </dd>
+                     <dt><span class="sect1"><a href="collections-example.html">6.4.  &#12467;&#12524;&#12463;&#12471;&#12519;&#12531;&#12398;&#20363;</a></span></dt>
+                  </dl>
+               </dd>
+               <dt><span class="chapter"><a href="associations.html">7.  &#38306;&#36899;&#12510;&#12483;&#12500;&#12531;&#12464;</a></span></dt>
+               <dd>
+                  <dl>
+                     <dt><span class="sect1"><a href="associations.html#assoc-intro">7.1.  &#12452;&#12531;&#12488;&#12525;&#12480;&#12463;&#12471;&#12519;&#12531;</a></span></dt>
+                     <dt><span class="sect1"><a href="assoc-unidirectional.html">7.2.  &#21336;&#26041;&#21521;&#38306;&#36899;</a></span></dt>
+                     <dd>
+                        <dl>
+                           <dt><span class="sect2"><a href="assoc-unidirectional.html#assoc-unidirectional-m21">7.2.1.  &#22810;&#23550;&#19968;</a></span></dt>
+                           <dt><span class="sect2"><a href="assoc-unidirectional.html#assoc-unidirectional-121">7.2.2.  &#19968;&#23550;&#19968;</a></span></dt>
+                           <dt><span class="sect2"><a href="assoc-unidirectional.html#assoc-unidirectional-12m">7.2.3.  &#19968;&#23550;&#22810;</a></span></dt>
+                        </dl>
+                     </dd>
+                     <dt><span class="sect1"><a href="assoc-unidirectional-join.html">7.3.  &#32080;&#21512;&#12486;&#12540;&#12502;&#12523;&#12434;&#20351;&#12387;&#12383;&#21336;&#26041;&#21521;&#38306;&#36899;</a></span></dt>
+                     <dd>
+                        <dl>
+                           <dt><span class="sect2"><a href="assoc-unidirectional-join.html#assoc-unidirectional-join-12m">7.3.1.  &#19968;&#23550;&#22810;</a></span></dt>
+                           <dt><span class="sect2"><a href="assoc-unidirectional-join.html#assoc-unidirectional-join-m21">7.3.2.  &#22810;&#23550;&#19968;</a></span></dt>
+                           <dt><span class="sect2"><a href="assoc-unidirectional-join.html#assoc-unidirectional-join-121">7.3.3.  &#19968;&#23550;&#19968;</a></span></dt>
+                           <dt><span class="sect2"><a href="assoc-unidirectional-join.html#assoc-unidirectional-join-m2m">7.3.4.  &#22810;&#23550;&#22810;</a></span></dt>
+                        </dl>
+                     </dd>
+                     <dt><span class="sect1"><a href="assoc-bidirectional.html">7.4.  &#21452;&#26041;&#21521;&#38306;&#36899;</a></span></dt>
+                     <dd>
+                        <dl>
+                           <dt><span class="sect2"><a href="assoc-bidirectional.html#assoc-bidirectional-m21">7.4.1.  &#19968;&#23550;&#22810;/&#22810;&#23550;&#19968;</a></span></dt>
+                           <dt><span class="sect2"><a href="assoc-bidirectional.html#assoc-bidirectional-121">7.4.2.  &#19968;&#23550;&#19968;</a></span></dt>
+                        </dl>
+                     </dd>
+                     <dt><span class="sect1"><a href="assoc-bidirectional-join.html">7.5.  &#32080;&#21512;&#12486;&#12540;&#12502;&#12523;&#12434;&#20351;&#12387;&#12383;&#21452;&#26041;&#21521;&#38306;&#36899;</a></span></dt>
+                     <dd>
+                        <dl>
+                           <dt><span class="sect2"><a href="assoc-bidirectional-join.html#assoc-bidirectional-join-12m">7.5.1.  &#19968;&#23550;&#22810;/&#22810;&#23550;&#19968;</a></span></dt>
+                           <dt><span class="sect2"><a href="assoc-bidirectional-join.html#assoc-bidirectional-join-121">7.5.2.  &#19968;&#23550;&#19968;</a></span></dt>
+                           <dt><span class="sect2"><a href="assoc-bidirectional-join.html#assoc-bidirectional-join-m2m">7.5.3.  &#22810;&#23550;&#22810;</a></span></dt>
+                        </dl>
+                     </dd>
+                     <dt><span class="sect1"><a href="assoc-complex.html">7.6.  &#12424;&#12426;&#35079;&#38609;&#12394;&#38306;&#36899;&#12510;&#12483;&#12500;&#12531;&#12464;</a></span></dt>
+                  </dl>
+               </dd>
+               <dt><span class="chapter"><a href="components.html">8.  &#12467;&#12531;&#12509;&#12540;&#12493;&#12531;&#12488;&#12398;&#12510;&#12483;&#12500;&#12531;&#12464;</a></span></dt>
+               <dd>
+                  <dl>
+                     <dt><span class="sect1"><a href="components.html#components-dependentobjects">8.1.  &#20381;&#23384;&#12458;&#12502;&#12472;&#12455;&#12463;&#12488;</a></span></dt>
+                     <dt><span class="sect1"><a href="components-incollections.html">8.2.  &#24467;&#23646;&#12377;&#12427;&#12458;&#12502;&#12472;&#12455;&#12463;&#12488;&#12398;&#12467;&#12524;&#12463;&#12471;&#12519;&#12531;</a></span></dt>
+                     <dt><span class="sect1"><a href="components-asmapindex.html">8.3.  Map&#12398;&#12452;&#12531;&#12487;&#12483;&#12463;&#12473;&#12392;&#12375;&#12390;&#12398;&#12467;&#12531;&#12509;&#12540;&#12493;&#12531;&#12488;</a></span></dt>
+                     <dt><span class="sect1"><a href="components-compositeid.html">8.4.  &#35079;&#21512;&#35672;&#21029;&#23376;&#12392;&#12375;&#12390;&#12398;&#12467;&#12531;&#12509;&#12540;&#12493;&#12531;&#12488;</a></span></dt>
+                     <dt><span class="sect1"><a href="components-dynamic.html">8.5.  &#21205;&#30340;&#12467;&#12531;&#12509;&#12540;&#12493;&#12531;&#12488;</a></span></dt>
+                  </dl>
+               </dd>
+               <dt><span class="chapter"><a href="inheritance.html">9.  &#32153;&#25215;&#12510;&#12483;&#12500;&#12531;&#12464;</a></span></dt>
+               <dd>
+                  <dl>
+                     <dt><span class="sect1"><a href="inheritance.html#inheritance-strategies">9.1.  3&#12388;&#12398;&#25126;&#30053;</a></span></dt>
+                     <dd>
+                        <dl>
+                           <dt><span class="sect2"><a href="inheritance.html#inheritance-tableperclass">9.1.1.  &#12463;&#12521;&#12473;&#38542;&#23652;&#12372;&#12392;&#12398;&#12486;&#12540;&#12502;&#12523;&#65288;table-per-class-hierarchy&#65289;</a></span></dt>
+                           <dt><span class="sect2"><a href="inheritance.html#inheritance-tablepersubclass">9.1.2.  &#12469;&#12502;&#12463;&#12521;&#12473;&#12372;&#12392;&#12398;&#12486;&#12540;&#12502;&#12523;&#65288;table-per-subclass&#65289;</a></span></dt>
+                           <dt><span class="sect2"><a href="inheritance.html#inheritance-tablepersubclass-discriminator">9.1.3.  &#24321;&#21029;&#23376;&#12434;&#29992;&#12356;&#12383; table-per-subclass</a></span></dt>
+                           <dt><span class="sect2"><a href="inheritance.html#inheritance-mixing-tableperclass-tablepersubclass">9.1.4.  table-per-subclass &#12392; table-per-class-hierarchy &#12398;&#28151;&#21512;</a></span></dt>
+                           <dt><span class="sect2"><a href="inheritance.html#inheritance-tableperconcrete">9.1.5.  &#20855;&#35937;&#12463;&#12521;&#12473;&#12372;&#12392;&#12398;&#12486;&#12540;&#12502;&#12523;&#65288;table-per-concrete-class&#65289;</a></span></dt>
+                           <dt><span class="sect2"><a href="inheritance.html#inheritance-tableperconcreate-polymorphism">9.1.6.  &#26263;&#40665;&#30340;&#12509;&#12522;&#12514;&#12540;&#12501;&#12451;&#12474;&#12512;&#12434;&#29992;&#12356;&#12383; table-per-concrete-class</a></span></dt>
+                           <dt><span class="sect2"><a href="inheritance.html#inheritace-mixingpolymorphism">9.1.7.  &#20182;&#12398;&#32153;&#25215;&#12510;&#12483;&#12500;&#12531;&#12464;&#12392;&#26263;&#40665;&#30340;&#12509;&#12522;&#12514;&#12540;&#12501;&#12451;&#12474;&#12512;&#12398;&#32068;&#12415;&#21512;&#12431;&#12379;</a></span></dt>
+                        </dl>
+                     </dd>
+                     <dt><span class="sect1"><a href="inheritance-limitations.html">9.2.  &#21046;&#38480;</a></span></dt>
+                  </dl>
+               </dd>
+               <dt><span class="chapter"><a href="objectstate.html">10.  &#12458;&#12502;&#12472;&#12455;&#12463;&#12488;&#12434;&#25201;&#12358;</a></span></dt>
+               <dd>
+                  <dl>
+                     <dt><span class="sect1"><a href="objectstate.html#objectstate-overview">10.1.  Hibernate&#12395;&#12362;&#12369;&#12427;&#12458;&#12502;&#12472;&#12455;&#12463;&#12488;&#12398;&#29366;&#24907;</a></span></dt>
+                     <dt><span class="sect1"><a href="objectstate-makingpersistent.html">10.2.  &#12458;&#12502;&#12472;&#12455;&#12463;&#12488;&#12434;&#27704;&#32154;&#29366;&#24907;&#12395;&#12377;&#12427;</a></span></dt>
+                     <dt><span class="sect1"><a href="objectstate-loading.html">10.3.  &#12458;&#12502;&#12472;&#12455;&#12463;&#12488;&#12398;&#12525;&#12540;&#12489;</a></span></dt>
+                     <dt><span class="sect1"><a href="objectstate-querying.html">10.4.  &#12463;&#12456;&#12522;</a></span></dt>
+                     <dd>
+                        <dl>
+                           <dt><span class="sect2"><a href="objectstate-querying.html#objectstate-querying-executing">10.4.1.  &#12463;&#12456;&#12522;&#12398;&#23455;&#34892;</a></span></dt>
+                           <dd>
+                              <dl>
+                                 <dt><span class="sect3"><a href="objectstate-querying.html#objectstate-querying-executing-iterate">10.4.1.1.  &#32080;&#26524;&#12434;&#12452;&#12486;&#12524;&#12540;&#12488;&#12377;&#12427;</a></span></dt>
+                                 <dt><span class="sect3"><a href="objectstate-querying.html#objectstate-querying-executing-tuples">10.4.1.2.  &#12458;&#12502;&#12472;&#12455;&#12463;&#12488;&#12398;&#32068;&#65288;tuple&#65289;&#12434;&#36820;&#12377;&#12463;&#12456;&#12522;</a></span></dt>
+                                 <dt><span class="sect3"><a href="objectstate-querying.html#objectstate-querying-executing-scalar">10.4.1.3.  &#12473;&#12459;&#12521;&#12540;&#12398;&#32080;&#26524;</a></span></dt>
+                                 <dt><span class="sect3"><a href="objectstate-querying.html#objectstate-querying-executing-parameters">10.4.1.4.  &#12497;&#12521;&#12513;&#12540;&#12479;&#12398;&#12496;&#12452;&#12531;&#12489;</a></span></dt>
+                                 <dt><span class="sect3"><a href="objectstate-querying.html#objectstate-querying-executing-pagination">10.4.1.5.  &#12506;&#12540;&#12472;&#20998;&#12369;</a></span></dt>
+                                 <dt><span class="sect3"><a href="objectstate-querying.html#objectstate-querying-executing-scrolling">10.4.1.6.  &#12473;&#12463;&#12525;&#12540;&#12523;&#21487;&#33021;&#12394;&#12452;&#12486;&#12524;&#12540;&#12471;&#12519;&#12531;</a></span></dt>
+                                 <dt><span class="sect3"><a href="objectstate-querying.html#objectstate-querying-executing-named">10.4.1.7.  &#21517;&#21069;&#20184;&#12365;&#12463;&#12456;&#12522;&#12398;&#22806;&#20986;&#12375;</a></span></dt>
+                              </dl>
+                           </dd>
+                           <dt><span class="sect2"><a href="objectstate-querying.html#objectstate-filtering">10.4.2.  &#12467;&#12524;&#12463;&#12471;&#12519;&#12531;&#12398;&#12501;&#12451;&#12523;&#12479;&#12522;&#12531;&#12464;</a></span></dt>
+                           <dt><span class="sect2"><a href="objectstate-querying.html#objecstate-querying-criteria">10.4.3.  &#12463;&#12521;&#12452;&#12486;&#12522;&#12450;&#12398;&#12463;&#12456;&#12522;</a></span></dt>
+                           <dt><span class="sect2"><a href="objectstate-querying.html#objectstate-querying-nativesql">10.4.4.  &#12493;&#12452;&#12486;&#12451;&#12502;SQL&#12398;&#12463;&#12456;&#12522;</a></span></dt>
+                        </dl>
+                     </dd>
+                     <dt><span class="sect1"><a href="objectstate-modifying.html">10.5.  &#27704;&#32154;&#12458;&#12502;&#12472;&#12455;&#12463;&#12488;&#12398;&#20462;&#27491;</a></span></dt>
+                     <dt><span class="sect1"><a href="objectstate-detached.html">10.6.  &#20998;&#38626;&#12458;&#12502;&#12472;&#12455;&#12463;&#12488;&#12398;&#20462;&#27491;</a></span></dt>
+                     <dt><span class="sect1"><a href="objectstate-saveorupdate.html">10.7.  &#33258;&#21205;&#30340;&#12394;&#29366;&#24907;&#26908;&#20986;</a></span></dt>
+                     <dt><span class="sect1"><a href="objectstate-deleting.html">10.8.  &#27704;&#32154;&#12458;&#12502;&#12472;&#12455;&#12463;&#12488;&#12398;&#21066;&#38500;</a></span></dt>
+                     <dt><span class="sect1"><a href="objectstate-replicating.html">10.9.  &#30064;&#12394;&#12427;&#20108;&#12388;&#12398;&#12487;&#12540;&#12479;&#12473;&#12488;&#12450;&#38291;&#12391;&#12398;&#12458;&#12502;&#12472;&#12455;&#12463;&#12488;&#12398;&#12524;&#12503;&#12522;&#12465;&#12540;&#12471;&#12519;&#12531;</a></span></dt>
+                     <dt><span class="sect1"><a href="objectstate-flushing.html">10.10.  &#12475;&#12483;&#12471;&#12519;&#12531;&#12398;&#12501;&#12521;&#12483;&#12471;&#12517;</a></span></dt>
+                     <dt><span class="sect1"><a href="objectstate-transitive.html">10.11.  &#36899;&#37782;&#30340;&#12394;&#27704;&#32154;&#21270;</a></span></dt>
+                     <dt><span class="sect1"><a href="objectstate-metadata.html">10.12.  &#12513;&#12479;&#12487;&#12540;&#12479;&#12398;&#20351;&#29992;</a></span></dt>
+                  </dl>
+               </dd>
+               <dt><span class="chapter"><a href="transactions.html">11.  &#12488;&#12521;&#12531;&#12470;&#12463;&#12471;&#12519;&#12531;&#12392;&#20006;&#34892;&#24615;</a></span></dt>
+               <dd>
+                  <dl>
+                     <dt><span class="sect1"><a href="transactions.html#transactions-basics">11.1.  session&#12473;&#12467;&#12540;&#12503;&#12392;transaction&#12473;&#12467;&#12540;&#12503;</a></span></dt>
+                     <dd>
+                        <dl>
+                           <dt><span class="sect2"><a href="transactions.html#transactions-basics-uow">11.1.1.  &#20316;&#26989;&#21336;&#20301;&#65288;Unit of work&#65289;</a></span></dt>
+                           <dt><span class="sect2"><a href="transactions.html#transactions-basics-apptx">11.1.2.  &#38263;&#12356;&#23550;&#35441;</a></span></dt>
+                           <dt><span class="sect2"><a href="transactions.html#transactions-basics-identity">11.1.3.  &#12458;&#12502;&#12472;&#12455;&#12463;&#12488;&#35672;&#21029;&#23376;&#12434;&#32771;&#12360;&#12427;</a></span></dt>
+                           <dt><span class="sect2"><a href="transactions.html#transactions-basics-issues">11.1.4.  &#19968;&#33324;&#30340;&#12394;&#21839;&#38988;</a></span></dt>
+                        </dl>
+                     </dd>
+                     <dt><span class="sect1"><a href="transactions-demarcation.html">11.2.  &#12487;&#12540;&#12479;&#12505;&#12540;&#12473;&#12488;&#12521;&#12531;&#12470;&#12463;&#12471;&#12519;&#12531;&#22659;&#30028;</a></span></dt>
+                     <dd>
+                        <dl>
+                           <dt><span class="sect2"><a href="transactions-demarcation.html#transactions-demarcation-nonmanaged">11.2.1.  &#31649;&#29702;&#12373;&#12428;&#12390;&#12356;&#12394;&#12356;&#29872;&#22659;</a></span></dt>
+                           <dt><span class="sect2"><a href="transactions-demarcation.html#transactions-demarcation-jta">11.2.2.  JTA&#12434;&#20351;&#29992;&#12377;&#12427;</a></span></dt>
+                           <dt><span class="sect2"><a href="transactions-demarcation.html#transactions-demarcation-exceptions">11.2.3.  &#20363;&#22806;&#12495;&#12531;&#12489;&#12522;&#12531;&#12464;</a></span></dt>
+                           <dt><span class="sect2"><a href="transactions-demarcation.html#transactions-demarcation-timeout">11.2.4.  &#12488;&#12521;&#12531;&#12470;&#12463;&#12471;&#12519;&#12531;&#12398;&#12479;&#12452;&#12512;&#12450;&#12454;&#12488;</a></span></dt>
+                        </dl>
+                     </dd>
+                     <dt><span class="sect1"><a href="transactions-optimistic.html">11.3.  &#27005;&#35251;&#30340;&#21516;&#26178;&#23455;&#34892;&#21046;&#24481;</a></span></dt>
+                     <dd>
+                        <dl>
+                           <dt><span class="sect2"><a href="transactions-optimistic.html#transactions-optimistic-manual">11.3.1.  &#12450;&#12503;&#12522;&#12465;&#12540;&#12471;&#12519;&#12531;&#12395;&#12424;&#12427;&#12496;&#12540;&#12472;&#12519;&#12531;&#12481;&#12455;&#12483;&#12463;</a></span></dt>
+                           <dt><span class="sect2"><a href="transactions-optimistic.html#transactions-optimistic-longsession">11.3.2.  &#25313;&#24373;&#12475;&#12483;&#12471;&#12519;&#12531;&#12392;&#33258;&#21205;&#12496;&#12540;&#12472;&#12519;&#12491;&#12531;&#12464;</a></span></dt>
+                           <dt><span class="sect2"><a href="transactions-optimistic.html#transactions-optimistic-detached">11.3.3.  &#12487;&#12479;&#12483;&#12481;&#12373;&#12428;&#12383;&#12458;&#12502;&#12472;&#12455;&#12463;&#12488;&#12392;&#33258;&#21205;&#12496;&#12540;&#12472;&#12519;&#12491;&#12531;&#12464;</a></span></dt>
+                           <dt><span class="sect2"><a href="transactions-optimistic.html#transactions-optimistic-customizing">11.3.4.  &#33258;&#21205;&#12496;&#12540;&#12472;&#12519;&#12491;&#12531;&#12464;&#12398;&#12459;&#12473;&#12479;&#12510;&#12452;&#12474;</a></span></dt>
+                        </dl>
+                     </dd>
+                     <dt><span class="sect1"><a href="transactions-locking.html">11.4.  &#24754;&#35251;&#30340;&#12525;&#12483;&#12463;</a></span></dt>
+                     <dt><span class="sect1"><a href="transactions-connection-release.html">11.5.  &#12467;&#12493;&#12463;&#12471;&#12519;&#12531;&#38283;&#25918;&#12514;&#12540;&#12489;</a></span></dt>
+                  </dl>
+               </dd>
+               <dt><span class="chapter"><a href="events.html">12.  &#12452;&#12531;&#12479;&#12540;&#12475;&#12503;&#12479;&#12392;&#12452;&#12505;&#12531;&#12488;</a></span></dt>
+               <dd>
+                  <dl>
+                     <dt><span class="sect1"><a href="events.html#objectstate-interceptors">12.1.  &#12452;&#12531;&#12479;&#12540;&#12475;&#12503;&#12479;</a></span></dt>
+                     <dt><span class="sect1"><a href="objectstate-events.html">12.2.  &#12452;&#12505;&#12531;&#12488;&#12471;&#12473;&#12486;&#12512;</a></span></dt>
+                     <dt><span class="sect1"><a href="objectstate-decl-security.html">12.3.  Hibernate&#12398;&#23459;&#35328;&#30340;&#12394;&#12475;&#12461;&#12517;&#12522;&#12486;&#12451;</a></span></dt>
+                  </dl>
+               </dd>
+               <dt><span class="chapter"><a href="batch.html">13.  &atilde;&#131;&#144;&atilde;&#131;&#131;&atilde;&#131;&#129;&aring;&#135;&brvbar;&ccedil;&#144;&#134;</a></span></dt>
+               <dd>
+                  <dl>
+                     <dt><span class="sect1"><a href="batch.html#batch-inserts">13.1.  &atilde;&#131;&#144;&atilde;&#131;&#131;&atilde;&#131;&#129;&aelig;&#140;&iquest;&aring;&#133;&yen;</a></span></dt>
+                     <dt><span class="sect1"><a href="batch-update.html">13.2.  &atilde;&#131;&#144;&atilde;&#131;&#131;&atilde;&#131;&#129;&aelig;&#155;&acute;&aelig;&#150;&deg;</a></span></dt>
+                     <dt><span class="sect1"><a href="batch-statelesssession.html">13.3.  StatelessSession&atilde;&#130;&curren;&atilde;&#131;&sup3;&atilde;&#130;&iquest;&atilde;&#131;&frac14;&atilde;&#131;&#149;&atilde;&#130;&sect;&atilde;&#130;&curren;&atilde;&#130;&sup1;</a></span></dt>
+                     <dt><span class="sect1"><a href="batch-direct.html">13.4.  DML&atilde;&#130;&sup1;&atilde;&#130;&iquest;&atilde;&#130;&curren;&atilde;&#131;&laquo;&atilde;&#129;&reg;&aelig;&#147;&#141;&auml;&frac12;&#156;</a></span></dt>
+                  </dl>
+               </dd>
+               <dt><span class="chapter"><a href="queryhql.html">14.  HQL: The Hibernate Query Language</a></span></dt>
+               <dd>
+                  <dl>
+                     <dt><span class="sect1"><a href="queryhql.html#queryhql-casesensitivity">14.1.  &#22823;&#25991;&#23383;&#12392;&#23567;&#25991;&#23383;&#12398;&#21306;&#21029;</a></span></dt>
+                     <dt><span class="sect1"><a href="queryhql-from.html">14.2.  from&#31680;</a></span></dt>
+                     <dt><span class="sect1"><a href="queryhql-joins.html">14.3.  &#38306;&#36899;&#12392;&#32080;&#21512;</a></span></dt>
+                     <dt><span class="sect1"><a href="queryhql-joins-forms.html">14.4.  &#32080;&#21512;&#27083;&#25991;&#12398;&#24418;&#24335;</a></span></dt>
+                     <dt><span class="sect1"><a href="queryhql-identifier-property.html">14.5.  Refering to identifier property</a></span></dt>
+                     <dt><span class="sect1"><a href="queryhql-select.html">14.6.  Select&#31680;</a></span></dt>
+                     <dt><span class="sect1"><a href="queryhql-aggregation.html">14.7.  &#38598;&#32004;&#38306;&#25968;</a></span></dt>
+                     <dt><span class="sect1"><a href="queryhql-polymorphism.html">14.8.  &#12509;&#12522;&#12514;&#12540;&#12501;&#12451;&#12483;&#12463;&#12394;&#12463;&#12456;&#12522;</a></span></dt>
+                     <dt><span class="sect1"><a href="queryhql-where.html">14.9.  where&#31680;</a></span></dt>
+                     <dt><span class="sect1"><a href="queryhql-expressions.html">14.10.  Expressions &#24335;</a></span></dt>
+                     <dt><span class="sect1"><a href="queryhql-ordering.html">14.11.  order by&#31680;</a></span></dt>
+                     <dt><span class="sect1"><a href="queryhql-grouping.html">14.12.  group by&#31680;</a></span></dt>
+                     <dt><span class="sect1"><a href="queryhql-subqueries.html">14.13.  &#21103;&#21839;&#12356;&#21512;&#12431;&#12379;</a></span></dt>
+                     <dt><span class="sect1"><a href="queryhql-examples.html">14.14.  HQL&#12398;&#20363;</a></span></dt>
+                     <dt><span class="sect1"><a href="queryhql-bulk.html">14.15.  &#22823;&#37327;&#12398;UPDATE&#12392;DELETE</a></span></dt>
+                     <dt><span class="sect1"><a href="queryhql-tipstricks.html">14.16.  Tips &amp; Tricks</a></span></dt>
+                     <dt><span class="sect1"><a href="queryhql-components.html">14.17.  translator-credits</a></span></dt>
+                     <dt><span class="sect1"><a href="queryhql-tuple.html">14.18.  Row value constructor syntax</a></span></dt>
+                  </dl>
+               </dd>
+               <dt><span class="chapter"><a href="querycriteria.html">15.  Criteria&#12463;&#12456;&#12522;</a></span></dt>
+               <dd>
+                  <dl>
+                     <dt><span class="sect1"><a href="querycriteria.html#querycriteria-creating">15.1.  <code class="literal">Criteria</code> &#12452;&#12531;&#12473;&#12479;&#12531;&#12473;&#12398;&#20316;&#25104;</a></span></dt>
+                     <dt><span class="sect1"><a href="querycriteria-narrowing.html">15.2.  &#12522;&#12470;&#12523;&#12488;&#12475;&#12483;&#12488;&#12398;&#32094;&#36796;&#12415;</a></span></dt>
+                     <dt><span class="sect1"><a href="querycriteria-ordering.html">15.3.  &#32080;&#26524;&#12398;&#25972;&#21015;</a></span></dt>
+                     <dt><span class="sect1"><a href="querycriteria-associations.html">15.4.  &#38306;&#36899;</a></span></dt>
+                     <dt><span class="sect1"><a href="querycriteria-dynamicfetching.html">15.5.  &#38306;&#36899;&#12398;&#21205;&#30340;&#12501;&#12455;&#12483;&#12481;</a></span></dt>
+                     <dt><span class="sect1"><a href="querycriteria-examples.html">15.6.  &#12463;&#12456;&#12522;&#12398;&#20363;</a></span></dt>
+                     <dt><span class="sect1"><a href="querycriteria-projection.html">15.7.  &#23556;&#24433;&#12289;&#38598;&#32004;&#12289;&#12464;&#12523;&#12540;&#12503;&#21270;</a></span></dt>
+                     <dt><span class="sect1"><a href="querycriteria-detachedqueries.html">15.8.  &#12463;&#12456;&#12522;&#12362;&#12424;&#12403;&#12469;&#12502;&#12463;&#12456;&#12522;&#12398;&#20998;&#38626;</a></span></dt>
+                     <dt><span class="sect1"><a href="query-criteria-naturalid.html">15.9.  &#33258;&#28982;&#35672;&#21029;&#23376;&#12395;&#12424;&#12427;&#12463;&#12456;&#12522;</a></span></dt>
+                  </dl>
+               </dd>
+               <dt><span class="chapter"><a href="querysql.html">16.  &#12493;&#12452;&#12486;&#12451;&#12502;SQL</a></span></dt>
+               <dd>
+                  <dl>
+                     <dt><span class="sect1"><a href="querysql.html#querysql-creating">16.1.  <code class="literal">SQLQuery</code> &#12398;&#20351;&#29992;</a></span></dt>
+                     <dd>
+                        <dl>
+                           <dt><span class="sect2"><a href="querysql.html#d0e13065">16.1.1.  &#12473;&#12459;&#12521;&#12540;&#12398;&#12463;&#12456;&#12522;</a></span></dt>
+                           <dt><span class="sect2"><a href="querysql.html#d0e13114">16.1.2.  &#12456;&#12531;&#12486;&#12451;&#12486;&#12451;&#12398;&#12463;&#12456;&#12522;</a></span></dt>
+                           <dt><span class="sect2"><a href="querysql.html#d0e13150">16.1.3.  &#38306;&#36899;&#12392;&#12467;&#12524;&#12463;&#12471;&#12519;&#12531;&#12398;&#25805;&#20316;</a></span></dt>
+                           <dt><span class="sect2"><a href="querysql.html#d0e13181">16.1.4.  &#35079;&#25968;&#12456;&#12531;&#12486;&#12451;&#12486;&#12451;&#12398;&#21462;&#24471;</a></span></dt>
+                           <dd>
+                              <dl>
+                                 <dt><span class="sect3"><a href="querysql.html#querysql-aliasreferences">16.1.4.1.  &#21029;&#21517;&#12392;&#12503;&#12525;&#12497;&#12486;&#12451;&#12398;&#12522;&#12501;&#12449;&#12524;&#12531;&#12473;</a></span></dt>
+                              </dl>
+                           </dd>
+                           <dt><span class="sect2"><a href="querysql.html#d0e13322">16.1.5.  &#31649;&#29702;&#12373;&#12428;&#12390;&#12356;&#12394;&#12356;&#12456;&#12531;&#12486;&#12451;&#12486;&#12451;&#12398;&#21462;&#24471;</a></span></dt>
+                           <dt><span class="sect2"><a href="querysql.html#d0e13343">16.1.6.  &#32153;&#25215;&#12398;&#21046;&#24481;</a></span></dt>
+                           <dt><span class="sect2"><a href="querysql.html#d0e13348">16.1.7.  &#12497;&#12521;&#12513;&#12540;&#12479;</a></span></dt>
+                        </dl>
+                     </dd>
+                     <dt><span class="sect1"><a href="querysql-namedqueries.html">16.2.  &#21517;&#21069;&#20184;&#12365;SQL&#12463;&#12456;&#12522;</a></span></dt>
+                     <dd>
+                        <dl>
+                           <dt><span class="sect2"><a href="querysql-namedqueries.html#propertyresults">16.2.1.  &#21015;&#12392;&#21015;&#12398;&#21029;&#21517;&#12434;&#26126;&#31034;&#30340;&#12395;&#25351;&#23450;&#12377;&#12427;&#12383;&#12417;&#12395; return-property &#12434;&#20351;&#12358;</a></span></dt>
+                           <dt><span class="sect2"><a href="querysql-namedqueries.html#sp_query">16.2.2.  &#21839;&#12356;&#21512;&#12431;&#12379;&#12377;&#12427;&#12383;&#12417;&#12395;&#12473;&#12488;&#12450;&#12489;&#12503;&#12525;&#12471;&#12540;&#12472;&#12515;&#12434;&#20351;&#12358;</a></span></dt>
+                           <dd>
+                              <dl>
+                                 <dt><span class="sect3"><a href="querysql-namedqueries.html#querysql-limits-storedprocedures">16.2.2.1.  &#12473;&#12488;&#12450;&#12489;&#12503;&#12525;&#12471;&#12540;&#12472;&#12515;&#12434;&#20351;&#12358;&#19978;&#12391;&#12398;&#12523;&#12540;&#12523;&#12392;&#21046;&#38480;</a></span></dt>
+                              </dl>
+                           </dd>
+                        </dl>
+                     </dd>
+                     <dt><span class="sect1"><a href="querysql-cud.html">16.3.  &#20316;&#25104;&#12289;&#26356;&#26032;&#12289;&#21066;&#38500;&#12398;&#12383;&#12417;&#12398;&#12459;&#12473;&#12479;&#12512;SQL</a></span></dt>
+                     <dt><span class="sect1"><a href="querysql-load.html">16.4.  &#12525;&#12540;&#12489;&#12398;&#12383;&#12417;&#12398;&#12459;&#12473;&#12479;&#12512;SQL</a></span></dt>
+                  </dl>
+               </dd>
+               <dt><span class="chapter"><a href="filters.html">17.  &#12487;&#12540;&#12479;&#12398;&#12501;&#12451;&#12523;&#12479;&#12522;&#12531;&#12464;</a></span></dt>
+               <dd>
+                  <dl>
+                     <dt><span class="sect1"><a href="filters.html#objectstate-filters">17.1.  Hibernate&#12398;&#12501;&#12451;&#12523;&#12479;</a></span></dt>
+                  </dl>
+               </dd>
+               <dt><span class="chapter"><a href="xml.html">18.  XML&#12510;&#12483;&#12500;&#12531;&#12464;</a></span></dt>
+               <dd>
+                  <dl>
+                     <dt><span class="sect1"><a href="xml.html#xml-intro">18.1.  XML&#12487;&#12540;&#12479;&#12391;&#12398;&#20316;&#26989;</a></span></dt>
+                     <dd>
+                        <dl>
+                           <dt><span class="sect2"><a href="xml.html#xml-intro-mapping">18.1.1.  XML&#12392;&#12463;&#12521;&#12473;&#12398;&#12510;&#12483;&#12500;&#12531;&#12464;&#12434;&#21516;&#26178;&#12395;&#25351;&#23450;&#12377;&#12427;</a></span></dt>
+                           <dt><span class="sect2"><a href="xml.html#xml-onlyxml">18.1.2.  XML&#12510;&#12483;&#12500;&#12531;&#12464;&#12384;&#12369;&#12434;&#25351;&#23450;&#12377;&#12427;</a></span></dt>
+                        </dl>
+                     </dd>
+                     <dt><span class="sect1"><a href="xml-mapping.html">18.2.  XML&#12510;&#12483;&#12500;&#12531;&#12464;&#12398;&#12513;&#12479;&#12487;&#12540;&#12479;</a></span></dt>
+                     <dt><span class="sect1"><a href="xml-manipulation.html">18.3.  XML&#12487;&#12540;&#12479;&#12434;&#25201;&#12358;</a></span></dt>
+                  </dl>
+               </dd>
+               <dt><span class="chapter"><a href="performance.html">19.  &#12497;&#12501;&#12457;&#12540;&#12510;&#12531;&#12473;&#12398;&#25913;&#21892;</a></span></dt>
+               <dd>
+                  <dl>
+                     <dt><span class="sect1"><a href="performance.html#performance-fetching">19.1.  &#12501;&#12455;&#12483;&#12481;&#25126;&#30053;</a></span></dt>
+                     <dd>
+                        <dl>
+                           <dt><span class="sect2"><a href="performance.html#performance-fetching-lazy">19.1.1.  &#36933;&#24310;&#38306;&#36899;&#12398;&#20685;&#12365;</a></span></dt>
+                           <dt><span class="sect2"><a href="performance.html#performance-fetching-custom">19.1.2.  &#12501;&#12455;&#12483;&#12481;&#25126;&#30053;&#12398;&#12481;&#12517;&#12540;&#12491;&#12531;&#12464;</a></span></dt>
+                           <dt><span class="sect2"><a href="performance.html#performance-fetching-proxies">19.1.3.  &#21336;&#19968;&#31471;&#38306;&#36899;&#12503;&#12525;&#12461;&#12471;</a></span></dt>
+                           <dt><span class="sect2"><a href="performance.html#performance-fetching-initialization">19.1.4.  &#12467;&#12524;&#12463;&#12471;&#12519;&#12531;&#12392;&#12503;&#12525;&#12461;&#12471;&#12398;&#21021;&#26399;&#21270;</a></span></dt>
+                           <dt><span class="sect2"><a href="performance.html#performance-fetching-batch">19.1.5.  &#12496;&#12483;&#12481;&#12501;&#12455;&#12483;&#12481;&#12398;&#20351;&#29992;</a></span></dt>
+                           <dt><span class="sect2"><a href="performance.html#performance-fetching-subselect">19.1.6.  &#12469;&#12502;&#12475;&#12524;&#12463;&#12488;&#12501;&#12455;&#12483;&#12481;&#12398;&#20351;&#29992;</a></span></dt>
+                           <dt><span class="sect2"><a href="performance.html#performance-fetching-lazyproperties">19.1.7.  &#36933;&#24310;&#12503;&#12525;&#12497;&#12486;&#12451;&#12501;&#12455;&#12483;&#12481;&#12398;&#20351;&#29992;</a></span></dt>
+                        </dl>
+                     </dd>
+                     <dt><span class="sect1"><a href="performance-cache.html">19.2.  &#31532;2&#12524;&#12505;&#12523;&#12461;&#12515;&#12483;&#12471;&#12517;</a></span></dt>
+                     <dd>
+                        <dl>
+                           <dt><span class="sect2"><a href="performance-cache.html#performance-cache-mapping">19.2.1.  &#12461;&#12515;&#12483;&#12471;&#12517;&#12398;&#12510;&#12483;&#12500;&#12531;&#12464;</a></span></dt>
+                           <dt><span class="sect2"><a href="performance-cache.html#performance-cache-readonly">19.2.2.  read only&#25126;&#30053;</a></span></dt>
+                           <dt><span class="sect2"><a href="performance-cache.html#performance-cache-readwrite">19.2.3.  read/write&#25126;&#30053;</a></span></dt>
+                           <dt><span class="sect2"><a href="performance-cache.html#performance-cache-nonstrict">19.2.4.  &#21427;&#23494;&#12391;&#12399;&#12394;&#12356;read/write&#25126;&#30053;</a></span></dt>
+                           <dt><span class="sect2"><a href="performance-cache.html#performance-cache-transactional">19.2.5.  transactional&#25126;&#30053;</a></span></dt>
+                           <dt><span class="sect2"><a href="performance-cache.html#performance-cache-compat-matrix">19.2.6.  Cache-provider/concurrency-strategy compatibility</a></span></dt>
+                        </dl>
+                     </dd>
+                     <dt><span class="sect1"><a href="performance-sessioncache.html">19.3.  &#12461;&#12515;&#12483;&#12471;&#12517;&#12398;&#31649;&#29702;</a></span></dt>
+                     <dt><span class="sect1"><a href="performance-querycache.html">19.4.  &#12463;&#12456;&#12522;&#12461;&#12515;&#12483;&#12471;&#12517;</a></span></dt>
+                     <dt><span class="sect1"><a href="performance-collections.html">19.5.  &#12467;&#12524;&#12463;&#12471;&#12519;&#12531;&#12398;&#12497;&#12501;&#12457;&#12540;&#12510;&#12531;&#12473;&#12398;&#29702;&#35299;</a></span></dt>
+                     <dd>
+                        <dl>
+                           <dt><span class="sect2"><a href="performance-collections.html#performance-collections-taxonomy">19.5.1.  &#20998;&#39006;</a></span></dt>
+                           <dt><span class="sect2"><a href="performance-collections.html#performance-collections-mostefficientupdate">19.5.2.  &#26356;&#26032;&#12395;&#12418;&#12387;&#12392;&#12418;&#21177;&#29575;&#30340;&#12394;&#12467;&#12524;&#12463;&#12471;&#12519;&#12531; list&#12289;map&#12289;idbag&#12289;set</a></span></dt>
+                           <dt><span class="sect2"><a href="performance-collections.html#performance-collections-mostefficentinverse">19.5.3.  inverse&#12467;&#12524;&#12463;&#12471;&#12519;&#12531;&#12395;&#12418;&#12387;&#12392;&#12418;&#26368;&#36969;&#12394;bag&#12392;list</a></span></dt>
+                           <dt><span class="sect2"><a href="performance-collections.html#performance-collections-oneshotdelete">19.5.4.  &#19968;&#25324;&#21066;&#38500;</a></span></dt>
+                        </dl>
+                     </dd>
+                     <dt><span class="sect1"><a href="performance-monitoring.html">19.6.  &#12497;&#12501;&#12457;&#12540;&#12510;&#12531;&#12473;&#12398;&#12514;&#12491;&#12479;&#12522;&#12531;&#12464;</a></span></dt>
+                     <dd>
+                        <dl>
+                           <dt><span class="sect2"><a href="performance-monitoring.html#performance-monitoring-sf">19.6.1.  SessionFactory&#12398;&#12514;&#12491;&#12479;&#12522;&#12531;&#12464;</a></span></dt>
+                           <dt><span class="sect2"><a href="performance-monitoring.html#performance-monitoring-metrics">19.6.2.  &#12513;&#12488;&#12522;&#12463;&#12473;</a></span></dt>
+                        </dl>
+                     </dd>
+                  </dl>
+               </dd>
+               <dt><span class="chapter"><a href="toolsetguide.html">20.  Toolset Guide &#12484;&#12540;&#12523;&#12475;&#12483;&#12488;&#12460;&#12452;&#12489;</a></span></dt>
+               <dd>
+                  <dl>
+                     <dt><span class="sect1"><a href="toolsetguide.html#toolsetguide-s1">20.1.  &#12473;&#12461;&#12540;&#12510;&#12398;&#33258;&#21205;&#29983;&#25104;</a></span></dt>
+                     <dd>
+                        <dl>
+                           <dt><span class="sect2"><a href="toolsetguide.html#toolsetguide-s1-2">20.1.1.  &#12473;&#12461;&#12540;&#12510;&#12398;&#12459;&#12473;&#12479;&#12510;&#12452;&#12474;</a></span></dt>
+                           <dt><span class="sect2"><a href="toolsetguide.html#toolsetguide-s1-3">20.1.2.  &#12484;&#12540;&#12523;&#12398;&#23455;&#34892;</a></span></dt>
+                           <dt><span class="sect2"><a href="toolsetguide.html#toolsetguide-s1-4">20.1.3.  &#12503;&#12525;&#12497;&#12486;&#12451;</a></span></dt>
+                           <dt><span class="sect2"><a href="toolsetguide.html#toolsetguide-s1-5">20.1.4.  Ant&#12434;&#20351;&#29992;&#12377;&#12427;</a></span></dt>
+                           <dt><span class="sect2"><a href="toolsetguide.html#toolsetguide-s1-6">20.1.5.  &#12452;&#12531;&#12463;&#12522;&#12513;&#12531;&#12479;&#12523;&#12394;&#12473;&#12461;&#12540;&#12510;&#26356;&#26032;</a></span></dt>
+                           <dt><span class="sect2"><a href="toolsetguide.html#toolsetguide-s1-7">20.1.6.  &#12452;&#12531;&#12463;&#12522;&#12513;&#12531;&#12479;&#12523;&#12394;&#12473;&#12461;&#12540;&#12510;&#26356;&#26032;&#12395;&#23550;&#12377;&#12427;Ant&#12398;&#20351;&#29992;</a></span></dt>
+                           <dt><span class="sect2"><a href="toolsetguide.html#toolsetguide-s1-8">20.1.7.  Schema validation</a></span></dt>
+                           <dt><span class="sect2"><a href="toolsetguide.html#toolsetguide-s1-9">20.1.8.  &#12473;&#12461;&#12540;&#12510;&#12398;&#12496;&#12522;&#12487;&#12540;&#12471;&#12519;&#12531;&#12395;Ant&#12434;&#20351;&#29992;&#12375;&#12414;&#12377;</a></span></dt>
+                        </dl>
+                     </dd>
+                  </dl>
+               </dd>
+               <dt><span class="chapter"><a href="example-parentchild.html">21.  &#20363;&#65306;&#35242;/&#23376;&#20379;</a></span></dt>
+               <dd>
+                  <dl>
+                     <dt><span class="sect1"><a href="example-parentchild.html#example-parentchild-collections">21.1.  &#12467;&#12524;&#12463;&#12471;&#12519;&#12531;&#12395;&#38306;&#12377;&#12427;&#27880;&#24847;</a></span></dt>
+                     <dt><span class="sect1"><a href="example-parentchild-bidir.html">21.2.  &#21452;&#26041;&#21521;&#19968;&#23550;&#22810;</a></span></dt>
+                     <dt><span class="sect1"><a href="example-parentchild-cascades.html">21.3.  &#12521;&#12452;&#12501;&#12469;&#12452;&#12463;&#12523;&#12398;&#12459;&#12473;&#12465;&#12540;&#12489;</a></span></dt>
+                     <dt><span class="sect1"><a href="example-parentchild-update.html">21.4.  &#12459;&#12473;&#12465;&#12540;&#12489;&#12392; <code class="literal">unsaved-value</code></a></span></dt>
+                     <dt><span class="sect1"><a href="example-parentchild-conclusion.html">21.5.  &#32080;&#35542;</a></span></dt>
+                  </dl>
+               </dd>
+               <dt><span class="chapter"><a href="example-weblog.html">22.  &#20363;: Weblog&#12450;&#12503;&#12522;&#12465;&#12540;&#12471;&#12519;&#12531;</a></span></dt>
+               <dd>
+                  <dl>
+                     <dt><span class="sect1"><a href="example-weblog.html#example-weblog-classes">22.1.  &#27704;&#32154;&#12463;&#12521;&#12473;</a></span></dt>
+                     <dt><span class="sect1"><a href="example-weblog-mappings.html">22.2.  Hibernate&#12398;&#12510;&#12483;&#12500;&#12531;&#12464;</a></span></dt>
+                     <dt><span class="sect1"><a href="example-weblog-code.html">22.3.  Hibernate&#12398;&#12467;&#12540;&#12489;</a></span></dt>
+                  </dl>
+               </dd>
+               <dt><span class="chapter"><a href="example-mappings.html">23.  &#20363;&#65306;&#12356;&#12429;&#12356;&#12429;&#12394;&#12510;&#12483;&#12500;&#12531;&#12464;</a></span></dt>
+               <dd>
+                  <dl>
+                     <dt><span class="sect1"><a href="example-mappings.html#example-mappings-emp">23.1.  &#38599;&#29992;&#32773;/&#24467;&#26989;&#21729;</a></span></dt>
+                     <dt><span class="sect1"><a href="example-mappings-authorwork.html">23.2.  &#20316;&#32773;/&#20316;&#21697;</a></span></dt>
+                     <dt><span class="sect1"><a href="example-mappings-customerorderproduct.html">23.3.  &#39015;&#23458;/&#27880;&#25991;/&#35069;&#21697;</a></span></dt>
+                     <dt><span class="sect1"><a href="misc.html">23.4.  &#31278;&#12293;&#38609;&#22810;&#12394;&#12510;&#12483;&#12500;&#12531;&#12464;&#20363;</a></span></dt>
+                     <dd>
+                        <dl>
+                           <dt><span class="sect2"><a href="misc.html#example-mappings-typed-onetone">23.4.1.  &#12300;&#22411;&#20184;&#12369;&#12373;&#12428;&#12383;&#12301;&#19968;&#23550;&#19968;&#38306;&#36899;</a></span></dt>
+                           <dt><span class="sect2"><a href="misc.html#example-mappings-composite-key">23.4.2.  &#35079;&#21512;&#12461;&#12540;&#12398;&#20363;</a></span></dt>
+                           <dt><span class="sect2"><a href="misc.html#example-mappings-composite-key-manytomany">23.4.3.  &#35079;&#21512;&#12461;&#12540;&#23646;&#24615;&#12434;&#20849;&#26377;&#12377;&#12427;&#22810;&#23550;&#22810;</a></span></dt>
+                           <dt><span class="sect2"><a href="misc.html#example-mappings-content-discrimination">23.4.4.  discrimination&#12395;&#22522;&#12389;&#12367;&#20869;&#23481;</a></span></dt>
+                           <dt><span class="sect2"><a href="misc.html#example-mappings-association-alternatekeys">23.4.5.  &#20195;&#26367;&#12461;&#12540;&#12398;&#38306;&#36899;</a></span></dt>
+                        </dl>
+                     </dd>
+                  </dl>
+               </dd>
+               <dt><span class="chapter"><a href="best-practices.html">24.  &#12505;&#12473;&#12488;&#12503;&#12521;&#12463;&#12486;&#12451;&#12473;</a></span></dt>
+            </dl>
+         </div>
+      </div>
+      <div class="navfooter">
+         <hr>
+         <table width="100%" summary="Navigation footer">
+            <tr>
+               <td width="40%" align="left">&nbsp;</td>
+               <td width="20%" align="center">&nbsp;</td>
+               <td width="40%" align="right">&nbsp;<a accesskey="n" href="preface.html">&#27425;&#12398;&#12506;&#12540;&#12472;</a></td>
+            </tr>
+            <tr>
+               <td width="40%" align="left" valign="top">&nbsp;</td>
+               <td width="20%" align="center">&nbsp;</td>
+               <td width="40%" align="right" valign="top">&nbsp;&#21069;&#26360;&#12365;</td>
+            </tr>
+         </table>
+      </div>
+   </body>
+</html>

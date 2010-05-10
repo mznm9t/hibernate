@@ -1,0 +1,343 @@
+<html>
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   
+      <title>9&#51109;. &#49345;&#49549; &#47588;&#54609;</title>
+      <link rel="stylesheet" href="css/html.css" type="text/css">
+      <meta name="generator" content="DocBook XSL Stylesheets V1.72.0">
+      <link rel="start" href="index.html" title="HIBERNATE - &#44060;&#49457;&#51080;&#45716; &#51088;&#48148;&#47484; &#50948;&#54620; &#44288;&#44228; &#50689;&#49549;">
+      <link rel="up" href="index.html" title="HIBERNATE - &#44060;&#49457;&#51080;&#45716; &#51088;&#48148;&#47484; &#50948;&#54620; &#44288;&#44228; &#50689;&#49549;">
+      <link rel="prev" href="components-dynamic.html" title="8.5. &#46041;&#51201;&#51064; &#52980;&#54252;&#45324;&#53944;&#46308;">
+      <link rel="next" href="inheritance-limitations.html" title="9.2. &#51228;&#50557;&#46308;">
+   </head>
+   <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+      <div class="navheader">
+         <table width="100%" summary="Navigation header">
+            <tr>
+               <th colspan="3" align="center">9&#51109;. &#49345;&#49549; &#47588;&#54609;</th>
+            </tr>
+            <tr>
+               <td width="20%" align="left"><a accesskey="p" href="components-dynamic.html">&#51060;&#51204;</a>&nbsp;
+               </td>
+               <th width="60%" align="center">&nbsp;</th>
+               <td width="20%" align="right">&nbsp;<a accesskey="n" href="inheritance-limitations.html">&#45796;&#51020;</a></td>
+            </tr>
+         </table>
+         <hr>
+      </div>
+      <div class="chapter" lang="ko-KR">
+         <div class="titlepage">
+            <div>
+               <div>
+                  <h2 class="title"><a name="inheritance"></a>9&#51109;. &#49345;&#49549; &#47588;&#54609;
+                  </h2>
+               </div>
+            </div>
+         </div>
+         <div class="sect1" lang="ko-KR">
+            <div class="titlepage">
+               <div>
+                  <div>
+                     <h2 class="title" style="clear: both"><a name="inheritance-strategies"></a>9.1. &#49464; &#44032;&#51648; &#48169;&#46020;&#46308;
+                     </h2>
+                  </div>
+               </div>
+            </div>
+            <p>Hibernate&#45716; &#49464; &#44032;&#51648; &#44592;&#48376;&#51201;&#51064; &#49345;&#49549; &#47588;&#54609; &#48169;&#46020;&#46308;&#51012; &#51648;&#50896;&#54620;&#45796;: </p>
+            <div class="itemizedlist">
+               <ul type="disc">
+                  <li>
+                     <p>table per class hierarchy </p>
+                  </li>
+                  <li>
+                     <p>table per subclass </p>
+                  </li>
+                  <li>
+                     <p>table per concrete class </p>
+                  </li>
+               </ul>
+            </div>
+            <p>&#44172;&#45796;&#44032; Hibernate&#45716; &#45348; &#48264;&#51704;&#51032; &#50557;&#44036; &#45796;&#47480; &#51333;&#47448;&#51032; &#45796;&#54805;&#49457;&#51012; &#51648;&#50896;&#54620;&#45796;: </p>
+            <div class="itemizedlist">
+               <ul type="disc">
+                  <li>
+                     <p>implicit polymorphism(&#54632;&#52629;&#51201;&#51064; &#45796;&#54805;&#49457;) </p>
+                  </li>
+               </ul>
+            </div>
+            <p>&#46041;&#51068;&#54620; &#49345;&#49549; &#44228;&#52789;&#44396;&#51312;&#51032; &#45796;&#47480; &#44032;&#51648;&#46308;&#50640; &#45824;&#54644; &#45796;&#47480; &#47588;&#54609; &#48169;&#46020;&#46308;&#51012; &#49324;&#50857;&#54616;&#45716; &#44163;&#51060; &#44032;&#45733;&#54616;&#44256;, &#44536;&#47088; &#45796;&#51020; &#51204;&#52404; &#44228;&#52789; &#44396;&#51312;&#47484; &#44032;&#47196;&#51656;&#47084; &#45796;&#54805;&#49457;&#51012; &#49457;&#52712;&#54616;&#45716;&#45936; &#54632;&#52629;&#51201;&#51064; &#45796;&#54805;&#49457;&#51012; &#49324;&#50857;&#54616;&#46972;. &#54616;&#51648;&#47564; Hibernate&#45716; &#46041;&#51068;&#54620; &#47336;&#53944; <code class="literal">&lt;class&gt;</code> &#50836;&#49548; &#54616;&#50640;&#49436; <code class="literal">&lt;subclass&gt;</code> &#44536;&#47532;&#44256; <code class="literal">&lt;joined-subclass&gt;</code> &#44536;&#47532;&#44256; <code class="literal">&lt;union-subclass&gt;</code> &#47588;&#54609;&#46308;&#51012; &#54844;&#54633;&#54616;&#45716; &#44163;&#51012; &#51648;&#50896;&#54616;&#51648; &#50506;&#45716;&#45796;. &#46041;&#51068;&#54620; <code class="literal">&lt;class&gt;</code> &#50836;&#49548; &#54616;&#50640;&#49436; <code class="literal">&lt;subclass&gt;</code> &#50836;&#49548;&#50752; <code class="literal">&lt;join&gt;</code> &#50836;&#49548;&#47484; &#44208;&#54633;&#49884;&#53428;&#51004;&#47196;&#50024; table per hierarchy &#48169;&#46020;&#50752; table per subclass &#48169;&#46020;&#47484; &#54632;&#44760; &#54844;&#54633;&#49884;&#53412;&#45716; &#44163;&#51060; &#44032;&#45733;&#54616;&#45796;(&#50500;&#47000;&#47484; &#48372;&#46972;). 
+            </p>
+            <p>&#48324;&#46020;&#51032; &#47588;&#54609; &#47928;&#49436; &#45236;&#50640;, <code class="literal">hibernate-mapping</code> &#48148;&#47196; &#48145;&#50640; <code class="literal">subclass</code>, <code class="literal">union-subclass</code>, &#44536;&#47532;&#44256; <code class="literal">joined-subclass</code> &#47588;&#54609;&#46308;&#51012; &#51221;&#51032;&#54616;&#45716; &#44163;&#51060; &#44032;&#45733;&#54616;&#45796;. &#51060;&#44163;&#51008; &#45800;&#51648; &#54616;&#45208;&#51032; &#49352;&#47196;&#50868; &#47588;&#54609; &#54028;&#51068;&#51012; &#52628;&#44032;&#49884;&#53020;&#49436; &#54616;&#45208;&#51032; class &#44228;&#52789;&#44396;&#51312;&#47484; &#54869;&#51109;&#54616;&#45716; &#44163;&#51012; &#45817;&#49888;&#50640;&#44172; &#54728;&#50857;&#54644;&#51456;&#45796;. &#45817;&#49888;&#51008; subclass &#47588;&#54609; &#45236;&#50640; &#50526;&#49436; &#47588;&#54609;&#46108; &#49800;&#54140;&#53364;&#47000;&#49828;&#47484; &#47749;&#47749;&#54616;&#50668;
+               <code class="literal">extends</code> &#49549;&#49457;&#51012; &#51648;&#51221;&#54644;&#50556; &#54620;&#45796;. &#45432;&#53944; : &#47749;&#48177;&#54616;&#44172; &#51060; &#53945;&#51669;&#51008; &#47588;&#54609; &#47928;&#49436;&#46308;&#51032; &#49692;&#49436;&#47484; &#51473;&#50836;&#54616;&#44172;&#45140; &#47564;&#46308;&#50632;&#45796;. Hibernate3 &#51060;&#54980;&#47196;, &#47588;&#54609; &#54028;&#51068;&#46308;&#51032; &#49692;&#49436;&#45716; extends &#53412;&#50892;&#46300;&#47484; &#49324;&#50857;&#54624; &#46412; &#49345;&#44288;&#50630;&#45796;. &#54616;&#45208;&#51032; &#47588;&#54609; &#54028;&#51068; &#45236;&#51032; &#49692;&#49436;&#45716;
+               &#50668;&#51204;&#55176; &#49436;&#48652;&#53364;&#47000;&#49828;&#46308;&#50640; &#50526;&#49436; &#49800;&#54140;&#53364;&#47000;&#49828;&#46308;&#51012; &#51221;&#51032;&#54616;&#45716;&#45936; &#50668;&#51204;&#55176; &#54596;&#50836;&#54616;&#45796;. 
+            </p><pre class="programlisting">
+ &lt;hibernate-mapping&gt;
+     &lt;subclass name="DomesticCat" extends="Cat" discriminator-value="D"&gt;
+          &lt;property name="name" type="string"/&gt;
+     &lt;/subclass&gt;
+ &lt;/hibernate-mapping&gt;</pre><div class="sect2" lang="ko-KR">
+               <div class="titlepage">
+                  <div>
+                     <div>
+                        <h3 class="title"><a name="inheritance-tableperclass"></a>9.1.1. Table per class hierarchy
+                        </h3>
+                     </div>
+                  </div>
+               </div>
+               <p>&#50864;&#47532;&#44032; <code class="literal">CreditCardPayment</code>, <code class="literal">CashPayment</code>, <code class="literal">ChequePayment</code> &#44396;&#54788;&#51088;&#46308;&#51012; &#44032;&#51652; &#54616;&#45208;&#51032; &#51064;&#53552;&#54168;&#51060;&#49828; <code class="literal">Payment</code>&#47484; &#44054;&#44256; &#51080;&#45796;&#44256; &#44032;&#51221;&#54616;&#51088;. table per hierarchy &#47588;&#54609;&#51008; &#45796;&#51020;&#44284; &#44057;&#51012; &#44163;&#51060;&#45796;: 
+               </p><pre class="programlisting">&lt;class name="Payment" table="PAYMENT"&gt;
+    &lt;id name="id" type="long" column="PAYMENT_ID"&gt;
+        &lt;generator class="native"/&gt;
+    &lt;/id&gt;
+    &lt;discriminator column="PAYMENT_TYPE" type="string"/&gt;
+    &lt;property name="amount" column="AMOUNT"/&gt;
+    ...
+    &lt;subclass name="CreditCardPayment" discriminator-value="CREDIT"&gt;
+        &lt;property name="creditCardType" column="CCTYPE"/&gt;
+        ...
+    &lt;/subclass&gt;
+    &lt;subclass name="CashPayment" discriminator-value="CASH"&gt;
+        ...
+    &lt;/subclass&gt;
+    &lt;subclass name="ChequePayment" discriminator-value="CHEQUE"&gt;
+        ...
+    &lt;/subclass&gt;
+&lt;/class&gt;</pre><p>&#51221;&#54869;&#55176; &#54616;&#45208;&#51032; &#53580;&#51060;&#48660;&#51060; &#54596;&#50836;&#54616;&#45796;. &#51060; &#47588;&#54609; &#48169;&#46020;&#50640;&#45716; &#45796;&#51020;&#51032; &#54616;&#45208;&#51032; &#53360; &#51228;&#50557;&#51060; &#51316;&#51116;&#54620;&#45796;: <code class="literal">CCTYPE</code>&#44284; &#44057;&#51060;, &#49436;&#48652; &#53364;&#47000;&#49828;&#46308;&#50640; &#51032;&#54644; &#49440;&#50616;&#46108; &#52972;&#47100;&#46308;&#51008; <code class="literal">NOT NULL</code> &#52968;&#49828;&#53944;&#47112;&#51064;&#53944;&#46308;&#51012; &#44032;&#51656; &#49688; &#50630;&#45796;. 
+               </p>
+            </div>
+            <div class="sect2" lang="ko-KR">
+               <div class="titlepage">
+                  <div>
+                     <div>
+                        <h3 class="title"><a name="inheritance-tablepersubclass"></a>9.1.2. Table per subclass
+                        </h3>
+                     </div>
+                  </div>
+               </div>
+               <p>table per subclass &#47588;&#54609;&#51008; &#45796;&#51020;&#44284; &#44057;&#51012; &#44163;&#51060;&#45796;: </p><pre class="programlisting">&lt;class name="Payment" table="PAYMENT"&gt;
+    &lt;id name="id" type="long" column="PAYMENT_ID"&gt;
+        &lt;generator class="native"/&gt;
+    &lt;/id&gt;
+    &lt;property name="amount" column="AMOUNT"/&gt;
+    ...
+    &lt;joined-subclass name="CreditCardPayment" table="CREDIT_PAYMENT"&gt;
+        &lt;key column="PAYMENT_ID"/&gt;
+        &lt;property name="creditCardType" column="CCTYPE"/&gt;
+        ...
+    &lt;/joined-subclass&gt;
+    &lt;joined-subclass name="CashPayment" table="CASH_PAYMENT"&gt;
+        &lt;key column="PAYMENT_ID"/&gt;
+        ...
+    &lt;/joined-subclass&gt;
+    &lt;joined-subclass name="ChequePayment" table="CHEQUE_PAYMENT"&gt;
+        &lt;key column="PAYMENT_ID"/&gt;
+        ...
+    &lt;/joined-subclass&gt;
+&lt;/class&gt;</pre><p>&#45348; &#44060;&#51032; &#53580;&#51060;&#48660;&#46308;&#51060; &#54596;&#50836;&#54616;&#45796;. &#49464; &#44060;&#51032; &#49436;&#48652;&#53364;&#47000;&#49828; &#53580;&#51060;&#48660;&#46308;&#51008; &#49800;&#54140;&#53364;&#47000;&#49828; &#53580;&#51060;&#48660;&#50640; &#45824;&#54620; &#54532;&#46972;&#51060;&#47672;&#47532; &#53412; &#50672;&#44288;&#46308;&#51012; &#44054;&#45716;&#45796; (&#46384;&#46972;&#49436; &#44536; &#44288;&#44228;&#54805; &#47784;&#54805;&#51008; &#49892;&#51228;&#47196; one-to-one &#50672;&#44288;&#51060;&#45796;). </p>
+            </div>
+            <div class="sect2" lang="ko-KR">
+               <div class="titlepage">
+                  <div>
+                     <div>
+                        <h3 class="title"><a name="inheritance-tablepersubclass-discriminator"></a>9.1.3. discriminator&#47484; &#49324;&#50857;&#54616;&#45716;, table per subclass
+                        </h3>
+                     </div>
+                  </div>
+               </div>
+               <p>table-per-subclass&#50640; &#45824;&#54620; Hibernate&#51032; &#44396;&#54788;&#51008; discriminator(&#54032;&#48324;&#51088;) &#52972;&#47100;&#51012; &#54596;&#50836;&#47196; &#54616;&#51648; &#50506;&#51020;&#51012; &#45432;&#53944;&#54616;&#46972;. &#45796;&#47480; &#44061;&#52404;/&#44288;&#44228;&#54805; &#47588;&#54609;&#44592;&#46308;&#51008; &#49800;&#54140;&#53364;&#47000;&#49828; &#53580;&#51060;&#48660; &#49549;&#50640; &#54616;&#45208;&#51032; &#53440;&#51077; &#54032;&#48324;&#51088; &#52972;&#47100;&#51012;
+                  &#54596;&#50836;&#47196; &#54616;&#45716; table-per-subclass&#50640; &#45824;&#54620; &#45796;&#47480; &#44396;&#54788;&#51012; &#49324;&#50857;&#54620;&#45796;. Hibernate&#50640; &#51032;&#54644; &#52292;&#53469;&#46108; &#51217;&#44540;&#48277;&#51008; &#44396;&#54788;&#54616;&#44592;&#44032; &#55016;&#50476; &#45908; &#50612;&#47157;&#51648;&#47564; &#44288;&#44228;&#54805; &#44288;&#51216;&#50640;&#49436;&#45716; &#50500;&#47560; &#53952;&#47548;&#50630;&#51060; &#48372;&#45796; &#45908; &#51221;&#54869;&#54616;&#45796;. &#47564;&#51068; &#45817;&#49888;&#51060; table
+                  per subclass &#48169;&#46020;&#50640; &#45824;&#54644; &#54616;&#45208;&#51032; &#54032;&#48324;&#51088; &#52972;&#47100;&#51012; &#49324;&#50857;&#54616;&#44256; &#49910;&#45796;&#47732;, &#45817;&#49888;&#51008; &#45796;&#51020;&#44284; &#44057;&#51060; <code class="literal">&lt;subclass&gt;</code>&#50752; <code class="literal">&lt;join&gt;</code>&#51032; &#49324;&#50857;&#51012; &#44208;&#54633;&#49884;&#53420; &#49688;&#46020; &#51080;&#45796;: 
+               </p><pre class="programlisting">&lt;class name="Payment" table="PAYMENT"&gt;
+    &lt;id name="id" type="long" column="PAYMENT_ID"&gt;
+        &lt;generator class="native"/&gt;
+    &lt;/id&gt;
+    &lt;discriminator column="PAYMENT_TYPE" type="string"/&gt;
+    &lt;property name="amount" column="AMOUNT"/&gt;
+    ...
+    &lt;subclass name="CreditCardPayment" discriminator-value="CREDIT"&gt;
+        &lt;join table="CREDIT_PAYMENT"&gt;
+            &lt;key column="PAYMENT_ID"/&gt;
+            &lt;property name="creditCardType" column="CCTYPE"/&gt;
+            ...
+        &lt;/join&gt;
+    &lt;/subclass&gt;
+    &lt;subclass name="CashPayment" discriminator-value="CASH"&gt;
+        &lt;join table="CASH_PAYMENT"&gt;
+            &lt;key column="PAYMENT_ID"/&gt;
+            ...
+        &lt;/join&gt;
+    &lt;/subclass&gt;
+    &lt;subclass name="ChequePayment" discriminator-value="CHEQUE"&gt;
+        &lt;join table="CHEQUE_PAYMENT" fetch="select"&gt;
+            &lt;key column="PAYMENT_ID"/&gt;
+            ...
+        &lt;/join&gt;
+    &lt;/subclass&gt;
+&lt;/class&gt;</pre><p>&#49440;&#53469;&#51201;&#51064; <code class="literal">fetch="select"</code> &#49440;&#50616;&#51008; &#49800;&#54140;&#53364;&#47000;&#49828;&#47484; &#51656;&#51032;&#54624; &#46412; outer join&#51012; &#49324;&#50857;&#54616;&#50668; <code class="literal">ChequePayment</code> &#49436;&#48652;&#53364;&#47000;&#49828; &#45936;&#51060;&#53552;&#47484; &#54168;&#52824;&#49884;&#53412;&#51648; &#50506;&#46020;&#47197; Hibernate&#50640;&#44172; &#50508;&#47140;&#51456;&#45796;. 
+               </p>
+            </div>
+            <div class="sect2" lang="ko-KR">
+               <div class="titlepage">
+                  <div>
+                     <div>
+                        <h3 class="title"><a name="inheritance-mixing-tableperclass-tablepersubclass"></a>9.1.4. table per class hierarchy&#50752; table per subclass&#47484; &#54844;&#54633;&#54616;&#44592;
+                        </h3>
+                     </div>
+                  </div>
+               </div>
+               <p>&#45817;&#49888;&#51008; &#51060; &#51217;&#44540;&#48277;&#51012; &#49324;&#50857;&#54616;&#50668; table per hierarchy &#48169;&#46020;&#50752; table per subclass &#48169;&#46020;&#47484; &#54844;&#54633;&#49884;&#53420; &#49688; &#51080;&#45796;: </p><pre class="programlisting">&lt;class name="Payment" table="PAYMENT"&gt;
+    &lt;id name="id" type="long" column="PAYMENT_ID"&gt;
+        &lt;generator class="native"/&gt;
+    &lt;/id&gt;
+    &lt;discriminator column="PAYMENT_TYPE" type="string"/&gt;
+    &lt;property name="amount" column="AMOUNT"/&gt;
+    ...
+    &lt;subclass name="CreditCardPayment" discriminator-value="CREDIT"&gt;
+        &lt;join table="CREDIT_PAYMENT"&gt;
+            &lt;property name="creditCardType" column="CCTYPE"/&gt;
+            ...
+        &lt;/join&gt;
+    &lt;/subclass&gt;
+    &lt;subclass name="CashPayment" discriminator-value="CASH"&gt;
+        ...
+    &lt;/subclass&gt;
+    &lt;subclass name="ChequePayment" discriminator-value="CHEQUE"&gt;
+        ...
+    &lt;/subclass&gt;
+&lt;/class&gt;</pre><p>&#51060;&#46308; &#47588;&#54609; &#48169;&#46020;&#46308; &#51473; &#50612;&#46500; &#44163;&#50640; &#45824;&#54644;, &#47336;&#53944; <code class="literal">Payment</code> &#53364;&#47000;&#49828;&#50640; &#45824;&#54620; &#54616;&#45208;&#51032; &#45796;&#54805;&#49457; &#50672;&#44288;&#51008; <code class="literal">&lt;many-to-one&gt;</code>&#51012; &#49324;&#50857;&#54616;&#50668; &#47588;&#54609;&#46108;&#45796;. 
+               </p><pre class="programlisting">&lt;many-to-one name="payment" column="PAYMENT_ID" class="Payment"/&gt;</pre></div>
+            <div class="sect2" lang="ko-KR">
+               <div class="titlepage">
+                  <div>
+                     <div>
+                        <h3 class="title"><a name="inheritance-tableperconcrete"></a>9.1.5. Table per concrete class
+                        </h3>
+                     </div>
+                  </div>
+               </div>
+               <p>&#50864;&#47532;&#44032; table per concrete class &#48169;&#46020; &#47588;&#54609;&#50640; &#45824;&#54644; &#52712;&#54624; &#49688; &#51080;&#45716; &#46160; &#44032;&#51648; &#48169;&#48277;&#46308;&#51060; &#51316;&#51116;&#54620;&#45796;. &#52395; &#48264;&#51704;&#45716; <code class="literal">&lt;union-subclass&gt;</code>&#47484; &#49324;&#50857;&#54616;&#45716; &#44163;&#51060;&#45796;. 
+               </p><pre class="programlisting">&lt;class name="Payment"&gt;
+    &lt;id name="id" type="long" column="PAYMENT_ID"&gt;
+        &lt;generator class="sequence"/&gt;
+    &lt;/id&gt;
+    &lt;property name="amount" column="AMOUNT"/&gt;
+    ...
+    &lt;union-subclass name="CreditCardPayment" table="CREDIT_PAYMENT"&gt;
+        &lt;property name="creditCardType" column="CCTYPE"/&gt;
+        ...
+    &lt;/union-subclass&gt;
+    &lt;union-subclass name="CashPayment" table="CASH_PAYMENT"&gt;
+        ...
+    &lt;/union-subclass&gt;
+    &lt;union-subclass name="ChequePayment" table="CHEQUE_PAYMENT"&gt;
+        ...
+    &lt;/union-subclass&gt;
+&lt;/class&gt;</pre><p>&#49464; &#44060;&#51032; &#53580;&#51060;&#48660;&#46308;&#51060; &#49800;&#54140;&#53364;&#47000;&#49828;&#46308;&#50640; &#45824;&#54644; &#49688;&#48152;&#46108;&#45796;. &#44033;&#44033;&#51032; &#53580;&#51060;&#48660;&#51008; &#49345;&#49549;&#46108; &#54532;&#47196;&#54140;&#54000;&#46308;&#51012; &#54252;&#54632;&#54616;&#50668;, &#44536; &#53364;&#47000;&#49828;&#51032; &#47784;&#46304; &#54532;&#47196;&#54140;&#54000;&#46308;&#50640; &#45824;&#54620; &#52972;&#47100;&#46308;&#51012; &#51221;&#51032;&#54620;&#45796;. </p>
+               <p>&#51060; &#51217;&#44540;&#48277;&#51032; &#51228;&#50557;&#51008; &#47564;&#51068; &#54616;&#45208;&#51032; &#54532;&#47196;&#54140;&#54000;&#44032; &#49800;&#54140;&#53364;&#47000;&#49828; &#49345;&#51004;&#47196; &#47588;&#54609;&#46112; &#44221;&#50864;, &#44536; &#52972;&#47100; &#51060;&#47492;&#51060; &#47784;&#46304; &#49436;&#48652;&#53364;&#47000;&#49828; &#53580;&#51060;&#48660;&#46308; &#49345;&#50640;&#49436; &#44057;&#50500;&#50556; &#54620;&#45796;&#45716; &#51216;&#51060;&#45796;.(&#51109;&#47000;&#51032; Hibernate &#48176;&#54252;&#48376;&#50640;&#49436; &#50864;&#47532;&#45716; &#51060; &#51228;&#50557;&#51012; &#54400; &#49688;&#46020; &#51080;&#45796;.)
+                  identity &#49373;&#49457;&#44592; &#48169;&#46020;&#45716; union &#49436;&#48652;&#53364;&#47000;&#49828; &#49345;&#49549;&#50640;&#49436; &#54728;&#50857;&#46104;&#51648; &#50506;&#51004;&#47728;, &#51652;&#51221; &#54532;&#46972;&#51060;&#47672;&#47532; &#53412; &#49884;&#46300;&#45716; &#54616;&#45208;&#51032; &#44228;&#52789;&#44396;&#51312;&#51032; &#47784;&#46304; unioned &#49436;&#48652;&#53364;&#47000;&#49828;&#46308;&#51012; &#44032;&#47196;&#51656;&#47084; &#44277;&#50976;&#46104;&#50612;&#50556; &#54620;&#45796;. 
+               </p>
+               <p>&#47564;&#51068; &#45817;&#49888;&#51032; &#49800;&#54140;&#53364;&#47000;&#49828;&#44032; abstract&#51068; &#44221;&#50864;&#50640;, &#44536;&#44163;&#51012; <code class="literal">abstract="true"</code>&#47196; &#47588;&#54609;&#54616;&#46972;. &#47932;&#47200; &#47564;&#51068; &#44536;&#44163;&#51060; abstract&#44032; &#50500;&#45776; &#44221;&#50864;, &#52628;&#44032;&#51201;&#51064; &#53580;&#51060;&#48660;(&#50948;&#51032; &#50696;&#51228;&#50640;&#49436;&#45716; &#46356;&#54260;&#53944;&#47196; <code class="literal">PAYMENT</code>)&#51060; &#49800;&#54140;&#53364;&#47000;&#49828;&#51032; &#51064;&#49828;&#53556;&#49828;&#46308;&#51012; &#49548;&#50976;&#54616;&#45716;&#45936; &#54596;&#50836;&#54616;&#45796;. 
+               </p>
+            </div>
+            <div class="sect2" lang="ko-KR">
+               <div class="titlepage">
+                  <div>
+                     <div>
+                        <h3 class="title"><a name="inheritance-tableperconcreate-polymorphism"></a>9.1.6. &#54632;&#52629;&#51201;&#51064; &#45796;&#54805;&#49457;&#51012; &#49324;&#50857;&#54616;&#45716;, table per concrete class
+                        </h3>
+                     </div>
+                  </div>
+               </div>
+               <p>&#45824;&#50504;&#51201;&#51064; &#51217;&#44540;&#48277;&#51008; &#54632;&#52629;&#51201;&#51064; &#45796;&#54805;&#49457;&#51012; &#49324;&#50857;&#54616;&#45716; &#44163;&#51060;&#45796;: </p><pre class="programlisting">&lt;class name="CreditCardPayment" table="CREDIT_PAYMENT"&gt;
+    &lt;id name="id" type="long" column="CREDIT_PAYMENT_ID"&gt;
+        &lt;generator class="native"/&gt;
+    &lt;/id&gt;
+    &lt;property name="amount" column="CREDIT_AMOUNT"/&gt;
+    ...
+&lt;/class&gt;
+
+&lt;class name="CashPayment" table="CASH_PAYMENT"&gt;
+    &lt;id name="id" type="long" column="CASH_PAYMENT_ID"&gt;
+        &lt;generator class="native"/&gt;
+    &lt;/id&gt;
+    &lt;property name="amount" column="CASH_AMOUNT"/&gt;
+    ...
+&lt;/class&gt;
+
+&lt;class name="ChequePayment" table="CHEQUE_PAYMENT"&gt;
+    &lt;id name="id" type="long" column="CHEQUE_PAYMENT_ID"&gt;
+        &lt;generator class="native"/&gt;
+    &lt;/id&gt;
+    &lt;property name="amount" column="CHEQUE_AMOUNT"/&gt;
+    ...
+&lt;/class&gt;</pre><p>&#50612;&#45712; &#44275;&#50640;&#49436;&#46020; &#50864;&#47532;&#44032; &#47749;&#49884;&#51201;&#51004;&#47196; <code class="literal">Payment</code> &#51064;&#53552;&#54168;&#51060;&#49828;&#47484; &#50616;&#44553;&#54616;&#51648; &#50506;&#51020;&#51012; &#51452;&#47785;&#54616;&#46972;. &#46608;&#54620; <code class="literal">Payment</code>&#51032; &#54532;&#47196;&#54140;&#54000;&#46308;&#51060; &#49436;&#48652;&#53364;&#47000;&#49828;&#46308; &#44033;&#44033;&#50640;&#49436; &#47588;&#54609;&#46108;&#45796;&#45716; &#51216;&#51012; &#51452;&#47785;&#54616;&#46972;. &#47564;&#51068; &#45817;&#49888;&#51060; &#51473;&#48373;&#51012; &#54588;&#54616;&#44256;&#51088; &#50896;&#54620;&#45796;&#47732;, XML &#50644;&#54000;&#54000;&#46308;&#51012; &#49324;&#50857;&#54616;&#45716; &#44163;&#51012; &#44256;&#47140;&#54616;&#46972;(&#50696;&#47484; &#46308;&#50612; &#47588;&#54609;&#50640;&#49436; <code class="literal">DOCTYPE</code> &#49440;&#50616;&#44284; <code class="literal">&amp;allproperties;</code>&#50640;&#49436; <code class="literal">[ &lt;!ENTITY allproperties SYSTEM "allproperties.xml"&gt; ]</code>). 
+               </p>
+               <p>&#51060; &#51217;&#44540;&#48277;&#51032; &#45800;&#51216;&#51008; &#45796;&#54805;&#49457; &#51656;&#51032;&#46308;&#51012; &#49688;&#54665;&#54624; &#46412; Hibernate&#44032; &#49373;&#49457;&#46108; SQl <code class="literal">UNION</code>&#46308;&#51012; &#49373;&#49457;&#49884;&#53412;&#45716; &#50506;&#45716;&#45796;&#45716; &#51216;&#51060;&#45796;. 
+               </p>
+               <p>&#51060; &#47588;&#54609; &#48169;&#46020;&#51032; &#44221;&#50864;, <code class="literal">Payment</code>&#50640; &#45824;&#54620; &#54616;&#45208;&#51032; &#45796;&#54805;&#49457; &#50672;&#44288;&#51008; &#45824;&#44060; <code class="literal">&lt;any&gt;</code>&#47484; &#49324;&#50857;&#54616;&#50668; &#47588;&#54609;&#46108;&#45796;. 
+               </p><pre class="programlisting">&lt;any name="payment" meta-type="string" id-type="long"&gt;
+    &lt;meta-value value="CREDIT" class="CreditCardPayment"/&gt;
+    &lt;meta-value value="CASH" class="CashPayment"/&gt;
+    &lt;meta-value value="CHEQUE" class="ChequePayment"/&gt;
+    &lt;column name="PAYMENT_CLASS"/&gt;
+    &lt;column name="PAYMENT_ID"/&gt;
+&lt;/any&gt;</pre></div>
+            <div class="sect2" lang="ko-KR">
+               <div class="titlepage">
+                  <div>
+                     <div>
+                        <h3 class="title"><a name="inheritace-mixingpolymorphism"></a>9.1.7. &#54632;&#52629;&#51201;&#51064; &#45796;&#54805;&#49457;&#51012; &#45796;&#47480; &#49345;&#49549; &#47588;&#54609;&#46308;&#44284; &#54844;&#54633;&#54616;&#44592;
+                        </h3>
+                     </div>
+                  </div>
+               </div>
+               <p>&#51060; &#47588;&#54609;&#50640; &#45824;&#54644; &#51452;&#47785;&#54624; &#54616;&#45208; &#51060;&#49345;&#51032; &#44163;&#51060; &#51316;&#51116;&#54620;&#45796;. &#49436;&#48652;&#53364;&#47000;&#49828;&#46308;&#51060; &#44536;&#44163;&#46308; &#51088;&#49888;&#51032;<code class="literal">&lt;class&gt;</code> &#50836;&#49548; &#45236;&#50640; &#44033;&#44033; &#47588;&#54609;&#46104;&#48064;&#47196;(&#44536;&#47532;&#44256; <code class="literal">Payment</code>&#44032; &#45800;&#51648; &#51064;&#53552;&#54168;&#51060;&#49828;&#51060;&#48064;&#47196;), &#49436;&#48652;&#53364;&#47000;&#49828;&#46308; &#44033;&#44033;&#51008; &#49789;&#44172; &#46608; &#45796;&#47480; &#49345;&#49549; &#44228;&#52789;&#44396;&#51312;&#51032; &#48512;&#48516;&#51068; &#49688; &#51080;&#45796;! (&#44536;&#47532;&#44256; &#45817;&#49888;&#51008; <code class="literal">Payment</code> &#51064;&#53552;&#54168;&#51060;&#49828;&#50640; &#45824;&#54644; &#50668;&#51204;&#55176; &#45796;&#54805;&#49457; &#51656;&#51032;&#46308;&#51012; &#49324;&#50857;&#54624; &#49688; &#51080;&#45796;.) 
+               </p><pre class="programlisting">&lt;class name="CreditCardPayment" table="CREDIT_PAYMENT"&gt;
+    &lt;id name="id" type="long" column="CREDIT_PAYMENT_ID"&gt;
+        &lt;generator class="native"/&gt;
+    &lt;/id&gt;
+    &lt;discriminator column="CREDIT_CARD" type="string"/&gt;
+    &lt;property name="amount" column="CREDIT_AMOUNT"/&gt;
+    ...
+    &lt;subclass name="MasterCardPayment" discriminator-value="MDC"/&gt;
+    &lt;subclass name="VisaPayment" discriminator-value="VISA"/&gt;
+&lt;/class&gt;
+
+&lt;class name="NonelectronicTransaction" table="NONELECTRONIC_TXN"&gt;
+    &lt;id name="id" type="long" column="TXN_ID"&gt;
+        &lt;generator class="native"/&gt;
+    &lt;/id&gt;
+    ...
+    &lt;joined-subclass name="CashPayment" table="CASH_PAYMENT"&gt;
+        &lt;key column="PAYMENT_ID"/&gt;
+        &lt;property name="amount" column="CASH_AMOUNT"/&gt;
+        ...
+    &lt;/joined-subclass&gt;
+    &lt;joined-subclass name="ChequePayment" table="CHEQUE_PAYMENT"&gt;
+        &lt;key column="PAYMENT_ID"/&gt;
+        &lt;property name="amount" column="CHEQUE_AMOUNT"/&gt;
+        ...
+    &lt;/joined-subclass&gt;
+&lt;/class&gt;</pre><p>&#45796;&#49884; &#54620;&#48264;, &#50864;&#47532;&#45716; <code class="literal">Payment</code>&#47484; &#47749;&#49884;&#51201;&#51004;&#47196; &#50616;&#44553;&#54616;&#51648; &#50506;&#45716;&#45796;. &#47564;&#51068; &#50864;&#47532;&#44032; <code class="literal">Payment</code> &#51064;&#53552;&#54168;&#51060;&#49828;&#50640; &#45824;&#54644; &#54616;&#45208;&#51032; &#51656;&#51032;&#47484; &#49892;&#54665;&#54624; &#44221;&#50864;-&#50696;&#47484; &#46308;&#50612;, from Payment-, Hibernate&#45716; <code class="literal">CreditCardPayment</code> (&#50752; &#44536;&#44163;&#51032; &#49436;&#48652;&#53364;&#47000;&#49828;&#46308;, &#50780;&#45264;&#54616;&#47732; &#44536;&#44163;&#46308; &#46608;&#54620; <code class="literal">Payment</code>&#47484; &#44396;&#54788;&#54616;&#48064;&#47196;), <code class="literal">CashPayment</code> &#44536;&#47532;&#44256; <code class="literal">ChequePayment</code> &#51064;&#49828;&#53556;&#49828;&#46308;&#51012; &#51088;&#46041;&#51201;&#51004;&#47196; &#48152;&#54872;&#54624; &#44163;&#51060;&#51648;&#47564; <code class="literal">NonelectronicTransaction</code>&#51032; &#51064;&#49828;&#53556;&#49828;&#46308;&#51012; &#48152;&#54872;&#54616;&#51648; &#50506;&#45716;&#45796;. 
+               </p>
+            </div>
+         </div>
+      </div>
+      <div class="navfooter">
+         <hr>
+         <table width="100%" summary="Navigation footer">
+            <tr>
+               <td width="40%" align="left"><a accesskey="p" href="components-dynamic.html">&#51060;&#51204;</a>&nbsp;
+               </td>
+               <td width="20%" align="center">&nbsp;</td>
+               <td width="40%" align="right">&nbsp;<a accesskey="n" href="inheritance-limitations.html">&#45796;&#51020;</a></td>
+            </tr>
+            <tr>
+               <td width="40%" align="left" valign="top">8.5. &#46041;&#51201;&#51064; &#52980;&#54252;&#45324;&#53944;&#46308;&nbsp;</td>
+               <td width="20%" align="center"><a accesskey="h" href="index.html">&#52376;&#51020;&#51004;&#47196;</a></td>
+               <td width="40%" align="right" valign="top">&nbsp;9.2. &#51228;&#50557;&#46308;</td>
+            </tr>
+         </table>
+      </div>
+   </body>
+</html>

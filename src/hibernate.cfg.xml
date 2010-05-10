@@ -17,8 +17,10 @@
 	<property name="connection.password">cars14</property>
 	<property name="connection.driver_class">
 		com.mysql.jdbc.Driver
-	</property>
+	</property>	
 	<property name="myeclipse.connection.profile">mysql</property>
+
+	
 	<mapping resource="domain/Contactable.hbm.xml" />
 	<mapping resource="domain/Address.hbm.xml" />
 	<mapping resource="domain/ContactGroup.hbm.xml" />
@@ -27,15 +29,25 @@
 	<mapping resource="domain/Country.hbm.xml" />
 	<mapping resource="domain/Region.hbm.xml" />
 	<mapping resource="domain/PublicationType.hbm.xml" />
-	
+
 	<mapping resource="domain/MentionType.hbm.xml" />
 	<mapping resource="domain/Division.hbm.xml" />
 	<mapping resource="domain/FeatureType.hbm.xml" />
-	
+
 	<mapping resource="domain/Message.hbm.xml" />
 	<mapping resource="domain/ContactGivenType.hbm.xml" />
 	<mapping resource="domain/Coverage.hbm.xml" />
 	<mapping resource="domain/Story.hbm.xml" />
-    </session-factory>
+	<mapping resource="domain/ContactEvent.hbm.xml" />
+	<mapping resource="domain/ContactEventType.hbm.xml" />
+	<event type="save-update">
+		<listener class="core.IdGenerator" ></listener>
+		<listener class="org.hibernate.event.def.DefaultSaveOrUpdateEventListener" ></listener>
+	</event>
+	<event type="save">
+		<listener class="core.IdGenerator" ></listener>
+		<listener class="org.hibernate.event.def.DefaultSaveEventListener" ></listener>
+	</event>
+</session-factory>
 
 </hibernate-configuration>

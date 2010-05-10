@@ -1,0 +1,82 @@
+<html>
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   
+      <title>13.3. StatelessSession &igrave;&#157;&cedil;&iacute;&#132;&deg;&iacute;&#142;&#152;&igrave;&#157;&acute;&igrave;&#138;&curren;</title>
+      <link rel="stylesheet" href="css/html.css" type="text/css">
+      <meta name="generator" content="DocBook XSL Stylesheets V1.72.0">
+      <link rel="start" href="index.html" title="HIBERNATE - &#44060;&#49457;&#51080;&#45716; &#51088;&#48148;&#47484; &#50948;&#54620; &#44288;&#44228; &#50689;&#49549;">
+      <link rel="up" href="batch.html" title="13&#51109;. Batch &igrave;&sup2;&#152;&euml;&brvbar;&not;">
+      <link rel="prev" href="batch-update.html" title="13.2. Batch updates">
+      <link rel="next" href="batch-direct.html" title="13.4. DML-&igrave;&#138;&curren;&iacute;&#131;&#128;&igrave;&#157;&frac14; &igrave;&#151;&deg;&igrave;&#130;&deg;&euml;&#147;&curren;">
+   </head>
+   <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+      <div class="navheader">
+         <table width="100%" summary="Navigation header">
+            <tr>
+               <th colspan="3" align="center">13.3. StatelessSession &igrave;&#157;&cedil;&iacute;&#132;&deg;&iacute;&#142;&#152;&igrave;&#157;&acute;&igrave;&#138;&curren;</th>
+            </tr>
+            <tr>
+               <td width="20%" align="left"><a accesskey="p" href="batch-update.html">&#51060;&#51204;</a>&nbsp;
+               </td>
+               <th width="60%" align="center">13&#51109;. Batch &igrave;&sup2;&#152;&euml;&brvbar;&not;</th>
+               <td width="20%" align="right">&nbsp;<a accesskey="n" href="batch-direct.html">&#45796;&#51020;</a></td>
+            </tr>
+         </table>
+         <hr>
+      </div>
+      <div class="sect1" lang="ko-KR">
+         <div class="titlepage">
+            <div>
+               <div>
+                  <h2 class="title" style="clear: both"><a name="batch-statelesssession"></a>13.3. StatelessSession &igrave;&#157;&cedil;&iacute;&#132;&deg;&iacute;&#142;&#152;&igrave;&#157;&acute;&igrave;&#138;&curren;
+                  </h2>
+               </div>
+            </div>
+         </div>
+         <p>&euml;&#139;&curren;&euml;&yen;&cedil; &euml;&deg;&copy;&euml;&sup2;&#149;&igrave;&#156;&frac14;&euml;&iexcl;&#156; Hibernate&euml;&#138;&#148; &euml;&para;&#132;&euml;&brvbar;&not;&euml;&#144;&#156;(detached) &ecirc;&deg;&#157;&igrave;&sup2;&acute;&euml;&#147;&curren;&igrave;&#157;&#152; &iacute;&#152;&#149;&igrave;&#139;&#157;&igrave;&#156;&frac14;&euml;&iexcl;&#156; &euml;&#141;&deg;&igrave;&#157;&acute;&iacute;&#132;&deg;&euml;&sup2;&nbsp;&igrave;&#157;&acute;&igrave;&#138;&curren;&euml;&iexcl;&#156; &ecirc;&middot;&cedil;&euml;&brvbar;&not;&ecirc;&sup3;&nbsp; &euml;&#141;&deg;&igrave;&#157;&acute;&iacute;&#132;&deg;&euml;&sup2;&nbsp;&igrave;&#157;&acute;&igrave;&#138;&curren;&euml;&iexcl;&#156;&euml;&para;&#128;&iacute;&#132;&deg;
+            &euml;&#141;&deg;&igrave;&#157;&acute;&iacute;&#132;&deg;&euml;&yen;&frac14; &igrave;&#138;&curren;&iacute;&#138;&cedil;&euml;&brvbar;&not;&euml;&deg;&#141;&iacute;&#149;&#152;&euml;&#138;&#148;&euml;&#141;&deg; &igrave;&#130;&not;&igrave;&#154;&copy;&euml;&#144;&nbsp; &igrave;&#136;&#152; &igrave;&#158;&#136;&euml;&#138;&#148; &iacute;&#149;&#152;&euml;&#130;&#152;&igrave;&#157;&#152; &euml;&ordf;&#133;&euml;&nbsp;&sup1; &igrave;&sect;&#128;&iacute;&#150;&yen; API&euml;&yen;&frac14; &igrave;&nbsp;&#156;&ecirc;&sup3;&micro;&iacute;&#149;&#156;&euml;&#139;&curren;. <code class="literal">StatelessSession</code>&igrave;&#157;&#128; &ecirc;&middot;&cedil;&ecirc;&sup2;&#131;&ecirc;&sup3;&frac14; &igrave;&#151;&deg;&ecirc;&acute;&#128;&euml;&#144;&#156; &igrave;&#152;&#129;&igrave;&#134;&#141; &igrave;&raquo;&uml;&iacute;&#133;&#141;&igrave;&#138;&curren;&iacute;&#138;&cedil;&euml;&yen;&frac14; &ecirc;&deg;&#150;&igrave;&sect;&#128; &igrave;&#149;&#138;&ecirc;&sup3;&nbsp; &euml;&sect;&#142;&igrave;&#157;&#128; &euml;&sup3;&acute;&euml;&#139;&curren; &euml;&#134;&#146;&igrave;&#157;&#128; &euml;&nbsp;&#136;&euml;&sup2;&uml;&igrave;&#157;&#152; &igrave;&#131;&#157;&euml;&ordf;&#133; &igrave;&pound;&frac14;&ecirc;&cedil;&deg; &igrave;&#157;&#152;&euml;&macr;&cedil;&euml;&yen;&frac14; &igrave;&nbsp;&#156;&ecirc;&sup3;&micro;&iacute;&#149;&#152;&igrave;&sect;&#128;
+            &igrave;&#149;&#138;&euml;&#138;&#148;&euml;&#139;&curren;. &iacute;&#138;&sup1;&iacute;&#158;&#136; &iacute;&#149;&#152;&euml;&#130;&#152;&igrave;&#157;&#152; &igrave;&#131;&#129;&iacute;&#131;&#156; &igrave;&#151;&#134;&euml;&#138;&#148; &igrave;&#132;&cedil;&igrave;&#133;&#152;&igrave;&#157;&#128; &igrave;&sup2;&laquo; &euml;&sup2;&#136;&igrave;&sect;&cedil; &euml;&nbsp;&#136;&euml;&sup2;&uml; &igrave;&ordm;&#144;&igrave;&#139;&#156;&euml;&yen;&frac14; &ecirc;&micro;&not;&iacute;&#152;&#132;&iacute;&#149;&#152;&igrave;&sect;&#128; &igrave;&#149;&#138;&ecirc;&plusmn;&deg;&euml;&#130;&#152; &igrave;&#158;&#132;&igrave;&#157;&#152;&igrave;&#157;&#152; &euml;&#145;&#144; &euml;&sup2;&#136;&igrave;&sect;&cedil;
+            &euml;&nbsp;&#136;&euml;&sup2;&uml; &igrave;&ordm;&#144;&igrave;&#139;&#156; &euml;&#152;&#144;&euml;&#138;&#148; &igrave;&sect;&#136;&igrave;&#157;&#152; &igrave;&ordm;&#144;&igrave;&#139;&#156;&igrave;&#153;&#128; &igrave;&#131;&#129;&iacute;&#152;&cedil;&igrave;&#158;&#145;&igrave;&#154;&copy;&iacute;&#149;&#152;&igrave;&sect;&#128; &igrave;&#149;&#138;&euml;&#138;&#148;&euml;&#139;&curren;. &ecirc;&middot;&cedil;&ecirc;&sup2;&#131;&igrave;&#157;&#128; &igrave;&nbsp;&#132;&iacute;&#134;&micro;&igrave;&nbsp;&#129;&igrave;&#157;&cedil; &igrave;&#147;&deg;&ecirc;&cedil;&deg;-&igrave;&#157;&acute;&euml;&copy;&acute;(write-behind)&igrave;&#157;&#152;
+            &igrave;&sup2;&acute;&iacute;&#130;&sup1;&igrave;&#157;&acute;&euml;&#130;&#152; &igrave;&#158;&#144;&euml;&#143;&#153;&igrave;&nbsp;&#129;&igrave;&#157;&cedil; dirty &igrave;&sup2;&acute;&iacute;&#130;&sup1;&igrave;&#157;&#132; &ecirc;&micro;&not;&iacute;&#152;&#132;&iacute;&#149;&#152;&igrave;&sect;&#128; &igrave;&#149;&#138;&euml;&#138;&#148;&euml;&#139;&curren;. &iacute;&#149;&#152;&euml;&#130;&#152;&igrave;&#157;&#152; &igrave;&#131;&#129;&iacute;&#131;&#156; &igrave;&#151;&#134;&euml;&#138;&#148; &igrave;&#132;&cedil;&igrave;&#133;&#152;&igrave;&#157;&#132; &igrave;&#130;&not;&igrave;&#154;&copy;&iacute;&#149;&#152;&igrave;&#151;&not; &igrave;&#136;&#152;&iacute;&#150;&#137;&euml;&#144;&#156;
+            &igrave;&#151;&deg;&igrave;&#130;&deg;&euml;&#147;&curren;&igrave;&#157;&#128; &igrave;&#151;&deg;&ecirc;&acute;&#128;&euml;&#144;&#156; &igrave;&#157;&cedil;&igrave;&#138;&curren;&iacute;&#132;&acute;&igrave;&#138;&curren;&euml;&#147;&curren;&igrave;&#151;&#144; &euml;&#140;&#128;&iacute;&#149;&acute; &igrave;&frac14;&#128;&igrave;&#138;&curren;&igrave;&frac14;&#128;&igrave;&#157;&acute;&euml;&#147;&#156; &euml;&#144;&#152;&igrave;&sect;&#128; &igrave;&#149;&#138;&euml;&#138;&#148;&euml;&#139;&curren;. &igrave;&frac12;&#156;&euml;&nbsp;&#137;&igrave;&#133;&#152;&euml;&#147;&curren;&igrave;&#157;&#128; &igrave;&#131;&#129;&iacute;&#131;&#156; &igrave;&#151;&#134;&euml;&#138;&#148; &igrave;&#132;&cedil;&igrave;&#133;&#152;&igrave;&#151;&#144;
+            &igrave;&#157;&#152;&iacute;&#149;&acute; &euml;&not;&acute;&igrave;&#139;&#156;&euml;&#144;&#156;&euml;&#139;&curren;. &igrave;&#131;&#129;&iacute;&#131;&#156;&igrave;&#151;&#134;&euml;&#138;&#148; &igrave;&#132;&cedil;&igrave;&#133;&#152;&igrave;&#157;&#132; &iacute;&#134;&micro;&iacute;&#149;&acute; &igrave;&#136;&#152;&iacute;&#150;&#137;&euml;&#144;&#156; &igrave;&#151;&deg;&igrave;&#130;&deg;&euml;&#147;&curren;&igrave;&#157;&#128; Hibernate&igrave;&#157;&#152; &igrave;&#157;&acute;&euml;&sup2;&curren;&iacute;&#138;&cedil; &euml;&ordf;&uml;&iacute;&#152;&#149;&ecirc;&sup3;&frac14; &igrave;&#157;&cedil;&iacute;&#132;&deg;&igrave;&#133;&#137;&iacute;&#132;&deg;&euml;&#147;&curren;&igrave;&#157;&#132;
+            &igrave;&#154;&deg;&iacute;&#154;&#140;&iacute;&#149;&#156;&euml;&#139;&curren;. &igrave;&#131;&#129;&iacute;&#131;&#156;&igrave;&#151;&#134;&euml;&#138;&#148; &igrave;&#132;&cedil;&igrave;&#133;&#152;&euml;&#147;&curren;&igrave;&#157;&#128; &igrave;&sup2;&laquo;&euml;&sup2;&#136;&igrave;&sect;&cedil;-&euml;&nbsp;&#136;&euml;&sup2;&uml;&igrave;&#157;&#152; &igrave;&ordm;&#144;&igrave;&#139;&#156;&igrave;&#157;&#152; &euml;&para;&#128;&igrave;&iexcl;&plusmn;&igrave;&#156;&frac14;&euml;&iexcl;&#156; &igrave;&#157;&cedil;&iacute;&#149;&acute; &euml;&#141;&deg;&igrave;&#157;&acute;&iacute;&#132;&deg; alias &iacute;&#154;&uml;&ecirc;&sup3;&frac14;&euml;&#147;&curren;&igrave;&#151;&#144; &igrave;&middot;&uml;&igrave;&#149;&frac12;&iacute;&#149;&#152;&euml;&#139;&curren;.
+            &igrave;&#131;&#129;&iacute;&#131;&#156;&igrave;&#151;&#134;&euml;&#138;&#148; &igrave;&#132;&cedil;&igrave;&#133;&#152;&igrave;&#157;&#128; &ecirc;&cedil;&deg;&euml;&sup3;&cedil; JDBC&igrave;&#151;&#144; &iacute;&#155;&uml;&igrave;&#148;&not; &euml;&#141;&#148; &ecirc;&deg;&#128;&ecirc;&sup1;&#140;&igrave;&#154;&acute; &iacute;&#149;&#152;&euml;&#130;&#152;&igrave;&#157;&#152; &euml;&sup3;&acute;&euml;&#139;&curren; &euml;&#130;&reg;&igrave;&#157;&#128; &euml;&nbsp;&#136;&euml;&sup2;&uml;&igrave;&#157;&#152; &igrave;&para;&#148;&igrave;&#131;&#129;&iacute;&#153;&#148;(abstraction)&igrave;&#157;&acute;&euml;&#139;&curren;.
+            
+         </p><pre class="programlisting">StatelessSession session = sessionFactory.openStatelessSession();
+Transaction tx = session.beginTransaction();
+   
+ScrollableResults customers = session.getNamedQuery("GetCustomers")
+    .scroll(ScrollMode.FORWARD_ONLY);
+while ( customers.next() ) {
+    Customer customer = (Customer) customers.get(0);
+    customer.updateStuff(...);
+    session.update(customer);
+}
+   
+tx.commit();
+session.close();</pre><p>&igrave;&#157;&acute; &igrave;&frac12;&#148;&euml;&#147;&#156; &igrave;&#152;&#136;&igrave;&nbsp;&#156;&igrave;&#151;&#144;&igrave;&#132;&#156;, &igrave;&sect;&#136;&igrave;&#157;&#152;&igrave;&#151;&#144; &igrave;&#157;&#152;&iacute;&#149;&acute; &euml;&deg;&#152;&iacute;&#153;&#152;&euml;&#144;&#156; <code class="literal">Customer</code> &igrave;&#157;&cedil;&igrave;&#138;&curren;&iacute;&#132;&acute;&igrave;&#138;&curren;&euml;&#147;&curren;&igrave;&#157;&#128; &ecirc;&sup3;&sect;&euml;&deg;&#148;&ecirc;&sup3;&nbsp; &euml;&para;&#132;&euml;&brvbar;&not;&euml;&#144;&#156;&euml;&#139;&curren;(detached). &ecirc;&middot;&cedil;&ecirc;&sup2;&#131;&euml;&#147;&curren;&igrave;&#157;&#128; &igrave;&#158;&#132;&igrave;&#157;&#152;&igrave;&#157;&#152; &igrave;&#152;&#129;&igrave;&#134;&#141; &igrave;&raquo;&uml;&iacute;&#133;&#141;&igrave;&#138;&curren;&iacute;&#138;&cedil;&igrave;&#153;&#128; &ecirc;&sup2;&deg;&igrave;&frac12;&#148; &igrave;&#151;&deg;&ecirc;&acute;&#128;&euml;&#144;&#152;&igrave;&sect;&#128; &igrave;&#149;&#138;&euml;&#138;&#148;&euml;&#139;&curren;.
+            
+         </p>
+         <p><code class="literal">StatelessSession</code> &igrave;&#157;&cedil;&iacute;&#132;&deg;&iacute;&#142;&#152;&igrave;&#157;&acute;&igrave;&#138;&curren;&igrave;&#151;&#144; &igrave;&#157;&#152;&iacute;&#149;&acute; &igrave;&nbsp;&#149;&igrave;&#157;&#152;&euml;&#144;&#156; <code class="literal">insert(), update()</code> &ecirc;&middot;&cedil;&euml;&brvbar;&not;&ecirc;&sup3;&nbsp; <code class="literal">delete()</code> &igrave;&#151;&deg;&igrave;&#130;&deg;&euml;&#147;&curren;&igrave;&#157;&#128; &igrave;&sect;&#129;&igrave;&nbsp;&#145;&igrave;&nbsp;&#129;&igrave;&#157;&cedil; &euml;&#141;&deg;&igrave;&#157;&acute;&iacute;&#132;&deg;&euml;&sup2;&nbsp;&igrave;&#157;&acute;&igrave;&#138;&curren; &igrave;&nbsp;&#128;&ecirc;&cedil;&#137; &igrave;&#151;&deg;&igrave;&#130;&deg;&euml;&#147;&curren;&euml;&iexcl;&#156; &ecirc;&deg;&#150;&igrave;&pound;&frac14;&euml;&#144;&#152;&ecirc;&sup3;&nbsp;, &ecirc;&middot;&cedil;&ecirc;&sup2;&#131;&igrave;&#157;&#128; &ecirc;&deg;&#129;&ecirc;&deg;&#129; &iacute;&#149;&#152;&euml;&#130;&#152;&igrave;&#157;&#152; SQL <code class="literal">INSERT, UPDATE</code> &euml;&#152;&#144;&euml;&#138;&#148; <code class="literal">DELETE</code>&igrave;&#157;&#152; &igrave;&brvbar;&#137;&ecirc;&deg;&#129;&igrave;&nbsp;&#129;&igrave;&#157;&cedil; &igrave;&#139;&curren;&iacute;&#150;&#137;&igrave;&#156;&frac14;&euml;&iexcl;&#156; &ecirc;&middot;&#128;&ecirc;&sup2;&deg;&euml;&#144;&#156;&euml;&#139;&curren;. &euml;&#148;&deg;&euml;&#157;&frac14;&igrave;&#132;&#156; &ecirc;&middot;&cedil;&ecirc;&sup2;&#131;&euml;&#147;&curren;&igrave;&#157;&#128; <code class="literal">Session</code> &igrave;&#157;&cedil;&iacute;&#132;&deg;&iacute;&#142;&#152;&igrave;&#157;&acute;&igrave;&#138;&curren;&igrave;&#151;&#144; &igrave;&#157;&#152;&iacute;&#149;&acute; &igrave;&nbsp;&#149;&igrave;&#157;&#152;&euml;&#144;&#156; <code class="literal">save(), saveOrUpdate()</code>&igrave;&#153;&#128; <code class="literal">delete()</code> &igrave;&#151;&deg;&igrave;&#130;&deg;&euml;&#147;&curren;&ecirc;&sup3;&frac14;&euml;&#138;&#148; &euml;&sect;&curren;&igrave;&#154;&deg; &euml;&#139;&curren;&euml;&yen;&cedil; &igrave;&#157;&#152;&euml;&macr;&cedil;&euml;&#147;&curren;&igrave;&#157;&#132; &ecirc;&deg;&#150;&euml;&#138;&#148;&euml;&#139;&curren;. 
+         </p>
+      </div>
+      <div class="navfooter">
+         <hr>
+         <table width="100%" summary="Navigation footer">
+            <tr>
+               <td width="40%" align="left"><a accesskey="p" href="batch-update.html">&#51060;&#51204;</a>&nbsp;
+               </td>
+               <td width="20%" align="center"><a accesskey="u" href="batch.html">&#50948;&#47196;</a></td>
+               <td width="40%" align="right">&nbsp;<a accesskey="n" href="batch-direct.html">&#45796;&#51020;</a></td>
+            </tr>
+            <tr>
+               <td width="40%" align="left" valign="top">13.2. Batch updates&nbsp;</td>
+               <td width="20%" align="center"><a accesskey="h" href="index.html">&#52376;&#51020;&#51004;&#47196;</a></td>
+               <td width="40%" align="right" valign="top">&nbsp;13.4. DML-&igrave;&#138;&curren;&iacute;&#131;&#128;&igrave;&#157;&frac14; &igrave;&#151;&deg;&igrave;&#130;&deg;&euml;&#147;&curren;</td>
+            </tr>
+         </table>
+      </div>
+   </body>
+</html>

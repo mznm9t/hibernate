@@ -1,0 +1,94 @@
+<html>
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   
+      <title>3.7.&nbsp;XML&#37197;&#32622;&#25991;&#20214;</title>
+      <link rel="stylesheet" href="css/html.css" type="text/css">
+      <meta name="generator" content="DocBook XSL Stylesheets V1.72.0">
+      <link rel="start" href="index.html" title="HIBERNATE - &#31526;&#21512;Java&#20064;&#24815;&#30340;&#20851;&#31995;&#25968;&#25454;&#24211;&#25345;&#20037;&#21270;">
+      <link rel="up" href="session-configuration.html" title="&#31532;&nbsp;3&nbsp;&#31456;&nbsp;&#37197;&#32622;">
+      <link rel="prev" href="configuration-namingstrategy.html" title="3.6.&nbsp;&#23454;&#29616;NamingStrategy">
+      <link rel="next" href="configuration-j2ee.html" title="3.8.&nbsp;J2EE&#24212;&#29992;&#31243;&#24207;&#26381;&#21153;&#22120;&#30340;&#38598;&#25104;">
+   </head>
+   <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+      <div class="navheader">
+         <table width="100%" summary="Navigation header">
+            <tr>
+               <th colspan="3" align="center">3.7.&nbsp;XML&#37197;&#32622;&#25991;&#20214;</th>
+            </tr>
+            <tr>
+               <td width="20%" align="left"><a accesskey="p" href="configuration-namingstrategy.html">&#19978;&#19968;&#39029;</a>&nbsp;
+               </td>
+               <th width="60%" align="center">&#31532;&nbsp;3&nbsp;&#31456;&nbsp;&#37197;&#32622;</th>
+               <td width="20%" align="right">&nbsp;<a accesskey="n" href="configuration-j2ee.html">&#19979;&#19968;&#39029;</a></td>
+            </tr>
+         </table>
+         <hr>
+      </div>
+      <div class="sect1" lang="zh-CN">
+         <div class="titlepage">
+            <div>
+               <div>
+                  <h2 class="title" style="clear: both"><a name="configuration-xmlconfig"></a>3.7.&nbsp;XML&#37197;&#32622;&#25991;&#20214;
+                  </h2>
+               </div>
+            </div>
+         </div>
+         <p>&#21478;&#19968;&#20010;&#37197;&#32622;&#26041;&#27861;&#26159;&#22312;<code class="literal">hibernate.cfg.xml</code>&#25991;&#20214;&#20013;&#25351;&#23450;&#19968;&#22871;&#23436;&#25972;&#30340;&#37197;&#32622;. &#36825;&#20010;&#25991;&#20214;&#21487;&#20197;&#24403;&#25104;<code class="literal">hibernate.properties</code>&#30340;&#26367;&#20195;&#12290; &#33509;&#20004;&#20010;&#25991;&#20214;&#21516;&#26102;&#23384;&#22312;&#65292;&#23427;&#23558;&#35206;&#30422;&#21069;&#32773;&#30340;&#23646;&#24615;. 
+         </p>
+         <p>XML&#37197;&#32622;&#25991;&#20214;&#34987;&#40664;&#35748;&#26159;&#25918;&#22312;<code class="literal">CLASSPATH</code>&#30340;&#26681;&#30446;&#24405;&#19979;. &#36825;&#26159;&#19968;&#20010;&#20363;&#23376;: 
+         </p><pre class="programlisting">&lt;?xml version='1.0' encoding='utf-8'?&gt;
+&lt;!DOCTYPE hibernate-configuration PUBLIC
+    "-//Hibernate/Hibernate Configuration DTD//EN"
+    "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd"&gt;
+
+&lt;hibernate-configuration&gt;
+
+    &lt;!-- a SessionFactory instance listed as /jndi/name --&gt;
+    &lt;session-factory
+        name="java:hibernate/SessionFactory"&gt;
+
+        &lt;!-- properties --&gt;
+        &lt;property name="connection.datasource"&gt;java:/comp/env/jdbc/MyDB&lt;/property&gt;
+        &lt;property name="dialect"&gt;org.hibernate.dialect.MySQLDialect&lt;/property&gt;
+        &lt;property name="show_sql"&gt;false&lt;/property&gt;
+        &lt;property name="transaction.factory_class"&gt;
+            org.hibernate.transaction.JTATransactionFactory
+        &lt;/property&gt;
+        &lt;property name="jta.UserTransaction"&gt;java:comp/UserTransaction&lt;/property&gt;
+
+        &lt;!-- mapping files --&gt;
+        &lt;mapping resource="org/hibernate/auction/Item.hbm.xml"/&gt;
+        &lt;mapping resource="org/hibernate/auction/Bid.hbm.xml"/&gt;
+
+        &lt;!-- cache settings --&gt;
+        &lt;class-cache class="org.hibernate.auction.Item" usage="read-write"/&gt;
+        &lt;class-cache class="org.hibernate.auction.Bid" usage="read-only"/&gt;
+        &lt;collection-cache collection="org.hibernate.auction.Item.bids" usage="read-write"/&gt;
+
+    &lt;/session-factory&gt;
+
+&lt;/hibernate-configuration&gt;</pre><p>&#22914;&#20320;&#25152;&#35265;, &#36825;&#20010;&#26041;&#27861;&#20248;&#21183;&#22312;&#20110;&#65292;&#22312;&#37197;&#32622;&#25991;&#20214;&#20013;&#25351;&#20986;&#20102;&#26144;&#23556;&#23450;&#20041;&#25991;&#20214;&#30340;&#21517;&#23383;. &#19968;&#26086;&#20320;&#38656;&#35201;&#35843;&#25972;Hibernate&#30340;&#32531;&#23384;&#65292; <code class="literal">hibernate.cfg.xml</code>&#20063;&#26159;&#26356;&#26041;&#20415;. &#27880;&#24847;&#65292;&#20351;&#29992;<code class="literal">hibernate.properties</code>&#36824;&#26159; <code class="literal">hibernate.cfg.xml</code>&#23436;&#20840;&#26159;&#30001;&#20320;&#26469;&#20915;&#23450;, &#38500;&#20102;&#19978;&#38754;&#25552;&#21040;&#30340;XML&#35821;&#27861;&#30340;&#20248;&#21183;&#20043;&#22806;, &#20004;&#32773;&#26159;&#31561;&#20215;&#30340;. 
+         </p>
+         <p>&#20351;&#29992;XML&#37197;&#32622;&#65292;&#20351;&#24471;&#21551;&#21160;Hibernate&#21464;&#30340;&#24322;&#24120;&#31616;&#21333;, &#22914;&#19979;&#25152;&#31034;&#65292;&#19968;&#34892;&#20195;&#30721;&#23601;&#21487;&#20197;&#25630;&#23450;&#65306; </p><pre class="programlisting">SessionFactory sf = new Configuration().configure().buildSessionFactory();</pre><p>&#20320;&#21487;&#20197;&#20351;&#29992;&#22914;&#19979;&#20195;&#30721;&#26469;&#28155;&#21152;&#19968;&#20010;&#19981;&#21516;&#30340;XML&#37197;&#32622;&#25991;&#20214; </p><pre class="programlisting">SessionFactory sf = new Configuration()
+    .configure("catdb.cfg.xml")
+    .buildSessionFactory();</pre></div>
+      <div class="navfooter">
+         <hr>
+         <table width="100%" summary="Navigation footer">
+            <tr>
+               <td width="40%" align="left"><a accesskey="p" href="configuration-namingstrategy.html">&#19978;&#19968;&#39029;</a>&nbsp;
+               </td>
+               <td width="20%" align="center"><a accesskey="u" href="session-configuration.html">&#19978;&#19968;&#32423;</a></td>
+               <td width="40%" align="right">&nbsp;<a accesskey="n" href="configuration-j2ee.html">&#19979;&#19968;&#39029;</a></td>
+            </tr>
+            <tr>
+               <td width="40%" align="left" valign="top">3.6.&nbsp;&#23454;&#29616;<code class="literal">NamingStrategy</code>&nbsp;
+               </td>
+               <td width="20%" align="center"><a accesskey="h" href="index.html">&#36215;&#22987;&#39029;</a></td>
+               <td width="40%" align="right" valign="top">&nbsp;3.8.&nbsp;J2EE&#24212;&#29992;&#31243;&#24207;&#26381;&#21153;&#22120;&#30340;&#38598;&#25104;</td>
+            </tr>
+         </table>
+      </div>
+   </body>
+</html>

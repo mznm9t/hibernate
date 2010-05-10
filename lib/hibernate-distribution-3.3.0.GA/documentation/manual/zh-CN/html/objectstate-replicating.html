@@ -1,0 +1,92 @@
+<html>
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   
+      <title>10.9.&nbsp;&#22312;&#20004;&#20010;&#19981;&#21516;&#25968;&#25454;&#24211;&#38388;&#22797;&#21046;&#23545;&#35937;</title>
+      <link rel="stylesheet" href="css/html.css" type="text/css">
+      <meta name="generator" content="DocBook XSL Stylesheets V1.72.0">
+      <link rel="start" href="index.html" title="HIBERNATE - &#31526;&#21512;Java&#20064;&#24815;&#30340;&#20851;&#31995;&#25968;&#25454;&#24211;&#25345;&#20037;&#21270;">
+      <link rel="up" href="objectstate.html" title="&#31532;&nbsp;10&nbsp;&#31456;&nbsp;&#19982;&#23545;&#35937;&#20849;&#20107;">
+      <link rel="prev" href="objectstate-deleting.html" title="10.8.&nbsp;&#21024;&#38500;&#25345;&#20037;&#23545;&#35937;">
+      <link rel="next" href="objectstate-flushing.html" title="10.10.&nbsp;Session&#21047;&#20986;(flush)">
+   </head>
+   <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+      <div class="navheader">
+         <table width="100%" summary="Navigation header">
+            <tr>
+               <th colspan="3" align="center">10.9.&nbsp;&#22312;&#20004;&#20010;&#19981;&#21516;&#25968;&#25454;&#24211;&#38388;&#22797;&#21046;&#23545;&#35937;</th>
+            </tr>
+            <tr>
+               <td width="20%" align="left"><a accesskey="p" href="objectstate-deleting.html">&#19978;&#19968;&#39029;</a>&nbsp;
+               </td>
+               <th width="60%" align="center">&#31532;&nbsp;10&nbsp;&#31456;&nbsp;&#19982;&#23545;&#35937;&#20849;&#20107;</th>
+               <td width="20%" align="right">&nbsp;<a accesskey="n" href="objectstate-flushing.html">&#19979;&#19968;&#39029;</a></td>
+            </tr>
+         </table>
+         <hr>
+      </div>
+      <div class="sect1" lang="zh-CN">
+         <div class="titlepage">
+            <div>
+               <div>
+                  <h2 class="title" style="clear: both"><a name="objectstate-replicating"></a>10.9.&nbsp;&#22312;&#20004;&#20010;&#19981;&#21516;&#25968;&#25454;&#24211;&#38388;&#22797;&#21046;&#23545;&#35937;
+                  </h2>
+               </div>
+            </div>
+         </div>
+         <p>&#20598;&#23572;&#20250;&#29992;&#21040;&#19981;&#37325;&#26032;&#29983;&#25104;&#25345;&#20037;&#21270;&#26631;&#35782;(identifier)&#65292;&#23558;&#25345;&#20037;&#23454;&#20363;&#20197;&#21450;&#20854;&#20851;&#32852;&#30340;&#23454;&#20363;&#25345;&#20037;&#21040;&#19981;&#21516;&#30340;&#25968;&#25454;&#24211;&#20013;&#30340;&#25805;&#20316;&#12290; </p><pre class="programlisting">//retrieve a cat from one database
+Session session1 = factory1.openSession();
+Transaction tx1 = session1.beginTransaction();
+Cat cat = session1.get(Cat.class, catId);
+tx1.commit();
+session1.close();
+
+//reconcile with a second database
+Session session2 = factory2.openSession();
+Transaction tx2 = session2.beginTransaction();
+session2.replicate(cat, ReplicationMode.LATEST_VERSION);
+tx2.commit();
+session2.close();</pre><p><code class="literal">ReplicationMode</code>&#20915;&#23450;&#22312;&#21644;&#25968;&#25454;&#24211;&#20013;&#24050;&#23384;&#22312;&#35760;&#24405;&#30001;&#20914;&#31361;&#26102;&#65292;<code class="literal">replicate()</code>&#22914;&#20309;&#22788;&#29702;&#12290; 
+         </p>
+         <div class="itemizedlist">
+            <ul type="disc" compact>
+               <li>
+                  <p><code class="literal">ReplicationMode.IGNORE</code> - &#24573;&#30053;&#23427; 
+                  </p>
+               </li>
+               <li>
+                  <p><code class="literal">ReplicationMode.OVERWRITE</code> - &#35206;&#30422;&#30456;&#21516;&#30340;&#34892; 
+                  </p>
+               </li>
+               <li>
+                  <p><code class="literal">ReplicationMode.EXCEPTION</code> - &#25243;&#20986;&#24322;&#24120; 
+                  </p>
+               </li>
+               <li>
+                  <p><code class="literal">ReplicationMode.LATEST_VERSION</code> - &#22914;&#26524;&#24403;&#21069;&#30340;&#29256;&#26412;&#36739;&#26032;&#65292;&#21017;&#35206;&#30422;&#65292;&#21542;&#21017;&#24573;&#30053; 
+                  </p>
+               </li>
+            </ul>
+         </div>
+         <p>&#36825;&#20010;&#21151;&#33021;&#30340;&#29992;&#36884;&#21253;&#25324;&#20351;&#24405;&#20837;&#30340;&#25968;&#25454;&#22312;&#19981;&#21516;&#25968;&#25454;&#24211;&#20013;&#19968;&#33268;&#65292;&#20135;&#21697;&#21319;&#32423;&#26102;&#21319;&#32423;&#31995;&#32479;&#37197;&#32622;&#20449;&#24687;&#65292;&#22238;&#28378;non-ACID&#20107;&#21153;&#20013;&#30340;&#20462;&#25913;&#31561;&#31561;&#12290; &#65288;&#35793;&#27880;&#65292;non-ACID&#65292;&#38750;ACID;ACID&#65292;Atomic&#65292;Consistent&#65292;Isolated and Durable&#30340;&#32553;&#20889;&#65289;
+            
+         </p>
+      </div>
+      <div class="navfooter">
+         <hr>
+         <table width="100%" summary="Navigation footer">
+            <tr>
+               <td width="40%" align="left"><a accesskey="p" href="objectstate-deleting.html">&#19978;&#19968;&#39029;</a>&nbsp;
+               </td>
+               <td width="20%" align="center"><a accesskey="u" href="objectstate.html">&#19978;&#19968;&#32423;</a></td>
+               <td width="40%" align="right">&nbsp;<a accesskey="n" href="objectstate-flushing.html">&#19979;&#19968;&#39029;</a></td>
+            </tr>
+            <tr>
+               <td width="40%" align="left" valign="top">10.8.&nbsp;&#21024;&#38500;&#25345;&#20037;&#23545;&#35937;&nbsp;</td>
+               <td width="20%" align="center"><a accesskey="h" href="index.html">&#36215;&#22987;&#39029;</a></td>
+               <td width="40%" align="right" valign="top">&nbsp;10.10.&nbsp;Session&#21047;&#20986;(flush)</td>
+            </tr>
+         </table>
+      </div>
+   </body>
+</html>

@@ -13,7 +13,7 @@ public class ContactStatusH  implements interfaces.ContactStatus,java.io.Seriali
 
     // Fields    
 
-	 private ID ID;
+	 private ID id;
      private String entityName;
      private String name;
      private String code;
@@ -46,12 +46,12 @@ public class ContactStatusH  implements interfaces.ContactStatus,java.io.Seriali
     }
 
     public ID getID() {
-		return ID;
+		return id;
 	}
 
 
 	public void setID(ID iD) {
-		ID = iD;
+		id = iD;
 	}
     
     public String getName() {

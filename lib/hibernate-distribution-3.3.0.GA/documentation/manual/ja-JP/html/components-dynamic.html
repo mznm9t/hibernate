@@ -1,0 +1,62 @@
+<html>
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   
+      <title>8.5. &#21205;&#30340;&#12467;&#12531;&#12509;&#12540;&#12493;&#12531;&#12488;</title>
+      <link rel="stylesheet" href="css/html.css" type="text/css">
+      <meta name="generator" content="DocBook XSL Stylesheets V1.72.0">
+      <link rel="start" href="index.html" title="HIBERNATE - Relational Persistence for Idiomatic Java">
+      <link rel="up" href="components.html" title="&#31532;8&#31456; &#12467;&#12531;&#12509;&#12540;&#12493;&#12531;&#12488;&#12398;&#12510;&#12483;&#12500;&#12531;&#12464;">
+      <link rel="prev" href="components-compositeid.html" title="8.4. &#35079;&#21512;&#35672;&#21029;&#23376;&#12392;&#12375;&#12390;&#12398;&#12467;&#12531;&#12509;&#12540;&#12493;&#12531;&#12488;">
+      <link rel="next" href="inheritance.html" title="&#31532;9&#31456; &#32153;&#25215;&#12510;&#12483;&#12500;&#12531;&#12464;">
+   </head>
+   <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+      <div class="navheader">
+         <table width="100%" summary="Navigation header">
+            <tr>
+               <th colspan="3" align="center">8.5. &#21205;&#30340;&#12467;&#12531;&#12509;&#12540;&#12493;&#12531;&#12488;</th>
+            </tr>
+            <tr>
+               <td width="20%" align="left"><a accesskey="p" href="components-compositeid.html">&#21069;&#12398;&#12506;&#12540;&#12472;</a>&nbsp;
+               </td>
+               <th width="60%" align="center">&#31532;8&#31456; &#12467;&#12531;&#12509;&#12540;&#12493;&#12531;&#12488;&#12398;&#12510;&#12483;&#12500;&#12531;&#12464;</th>
+               <td width="20%" align="right">&nbsp;<a accesskey="n" href="inheritance.html">&#27425;&#12398;&#12506;&#12540;&#12472;</a></td>
+            </tr>
+         </table>
+         <hr>
+      </div>
+      <div class="sect1" lang="ja-JP">
+         <div class="titlepage">
+            <div>
+               <div>
+                  <h2 class="title" style="clear: both"><a name="components-dynamic"></a>8.5. &#21205;&#30340;&#12467;&#12531;&#12509;&#12540;&#12493;&#12531;&#12488;
+                  </h2>
+               </div>
+            </div>
+         </div>
+         <p><code class="literal">Map</code> &#22411;&#12398;&#12503;&#12525;&#12497;&#12486;&#12451;&#12398;&#12510;&#12483;&#12500;&#12531;&#12464;&#12418;&#21487;&#33021;&#12391;&#12377;&#12290; 
+         </p><pre class="programlisting">&lt;dynamic-component name="userAttributes"&gt;
+    &lt;property name="foo" column="FOO" type="string"/&gt;
+    &lt;property name="bar" column="BAR" type="integer"/&gt;
+    &lt;many-to-one name="baz" class="Baz" column="BAZ_ID"/&gt;
+&lt;/dynamic-component&gt;</pre><p><code class="literal">&lt;dynamic-component&gt;</code> &#12510;&#12483;&#12500;&#12531;&#12464;&#12398;&#12475;&#12510;&#12531;&#12486;&#12451;&#12463;&#12473;&#12399; <code class="literal">&lt;component&gt;</code> &#12392;&#21516;&#19968;&#12398;&#12418;&#12398;&#12391;&#12377;&#12290;&#12371;&#12398;&#31278;&#12398;&#12510;&#12483;&#12500;&#12531;&#12464;&#12398;&#21033;&#28857;&#12399;&#12289;&#12510;&#12483;&#12500;&#12531;&#12464;&#12489;&#12461;&#12517;&#12513;&#12531;&#12488;&#12398;&#32232;&#38598;&#12395;&#12424;&#12426;&#12289;&#37197;&#32622;&#26178;&#12395;bean&#12398;&#23646;&#24615;&#12434; &#27770;&#23450;&#12391;&#12365;&#12427;&#28857;&#12391;&#12377;&#12290;&#12414;&#12383;&#12289;DOM&#12497;&#12540;&#12469;&#12434;&#21033;&#29992;&#12375;&#12390;&#12289;&#12510;&#12483;&#12500;&#12531;&#12464;&#12489;&#12461;&#12517;&#12513;&#12531;&#12488;&#12398;&#12521;&#12531;&#12479;&#12452;&#12512;&#25805;&#20316;&#12364;&#21487;&#33021;&#12391;&#12377;&#12290; &#12373;&#12425;&#12395;&#12289;<code class="literal">Configuration</code> &#12458;&#12502;&#12472;&#12455;&#12463;&#12488;&#32076;&#30001;&#12391;Hibernate&#12398;&#12467;&#12531;&#12501;&#12451;&#12464;&#12524;&#12540;&#12471;&#12519;&#12531;&#26178;&#12398;&#12513;&#12479;&#12514;&#12487;&#12523;&#12395; &#12450;&#12463;&#12475;&#12473;&#65288;&#12414;&#12383;&#12399;&#22793;&#26356;&#65289;&#12364;&#21487;&#33021;&#12391;&#12377;&#12290; 
+         </p>
+      </div>
+      <div class="navfooter">
+         <hr>
+         <table width="100%" summary="Navigation footer">
+            <tr>
+               <td width="40%" align="left"><a accesskey="p" href="components-compositeid.html">&#21069;&#12398;&#12506;&#12540;&#12472;</a>&nbsp;
+               </td>
+               <td width="20%" align="center"><a accesskey="u" href="components.html">&#19978;&#12395;&#25147;&#12427;</a></td>
+               <td width="40%" align="right">&nbsp;<a accesskey="n" href="inheritance.html">&#27425;&#12398;&#12506;&#12540;&#12472;</a></td>
+            </tr>
+            <tr>
+               <td width="40%" align="left" valign="top">8.4. &#35079;&#21512;&#35672;&#21029;&#23376;&#12392;&#12375;&#12390;&#12398;&#12467;&#12531;&#12509;&#12540;&#12493;&#12531;&#12488;&nbsp;</td>
+               <td width="20%" align="center"><a accesskey="h" href="index.html">&#12507;&#12540;&#12512;</a></td>
+               <td width="40%" align="right" valign="top">&nbsp;&#31532;9&#31456; &#32153;&#25215;&#12510;&#12483;&#12500;&#12531;&#12464;</td>
+            </tr>
+         </table>
+      </div>
+   </body>
+</html>

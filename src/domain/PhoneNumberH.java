@@ -13,7 +13,7 @@ public class PhoneNumberH  implements interfaces.PhoneNumber,java.io.Serializabl
 
     // Fields    
 
-	 private ID ID;
+	 private ID id;
      private String entityName;
      private String areaCode;
      private String theNumber;
@@ -38,11 +38,11 @@ public class PhoneNumberH  implements interfaces.PhoneNumber,java.io.Serializabl
     // Property accessors
 
     public ID getID() {
-		return ID;
+		return id;
 	}
 
 	public void setID(ID iD) {
-		ID = iD;
+		id = iD;
 	}
 
     public String getEntityName() {

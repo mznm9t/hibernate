@@ -1,0 +1,156 @@
+<html>
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   
+      <title>19.6. &#12497;&#12501;&#12457;&#12540;&#12510;&#12531;&#12473;&#12398;&#12514;&#12491;&#12479;&#12522;&#12531;&#12464;</title>
+      <link rel="stylesheet" href="css/html.css" type="text/css">
+      <meta name="generator" content="DocBook XSL Stylesheets V1.72.0">
+      <link rel="start" href="index.html" title="HIBERNATE - Relational Persistence for Idiomatic Java">
+      <link rel="up" href="performance.html" title="&#31532;19&#31456; &#12497;&#12501;&#12457;&#12540;&#12510;&#12531;&#12473;&#12398;&#25913;&#21892;">
+      <link rel="prev" href="performance-collections.html" title="19.5. &#12467;&#12524;&#12463;&#12471;&#12519;&#12531;&#12398;&#12497;&#12501;&#12457;&#12540;&#12510;&#12531;&#12473;&#12398;&#29702;&#35299;">
+      <link rel="next" href="toolsetguide.html" title="&#31532;20&#31456; Toolset Guide &#12484;&#12540;&#12523;&#12475;&#12483;&#12488;&#12460;&#12452;&#12489;">
+   </head>
+   <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+      <div class="navheader">
+         <table width="100%" summary="Navigation header">
+            <tr>
+               <th colspan="3" align="center">19.6. &#12497;&#12501;&#12457;&#12540;&#12510;&#12531;&#12473;&#12398;&#12514;&#12491;&#12479;&#12522;&#12531;&#12464;</th>
+            </tr>
+            <tr>
+               <td width="20%" align="left"><a accesskey="p" href="performance-collections.html">&#21069;&#12398;&#12506;&#12540;&#12472;</a>&nbsp;
+               </td>
+               <th width="60%" align="center">&#31532;19&#31456; &#12497;&#12501;&#12457;&#12540;&#12510;&#12531;&#12473;&#12398;&#25913;&#21892;</th>
+               <td width="20%" align="right">&nbsp;<a accesskey="n" href="toolsetguide.html">&#27425;&#12398;&#12506;&#12540;&#12472;</a></td>
+            </tr>
+         </table>
+         <hr>
+      </div>
+      <div class="sect1" lang="ja-JP">
+         <div class="titlepage">
+            <div>
+               <div>
+                  <h2 class="title" style="clear: both"><a name="performance-monitoring"></a>19.6. &#12497;&#12501;&#12457;&#12540;&#12510;&#12531;&#12473;&#12398;&#12514;&#12491;&#12479;&#12522;&#12531;&#12464;
+                  </h2>
+               </div>
+            </div>
+         </div>
+         <p>&#26368;&#36969;&#21270;&#12399;&#12514;&#12491;&#12479;&#12522;&#12531;&#12464;&#12420;&#12497;&#12501;&#12457;&#12540;&#12510;&#12531;&#12473;&#12434;&#31034;&#12377;&#25968;&#20516;&#12364;&#12394;&#12369;&#12428;&#12400;&#21313;&#20998;&#12395;&#34892;&#12360;&#12414;&#12379;&#12435;&#12290; Hibernate&#12399;&#20869;&#37096;&#20966;&#29702;&#12398;&#12377;&#12409;&#12390;&#12398;&#31684;&#22258;&#12398;&#25968;&#20516;&#12434;&#25552;&#20379;&#12375;&#12414;&#12377;&#12290; Hibernate&#12398;&#32113;&#35336;&#24773;&#22577;&#12399; <code class="literal">SessionFactory</code> &#21336;&#20301;&#12391;&#21462;&#24471;&#21487;&#33021;&#12391;&#12377;&#12290; 
+         </p>
+         <div class="sect2" lang="ja-JP">
+            <div class="titlepage">
+               <div>
+                  <div>
+                     <h3 class="title"><a name="performance-monitoring-sf"></a>19.6.1. SessionFactory&#12398;&#12514;&#12491;&#12479;&#12522;&#12531;&#12464;
+                     </h3>
+                  </div>
+               </div>
+            </div>
+            <p><code class="literal">SessionFactory</code> &#12398;&#12513;&#12488;&#12522;&#12463;&#12473;&#12395;&#12450;&#12463;&#12475;&#12473;&#12377;&#12427;&#12395;&#12399;2&#12388;&#12398;&#26041;&#27861;&#12364;&#12354;&#12426;&#12414;&#12377;&#12290; &#26368;&#21021;&#12398;&#26041;&#27861;&#12399;&#12289; <code class="literal">sessionFactory.getStatistics()</code> &#12434;&#21628;&#12403;&#20986;&#12375;&#12289; &#33258;&#20998;&#12391; <code class="literal">Statistics</code> &#12398;&#35501;&#12415;&#36796;&#12415;&#12420;&#34920;&#31034;&#12434;&#34892;&#12356;&#12414;&#12377;&#12290; 
+            </p>
+            <p><code class="literal">StatisticsService</code> MBean&#12434;&#26377;&#21177;&#12395;&#12375;&#12390;&#12356;&#12428;&#12400;&#12289;Hibernate&#12399;JMX&#12434;&#20351;&#12387;&#12390; &#12513;&#12488;&#12522;&#12463;&#12473;&#12434;&#30330;&#34892;&#12377;&#12427;&#12371;&#12392;&#12418;&#12391;&#12365;&#12414;&#12377;&#12290;1&#12388;&#12398;MBean&#12434;&#12377;&#12409;&#12390;&#12398; <code class="literal">SessionFactory</code> &#12395;&#23550;&#12375;&#12390;&#26377;&#21177;&#12395;&#12377;&#12427;&#12363;&#12289;SessionFactory&#12372;&#12392;&#12395;&#19968;&#12388;&#12398;MBean&#12434;&#26377;&#21177;&#12395;&#12377;&#12427;&#12371;&#12392;&#12364;&#20986;&#26469;&#12414;&#12377;&#12290; &#26368;&#23567;&#38480;&#12398;&#35373;&#23450;&#20363;&#12391;&#12354;&#12427;&#20197;&#19979;&#12398;&#12467;&#12540;&#12489;&#12434;&#35211;&#12390;&#12367;&#12384;&#12373;&#12356;&#12290; 
+            </p><pre class="programlisting">// MBean service registration for a specific SessionFactory
+Hashtable tb = new Hashtable();
+tb.put("type", "statistics");
+tb.put("sessionFactory", "myFinancialApp");
+ObjectName on = new ObjectName("hibernate", tb); // MBean object name
+
+StatisticsService stats = new StatisticsService(); // MBean implementation
+stats.setSessionFactory(sessionFactory); // Bind the stats to a SessionFactory
+server.registerMBean(stats, on); // Register the Mbean on the server</pre><pre class="programlisting">// MBean service registration for all SessionFactory's
+Hashtable tb = new Hashtable();
+tb.put("type", "statistics");
+tb.put("sessionFactory", "all");
+ObjectName on = new ObjectName("hibernate", tb); // MBean object name
+
+StatisticsService stats = new StatisticsService(); // MBean implementation
+server.registerMBean(stats, on); // Register the MBean on the server</pre><p>TODO: &#12371;&#12428;&#12399;&#24847;&#21619;&#12364;&#12354;&#12426;&#12414;&#12379;&#12435;&#12290;&#26368;&#21021;&#12398;&#12465;&#12540;&#12473;&#12399;&#12289;MBean&#12434;&#30452;&#25509;&#24489;&#20803;&#12375;&#12390;&#20351;&#29992;&#12375;&#12414;&#12377;&#12290;2&#30058;&#30446;&#12398;&#12465;&#12540;&#12473;&#12399;&#12289; &#20351;&#12358;&#21069;&#12395;session factory&#12364;&#25345;&#12387;&#12390;&#12356;&#12427;JNDI&#21517;&#12434;&#28193;&#12373;&#12394;&#12369;&#12428;&#12400;&#12394;&#12426;&#12414;&#12379;&#12435;&#12290; <code class="literal">hibernateStatsBean.setSessionFactoryJNDIName("my/JNDI/Name")</code> &#12434;&#20351;&#12387;&#12390;&#12367;&#12384;&#12373;&#12356;&#12290; 
+            </p>
+            <p><code class="literal">SessionFactory</code> &#12395;&#23550;&#12375;&#12390;&#12514;&#12491;&#12479;&#12522;&#12531;&#12464;&#12398;&#38283;&#22987;&#65288;&#32066;&#20102;&#65289;&#12434;&#34892;&#12358;&#12371;&#12392;&#12364;&#20986;&#26469;&#12414;&#12377;&#12290; 
+            </p>
+            <div class="itemizedlist">
+               <ul type="disc">
+                  <li>
+                     <p>&#35373;&#23450;&#26178;&#12395;&#12399;&#12289; <code class="literal">hibernate.generate_statistics</code> &#12434; <code class="literal">false</code> &#12395;&#12375;&#12414;&#12377; 
+                     </p>
+                  </li>
+               </ul>
+            </div>
+            <div class="itemizedlist">
+               <ul type="disc">
+                  <li>
+                     <p>&#23455;&#34892;&#26178;&#12395;&#12289; <code class="literal">sf.getStatistics().setStatisticsEnabled(true)</code> &#12414;&#12383;&#12399; <code class="literal">hibernateStatsBean.setStatisticsEnabled(true)</code> &#12434;&#21628;&#12403;&#20986;&#12375;&#12414;&#12377; 
+                     </p>
+                  </li>
+               </ul>
+            </div>
+            <p>Statistics can be reset programmatically using the <code class="literal">clear()</code> method. A summary can be sent to a logger (info level) using the <code class="literal">logSummary()</code> method. 
+            </p>
+         </div>
+         <div class="sect2" lang="ja-JP">
+            <div class="titlepage">
+               <div>
+                  <div>
+                     <h3 class="title"><a name="performance-monitoring-metrics"></a>19.6.2. &#12513;&#12488;&#12522;&#12463;&#12473;
+                     </h3>
+                  </div>
+               </div>
+            </div>
+            <p>&#22810;&#12367;&#12398;&#12418;&#12398;&#12364;&#12354;&#12426;&#12414;&#12377;&#12290;&#12377;&#12409;&#12390;&#12398;&#20351;&#29992;&#21487;&#33021;&#12394;&#12459;&#12454;&#12531;&#12479;&#12399; <code class="literal">Statistics</code> &#12452;&#12531;&#12479;&#12540;&#12501;&#12455;&#12452;&#12473;&#12398;API&#12395;&#26360;&#12363;&#12428;&#12390;&#12362;&#12426;&#12289;3&#12388;&#12398;&#20998;&#39006;&#12364;&#12354;&#12426;&#12414;&#12377;&#12290; 
+            </p>
+            <div class="itemizedlist">
+               <ul type="disc">
+                  <li>
+                     <p>&#12513;&#12488;&#12522;&#12463;&#12473;&#12399;&#19968;&#33324;&#30340;&#12394; <code class="literal">Session</code> &#12398;&#20351;&#12356;&#26041;&#12392;&#38306;&#20418;&#12375;&#12390;&#12356;&#12414;&#12377;&#12290; &#12458;&#12540;&#12503;&#12531;&#12375;&#12383;&#12475;&#12483;&#12471;&#12519;&#12531;&#12398;&#25968;&#12364;JDBC&#12467;&#12493;&#12463;&#12471;&#12519;&#12531;&#12392;&#38306;&#36899;&#12375;&#12390;&#12356;&#12427;&#12398;&#12392;&#21516;&#12376;&#12391;&#12377;&#12290; 
+                     </p>
+                  </li>
+                  <li>
+                     <p>&#12513;&#12488;&#12522;&#12463;&#12473;&#12399;&#35201;&#32032;&#12289;&#12467;&#12524;&#12463;&#12471;&#12519;&#12531;&#12289;&#12463;&#12456;&#12522;&#12420;&#12461;&#12515;&#12483;&#12471;&#12517;&#12394;&#12393;&#20840;&#20307;&#12395; &#38306;&#20418;&#12375;&#12390;&#12356;&#12414;&#12377;&#65288;&#21029;&#21517;&#12399;&#12464;&#12525;&#12540;&#12496;&#12523;&#12513;&#12488;&#12522;&#12463;&#12473;&#12391;&#12377;&#65289;&#12290; </p>
+                  </li>
+                  <li>
+                     <p>&#12513;&#12488;&#12522;&#12463;&#12473;&#12398;&#35443;&#32048;&#12399;&#29305;&#23450;&#12398;&#12456;&#12531;&#12486;&#12451;&#12486;&#12451;&#12289;&#12467;&#12524;&#12463;&#12471;&#12519;&#12531;&#12289;&#12463;&#12456;&#12522;&#12289;&#12461;&#12515;&#12483;&#12471;&#12517;&#38936;&#22495;&#12395;&#38306;&#20418;&#12375;&#12390;&#12356;&#12414;&#12377;&#12290; </p>
+                  </li>
+               </ul>
+            </div>
+            <p>For example, you can check the cache hit, miss, and put ratio of entities, collections and queries, and the average time a
+               query needs. Beware that the number of milliseconds is subject to approximation in Java. Hibernate is tied to the JVM precision,
+               on some platforms this might even only be accurate to 10 seconds. 
+            </p>
+            <p>&#21336;&#32020;&#12394;getter&#12399;&#12464;&#12525;&#12540;&#12496;&#12523;&#12513;&#12488;&#12522;&#12463;&#12473;&#65288;&#12377;&#12394;&#12431;&#12385;&#29305;&#23450;&#12398;&#12456;&#12531;&#12486;&#12451;&#12486;&#12451;&#12289;&#12467;&#12524;&#12463;&#12471;&#12519;&#12531;&#12289;&#12461;&#12515;&#12483;&#12471;&#12517;&#38936;&#22495;&#12394;&#12393;&#12395;&#32283;&#12425;&#12428;&#12394;&#12356;&#65289; &#12395;&#12450;&#12463;&#12475;&#12473;&#12377;&#12427;&#12383;&#12417;&#12395;&#20351;&#12356;&#12414;&#12377;&#12290;&#29305;&#23450;&#12398;&#12456;&#12531;&#12486;&#12451;&#12486;&#12451;&#12289;&#12467;&#12524;&#12463;&#12471;&#12519;&#12531;&#12289;&#12461;&#12515;&#12483;&#12471;&#12517;&#38936;&#22495;&#12398;&#12513;&#12488;&#12522;&#12463;&#12473;&#12399;&#12289; &#12381;&#12428;&#12425;&#12398;&#21517;&#21069;&#12420;&#12289;&#12463;&#12456;&#12522;&#12398;HQL&#12289;SQL&#34920;&#29694;&#12395;&#12424;&#12387;&#12390;&#12450;&#12463;&#12475;&#12473;&#12377;&#12427;&#12371;&#12392;&#12364;&#20986;&#26469;&#12414;&#12377;&#12290;&#12373;&#12425;&#12395;&#35443;&#12375;&#12356;&#24773;&#22577;&#12399;&#12289;
+               <code class="literal">Statistics</code> &#12289; <code class="literal">EntityStatistics</code> &#12289; <code class="literal">CollectionStatistics</code> &#12289; <code class="literal">SecondLevelCacheStatistics</code> &#12289; <code class="literal">QueryStatistics</code> API&#12398;javadoc&#12434; &#21442;&#29031;&#12375;&#12390;&#12367;&#12384;&#12373;&#12356;&#12290;&#20197;&#19979;&#12398;&#12467;&#12540;&#12489;&#12399;&#31777;&#21336;&#12394;&#20363;&#12391;&#12377;&#12290; 
+            </p><pre class="programlisting">Statistics stats = HibernateUtil.sessionFactory.getStatistics();
+
+double queryCacheHitCount  = stats.getQueryCacheHitCount();
+double queryCacheMissCount = stats.getQueryCacheMissCount();
+double queryCacheHitRatio =
+  queryCacheHitCount / (queryCacheHitCount + queryCacheMissCount);
+
+log.info("Query Hit ratio:" + queryCacheHitRatio);
+
+EntityStatistics entityStats =
+  stats.getEntityStatistics( Cat.class.getName() );
+long changes =
+        entityStats.getInsertCount()
+        + entityStats.getUpdateCount()
+        + entityStats.getDeleteCount();
+log.info(Cat.class.getName() + " changed " + changes + "times"  );</pre><p>&#12377;&#12409;&#12390;&#12398;&#12456;&#12531;&#12486;&#12451;&#12486;&#12451;&#12289;&#12467;&#12524;&#12463;&#12471;&#12519;&#12531;&#12289;&#12463;&#12456;&#12522;&#12289;&#12461;&#12515;&#12483;&#12471;&#12517;&#38936;&#22495;&#12395;&#23550;&#12375;&#12390;&#34892;&#12358;&#22580;&#21512;&#12399;&#12289; <code class="literal">getQueries()</code> &#12289; <code class="literal">getEntityNames()</code>&#12289; <code class="literal">getCollectionRoleNames()</code> &#12289; <code class="literal">getSecondLevelCacheRegionNames()</code> &#12513;&#12477;&#12483;&#12489;&#12391; &#12381;&#12428;&#12382;&#12428;&#12398;&#21517;&#21069;&#12398;&#12522;&#12473;&#12488;&#12434;&#21462;&#24471;&#12377;&#12427;&#12371;&#12392;&#12364;&#20986;&#26469;&#12414;&#12377;&#12290; 
+            </p>
+         </div>
+      </div>
+      <div class="navfooter">
+         <hr>
+         <table width="100%" summary="Navigation footer">
+            <tr>
+               <td width="40%" align="left"><a accesskey="p" href="performance-collections.html">&#21069;&#12398;&#12506;&#12540;&#12472;</a>&nbsp;
+               </td>
+               <td width="20%" align="center"><a accesskey="u" href="performance.html">&#19978;&#12395;&#25147;&#12427;</a></td>
+               <td width="40%" align="right">&nbsp;<a accesskey="n" href="toolsetguide.html">&#27425;&#12398;&#12506;&#12540;&#12472;</a></td>
+            </tr>
+            <tr>
+               <td width="40%" align="left" valign="top">19.5. &#12467;&#12524;&#12463;&#12471;&#12519;&#12531;&#12398;&#12497;&#12501;&#12457;&#12540;&#12510;&#12531;&#12473;&#12398;&#29702;&#35299;&nbsp;</td>
+               <td width="20%" align="center"><a accesskey="h" href="index.html">&#12507;&#12540;&#12512;</a></td>
+               <td width="40%" align="right" valign="top">&nbsp;&#31532;20&#31456; Toolset Guide &#12484;&#12540;&#12523;&#12475;&#12483;&#12488;&#12460;&#12452;&#12489;</td>
+            </tr>
+         </table>
+      </div>
+   </body>
+</html>

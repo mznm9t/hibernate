@@ -1,0 +1,104 @@
+<html>
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   
+      <title>13&#51109;. Batch &igrave;&sup2;&#152;&euml;&brvbar;&not;</title>
+      <link rel="stylesheet" href="css/html.css" type="text/css">
+      <meta name="generator" content="DocBook XSL Stylesheets V1.72.0">
+      <link rel="start" href="index.html" title="HIBERNATE - &#44060;&#49457;&#51080;&#45716; &#51088;&#48148;&#47484; &#50948;&#54620; &#44288;&#44228; &#50689;&#49549;">
+      <link rel="up" href="index.html" title="HIBERNATE - &#44060;&#49457;&#51080;&#45716; &#51088;&#48148;&#47484; &#50948;&#54620; &#44288;&#44228; &#50689;&#49549;">
+      <link rel="prev" href="objectstate-decl-security.html" title="12.3. Hibernate &#49440;&#50616;&#51201;&#51064; &#48372;&#50504;">
+      <link rel="next" href="batch-update.html" title="13.2. Batch updates">
+   </head>
+   <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+      <div class="navheader">
+         <table width="100%" summary="Navigation header">
+            <tr>
+               <th colspan="3" align="center">13&#51109;. Batch &igrave;&sup2;&#152;&euml;&brvbar;&not;</th>
+            </tr>
+            <tr>
+               <td width="20%" align="left"><a accesskey="p" href="objectstate-decl-security.html">&#51060;&#51204;</a>&nbsp;
+               </td>
+               <th width="60%" align="center">&nbsp;</th>
+               <td width="20%" align="right">&nbsp;<a accesskey="n" href="batch-update.html">&#45796;&#51020;</a></td>
+            </tr>
+         </table>
+         <hr>
+      </div>
+      <div class="chapter" lang="ko-KR">
+         <div class="titlepage">
+            <div>
+               <div>
+                  <h2 class="title"><a name="batch"></a>13&#51109;. Batch &igrave;&sup2;&#152;&euml;&brvbar;&not;
+                  </h2>
+               </div>
+            </div>
+         </div>
+         <p>Hibernate&euml;&yen;&frac14; &igrave;&#130;&not;&igrave;&#154;&copy;&iacute;&#149;&#152;&igrave;&#151;&not; &euml;&#141;&deg;&igrave;&#157;&acute;&iacute;&#132;&deg;&euml;&sup2;&nbsp;&igrave;&#157;&acute;&igrave;&#138;&curren; &euml;&#130;&acute;&igrave;&#151;&#144;&igrave;&#132;&#156; 100 000 &ecirc;&deg;&#156;&igrave;&#157;&#152; &iacute;&#150;&#137;&euml;&#147;&curren;&igrave;&#157;&#132; &igrave;&#130;&frac12;&igrave;&#158;&#133;&igrave;&#139;&#156;&iacute;&#130;&curren;&euml;&#138;&#148; &euml;&sup3;&cedil;&euml;&#158;&#152;&igrave;&#157;&#152; &igrave;&nbsp;&#145;&ecirc;&middot;&frac14;&euml;&sup2;&#149;&igrave;&#157;&#128; &euml;&#139;&curren;&igrave;&#157;&#140;&ecirc;&sup3;&frac14;
+            &ecirc;&deg;&#153;&euml;&#139;&curren;: 
+         </p><pre class="programlisting">Session session = sessionFactory.openSession();
+Transaction tx = session.beginTransaction();
+for ( int i=0; i&lt;100000; i++ ) {
+    Customer customer = new Customer(.....);
+    session.save(customer);
+}
+tx.commit();
+session.close();</pre><p>&igrave;&#157;&acute;&ecirc;&sup2;&#131;&igrave;&#157;&#128; 50 000&euml;&sup2;&#136;&igrave;&sect;&cedil; &iacute;&#150;&#137; &ecirc;&deg;&#128;&ecirc;&sup1;&#140;&igrave;&#154;&acute; &ecirc;&sup3;&sup3;&igrave;&#151;&#144;&igrave;&#132;&#156; <code class="literal">OutOfMemoryException</code>&igrave;&#156;&frac14;&euml;&iexcl;&#156; &euml;&#150;&uml;&igrave;&#150;&acute;&igrave;&sect;&#136; &ecirc;&sup2;&#131;&igrave;&#157;&acute;&euml;&#139;&curren;. &ecirc;&middot;&cedil;&ecirc;&sup2;&#131;&igrave;&#157;&#128; Hibernate&ecirc;&deg;&#128; session-level &igrave;&ordm;&#144;&igrave;&#139;&#156; &igrave;&#134;&#141;&igrave;&#151;&#144; &euml;&ordf;&uml;&euml;&#147;&nbsp; &igrave;&#131;&#136;&euml;&iexcl;&#156;&igrave;&#157;&acute; &igrave;&#130;&frac12;&igrave;&#158;&#133;&euml;&#144;&#156; <code class="literal">Customer</code> &igrave;&#157;&cedil;&igrave;&#138;&curren;&iacute;&#132;&acute;&igrave;&#138;&curren;&euml;&#147;&curren;&igrave;&#157;&#132; &igrave;&ordm;&#144;&igrave;&#139;&#156;&igrave;&#139;&#156;&iacute;&#130;&curren;&ecirc;&cedil;&deg; &euml;&#149;&#140;&euml;&not;&cedil;&igrave;&#157;&acute;&euml;&#139;&curren;. 
+         </p>
+         <p>&igrave;&#157;&acute; &igrave;&#158;&yen;&igrave;&#151;&#144;&igrave;&#132;&#156; &igrave;&#154;&deg;&euml;&brvbar;&not;&euml;&#138;&#148; &igrave;&#157;&acute; &euml;&not;&cedil;&igrave;&nbsp;&#156;&euml;&yen;&frac14; &iacute;&#148;&frac14;&iacute;&#149;&#152;&euml;&#138;&#148; &euml;&deg;&copy;&euml;&sup2;&#149;&igrave;&#157;&#132; &euml;&#139;&sup1;&igrave;&#139;&nbsp;&igrave;&#151;&#144;&ecirc;&sup2;&#140; &euml;&sup3;&acute;&igrave;&#151;&not;&igrave;&curren;&#132; &ecirc;&sup2;&#131;&igrave;&#157;&acute;&euml;&#139;&curren;. &iacute;&#149;&#152;&igrave;&sect;&#128;&euml;&sect;&#140; &euml;&uml;&frac14;&igrave;&nbsp;&#128; &euml;&#139;&sup1;&igrave;&#139;&nbsp;&igrave;&#157;&acute; &euml;&deg;&deg;&igrave;&sup1;&#152;
+            &igrave;&sup2;&#152;&euml;&brvbar;&not;&euml;&yen;&frac14; &iacute;&#150;&#137;&iacute;&#149;&#152;&euml;&#138;&#148; &igrave;&curren;&#145;&igrave;&#157;&acute;&euml;&#157;&frac14;&euml;&copy;&acute;, &euml;&#139;&sup1;&igrave;&#139;&nbsp;&igrave;&#157;&acute; &igrave;&nbsp;&#129;&euml;&#139;&sup1;&iacute;&#149;&#156; &iacute;&#141;&frac14;&iacute;&#143;&not;&euml;&uml;&frac14;&igrave;&#138;&curren;&euml;&yen;&frac14; &igrave;&#132;&plusmn;&igrave;&middot;&uml;&iacute;&#149;&#152;&euml;&nbsp;&curren;&ecirc;&sup3;&nbsp; &iacute;&#149;&nbsp; &ecirc;&sup2;&frac12;&igrave;&#154;&deg;&igrave;&#151;&#144; &euml;&#139;&sup1;&igrave;&#139;&nbsp;&igrave;&#157;&acute; JDBC &euml;&deg;&deg;&igrave;&sup1;&#152;
+            &igrave;&#130;&not;&igrave;&#154;&copy;&igrave;&#157;&#132; &ecirc;&deg;&#128;&euml;&#138;&yen;&iacute;&#149;&#152;&ecirc;&sup2;&#140; &iacute;&#149;&#152;&euml;&#138;&#148; &ecirc;&sup2;&#131;&igrave;&#157;&#128; &igrave;&nbsp;&#136;&euml;&#140;&#128;&igrave;&nbsp;&#129;&igrave;&#156;&frac14;&euml;&iexcl;&#156; &iacute;&#149;&#132;&igrave;&#154;&#148;&iacute;&#149;&#152;&euml;&#139;&curren;. JDBC &euml;&deg;&deg;&igrave;&sup1;&#152; &igrave;&#130;&not;&igrave;&#157;&acute;&igrave;&brvbar;&#136;&euml;&yen;&frac14; &igrave;&nbsp;&#129;&euml;&#139;&sup1;&iacute;&#149;&#156; &igrave;&#136;&laquo;&igrave;&#158;&#144;(10-50)&euml;&iexcl;&#156; &igrave;&#132;&curren;&igrave;&nbsp;&#149;&iacute;&#149;&#152;&euml;&#157;&frac14;:
+            
+         </p><pre class="programlisting">hibernate.jdbc.batch_size 20</pre><p><a name="disablebatching"></a>&euml;&sect;&#140;&igrave;&#157;&frac14; &euml;&#139;&sup1;&igrave;&#139;&nbsp;&igrave;&#157;&acute; <code class="literal">identiy</code> &igrave;&#139;&#157;&euml;&sup3;&#132;&igrave;&#158;&#144; &igrave;&#131;&#157;&igrave;&#132;&plusmn;&igrave;&#158;&#144;&euml;&yen;&frac14; &igrave;&#130;&not;&igrave;&#154;&copy;&iacute;&#149;&nbsp; &ecirc;&sup2;&frac12;&igrave;&#154;&deg; Hibernate&ecirc;&deg;&#128; JDBC &euml;&nbsp;&#136;&euml;&sup2;&uml;&igrave;&#151;&#144;&igrave;&#132;&#156; &iacute;&#136;&not;&euml;&ordf;&#133;&iacute;&#149;&#152;&ecirc;&sup2;&#140; insert &euml;&deg;&deg;&igrave;&sup1;&#152;&igrave;&#158;&#145;&igrave;&#151;&#133;&igrave;&#157;&#132; &igrave;&#130;&not;&igrave;&#154;&copy;&euml;&para;&#136;&ecirc;&deg;&#128;&euml;&#138;&yen;&iacute;&#149;&#152;&ecirc;&sup2;&#140;
+            &iacute;&#149;&#156;&euml;&#139;&curren;&euml;&#138;&#148; &igrave;&nbsp;&#144;&igrave;&#157;&#132; &euml;&#133;&cedil;&iacute;&#138;&cedil;&iacute;&#149;&#152;&euml;&#157;&frac14;. 
+         </p>
+         <p>&euml;&#139;&sup1;&igrave;&#139;&nbsp;&igrave;&#157;&#128; &euml;&#152;&#144;&iacute;&#149;&#156; second-level &igrave;&ordm;&#144;&igrave;&#139;&#156;&euml;&yen;&frac14; &ecirc;&deg;&#128;&igrave;&sect;&#132; &igrave;&#131;&#129;&iacute;&#152;&cedil;&igrave;&#158;&#145;&igrave;&#154;&copy;&igrave;&#157;&acute; &igrave;&#153;&#132;&igrave;&nbsp;&#132;&iacute;&#149;&#152;&ecirc;&sup2;&#140; &euml;&para;&#136;&ecirc;&deg;&#128;&euml;&#138;&yen;&iacute;&#149;&#156; &iacute;&#148;&#132;&euml;&iexcl;&#156;&igrave;&#132;&cedil;&igrave;&#138;&curren; &euml;&#130;&acute;&igrave;&#151;&#144;&igrave;&#132;&#156; &igrave;&#157;&acute;&euml;&#159;&deg; &igrave;&cent;&#133;&euml;&yen;&#152;&igrave;&#157;&#152;
+            &igrave;&#158;&#145;&igrave;&#151;&#133;&igrave;&#157;&#132; &iacute;&#150;&#137;&iacute;&#149;&#152;&ecirc;&sup3;&nbsp; &igrave;&#139;&para;&igrave;&#150;&acute;&iacute;&#149;&nbsp; &igrave;&#136;&#152;&euml;&#143;&#132; &igrave;&#158;&#136;&euml;&#139;&curren;: 
+         </p><pre class="programlisting">hibernate.cache.use_second_level_cache false</pre><p>&iacute;&#149;&#152;&igrave;&sect;&#128;&euml;&sect;&#140; &igrave;&#157;&acute;&ecirc;&sup2;&#131;&igrave;&#157;&#128; &igrave;&nbsp;&#136;&euml;&#140;&#128;&igrave;&nbsp;&#129;&igrave;&#156;&frac14;&euml;&iexcl;&#156; &iacute;&#149;&#132;&igrave;&#154;&#148;&iacute;&#149;&#152;&igrave;&sect;&#128; &igrave;&#149;&#138;&euml;&#139;&curren;. &igrave;&#153;&#156;&euml;&#131;&#144;&iacute;&#149;&#152;&euml;&copy;&acute; &igrave;&#154;&deg;&euml;&brvbar;&not;&euml;&#138;&#148; second-level &igrave;&ordm;&#144;&igrave;&#139;&#156;&igrave;&#153;&#128;&igrave;&#157;&#152; &igrave;&#131;&#129;&iacute;&#152;&cedil;&igrave;&#158;&#145;&igrave;&#154;&copy;&igrave;&#157;&#132;
+            &euml;&para;&#136;&ecirc;&deg;&#128;&euml;&#138;&yen;&iacute;&#149;&#152;&euml;&#143;&#132;&euml;&iexcl;&#157; &iacute;&#149;&#152;&ecirc;&cedil;&deg; &igrave;&#156;&#132;&iacute;&#149;&acute; &euml;&ordf;&#133;&igrave;&#139;&#156;&igrave;&nbsp;&#129;&igrave;&#156;&frac14;&euml;&iexcl;&#156; <code class="literal">CacheMode</code>&euml;&yen;&frac14; &igrave;&#132;&curren;&igrave;&nbsp;&#149;&iacute;&#149;&nbsp; &igrave;&#136;&#152; &igrave;&#158;&#136;&ecirc;&cedil;&deg; &euml;&#149;&#140;&euml;&not;&cedil;&igrave;&#157;&acute;&euml;&#139;&curren;. 
+         </p>
+         <div class="sect1" lang="ko-KR">
+            <div class="titlepage">
+               <div>
+                  <div>
+                     <h2 class="title" style="clear: both"><a name="batch-inserts"></a>13.1. Batch inserts
+                     </h2>
+                  </div>
+               </div>
+            </div>
+            <p>&igrave;&#131;&#136;&euml;&iexcl;&#156;&igrave;&#154;&acute; &ecirc;&deg;&#157;&igrave;&sup2;&acute;&euml;&#147;&curren;&igrave;&#157;&#132; &igrave;&#152;&#129;&igrave;&#134;&#141;&iacute;&#153;&#148; &igrave;&#139;&#156;&iacute;&#130;&not; &euml;&#149;&#140;, &euml;&#139;&sup1;&igrave;&#139;&nbsp;&igrave;&#157;&#128; first-level &igrave;&ordm;&#144;&igrave;&#139;&#156;&igrave;&#157;&#152; &igrave;&#130;&not;&igrave;&#157;&acute;&igrave;&brvbar;&#136;&euml;&yen;&frac14; &igrave;&nbsp;&#156;&igrave;&#150;&acute;&iacute;&#149;&#152;&ecirc;&cedil;&deg; &igrave;&#156;&#132;&iacute;&#149;&acute; &igrave;&#132;&cedil;&igrave;&#133;&#152;&igrave;&#157;&#132; &igrave;&nbsp;&#149;&ecirc;&cedil;&deg;&igrave;&nbsp;&#129;&igrave;&#156;&frac14;&euml;&iexcl;&#156;
+               <code class="literal">flush()</code> &igrave;&#139;&#156;&iacute;&#130;&curren;&ecirc;&sup3;&nbsp; &euml;&#130;&#152;&igrave;&#132;&#156; <code class="literal">clear()</code> &igrave;&#139;&#156;&igrave;&frac14;&#156;&igrave;&#149;&frac14; &iacute;&#149;&#156;&euml;&#139;&curren;. 
+            </p><pre class="programlisting">Session session = sessionFactory.openSession();
+Transaction tx = session.beginTransaction();
+   
+for ( int i=0; i&lt;100000; i++ ) {
+    Customer customer = new Customer(.....);
+    session.save(customer);
+    if ( i % 20 == 0 ) { //20, same as the JDBC batch size
+        //flush a batch of inserts and release memory:
+        session.flush();
+        session.clear();
+    }
+}
+   
+tx.commit();
+session.close();</pre></div>
+      </div>
+      <div class="navfooter">
+         <hr>
+         <table width="100%" summary="Navigation footer">
+            <tr>
+               <td width="40%" align="left"><a accesskey="p" href="objectstate-decl-security.html">&#51060;&#51204;</a>&nbsp;
+               </td>
+               <td width="20%" align="center">&nbsp;</td>
+               <td width="40%" align="right">&nbsp;<a accesskey="n" href="batch-update.html">&#45796;&#51020;</a></td>
+            </tr>
+            <tr>
+               <td width="40%" align="left" valign="top">12.3. Hibernate &#49440;&#50616;&#51201;&#51064; &#48372;&#50504;&nbsp;</td>
+               <td width="20%" align="center"><a accesskey="h" href="index.html">&#52376;&#51020;&#51004;&#47196;</a></td>
+               <td width="40%" align="right" valign="top">&nbsp;13.2. Batch updates</td>
+            </tr>
+         </table>
+      </div>
+   </body>
+</html>

@@ -1,0 +1,85 @@
+<html>
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   
+      <title>14.7. &#38598;&#32004;&#38306;&#25968;</title>
+      <link rel="stylesheet" href="css/html.css" type="text/css">
+      <meta name="generator" content="DocBook XSL Stylesheets V1.72.0">
+      <link rel="start" href="index.html" title="HIBERNATE - Relational Persistence for Idiomatic Java">
+      <link rel="up" href="queryhql.html" title="&#31532;14&#31456; HQL: The Hibernate Query Language">
+      <link rel="prev" href="queryhql-select.html" title="14.6. Select&#31680;">
+      <link rel="next" href="queryhql-polymorphism.html" title="14.8. &#12509;&#12522;&#12514;&#12540;&#12501;&#12451;&#12483;&#12463;&#12394;&#12463;&#12456;&#12522;">
+   </head>
+   <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+      <div class="navheader">
+         <table width="100%" summary="Navigation header">
+            <tr>
+               <th colspan="3" align="center">14.7. &#38598;&#32004;&#38306;&#25968;</th>
+            </tr>
+            <tr>
+               <td width="20%" align="left"><a accesskey="p" href="queryhql-select.html">&#21069;&#12398;&#12506;&#12540;&#12472;</a>&nbsp;
+               </td>
+               <th width="60%" align="center">&#31532;14&#31456; HQL: The Hibernate Query Language</th>
+               <td width="20%" align="right">&nbsp;<a accesskey="n" href="queryhql-polymorphism.html">&#27425;&#12398;&#12506;&#12540;&#12472;</a></td>
+            </tr>
+         </table>
+         <hr>
+      </div>
+      <div class="sect1" lang="ja-JP">
+         <div class="titlepage">
+            <div>
+               <div>
+                  <h2 class="title" style="clear: both"><a name="queryhql-aggregation"></a>14.7. &#38598;&#32004;&#38306;&#25968;
+                  </h2>
+               </div>
+            </div>
+         </div>
+         <p>HQL&#12398;&#12463;&#12456;&#12522;&#12399;&#12503;&#12525;&#12497;&#12486;&#12451;&#12398;&#38598;&#32004;&#38306;&#25968;&#12398;&#32080;&#26524;&#12418;&#36820;&#12379;&#12414;&#12377;&#65306; </p><pre class="programlisting">select avg(cat.weight), sum(cat.weight), max(cat.weight), count(cat)
+from Cat cat</pre><p>&#12469;&#12509;&#12540;&#12488;&#12375;&#12390;&#12356;&#12427;&#38598;&#32004;&#38306;&#25968;&#12399;&#20197;&#19979;&#12398;&#12418;&#12398;&#12391;&#12377;&#12290; </p>
+         <div class="itemizedlist">
+            <ul type="disc" compact>
+               <li>
+                  <p>
+                                         <code class="literal">avg(...), sum(...), min(...), max(...)</code>
+                                     
+                  </p>
+               </li>
+               <li>
+                  <p>
+                                         <code class="literal">count(*)</code>
+                                     
+                  </p>
+               </li>
+               <li>
+                  <p>
+                                         <code class="literal">count(...), count(distinct ...), count(all...)</code>
+                                     
+                  </p>
+               </li>
+            </ul>
+         </div>
+         <p>select&#31680;&#12395;&#12362;&#12356;&#12390;&#31639;&#34899;&#25805;&#20316;&#12289;&#36899;&#32080;&#12392;&#25215;&#35469;&#12373;&#12428;&#12383;SQL&#38306;&#25968;&#12434;&#20351;&#12358;&#12371;&#12392;&#12364;&#12391;&#12365;&#12414;&#12377;&#12290; </p><pre class="programlisting">select cat.weight + sum(kitten.weight)
+from Cat cat
+    join cat.kittens kitten
+group by cat.id, cat.weight</pre><pre class="programlisting">select firstName||' '||initial||' '||upper(lastName) from Person</pre><p>SQL&#12392;&#21516;&#12376;&#24847;&#21619;&#12434;&#25345;&#12388; <code class="literal">distinct</code> &#12392; <code class="literal">all</code> &#12461;&#12540;&#12527;&#12540;&#12489;&#12434;&#20351;&#12358;&#12371;&#12392;&#12364;&#12391;&#12365;&#12414;&#12377;&#12290; 
+         </p><pre class="programlisting">select distinct cat.name from Cat cat
+
+select count(distinct cat.name), count(cat) from Cat cat</pre></div>
+      <div class="navfooter">
+         <hr>
+         <table width="100%" summary="Navigation footer">
+            <tr>
+               <td width="40%" align="left"><a accesskey="p" href="queryhql-select.html">&#21069;&#12398;&#12506;&#12540;&#12472;</a>&nbsp;
+               </td>
+               <td width="20%" align="center"><a accesskey="u" href="queryhql.html">&#19978;&#12395;&#25147;&#12427;</a></td>
+               <td width="40%" align="right">&nbsp;<a accesskey="n" href="queryhql-polymorphism.html">&#27425;&#12398;&#12506;&#12540;&#12472;</a></td>
+            </tr>
+            <tr>
+               <td width="40%" align="left" valign="top">14.6. Select&#31680;&nbsp;</td>
+               <td width="20%" align="center"><a accesskey="h" href="index.html">&#12507;&#12540;&#12512;</a></td>
+               <td width="40%" align="right" valign="top">&nbsp;14.8. &#12509;&#12522;&#12514;&#12540;&#12501;&#12451;&#12483;&#12463;&#12394;&#12463;&#12456;&#12522;</td>
+            </tr>
+         </table>
+      </div>
+   </body>
+</html>

@@ -1,0 +1,151 @@
+<html>
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   
+      <title>13.4.&nbsp;DML(&aelig;&#149;&deg;&aelig;&#141;&reg;&aelig;&#147;&#141;&auml;&frac12;&#156;&egrave;&macr;&shy;&egrave;&uml;&#128;)&eacute;&pound;&#142;&aelig;&nbsp;&frac14;&ccedil;&#154;&#132;&aelig;&#147;&#141;&auml;&frac12;&#156;(DML-style operations)</title>
+      <link rel="stylesheet" href="css/html.css" type="text/css">
+      <meta name="generator" content="DocBook XSL Stylesheets V1.72.0">
+      <link rel="start" href="index.html" title="HIBERNATE - &#31526;&#21512;Java&#20064;&#24815;&#30340;&#20851;&#31995;&#25968;&#25454;&#24211;&#25345;&#20037;&#21270;">
+      <link rel="up" href="batch.html" title="&#31532;&nbsp;13&nbsp;&#31456;&nbsp;&aelig;&#137;&sup1;&eacute;&#135;&#143;&aring;&curren;&#132;&ccedil;&#144;&#134;&iuml;&frac14;&#136;Batch processing&iuml;&frac14;&#137;">
+      <link rel="prev" href="batch-statelesssession.html" title="13.3.&nbsp;StatelessSession (&aelig;&#151;&nbsp;&ccedil;&#138;&para;&aelig;&#128;&#129;session)&aelig;&#142;&yen;&aring;&#143;&pound;">
+      <link rel="next" href="queryhql.html" title="&#31532;&nbsp;14&nbsp;&#31456;&nbsp;HQL: Hibernate&#26597;&#35810;&#35821;&#35328;">
+   </head>
+   <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+      <div class="navheader">
+         <table width="100%" summary="Navigation header">
+            <tr>
+               <th colspan="3" align="center">13.4.&nbsp;DML(&aelig;&#149;&deg;&aelig;&#141;&reg;&aelig;&#147;&#141;&auml;&frac12;&#156;&egrave;&macr;&shy;&egrave;&uml;&#128;)&eacute;&pound;&#142;&aelig;&nbsp;&frac14;&ccedil;&#154;&#132;&aelig;&#147;&#141;&auml;&frac12;&#156;(DML-style operations)</th>
+            </tr>
+            <tr>
+               <td width="20%" align="left"><a accesskey="p" href="batch-statelesssession.html">&#19978;&#19968;&#39029;</a>&nbsp;
+               </td>
+               <th width="60%" align="center">&#31532;&nbsp;13&nbsp;&#31456;&nbsp;&aelig;&#137;&sup1;&eacute;&#135;&#143;&aring;&curren;&#132;&ccedil;&#144;&#134;&iuml;&frac14;&#136;Batch processing&iuml;&frac14;&#137;</th>
+               <td width="20%" align="right">&nbsp;<a accesskey="n" href="queryhql.html">&#19979;&#19968;&#39029;</a></td>
+            </tr>
+         </table>
+         <hr>
+      </div>
+      <div class="sect1" lang="zh-CN">
+         <div class="titlepage">
+            <div>
+               <div>
+                  <h2 class="title" style="clear: both"><a name="batch-direct"></a>13.4.&nbsp;DML(&aelig;&#149;&deg;&aelig;&#141;&reg;&aelig;&#147;&#141;&auml;&frac12;&#156;&egrave;&macr;&shy;&egrave;&uml;&#128;)&eacute;&pound;&#142;&aelig;&nbsp;&frac14;&ccedil;&#154;&#132;&aelig;&#147;&#141;&auml;&frac12;&#156;(DML-style operations)
+                  </h2>
+               </div>
+            </div>
+         </div>
+         <p>As already discussed, automatic and transparent object/relational mapping is concerned with the management of object state.
+            This implies that the object state is available in memory, hence manipulating (using the SQL <code class="literal">Data Manipulation Language</code> (DML) statements: <code class="literal">INSERT</code>, <code class="literal">UPDATE</code>, <code class="literal">DELETE</code>) data directly in the database will not affect in-memory state. However, Hibernate provides methods for bulk SQL-style DML
+            statement execution which are performed through the Hibernate Query Language (<a href="queryhql.html" title="&#31532;&nbsp;14&nbsp;&#31456;&nbsp;HQL: Hibernate&#26597;&#35810;&#35821;&#35328;">HQL</a>). 
+         </p>
+         <p><code class="literal">UPDATE</code> &aring;&#146;&#140; <code class="literal">DELETE</code>&egrave;&macr;&shy;&aring;&#143;&yen;&ccedil;&#154;&#132;&egrave;&macr;&shy;&aelig;&sup3;&#149;&auml;&cedil;&ordm;&iuml;&frac14;&#154; <code class="literal">( UPDATE | DELETE ) FROM? EntityName (WHERE where_conditions)?</code> &aelig;&#156;&#137;&aring;&#135;&nbsp;&ccedil;&#130;&sup1;&egrave;&macr;&acute;&aelig;&#152;&#142;&iuml;&frac14;&#154; 
+         </p>
+         <div class="itemizedlist">
+            <ul type="disc" compact>
+               <li>
+                  <p>&aring;&#156;&uml;FROM&aring;&shy;&#144;&aring;&#143;&yen;&iuml;&frac14;&#136;from-clause&iuml;&frac14;&#137;&auml;&cedil;&shy;&iuml;&frac14;&#140;FROM&aring;&#133;&sup3;&eacute;&#148;&reg;&aring;&shy;&#151;&aelig;&#152;&macr;&aring;&#143;&macr;&eacute;&#128;&#137;&ccedil;&#154;&#132; </p>
+               </li>
+               <li>
+                  <p>&aring;&#156;&uml;FROM&aring;&shy;&#144;&aring;&#143;&yen;&iuml;&frac14;&#136;from-clause&iuml;&frac14;&#137;&auml;&cedil;&shy;&aring;&#143;&ordf;&egrave;&#131;&frac12;&aelig;&#156;&#137;&auml;&cedil;&#128;&auml;&cedil;&ordf;&aring;&reg;&#158;&auml;&frac12;&#147;&aring;&#144;&#141;&iuml;&frac14;&#140;&aring;&reg;&#131;&aring;&#143;&macr;&auml;&raquo;&yen;&aelig;&#152;&macr;&aring;&#136;&laquo;&aring;&#144;&#141;&atilde;&#128;&#130;&aring;&brvbar;&#130;&aelig;&#158;&#156;&aring;&reg;&#158;&auml;&frac12;&#147;&aring;&#144;&#141;&aelig;&#152;&macr;&aring;&#136;&laquo;&aring;&#144;&#141;&iuml;&frac14;&#140;&eacute;&#130;&pound;&auml;&sup1;&#136;&auml;&raquo;&raquo;&auml;&frac12;&#149;&egrave;&cent;&laquo;&aring;&frac14;&#149;&ccedil;&#148;&uml;&ccedil;&#154;&#132;&aring;&plusmn;&#158;&aelig;&#128;&sect;&eacute;&#131;&frac12;&aring;&iquest;&#133;&eacute;&iexcl;&raquo;&aring;&#138;&nbsp;&auml;&cedil;&#138;&aelig;&shy;&curren;&aring;&#136;&laquo;&aring;&#144;&#141;&ccedil;&#154;&#132;&aring;&#137;&#141;&ccedil;&frac14;&#128;&iuml;&frac14;&#155;&aring;&brvbar;&#130;&aelig;&#158;&#156;&auml;&cedil;&#141;&aelig;&#152;&macr;&aring;&#136;&laquo;&aring;&#144;&#141;&iuml;&frac14;&#140;&eacute;&#130;&pound;&auml;&sup1;&#136;&auml;&raquo;&raquo;&auml;&frac12;&#149;&aelig;&#156;&#137;&aring;&#137;&#141;&ccedil;&frac14;&#128;&ccedil;&#154;&#132;&aring;&plusmn;&#158;&aelig;&#128;&sect;&aring;&frac14;&#149;&ccedil;&#148;&uml;&eacute;&#131;&frac12;&aelig;&#152;&macr;&eacute;&#157;&#158;&aelig;&sup3;&#149;&ccedil;&#154;&#132;&atilde;&#128;&#130;
+                     
+                  </p>
+               </li>
+               <li>
+                  <p>No <a href="queryhql-joins-forms.html" title="14.4.&nbsp;join &#35821;&#27861;&#30340;&#24418;&#24335;">joins</a> (either implicit or explicit) can be specified in a bulk HQL query. Sub-queries may be used in the where-clause; the subqueries,
+                     themselves, may contain joins. 
+                  </p>
+               </li>
+               <li>
+                  <p>&aelig;&#149;&acute;&auml;&cedil;&ordf;WHERE&aring;&shy;&#144;&aring;&#143;&yen;&aelig;&#152;&macr;&aring;&#143;&macr;&eacute;&#128;&#137;&ccedil;&#154;&#132;&atilde;&#128;&#130; </p>
+               </li>
+            </ul>
+         </div>
+         <p>&auml;&cedil;&frac34;&auml;&cedil;&ordf;&auml;&frac34;&#139;&aring;&shy;&#144;&iuml;&frac14;&#140;&auml;&frac12;&iquest;&ccedil;&#148;&uml;<code class="literal">Query.executeUpdate()</code>&aelig;&#150;&sup1;&aelig;&sup3;&#149;&aelig;&#137;&sect;&egrave;&iexcl;&#140;&auml;&cedil;&#128;&auml;&cedil;&ordf;HQL <code class="literal">UPDATE</code>&egrave;&macr;&shy;&aring;&#143;&yen;(&iuml;&frac14;&#154; (&aelig;&#150;&sup1;&aelig;&sup3;&#149;&aring;&#145;&frac12;&aring;&#144;&#141;&aelig;&#152;&macr;&aelig;&#157;&yen;&aelig;&ordm;&#144;&auml;&ordm;&#142;JDBC's <code class="literal">PreparedStatement.executeUpdate()</code>): 
+         </p><pre class="programlisting">Session session = sessionFactory.openSession();
+Transaction tx = session.beginTransaction();
+
+String hqlUpdate = "update Customer c set c.name = :newName where c.name = :oldName";
+// or String hqlUpdate = "update Customer set name = :newName where name = :oldName";
+int updatedEntities = s.createQuery( hqlUpdate )
+        .setString( "newName", newName )
+        .setString( "oldName", oldName )
+        .executeUpdate();
+tx.commit();
+session.close();</pre><p>HQL <code class="literal">UPDATE</code> statements, by default do not effect the <a href="mapping.html#mapping-declaration-version" title="5.1.9.&nbsp;&#29256;&#26412;&#65288;version&#65289;(&#21487;&#36873;)">version</a> or the <a href="mapping.html#mapping-declaration-timestamp" title="5.1.10.&nbsp;timestamp (&#21487;&#36873;)">timestamp</a> property values for the affected entities; this is in keeping with the EJB3 specification. However, you can force Hibernate
+            to properly reset the <code class="literal">version</code> or <code class="literal">timestamp</code> property values through the use of a <code class="literal">versioned update</code>. This is achieved by adding the <code class="literal">VERSIONED</code> keyword after the <code class="literal">UPDATE</code> keyword. 
+         </p><pre class="programlisting">Session session = sessionFactory.openSession();
+Transaction tx = session.beginTransaction();
+String hqlVersionedUpdate = "update versioned Customer set name = :newName where name = :oldName";
+int updatedEntities = s.createQuery( hqlUpdate )
+        .setString( "newName", newName )
+        .setString( "oldName", oldName )
+        .executeUpdate();
+tx.commit();
+session.close();</pre><p>&aelig;&sup3;&uml;&aelig;&#132;&#143;&iuml;&frac14;&#140;&egrave;&#135;&ordf;&aring;&reg;&#154;&auml;&sup1;&#137;&ccedil;&#154;&#132;&ccedil;&#137;&#136;&aelig;&#156;&not;&ccedil;&plusmn;&raquo;&aring;&#158;&#139;(<code class="literal">org.hibernate.usertype.UserVersionType</code>)&auml;&cedil;&#141;&aring;&#133;&#129;&egrave;&reg;&cedil;&aring;&#146;&#140;<code class="literal">update versioned</code>&egrave;&macr;&shy;&aring;&#143;&yen;&egrave;&#129;&#148;&ccedil;&#148;&uml;&atilde;&#128;&#130; 
+         </p>
+         <p>&aelig;&#137;&sect;&egrave;&iexcl;&#140;&auml;&cedil;&#128;&auml;&cedil;&ordf;HQL <code class="literal">DELETE</code>&iuml;&frac14;&#140;&aring;&#144;&#140;&aelig;&nbsp;&middot;&auml;&frac12;&iquest;&ccedil;&#148;&uml; <code class="literal">Query.executeUpdate()</code> &aelig;&#150;&sup1;&aelig;&sup3;&#149;: 
+         </p><pre class="programlisting">Session session = sessionFactory.openSession();
+Transaction tx = session.beginTransaction();
+
+String hqlDelete = "delete Customer c where c.name = :oldName";
+// or String hqlDelete = "delete Customer where name = :oldName";
+int deletedEntities = s.createQuery( hqlDelete )
+        .setString( "oldName", oldName )
+        .executeUpdate();
+tx.commit();
+session.close();</pre><p>&ccedil;&#148;&plusmn;<code class="literal">Query.executeUpdate()</code>&aelig;&#150;&sup1;&aelig;&sup3;&#149;&egrave;&iquest;&#148;&aring;&#155;&#158;&ccedil;&#154;&#132;<code class="literal">&aelig;&#149;&acute;&aring;&#158;&#139;</code>&aring;&#128;&frac14;&egrave;&iexcl;&uml;&aelig;&#152;&#142;&auml;&ordm;&#134;&aring;&#143;&#151;&aelig;&shy;&curren;&aelig;&#147;&#141;&auml;&frac12;&#156;&aring;&frac12;&plusmn;&aring;&#147;&#141;&ccedil;&#154;&#132;&egrave;&reg;&deg;&aring;&frac12;&#149;&aelig;&#149;&deg;&eacute;&#135;&#143;&atilde;&#128;&#130; &aelig;&sup3;&uml;&aelig;&#132;&#143;&egrave;&iquest;&#153;&auml;&cedil;&ordf;&aelig;&#149;&deg;&aring;&#128;&frac14;&aring;&#143;&macr;&egrave;&#131;&frac12;&auml;&cedil;&#142;&aelig;&#149;&deg;&aelig;&#141;&reg;&aring;&ordm;&#147;&auml;&cedil;&shy;&egrave;&cent;&laquo;&iuml;&frac14;&#136;&aelig;&#156;&#128;&aring;&#144;&#142;&auml;&cedil;&#128;&aelig;&#157;&iexcl;SQL&egrave;&macr;&shy;&aring;&#143;&yen;&iuml;&frac14;&#137;&aring;&frac12;&plusmn;&aring;&#147;&#141;&auml;&ordm;&#134;&ccedil;&#154;&#132;&acirc;&#128;&#156;&egrave;&iexcl;&#140;&acirc;&#128;&#157;&aelig;&#149;&deg;&aelig;&#156;&#137;&aring;&#133;&sup3;&iuml;&frac14;&#140;&auml;&sup1;&#159;&aring;&#143;&macr;&egrave;&#131;&frac12;&aelig;&sup2;&iexcl;&aelig;&#156;&#137;&atilde;&#128;&#130;&auml;&cedil;&#128;&auml;&cedil;&ordf;&aring;&curren;&sect;&aelig;&#137;&sup1;&eacute;&#135;&#143;HQL&aelig;&#147;&#141;&auml;&frac12;&#156;&aring;&#143;&macr;&egrave;&#131;&frac12;&aring;&macr;&frac14;&egrave;&#135;&acute;&aring;&curren;&#154;&aelig;&#157;&iexcl;&aring;&reg;&#158;&eacute;&#153;&#133;&ccedil;&#154;&#132;SQL&egrave;&macr;&shy;&aring;&#143;&yen;&egrave;&cent;&laquo;&aelig;&#137;&sect;&egrave;&iexcl;&#140;&iuml;&frac14;&#140;
+            &auml;&cedil;&frac34;&auml;&cedil;&ordf;&auml;&frac34;&#139;&aring;&shy;&#144;&iuml;&frac14;&#140;&aring;&macr;&sup1;joined-subclass&aelig;&#152;&nbsp;&aring;&deg;&#132;&aelig;&#150;&sup1;&aring;&frac14;&#143;&ccedil;&#154;&#132;&ccedil;&plusmn;&raquo;&egrave;&iquest;&#155;&egrave;&iexcl;&#140;&ccedil;&#154;&#132;&aelig;&shy;&curren;&ccedil;&plusmn;&raquo;&aelig;&#147;&#141;&auml;&frac12;&#156;&atilde;&#128;&#130;&egrave;&iquest;&#153;&auml;&cedil;&ordf;&egrave;&iquest;&#148;&aring;&#155;&#158;&aring;&#128;&frac14;&auml;&raquo;&pound;&egrave;&iexcl;&uml;&auml;&ordm;&#134;&aring;&reg;&#158;&eacute;&#153;&#133;&egrave;&cent;&laquo;&egrave;&macr;&shy;&aring;&#143;&yen;&aring;&frac12;&plusmn;&aring;&#147;&#141;&auml;&ordm;&#134;&ccedil;&#154;&#132;&egrave;&reg;&deg;&aring;&frac12;&#149;&aelig;&#149;&deg;&eacute;&#135;&#143;&atilde;&#128;&#130;&aring;&#156;&uml;&eacute;&#130;&pound;&auml;&cedil;&ordf;joined-subclass&ccedil;&#154;&#132;&auml;&frac34;&#139;&aring;&shy;&#144;&auml;&cedil;&shy;&iuml;&frac14;&#140;
+            &aring;&macr;&sup1;&auml;&cedil;&#128;&auml;&cedil;&ordf;&aring;&shy;&#144;&ccedil;&plusmn;&raquo;&ccedil;&#154;&#132;&aring;&#136;&nbsp;&eacute;&#153;&curren;&aring;&reg;&#158;&eacute;&#153;&#133;&auml;&cedil;&#138;&aring;&#143;&macr;&egrave;&#131;&frac12;&auml;&cedil;&#141;&auml;&raquo;&#133;&auml;&raquo;&#133;&auml;&frac14;&#154;&aring;&#136;&nbsp;&eacute;&#153;&curren;&aring;&shy;&#144;&ccedil;&plusmn;&raquo;&aelig;&#152;&nbsp;&aring;&deg;&#132;&aring;&#136;&deg;&ccedil;&#154;&#132;&egrave;&iexcl;&uml;&egrave;&#128;&#140;&auml;&cedil;&#148;&auml;&frac14;&#154;&aring;&frac12;&plusmn;&aring;&#147;&#141;&acirc;&#128;&#156;&aelig;&nbsp;&sup1;&acirc;&#128;&#157;&egrave;&iexcl;&uml;&iuml;&frac14;&#140;&egrave;&iquest;&#152;&aelig;&#156;&#137;&aring;&#143;&macr;&egrave;&#131;&frac12;&aring;&frac12;&plusmn;&aring;&#147;&#141;&auml;&cedil;&#142;&auml;&sup1;&#139;&aelig;&#156;&#137;&ccedil;&raquo;&sect;&aelig;&#137;&iquest;&aring;&#133;&sup3;&ccedil;&sup3;&raquo;&ccedil;&#154;&#132;joined-subclass&aelig;&#152;&nbsp;&aring;&deg;&#132;&aelig;&#150;&sup1;&aring;&frac14;&#143;&ccedil;&#154;&#132;&aring;&shy;&#144;&ccedil;&plusmn;&raquo;&ccedil;&#154;&#132;&egrave;&iexcl;&uml;&atilde;&#128;&#130;
+            
+         </p>
+         <p><code class="literal">INSERT</code>&egrave;&macr;&shy;&aring;&#143;&yen;&ccedil;&#154;&#132;&auml;&frac14;&ordf;&ccedil;&nbsp;&#129;&aelig;&#152;&macr;: <code class="literal">INSERT INTO EntityName properties_list select_statement</code>. &egrave;&brvbar;&#129;&aelig;&sup3;&uml;&aelig;&#132;&#143;&ccedil;&#154;&#132;&aelig;&#152;&macr;: 
+         </p>
+         <div class="itemizedlist">
+            <ul type="disc" compact>
+               <li>
+                  <p>&aring;&#143;&ordf;&aelig;&#148;&macr;&aelig;&#140;&#129;INSERT INTO ... SELECT ...&aring;&frac12;&cent;&aring;&frac14;&#143;,&auml;&cedil;&#141;&aelig;&#148;&macr;&aelig;&#140;&#129;INSERT INTO ... VALUES ...&aring;&frac12;&cent;&aring;&frac14;&#143;. </p>
+                  <p>properties_list&aring;&#146;&#140;SQL <code class="literal">INSERT</code>&egrave;&macr;&shy;&aring;&#143;&yen;&auml;&cedil;&shy;&ccedil;&#154;&#132;<code class="literal">&aring;&shy;&#151;&aelig;&reg;&micro;&aring;&reg;&#154;&auml;&sup1;&#137;(column speficiation)</code>&ccedil;&plusmn;&raquo;&auml;&frac14;&frac14;&atilde;&#128;&#130;&aring;&macr;&sup1;&aring;&#143;&#130;&auml;&cedil;&#142;&ccedil;&raquo;&sect;&aelig;&#137;&iquest;&aelig;&nbsp;&#145;&aelig;&#152;&nbsp;&aring;&deg;&#132;&ccedil;&#154;&#132;&aring;&reg;&#158;&auml;&frac12;&#147;&egrave;&#128;&#140;&egrave;&uml;&#128;&iuml;&frac14;&#140;&aring;&#143;&ordf;&aelig;&#156;&#137;&ccedil;&#155;&acute;&aelig;&#142;&yen;&aring;&reg;&#154;&auml;&sup1;&#137;&aring;&#156;&uml;&ccedil;&raquo;&#153;&aring;&reg;&#154;&ccedil;&#154;&#132;&ccedil;&plusmn;&raquo;&ccedil;&ordm;&sect;&aring;&#136;&laquo;&ccedil;&#154;&#132;&aring;&plusmn;&#158;&aelig;&#128;&sect;&aelig;&#137;&#141;&egrave;&#131;&frac12;&ccedil;&#155;&acute;&aelig;&#142;&yen;&aring;&#156;&uml;properties_list&auml;&cedil;&shy;&auml;&frac12;&iquest;&ccedil;&#148;&uml;&atilde;&#128;&#130;&egrave;&para;&#133;&ccedil;&plusmn;&raquo;&ccedil;&#154;&#132;&aring;&plusmn;&#158;&aelig;&#128;&sect;&auml;&cedil;&#141;&egrave;&cent;&laquo;&aelig;&#148;&macr;&aelig;&#140;&#129;&iuml;&frac14;&#155;&aring;&shy;&#144;&ccedil;&plusmn;&raquo;&ccedil;&#154;&#132;&aring;&plusmn;&#158;&aelig;&#128;&sect;&aelig;&#151;&nbsp;&aelig;&#132;&#143;&auml;&sup1;&#137;&atilde;&#128;&#130;&aelig;&#141;&cent;&aring;&#143;&yen;&egrave;&macr;&#157;&egrave;&macr;&acute;&iuml;&frac14;&#140;<code class="literal">INSERT</code>&aring;&curren;&copy;&ccedil;&#148;&#159;&auml;&cedil;&#141;&aelig;&#148;&macr;&aelig;&#140;&#129;&aring;&curren;&#154;&aelig;&#128;&#129;&atilde;&#128;&#130; 
+                  </p>
+               </li>
+               <li>
+                  <p>select_statement&aring;&#143;&macr;&auml;&raquo;&yen;&aelig;&#152;&macr;&auml;&raquo;&raquo;&auml;&frac12;&#149;&aring;&#144;&#136;&aelig;&sup3;&#149;&ccedil;&#154;&#132;HQL&eacute;&#128;&#137;&aelig;&#139;&copy;&aelig;&#159;&yen;&egrave;&macr;&cent;&iuml;&frac14;&#140;&auml;&cedil;&#141;&egrave;&iquest;&#135;&egrave;&brvbar;&#129;&auml;&iquest;&#157;&egrave;&macr;&#129;&egrave;&iquest;&#148;&aring;&#155;&#158;&ccedil;&plusmn;&raquo;&aring;&#158;&#139;&aring;&iquest;&#133;&eacute;&iexcl;&raquo;&aring;&#146;&#140;&egrave;&brvbar;&#129;&aelig;&#143;&#146;&aring;&#133;&yen;&ccedil;&#154;&#132;&ccedil;&plusmn;&raquo;&aring;&#158;&#139;&aring;&reg;&#140;&aring;&#133;&uml;&aring;&#140;&sup1;&eacute;&#133;&#141;&atilde;&#128;&#130;&ccedil;&#155;&reg;&aring;&#137;&#141;&iuml;&frac14;&#140;&egrave;&iquest;&#153;&auml;&cedil;&#128;&aelig;&pound;&#128;&aelig;&#159;&yen;&aelig;&#152;&macr;&aring;&#156;&uml;&aelig;&#159;&yen;&egrave;&macr;&cent;&ccedil;&frac14;&#150;&egrave;&macr;&#145;&ccedil;&#154;&#132;&aelig;&#151;&para;&aring;&#128;&#153;&egrave;&iquest;&#155;&egrave;&iexcl;&#140;&ccedil;&#154;&#132;&iuml;&frac14;&#140;&egrave;&#128;&#140;&auml;&cedil;&#141;&aelig;&#152;&macr;&aelig;&#138;&#138;&aring;&reg;&#131;&auml;&ordm;&curren;&ccedil;&raquo;&#153;&aelig;&#149;&deg;&aelig;&#141;&reg;&aring;&ordm;&#147;&atilde;&#128;&#130;&aelig;&sup3;&uml;&aelig;&#132;&#143;&iuml;&frac14;&#140;&aring;&#156;&uml;Hibernate<code class="literal">Type</code>&eacute;&#151;&acute;&aring;&brvbar;&#130;&aelig;&#158;&#156;&aring;&#143;&ordf;&aelig;&#152;&macr;<span class="emphasis"><em>&ccedil;&shy;&#137;&auml;&raquo;&middot;&iuml;&frac14;&#136;equivalent&iuml;&frac14;&#137;</em></span>&egrave;&#128;&#140;&eacute;&#157;&#158;<span class="emphasis"><em>&ccedil;&#155;&cedil;&ccedil;&shy;&#137;(equal)</em></span>&iuml;&frac14;&#140;&auml;&frac14;&#154;&aring;&macr;&frac14;&egrave;&#135;&acute;&eacute;&#151;&reg;&eacute;&cent;&#152;&atilde;&#128;&#130;&aring;&reg;&#154;&auml;&sup1;&#137;&auml;&cedil;&ordm;<code class="literal">org.hibernate.type.DateType</code>&aring;&#146;&#140;<code class="literal">org.hibernate.type.TimestampType</code>&ccedil;&#154;&#132;&auml;&cedil;&curren;&auml;&cedil;&ordf;&aring;&plusmn;&#158;&aelig;&#128;&sect;&aring;&#143;&macr;&egrave;&#131;&frac12;&auml;&frac14;&#154;&auml;&ordm;&sect;&ccedil;&#148;&#159;&ccedil;&plusmn;&raquo;&aring;&#158;&#139;&auml;&cedil;&#141;&aring;&#140;&sup1;&eacute;&#133;&#141;&eacute;&#148;&#153;&egrave;&macr;&macr;&iuml;&frac14;&#140;&egrave;&#153;&frac12;&ccedil;&#132;&para;&aelig;&#149;&deg;&aelig;&#141;&reg;&aring;&ordm;&#147;&ccedil;&ordm;&sect;&aring;&#143;&macr;&egrave;&#131;&frac12;&auml;&cedil;&#141;&aring;&#138;&nbsp;&aring;&#140;&ordm;&aring;&#136;&#134;&aelig;&#136;&#150;&egrave;&#128;&#133;&aring;&#143;&macr;&auml;&raquo;&yen;&aring;&curren;&#132;&ccedil;&#144;&#134;&egrave;&iquest;&#153;&ccedil;&sect;&#141;&egrave;&frac12;&not;&aelig;&#141;&cent;&atilde;&#128;&#130;
+                     
+                  </p>
+               </li>
+               <li>
+                  <p>&aring;&macr;&sup1;id&aring;&plusmn;&#158;&aelig;&#128;&sect;&aelig;&#157;&yen;&egrave;&macr;&acute;,insert&egrave;&macr;&shy;&aring;&#143;&yen;&ccedil;&raquo;&#153;&auml;&frac12;&nbsp;&auml;&cedil;&curren;&auml;&cedil;&ordf;&eacute;&#128;&#137;&aelig;&#139;&copy;&atilde;&#128;&#130;&auml;&frac12;&nbsp;&aring;&#143;&macr;&auml;&raquo;&yen;&aelig;&#152;&#142;&ccedil;&iexcl;&reg;&aring;&#156;&deg;&aring;&#156;&uml;properties_list&egrave;&iexcl;&uml;&auml;&cedil;&shy;&aelig;&#140;&#135;&aring;&reg;&#154;id&aring;&plusmn;&#158;&aelig;&#128;&sect;&iuml;&frac14;&#136;&egrave;&iquest;&#153;&aelig;&nbsp;&middot;&aring;&reg;&#131;&ccedil;&#154;&#132;&aring;&#128;&frac14;&aelig;&#152;&macr;&auml;&raquo;&#142;&aring;&macr;&sup1;&aring;&ordm;&#148;&ccedil;&#154;&#132;select&egrave;&iexcl;&uml;&egrave;&frac34;&frac34;&aring;&frac14;&#143;&auml;&cedil;&shy;&egrave;&#142;&middot;&aring;&frac34;&#151;&iuml;&frac14;&#137;&iuml;&frac14;&#140;&aelig;&#136;&#150;&egrave;&#128;&#133;&aring;&#156;&uml;properties_list&auml;&cedil;&shy;&ccedil;&#156;&#129;&ccedil;&#149;&yen;&aring;&reg;&#131;&iuml;&frac14;&#136;&aelig;&shy;&curren;&aelig;&#151;&para;&auml;&frac12;&iquest;&ccedil;&#148;&uml;&ccedil;&#148;&#159;&aelig;&#136;&#144;&aelig;&#140;&#135;&iuml;&frac14;&#137;&atilde;&#128;&#130;&aring;&#144;&#142;&auml;&cedil;&#128;&ccedil;&sect;&#141;&eacute;&#128;&#137;&aelig;&#139;&copy;&aring;&#143;&ordf;&aelig;&#156;&#137;&aring;&frac12;&#147;&auml;&frac12;&iquest;&ccedil;&#148;&uml;&aring;&#156;&uml;&aelig;&#149;&deg;&aelig;&#141;&reg;&aring;&ordm;&#147;&auml;&cedil;&shy;&ccedil;&#148;&#159;&aelig;&#136;&#144;&aring;&#128;&frac14;&ccedil;&#154;&#132;id&auml;&ordm;&sect;&ccedil;&#148;&#159;&aring;&#153;&uml;&aelig;&#151;&para;&aelig;&#137;&#141;&egrave;&#131;&frac12;&auml;&frac12;&iquest;&ccedil;&#148;&uml;&iuml;&frac14;&#155;&aring;&brvbar;&#130;&aelig;&#158;&#156;&aelig;&#152;&macr;&acirc;&#128;&#156;&aring;&#134;&#133;&aring;&shy;&#152;&acirc;&#128;&#157;&auml;&cedil;&shy;&egrave;&reg;&iexcl;&ccedil;&reg;&#151;&ccedil;&#154;&#132;&ccedil;&plusmn;&raquo;&aring;&#158;&#139;&ccedil;&#148;&#159;&aelig;&#136;&#144;&aring;&#153;&uml;&iuml;&frac14;&#140;&aring;&#156;&uml;&egrave;&sect;&pound;&aelig;&#158;&#144;&aelig;&#151;&para;&auml;&frac14;&#154;&aelig;&#138;&#155;&aring;&#135;&ordm;&auml;&cedil;&#128;&auml;&cedil;&ordf;&aring;&frac14;&#130;&aring;&cedil;&cedil;&atilde;&#128;&#130;&aelig;&sup3;&uml;&aelig;&#132;&#143;&iuml;&frac14;&#140;&auml;&cedil;&ordm;&auml;&ordm;&#134;&egrave;&macr;&acute;&aelig;&#152;&#142;&egrave;&iquest;&#153;&auml;&cedil;&#128;&eacute;&#151;&reg;&eacute;&cent;&#152;&iuml;&frac14;&#140;&aelig;&#149;&deg;&aelig;&#141;&reg;&aring;&ordm;&#147;&auml;&ordm;&sect;&ccedil;&#148;&#159;&aring;&#128;&frac14;&ccedil;&#154;&#132;&ccedil;&#148;&#159;&aelig;&#136;&#144;&aring;&#153;&uml;&aelig;&#152;&macr;<code class="literal">org.hibernate.id.SequenceGenerator</code>&iuml;&frac14;&#136;&aring;&#146;&#140;&aring;&reg;&#131;&ccedil;&#154;&#132;&aring;&shy;&#144;&ccedil;&plusmn;&raquo;&iuml;&frac14;&#137;&iuml;&frac14;&#140;&auml;&raquo;&yen;&aring;&#143;&#138;&auml;&raquo;&raquo;&auml;&frac12;&#149;<code class="literal">org.hibernate.id.PostInsertIdentifierGenerator</code>&aelig;&#142;&yen;&aring;&#143;&pound;&ccedil;&#154;&#132;&aring;&reg;&#158;&ccedil;&#142;&deg;&atilde;&#128;&#130;&egrave;&iquest;&#153;&aring;&#132;&iquest;&aelig;&#156;&#128;&aring;&#128;&frac14;&aring;&frac34;&#151;&aelig;&sup3;&uml;&aelig;&#132;&#143;&ccedil;&#154;&#132;&aelig;&#132;&#143;&aring;&curren;&#150;&aelig;&#152;&macr;<code class="literal">org.hibernate.id.TableHiLoGenerator</code>&iuml;&frac14;&#140;&aring;&reg;&#131;&auml;&cedil;&#141;&egrave;&#131;&frac12;&aring;&#156;&uml;&aelig;&shy;&curren;&auml;&frac12;&iquest;&ccedil;&#148;&uml;&iuml;&frac14;&#140;&aring;&#155;&nbsp;&auml;&cedil;&ordm;&aring;&reg;&#131;&aelig;&sup2;&iexcl;&aelig;&#156;&#137;&aring;&frac34;&#151;&aring;&#136;&deg;&aring;&#133;&para;&aring;&#128;&frac14;&ccedil;&#154;&#132;&eacute;&#128;&#148;&aring;&frac34;&#132;&atilde;&#128;&#130; 
+                  </p>
+               </li>
+               <li>
+                  <p>&aring;&macr;&sup1;&aelig;&#152;&nbsp;&aring;&deg;&#132;&auml;&cedil;&ordm;<code class="literal">version</code> &aelig;&#136;&#150; <code class="literal">timestamp</code>&ccedil;&#154;&#132;&aring;&plusmn;&#158;&aelig;&#128;&sect;&aelig;&#157;&yen;&egrave;&macr;&acute;&iuml;&frac14;&#140;insert&egrave;&macr;&shy;&aring;&#143;&yen;&auml;&sup1;&#159;&ccedil;&raquo;&#153;&auml;&frac12;&nbsp;&auml;&cedil;&curren;&auml;&cedil;&ordf;&eacute;&#128;&#137;&aelig;&#139;&copy;&iuml;&frac14;&#140;&auml;&frac12;&nbsp;&aring;&#143;&macr;&auml;&raquo;&yen;&aring;&#156;&uml;properties_list&egrave;&iexcl;&uml;&auml;&cedil;&shy;&aelig;&#140;&#135;&aring;&reg;&#154;&iuml;&frac14;&#136;&aelig;&shy;&curren;&aelig;&#151;&para;&aring;&#133;&para;&aring;&#128;&frac14;&auml;&raquo;&#142;&aring;&macr;&sup1;&aring;&ordm;&#148;&ccedil;&#154;&#132;select&egrave;&iexcl;&uml;&egrave;&frac34;&frac34;&aring;&frac14;&#143;&auml;&cedil;&shy;&egrave;&#142;&middot;&aring;&frac34;&#151;&iuml;&frac14;&#137;&iuml;&frac14;&#140;&aelig;&#136;&#150;&egrave;&#128;&#133;&aring;&#156;&uml;properties_list&auml;&cedil;&shy;&ccedil;&#156;&#129;&ccedil;&#149;&yen;&aring;&reg;&#131;&iuml;&frac14;&#136;&aelig;&shy;&curren;&aelig;&#151;&para;&iuml;&frac14;&#140;&auml;&frac12;&iquest;&ccedil;&#148;&uml;&aring;&#156;&uml;<code class="literal">org.hibernate.type.VersionType</code> &auml;&cedil;&shy;&aring;&reg;&#154;&auml;&sup1;&#137;&ccedil;&#154;&#132;<code class="literal">seed value(&ccedil;&sect;&#141;&aring;&shy;&#144;&aring;&#128;&frac14;)</code>&iuml;&frac14;&#137;&atilde;&#128;&#130; 
+                  </p>
+               </li>
+            </ul>
+         </div>
+         <p>&aelig;&#137;&sect;&egrave;&iexcl;&#140;HQL <code class="literal">INSERT</code>&egrave;&macr;&shy;&aring;&#143;&yen;&ccedil;&#154;&#132;&auml;&frac34;&#139;&aring;&shy;&#144;&aring;&brvbar;&#130;&auml;&cedil;&#139;&iuml;&frac14;&#154; 
+         </p><pre class="programlisting">Session session = sessionFactory.openSession();
+Transaction tx = session.beginTransaction();
+
+String hqlInsert = "insert into DelinquentAccount (id, name) select c.id, c.name from Customer c where ...";
+int createdEntities = s.createQuery( hqlInsert )
+        .executeUpdate();
+tx.commit();
+session.close();</pre></div>
+      <div class="navfooter">
+         <hr>
+         <table width="100%" summary="Navigation footer">
+            <tr>
+               <td width="40%" align="left"><a accesskey="p" href="batch-statelesssession.html">&#19978;&#19968;&#39029;</a>&nbsp;
+               </td>
+               <td width="20%" align="center"><a accesskey="u" href="batch.html">&#19978;&#19968;&#32423;</a></td>
+               <td width="40%" align="right">&nbsp;<a accesskey="n" href="queryhql.html">&#19979;&#19968;&#39029;</a></td>
+            </tr>
+            <tr>
+               <td width="40%" align="left" valign="top">13.3.&nbsp;StatelessSession (&aelig;&#151;&nbsp;&ccedil;&#138;&para;&aelig;&#128;&#129;session)&aelig;&#142;&yen;&aring;&#143;&pound;&nbsp;</td>
+               <td width="20%" align="center"><a accesskey="h" href="index.html">&#36215;&#22987;&#39029;</a></td>
+               <td width="40%" align="right" valign="top">&nbsp;&#31532;&nbsp;14&nbsp;&#31456;&nbsp;HQL: Hibernate&#26597;&#35810;&#35821;&#35328;</td>
+            </tr>
+         </table>
+      </div>
+   </body>
+</html>

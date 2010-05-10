@@ -1,0 +1,275 @@
+<html>
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   
+      <title>3.8.&nbsp;J2EE&#24212;&#29992;&#31243;&#24207;&#26381;&#21153;&#22120;&#30340;&#38598;&#25104;</title>
+      <link rel="stylesheet" href="css/html.css" type="text/css">
+      <meta name="generator" content="DocBook XSL Stylesheets V1.72.0">
+      <link rel="start" href="index.html" title="HIBERNATE - &#31526;&#21512;Java&#20064;&#24815;&#30340;&#20851;&#31995;&#25968;&#25454;&#24211;&#25345;&#20037;&#21270;">
+      <link rel="up" href="session-configuration.html" title="&#31532;&nbsp;3&nbsp;&#31456;&nbsp;&#37197;&#32622;">
+      <link rel="prev" href="configuration-xmlconfig.html" title="3.7.&nbsp;XML&#37197;&#32622;&#25991;&#20214;">
+      <link rel="next" href="persistent-classes.html" title="&#31532;&nbsp;4&nbsp;&#31456;&nbsp;&#25345;&#20037;&#21270;&#31867;(Persistent Classes)">
+   </head>
+   <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+      <div class="navheader">
+         <table width="100%" summary="Navigation header">
+            <tr>
+               <th colspan="3" align="center">3.8.&nbsp;J2EE&#24212;&#29992;&#31243;&#24207;&#26381;&#21153;&#22120;&#30340;&#38598;&#25104;</th>
+            </tr>
+            <tr>
+               <td width="20%" align="left"><a accesskey="p" href="configuration-xmlconfig.html">&#19978;&#19968;&#39029;</a>&nbsp;
+               </td>
+               <th width="60%" align="center">&#31532;&nbsp;3&nbsp;&#31456;&nbsp;&#37197;&#32622;</th>
+               <td width="20%" align="right">&nbsp;<a accesskey="n" href="persistent-classes.html">&#19979;&#19968;&#39029;</a></td>
+            </tr>
+         </table>
+         <hr>
+      </div>
+      <div class="sect1" lang="zh-CN">
+         <div class="titlepage">
+            <div>
+               <div>
+                  <h2 class="title" style="clear: both"><a name="configuration-j2ee"></a>3.8.&nbsp;J2EE&#24212;&#29992;&#31243;&#24207;&#26381;&#21153;&#22120;&#30340;&#38598;&#25104;
+                  </h2>
+               </div>
+            </div>
+         </div>
+         <p>&#38024;&#23545;J2EE&#20307;&#31995;,Hibernate&#26377;&#22914;&#19979;&#20960;&#20010;&#38598;&#25104;&#30340;&#26041;&#38754;: </p>
+         <div class="itemizedlist">
+            <ul type="disc">
+               <li>
+                  <p><span class="emphasis"><em>&#23481;&#22120;&#31649;&#29702;&#30340;&#25968;&#25454;&#28304;(Container-managed datasources)</em></span>: Hibernate&#33021;&#20351;&#29992;&#36890;&#36807;&#23481;&#22120;&#31649;&#29702;&#65292;&#24182;&#30001;JNDI&#25552;&#20379;&#30340;JDBC&#36830;&#25509;. &#36890;&#24120;, &#29305;&#21035;&#26159;&#24403;&#22788;&#29702;&#22810;&#20010;&#25968;&#25454;&#28304;&#30340;&#20998;&#24067;&#24335;&#20107;&#21153;&#30340;&#26102;&#20505;, &#30001;&#19968;&#20010;JTA&#20860;&#23481;&#30340;<code class="literal">TransactionManager</code>&#21644;&#19968;&#20010; <code class="literal">ResourceManager</code>&#26469;&#22788;&#29702;&#20107;&#21153;&#31649;&#29702;(CMT, &#23481;&#22120;&#31649;&#29702;&#30340;&#20107;&#21153;). &#24403;&#28982;&#20320;&#21487;&#20197;&#36890;&#36807; &#32534;&#31243;&#26041;&#24335;&#26469;&#21010;&#20998;&#20107;&#21153;&#36793;&#30028;(BMT, Bean&#31649;&#29702;&#30340;&#20107;&#21153;). &#25110;&#32773;&#20026;&#20102;&#20195;&#30721;&#30340;&#21487;&#31227;&#26893;&#24615;&#65292;&#20320;&#20063;&#20063;&#35768;&#20250;&#24819;&#20351;&#29992;&#21487;&#36873;&#30340; Hibernate <code class="literal">Transaction</code> API. 
+                  </p>
+               </li>
+            </ul>
+         </div>
+         <div class="itemizedlist">
+            <ul type="disc">
+               <li>
+                  <p><span class="emphasis"><em>&#33258;&#21160;JNDI&#32465;&#23450;</em></span>: Hibernate&#21487;&#20197;&#22312;&#21551;&#21160;&#21518;&#23558; <code class="literal">SessionFactory</code>&#32465;&#23450;&#21040;JNDI. 
+                  </p>
+               </li>
+            </ul>
+         </div>
+         <div class="itemizedlist">
+            <ul type="disc">
+               <li>
+                  <p><span class="emphasis"><em>JTA Session&#32465;&#23450;:</em></span> Hibernate <code class="literal">Session</code> &#21487;&#20197;&#33258;&#21160;&#32465;&#23450;&#21040;JTA&#20107;&#21153;&#20316;&#29992;&#30340;&#33539;&#22260;. &#21482;&#38656;&#31616;&#21333;&#22320;&#20174;JNDI&#26597;&#25214;<code class="literal">SessionFactory</code>&#24182;&#33719;&#24471;&#24403;&#21069;&#30340; <code class="literal">Session</code>. &#24403;JTA&#20107;&#21153;&#23436;&#25104;&#26102;, &#35753;Hibernate&#26469;&#22788;&#29702; <code class="literal">Session</code>&#30340;&#28165;&#27927;(flush)&#19982;&#20851;&#38381;. &#20107;&#21153;&#30340;&#21010;&#20998;&#21487;&#20197;&#26159;&#22768;&#26126;&#24335;&#30340;(CMT),&#20063;&#21487;&#20197;&#26159;&#32534;&#31243;&#24335;&#30340;(BMT/UserTransaction). 
+                  </p>
+               </li>
+            </ul>
+         </div>
+         <div class="itemizedlist">
+            <ul type="disc">
+               <li>
+                  <p><span class="emphasis"><em>JMX&#37096;&#32626;:</em></span> &#22914;&#26524;&#20320;&#20351;&#29992;&#25903;&#25345;JMX&#24212;&#29992;&#31243;&#24207;&#26381;&#21153;&#22120;(&#22914;, JBoss AS), &#37027;&#20040;&#20320;&#21487;&#20197;&#36873;&#25321;&#23558;Hibernate&#37096;&#32626;&#25104;&#25176;&#31649;MBean. &#36825;&#23558;&#20026;&#20320;&#30465;&#21435;&#19968;&#34892;&#20174;<code class="literal">Configuration</code>&#26500;&#24314;<code class="literal">SessionFactory</code>&#30340;&#21551;&#21160;&#20195;&#30721;. &#23481;&#22120;&#23558;&#21551;&#21160;&#20320;&#30340;<code class="literal">HibernateService</code>, &#24182;&#23436;&#32654;&#22320;&#22788;&#29702;&#22909;&#26381;&#21153;&#38388;&#30340;&#20381;&#36182;&#20851;&#31995; (&#22312;Hibernate&#21551;&#21160;&#21069;&#65292;&#25968;&#25454;&#28304;&#24517;&#39035;&#26159;&#21487;&#29992;&#30340;&#65292;&#31561;&#31561;). 
+                  </p>
+               </li>
+            </ul>
+         </div>
+         <p>&#22914;&#26524;&#24212;&#29992;&#31243;&#24207;&#26381;&#21153;&#22120;&#25243;&#20986;"connection containment"&#24322;&#24120;, &#26681;&#25454;&#20320;&#30340;&#29615;&#22659;&#65292;&#20063;&#35768;&#35813;&#23558;&#37197;&#32622;&#23646;&#24615; <code class="literal">hibernate.connection.release_mode</code>&#35774;&#20026;<code class="literal">after_statement</code>. 
+         </p>
+         <div class="sect2" lang="zh-CN">
+            <div class="titlepage">
+               <div>
+                  <div>
+                     <h3 class="title"><a name="configuration-optional-transactionstrategy"></a>3.8.1.&nbsp;&#20107;&#21153;&#31574;&#30053;&#37197;&#32622;
+                     </h3>
+                  </div>
+               </div>
+            </div>
+            <p>&#22312;&#20320;&#30340;&#26550;&#26500;&#20013;&#65292;Hibernate&#30340;<code class="literal">Session</code> API&#26159;&#29420;&#31435;&#20110;&#20219;&#20309;&#20107;&#21153;&#20998;&#30028;&#31995;&#32479;&#30340;. &#22914;&#26524;&#20320;&#35753;Hibernate&#36890;&#36807;&#36830;&#25509;&#27744;&#30452;&#25509;&#20351;&#29992;JDBC, &#20320;&#38656;&#35201;&#35843;&#29992;JDBC API&#26469;&#25171;&#24320;&#21644;&#20851;&#38381;&#20320;&#30340;&#20107;&#21153;. &#22914;&#26524;&#20320;&#36816;&#34892;&#22312;J2EE&#24212;&#29992;&#31243;&#24207;&#26381;&#21153;&#22120;&#20013;, &#20320;&#20063;&#35768;&#24819;&#29992;Bean&#31649;&#29702;&#30340;&#20107;&#21153;&#24182;&#22312;&#38656;&#35201;&#30340;&#26102;&#20505;&#35843;&#29992;JTA API&#21644;<code class="literal">UserTransaction</code>. 
+            </p>
+            <p>&#20026;&#20102;&#35753;&#20320;&#30340;&#20195;&#30721;&#22312;&#20004;&#31181;(&#25110;&#20854;&#20182;)&#29615;&#22659;&#20013;&#21487;&#20197;&#31227;&#26893;&#65292;&#25105;&#20204;&#24314;&#35758;&#20351;&#29992;&#21487;&#36873;&#30340;Hibernate <code class="literal">Transaction</code> API, &#23427;&#21253;&#35013;&#24182;&#38544;&#34255;&#20102;&#24213;&#23618;&#31995;&#32479;. &#20320;&#24517;&#39035;&#36890;&#36807;&#35774;&#32622;Hibernate&#37197;&#32622;&#23646;&#24615;<code class="literal">hibernate.transaction.factory_class</code>&#26469;&#25351;&#23450; &#19968;&#20010;<code class="literal">Transaction</code>&#23454;&#20363;&#30340;&#24037;&#21378;&#31867;. 
+            </p>
+            <p>&#26377;&#19977;&#20010;&#26631;&#20934;(&#20869;&#24314;)&#30340;&#36873;&#25321;: </p>
+            <div class="variablelist">
+               <dl>
+                  <dt><span class="term"><code class="literal">org.hibernate.transaction.JDBCTransactionFactory</code></span></dt>
+                  <dd>
+                     <p>&#22996;&#25176;&#32473;&#25968;&#25454;&#24211;(JDBC)&#20107;&#21153;&#65288;&#40664;&#35748;&#65289;</p>
+                  </dd>
+                  <dt><span class="term"><code class="literal">org.hibernate.transaction.JTATransactionFactory</code></span></dt>
+                  <dd>
+                     <p>&#22914;&#26524;&#22312;&#19978;&#19979;&#25991;&#29615;&#22659;&#20013;&#23384;&#22312;&#36816;&#34892;&#30528;&#30340;&#20107;&#21153;(&#22914;, EJB&#20250;&#35805;Bean&#30340;&#26041;&#27861;), &#21017;&#22996;&#25176;&#32473;&#23481;&#22120;&#31649; &#29702;&#30340;&#20107;&#21153;, &#21542;&#21017;&#65292;&#23558;&#21551;&#21160;&#19968;&#20010;&#26032;&#30340;&#20107;&#21153;&#65292;&#24182;&#20351;&#29992;Bean&#31649;&#29702;&#30340;&#20107;&#21153;. </p>
+                  </dd>
+                  <dt><span class="term"><code class="literal">org.hibernate.transaction.CMTTransactionFactory</code></span></dt>
+                  <dd>
+                     <p>&#22996;&#25176;&#32473;&#23481;&#22120;&#31649;&#29702;&#30340;JTA&#20107;&#21153;</p>
+                  </dd>
+               </dl>
+            </div>
+            <p>&#20320;&#20063;&#21487;&#20197;&#23450;&#20041;&#23646;&#20110;&#20320;&#33258;&#24049;&#30340;&#20107;&#21153;&#31574;&#30053; (&#22914;, &#38024;&#23545;CORBA&#30340;&#20107;&#21153;&#26381;&#21153;) </p>
+            <p>Hibernate&#30340;&#19968;&#20123;&#29305;&#24615; (&#27604;&#22914;&#20108;&#32423;&#32531;&#23384;, Contextual Sessions with JTA&#31561;&#31561;)&#38656;&#35201;&#35775;&#38382;&#22312;&#25176;&#31649;&#29615;&#22659;&#20013;&#30340;JTA <code class="literal">TransactionManager</code>. &#30001;&#20110;J2EE&#27809;&#26377;&#26631;&#20934;&#21270;&#19968;&#20010;&#21333;&#19968;&#30340;&#26426;&#21046;,Hibernate&#22312;&#24212;&#29992;&#31243;&#24207;&#26381;&#21153;&#22120;&#20013;&#65292;&#20320;&#24517;&#39035;&#25351;&#23450;Hibernate&#22914;&#20309;&#33719;&#24471;<code class="literal">TransactionManager</code>&#30340;&#24341;&#29992;: 
+            </p>
+            <div class="table"><a name="jtamanagerlookup"></a><p class="title"><b>&#34920;&nbsp;3.10.&nbsp;JTA TransactionManagers</b></p>
+               <div class="table-contents">
+                  <table summary="JTA TransactionManagers" border="1">
+                     <colgroup>
+                        <col>
+                        <col>
+                     </colgroup>
+                     <thead>
+                        <tr>
+                           <th>Transaction&#24037;&#21378;&#31867;</th>
+                           <th align="center">&#24212;&#29992;&#31243;&#24207;&#26381;&#21153;&#22120;</th>
+                        </tr>
+                     </thead>
+                     <tbody>
+                        <tr>
+                           <td><code class="literal">org.hibernate.transaction.JBossTransactionManagerLookup</code></td>
+                           <td align="center">JBoss</td>
+                        </tr>
+                        <tr>
+                           <td><code class="literal">org.hibernate.transaction.WeblogicTransactionManagerLookup</code></td>
+                           <td align="center">Weblogic</td>
+                        </tr>
+                        <tr>
+                           <td><code class="literal">org.hibernate.transaction.WebSphereTransactionManagerLookup</code></td>
+                           <td align="center">WebSphere</td>
+                        </tr>
+                        <tr>
+                           <td><code class="literal">org.hibernate.transaction.WebSphereExtendedJTATransactionLookup</code></td>
+                           <td align="center">WebSphere 6</td>
+                        </tr>
+                        <tr>
+                           <td><code class="literal">org.hibernate.transaction.OrionTransactionManagerLookup</code></td>
+                           <td align="center">Orion</td>
+                        </tr>
+                        <tr>
+                           <td><code class="literal">org.hibernate.transaction.ResinTransactionManagerLookup</code></td>
+                           <td align="center">Resin</td>
+                        </tr>
+                        <tr>
+                           <td><code class="literal">org.hibernate.transaction.JOTMTransactionManagerLookup</code></td>
+                           <td align="center">JOTM</td>
+                        </tr>
+                        <tr>
+                           <td><code class="literal">org.hibernate.transaction.JOnASTransactionManagerLookup</code></td>
+                           <td align="center">JOnAS</td>
+                        </tr>
+                        <tr>
+                           <td><code class="literal">org.hibernate.transaction.JRun4TransactionManagerLookup</code></td>
+                           <td align="center">JRun4</td>
+                        </tr>
+                        <tr>
+                           <td><code class="literal">org.hibernate.transaction.BESTransactionManagerLookup</code></td>
+                           <td align="center">Borland ES</td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </div><br class="table-break"></div>
+         <div class="sect2" lang="zh-CN">
+            <div class="titlepage">
+               <div>
+                  <div>
+                     <h3 class="title"><a name="configuration-optional-jndi"></a>3.8.2.&nbsp;JNDI&#32465;&#23450;&#30340;<code class="literal">SessionFactory</code></h3>
+                  </div>
+               </div>
+            </div>
+            <p>&#19982;JNDI&#32465;&#23450;&#30340;Hibernate&#30340;<code class="literal">SessionFactory</code>&#33021;&#31616;&#21270;&#24037;&#21378;&#30340;&#26597;&#35810;&#65292;&#31616;&#21270;&#21019;&#24314;&#26032;&#30340;<code class="literal">Session</code>. &#38656;&#35201;&#27880;&#24847;&#30340;&#26159;&#36825;&#19982;JNDI&#32465;&#23450;<code class="literal">Datasource</code>&#27809;&#26377;&#20851;&#31995;, &#23427;&#20204;&#21482;&#26159;&#24688;&#24039;&#29992;&#20102;&#30456;&#21516;&#30340;&#27880;&#20876;&#34920;! 
+            </p>
+            <p>&#22914;&#26524;&#20320;&#24076;&#26395;&#23558;<code class="literal">SessionFactory</code>&#32465;&#23450;&#21040;&#19968;&#20010;JNDI&#30340;&#21517;&#23383;&#31354;&#38388;, &#29992;&#23646;&#24615;<code class="literal">hibernate.session_factory_name</code>&#25351;&#23450;&#19968;&#20010;&#21517;&#23383;(&#22914;, <code class="literal">java:hibernate/SessionFactory</code>). &#22914;&#26524;&#19981;&#35774;&#32622;&#36825;&#20010;&#23646;&#24615;, <code class="literal">SessionFactory</code>&#23558;&#19981;&#20250;&#34987;&#32465;&#23450;&#21040;JNDI&#20013;. (&#22312;&#20197;&#21482;&#35835;JNDI&#20026;&#40664;&#35748;&#23454;&#29616;&#30340;&#29615;&#22659;&#20013;&#65292;&#36825;&#20010;&#35774;&#32622;&#23588;&#20854;&#26377;&#29992;, &#22914;Tomcat.) 
+            </p>
+            <p>&#22312;&#23558;<code class="literal">SessionFactory</code>&#32465;&#23450;&#33267;JNDI&#26102;, Hibernate&#23558;&#20351;&#29992;<code class="literal">hibernate.jndi.url</code>, &#21644;<code class="literal">hibernate.jndi.class</code>&#30340;&#20540;&#26469;&#23454;&#20363;&#21270;&#21021;&#22987;&#29615;&#22659;(initial context). &#22914;&#26524;&#23427;&#20204;&#27809;&#26377;&#34987;&#25351;&#23450;, &#23558;&#20351;&#29992;&#40664;&#35748;&#30340;<code class="literal">InitialContext</code>. 
+            </p>
+            <p>&#22312;&#20320;&#35843;&#29992;<code class="literal">cfg.buildSessionFactory()</code>&#21518;, Hibernate&#20250;&#33258;&#21160;&#23558;<code class="literal">SessionFactory</code>&#27880;&#20876;&#21040;JNDI. &#36825;&#24847;&#21619;&#36825;&#20320;&#33267;&#23569;&#38656;&#35201;&#22312;&#20320;&#24212;&#29992;&#31243;&#24207;&#30340;&#21551;&#21160;&#20195;&#30721;(&#25110;&#24037;&#20855;&#31867;)&#20013;&#23436;&#25104;&#36825;&#20010;&#35843;&#29992;, &#38500;&#38750;&#20320;&#20351;&#29992;<code class="literal">HibernateService</code>&#26469;&#20570;JMX&#37096;&#32626; (&#35265;&#21518;&#38754;&#35752;&#35770;). 
+            </p>
+            <p>&#20551;&#33509;&#20320;&#20351;&#29992;JNDI <code class="literal">SessionFactory</code>,EJB&#25110;&#32773;&#20219;&#20309;&#20854;&#23427;&#31867;&#37117;&#21487;&#20197;&#20174;JNDI&#20013;&#25214;&#21040;&#27492;<code class="literal">SessionFactory</code>&#12290; 
+            </p>
+            <p>&#25105;&#20204;&#24314;&#35758;&#65292;&#22312;&#21463;&#31649;&#29702;&#30340;&#29615;&#22659;&#20013;&#65292;&#25226;<code class="literal">SessionFactory</code>&#32465;&#23450;&#21040;JNDI&#65292;&#22312;&#20854;&#23427;&#24773;&#20917;&#19979;&#65292;&#20351;&#29992;&#19968;&#20010;<code class="literal">static(&#38745;&#24577;&#30340;)</code>singleton&#12290;&#20026;&#20102;&#22312;&#20320;&#30340;&#24212;&#29992;&#31243;&#24207;&#20195;&#30721;&#20013;&#38544;&#34255;&#36825;&#20123;&#32454;&#33410;&#65292;&#25105;&#20204;&#36824;&#24314;&#35758;&#20320;&#29992;&#19968;&#20010;helper&#31867;&#25226;&#23454;&#38469;&#26597;&#25214;<code class="literal">SessionFactory</code>&#30340;&#20195;&#30721;&#38544;&#34255;&#36215;&#26469;,&#27604;&#22914;<code class="literal">HibernateUtil.getSessionFactory()</code>&#12290;&#27880;&#24847;&#65292;&#36825;&#20010;&#31867;&#20063;&#23601;&#21487;&#20197;&#26041;&#20415;&#22320;&#21551;&#21160;Hibernate&#65292;&#21442;&#35265;&#31532;&#19968;&#31456;&#12290; 
+            </p>
+         </div>
+         <div class="sect2" lang="zh-CN">
+            <div class="titlepage">
+               <div>
+                  <div>
+                     <h3 class="title"><a name="configuration-j2ee-currentsession"></a>3.8.3.&nbsp;&#22312;JTA&#29615;&#22659;&#19979;&#20351;&#29992;Current Session context (&#24403;&#21069;session&#19978;&#19979;&#25991;)&#31649;&#29702;
+                     </h3>
+                  </div>
+               </div>
+            </div>
+            <p>The easiest way to handle <code class="literal">Session</code>s and transactions is Hibernates automatic "current" <code class="literal">Session</code> management. See the discussion of <a href="architecture-current-session.html" title="2.5.&nbsp;&#19978;&#19979;&#25991;&#30456;&#20851;&#30340;&#65288;Contextual&#65289;Session">current sessions</a>. Using the <code class="literal">"jta"</code> session context, if there is no Hibernate <code class="literal">Session</code> associated with the current JTA transaction, one will be started and associated with that JTA transaction the first time
+               you call <code class="literal">sessionFactory.getCurrentSession()</code>. The <code class="literal">Session</code>s retrieved via <code class="literal">getCurrentSession()</code> in <code class="literal">"jta"</code> context will be set to automatically flush before the transaction completes, close after the transaction completes, and aggressively
+               release JDBC connections after each statement. This allows the <code class="literal">Session</code>s to be managed by the life cycle of the JTA transaction to which it is associated, keeping user code clean of such management
+               concerns. Your code can either use JTA programmatically through <code class="literal">UserTransaction</code>, or (recommended for portable code) use the Hibernate <code class="literal">Transaction</code> API to set transaction boundaries. If you run in an EJB container, declarative transaction demarcation with CMT is preferred.
+               
+            </p>
+         </div>
+         <div class="sect2" lang="zh-CN">
+            <div class="titlepage">
+               <div>
+                  <div>
+                     <h3 class="title"><a name="configuration-j2ee-jmx"></a>3.8.4.&nbsp;JMX&#37096;&#32626;
+                     </h3>
+                  </div>
+               </div>
+            </div>
+            <p>&#20026;&#20102;&#23558;<code class="literal">SessionFactory</code>&#27880;&#20876;&#21040;JNDI&#20013;&#65292;<code class="literal">cfg.buildSessionFactory()</code>&#36825;&#34892;&#20195;&#30721;&#20173;&#38656;&#22312;&#26576;&#22788;&#34987;&#25191;&#34892;. &#20320;&#21487;&#22312;&#19968;&#20010;<code class="literal">static</code>&#21021;&#22987;&#21270;&#22359;(&#20687;<code class="literal">HibernateUtil</code>&#20013;&#30340;&#37027;&#26679;)&#20013;&#25191;&#34892;&#23427;&#25110;&#23558;Hibernate&#37096;&#32626;&#20026;&#19968;&#20010;<span class="emphasis"><em>&#25176;&#31649;&#30340;&#26381;&#21153;</em></span>. 
+            </p>
+            <p>&#20026;&#20102;&#37096;&#32626;&#22312;&#19968;&#20010;&#25903;&#25345;JMX&#30340;&#24212;&#29992;&#31243;&#24207;&#26381;&#21153;&#22120;&#19978;&#65292;Hibernate&#21644; <code class="literal">org.hibernate.jmx.HibernateService</code>&#19968;&#21516;&#20998;&#21457;&#65292;&#22914;Jboss AS&#12290; &#23454;&#38469;&#30340;&#37096;&#32626;&#21644;&#37197;&#32622;&#26159;&#30001;&#24212;&#29992;&#31243;&#24207;&#26381;&#21153;&#22120;&#25552;&#20379;&#32773;&#25351;&#23450;&#30340;. &#36825;&#37324;&#26159;JBoss 4.0.x&#30340;<code class="literal">jboss-service.xml</code>&#26679;&#20363;: 
+            </p><pre class="programlisting">&lt;?xml version="1.0"?&gt;
+&lt;server&gt;
+
+&lt;mbean code="org.hibernate.jmx.HibernateService"
+    name="jboss.jca:service=HibernateFactory,name=HibernateFactory"&gt;
+
+    &lt;!-- Required services --&gt;
+    &lt;depends&gt;jboss.jca:service=RARDeployer&lt;/depends&gt;
+    &lt;depends&gt;jboss.jca:service=LocalTxCM,name=HsqlDS&lt;/depends&gt;
+
+    &lt;!-- Bind the Hibernate service to JNDI --&gt;
+    &lt;attribute name="JndiName"&gt;java:/hibernate/SessionFactory&lt;/attribute&gt;
+
+    &lt;!-- Datasource settings --&gt;
+    &lt;attribute name="Datasource"&gt;java:HsqlDS&lt;/attribute&gt;
+    &lt;attribute name="Dialect"&gt;org.hibernate.dialect.HSQLDialect&lt;/attribute&gt;
+
+    &lt;!-- Transaction integration --&gt;
+    &lt;attribute name="TransactionStrategy"&gt;
+        org.hibernate.transaction.JTATransactionFactory&lt;/attribute&gt;
+    &lt;attribute name="TransactionManagerLookupStrategy"&gt;
+        org.hibernate.transaction.JBossTransactionManagerLookup&lt;/attribute&gt;
+    &lt;attribute name="FlushBeforeCompletionEnabled"&gt;true&lt;/attribute&gt;
+    &lt;attribute name="AutoCloseSessionEnabled"&gt;true&lt;/attribute&gt;
+
+    &lt;!-- Fetching options --&gt;
+    &lt;attribute name="MaximumFetchDepth"&gt;5&lt;/attribute&gt;
+
+    &lt;!-- Second-level caching --&gt;
+    &lt;attribute name="SecondLevelCacheEnabled"&gt;true&lt;/attribute&gt;
+    &lt;attribute name="CacheProviderClass"&gt;org.hibernate.cache.EhCacheProvider&lt;/attribute&gt;
+    &lt;attribute name="QueryCacheEnabled"&gt;true&lt;/attribute&gt;
+
+    &lt;!-- Logging --&gt;
+    &lt;attribute name="ShowSqlEnabled"&gt;true&lt;/attribute&gt;
+
+    &lt;!-- Mapping files --&gt;
+    &lt;attribute name="MapResources"&gt;auction/Item.hbm.xml,auction/Category.hbm.xml&lt;/attribute&gt;
+
+&lt;/mbean&gt;
+
+&lt;/server&gt;</pre><p>&#36825;&#20010;&#25991;&#20214;&#26159;&#37096;&#32626;&#22312;<code class="literal">META-INF</code>&#30446;&#24405;&#19979;&#30340;, &#24182;&#20250;&#34987;&#25171;&#21253;&#21040;&#20197;<code class="literal">.sar</code> (service archive)&#20026;&#25193;&#23637;&#21517;&#30340;JAR&#25991;&#20214;&#20013;. &#21516;&#26102;&#65292;&#20320;&#38656;&#35201;&#23558;Hibernate&#12289;&#23427;&#25152;&#38656;&#35201;&#30340;&#31532;&#19977;&#26041;&#24211;&#12289;&#20320;&#32534;&#35793;&#22909;&#30340;&#25345;&#20037;&#21270;&#31867;&#20197;&#21450;&#20320;&#30340;&#26144;&#23556;&#23450;&#20041;&#25991;&#20214;&#25171;&#21253;&#36827;&#21516;&#19968;&#20010;&#25991;&#26723;. &#20320;&#30340;&#20225;&#19994;Bean(&#19968;&#33324;&#20026;&#20250;&#35805;Bean)&#21487;&#33021;&#20250;&#34987;&#25171;&#21253;&#25104;&#23427;&#20204;&#33258;&#24049;&#30340;JAR&#25991;&#20214;,
+               &#20294;&#20320;&#20063;&#35768;&#20250;&#23558;EJB JAR&#25991;&#20214;&#19968;&#21516;&#21253;&#21547;&#36827;&#33021;&#29420;&#31435;(&#28909;)&#37096;&#32626;&#30340;&#20027;&#26381;&#21153;&#25991;&#26723;. &#21442;&#32771;JBoss AS&#25991;&#26723;&#20197;&#20102;&#35299;&#26356;&#22810;&#30340;JMX&#26381;&#21153;&#19982;EJB&#37096;&#32626;&#30340;&#20449;&#24687;. 
+            </p>
+         </div>
+      </div>
+      <div class="navfooter">
+         <hr>
+         <table width="100%" summary="Navigation footer">
+            <tr>
+               <td width="40%" align="left"><a accesskey="p" href="configuration-xmlconfig.html">&#19978;&#19968;&#39029;</a>&nbsp;
+               </td>
+               <td width="20%" align="center"><a accesskey="u" href="session-configuration.html">&#19978;&#19968;&#32423;</a></td>
+               <td width="40%" align="right">&nbsp;<a accesskey="n" href="persistent-classes.html">&#19979;&#19968;&#39029;</a></td>
+            </tr>
+            <tr>
+               <td width="40%" align="left" valign="top">3.7.&nbsp;XML&#37197;&#32622;&#25991;&#20214;&nbsp;</td>
+               <td width="20%" align="center"><a accesskey="h" href="index.html">&#36215;&#22987;&#39029;</a></td>
+               <td width="40%" align="right" valign="top">&nbsp;&#31532;&nbsp;4&nbsp;&#31456;&nbsp;&#25345;&#20037;&#21270;&#31867;(Persistent Classes)</td>
+            </tr>
+         </table>
+      </div>
+   </body>
+</html>

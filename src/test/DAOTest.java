@@ -1,7 +1,16 @@
 package test;
 
 import interfaces.Address;
+import interfaces.Company;
+import interfaces.Contactable;
 import interfaces.Country;
+import interfaces.Employee;
+import interfaces.Journalist;
+import interfaces.Office;
+import interfaces.PRManager;
+import interfaces.Person;
+import interfaces.PhoneNumber;
+import interfaces.Publication;
 
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -9,6 +18,10 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 import java.util.List;
+
+import junit.framework.Test;
+import junit.framework.TestCase;
+import junit.framework.TestSuite;
 
 import org.hibernate.Criteria;
 import org.hibernate.Query;
@@ -18,22 +31,6 @@ import org.hibernate.criterion.Property;
 import org.hibernate.criterion.Restrictions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import core.HibernateSessionFactory;
-
-import interfaces.Company;
-import interfaces.Contactable;
-import interfaces.Employee;
-import interfaces.Journalist;
-import interfaces.Office;
-import interfaces.PRManager;
-import interfaces.Person;
-import interfaces.PhoneNumber;
-import domain.ContactableH;
-import domain.EmployeeH;
-import domain.ID;
-import domain.JournalistH;
-import domain.PersonH;
-import interfaces.Publication;
 
 import access.AddressDAO;
 import access.CompanyDAO;
@@ -46,10 +43,11 @@ import access.PRManagerDAO;
 import access.PersonDAO;
 import access.PhoneNumberDAO;
 import access.PublicationDAO;
-
-import junit.framework.Test;
-import junit.framework.TestCase;
-import junit.framework.TestSuite;
+import core.HibernateSessionFactory;
+import domain.EmployeeH;
+import domain.ID;
+import domain.JournalistH;
+import domain.PersonH;
 
 public class DAOTest extends TestCase {
 
@@ -348,7 +346,7 @@ public class DAOTest extends TestCase {
 		assertEquals(contactable.getPhone1().getTheNumber(), PHONENUMBER);
 	}
 
-	@SuppressWarnings("unchecked")
+
 	public void catGetContactByOneOfThePhoneNumbersPhoneNumberByDotNotation() {
 
 		String PHONENUMBER = "0115 9102106";
@@ -459,6 +457,7 @@ public class DAOTest extends TestCase {
 		assertNotNull(contactable2.getID());
 
 	}
+	
 
 	/**
 	 * @return
@@ -467,15 +466,9 @@ public class DAOTest extends TestCase {
 		TestSuite suite = new TestSuite("Running all test test");
 		// $JUnit-BEGIN$
 		
-		
-		
-		
-		
 		suite.addTest(new DAOTest("canFindAllContactables")); 
 		suite.addTest(new DAOTest("catGetDatefromContactable")); 
 		suite.addTest(new DAOTest("catSetDatefromContactable")); 
-		
-		
 		
 		suite.addTest(new DAOTest("canFindAllCompanies")); 
 		suite.addTest(new DAOTest("canFindAllAddresses")); 

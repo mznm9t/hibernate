@@ -1,0 +1,65 @@
+<html>
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   
+      <title>10.5.&nbsp;&#20462;&#25913;&#25345;&#20037;&#23545;&#35937;</title>
+      <link rel="stylesheet" href="css/html.css" type="text/css">
+      <meta name="generator" content="DocBook XSL Stylesheets V1.72.0">
+      <link rel="start" href="index.html" title="HIBERNATE - &#31526;&#21512;Java&#20064;&#24815;&#30340;&#20851;&#31995;&#25968;&#25454;&#24211;&#25345;&#20037;&#21270;">
+      <link rel="up" href="objectstate.html" title="&#31532;&nbsp;10&nbsp;&#31456;&nbsp;&#19982;&#23545;&#35937;&#20849;&#20107;">
+      <link rel="prev" href="objectstate-querying.html" title="10.4.&nbsp;&#26597;&#35810;">
+      <link rel="next" href="objectstate-detached.html" title="10.6.&nbsp;&#20462;&#25913;&#33073;&#31649;(Detached)&#23545;&#35937;">
+   </head>
+   <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+      <div class="navheader">
+         <table width="100%" summary="Navigation header">
+            <tr>
+               <th colspan="3" align="center">10.5.&nbsp;&#20462;&#25913;&#25345;&#20037;&#23545;&#35937;</th>
+            </tr>
+            <tr>
+               <td width="20%" align="left"><a accesskey="p" href="objectstate-querying.html">&#19978;&#19968;&#39029;</a>&nbsp;
+               </td>
+               <th width="60%" align="center">&#31532;&nbsp;10&nbsp;&#31456;&nbsp;&#19982;&#23545;&#35937;&#20849;&#20107;</th>
+               <td width="20%" align="right">&nbsp;<a accesskey="n" href="objectstate-detached.html">&#19979;&#19968;&#39029;</a></td>
+            </tr>
+         </table>
+         <hr>
+      </div>
+      <div class="sect1" lang="zh-CN">
+         <div class="titlepage">
+            <div>
+               <div>
+                  <h2 class="title" style="clear: both"><a name="objectstate-modifying"></a>10.5.&nbsp;&#20462;&#25913;&#25345;&#20037;&#23545;&#35937;
+                  </h2>
+               </div>
+            </div>
+         </div>
+         <p><span class="emphasis"><em>&#20107;&#21153;&#20013;&#30340;&#25345;&#20037;&#23454;&#20363;</em></span>&#65288;&#23601;&#26159;&#36890;&#36807;<code class="literal">session</code>&#35013;&#36733;&#12289;&#20445;&#23384;&#12289;&#21019;&#24314;&#25110;&#32773;&#26597;&#35810;&#20986;&#30340;&#23545;&#35937;&#65289; &#34987;&#24212;&#29992;&#31243;&#24207;&#25805;&#20316;&#25152;&#36896;&#25104;&#30340;&#20219;&#20309;&#20462;&#25913;&#37117;&#20250;&#22312;<code class="literal">Session</code>&#34987;<span class="emphasis"><em>&#21047;&#20986;&#65288;flushed&#65289;</em></span>&#30340;&#26102;&#20505;&#34987;&#25345;&#20037;&#21270;&#65288;&#26412;&#31456;&#21518;&#38754;&#20250;&#35814;&#32454;&#35752;&#35770;&#65289;&#12290; &#36825;&#37324;&#19981;&#38656;&#35201;&#35843;&#29992;&#26576;&#20010;&#29305;&#23450;&#30340;&#26041;&#27861;&#65288;&#27604;&#22914;<code class="literal">update()</code>&#65292;&#35774;&#35745;&#23427;&#30340;&#30446;&#30340;&#26159;&#19981;&#21516;&#30340;&#65289;&#23558;&#20320;&#30340;&#20462;&#25913;&#25345;&#20037;&#21270;&#12290; &#25152;&#20197;&#26368;&#30452;&#25509;&#30340;&#26356;&#26032;&#19968;&#20010;&#23545;&#35937;&#30340;&#26041;&#27861;&#23601;&#26159;&#22312;<code class="literal">Session</code>&#22788;&#20110;&#25171;&#24320;&#29366;&#24577;&#26102;<code class="literal">load()</code>&#23427;&#65292;&#28982;&#21518;&#30452;&#25509;&#20462;&#25913;&#21363;&#21487;&#65306; 
+         </p><pre class="programlisting">DomesticCat cat = (DomesticCat) sess.load( Cat.class, new Long(69) );
+cat.setName("PK");
+sess.flush();  // changes to cat are automatically detected and persisted</pre><p>&#26377;&#26102;&#36825;&#31181;&#31243;&#24207;&#27169;&#22411;&#25928;&#29575;&#20302;&#19979;&#65292;&#22240;&#20026;&#23427;&#22312;&#21516;&#19968;Session&#37324;&#38656;&#35201;&#19968;&#26465;SQL <code class="literal">SELECT</code>&#35821;&#21477;&#65288;&#29992;&#20110;&#21152;&#36733;&#23545;&#35937;&#65289; &#20197;&#21450;&#19968;&#26465;SQL <code class="literal">UPDATE</code>&#35821;&#21477;(&#25345;&#20037;&#21270;&#26356;&#26032;&#30340;&#29366;&#24577;)&#12290; &#20026;&#27492;Hibernate&#25552;&#20379;&#20102;&#21478;&#19968;&#31181;&#36884;&#24452;&#65292;&#20351;&#29992;&#33073;&#31649;(detached)&#23454;&#20363;&#12290; 
+         </p>
+         <p>
+                        <span class="emphasis"><em>Note that Hibernate does not offer its own API for direct execution of <code class="literal">UPDATE</code> or <code class="literal">DELETE</code> statements. Hibernate is a <span class="emphasis"><em>state management</em></span> service, you don't have to think in <span class="emphasis"><em>statements</em></span> to use it. JDBC is a perfect API for executing SQL statements, you can get a JDBC <code class="literal">Connection</code> at any time by calling <code class="literal">session.connection()</code>. Furthermore, the notion of mass operations conflicts with object/relational mapping for online transaction processing-oriented
+                  applications. Future versions of Hibernate may however provide special mass operation functions. See <a href="batch.html" title="&#31532;&nbsp;13&nbsp;&#31456;&nbsp;&aelig;&#137;&sup1;&eacute;&#135;&#143;&aring;&curren;&#132;&ccedil;&#144;&#134;&iuml;&frac14;&#136;Batch processing&iuml;&frac14;&#137;">&#31532;&nbsp;13&nbsp;&#31456; <i xmlns:xlink="http://www.w3.org/1999/xlink">&aelig;&#137;&sup1;&eacute;&#135;&#143;&aring;&curren;&#132;&ccedil;&#144;&#134;&iuml;&frac14;&#136;Batch processing&iuml;&frac14;&#137;</i></a> for some possible batch operation tricks.</em></span>
+                    
+         </p>
+      </div>
+      <div class="navfooter">
+         <hr>
+         <table width="100%" summary="Navigation footer">
+            <tr>
+               <td width="40%" align="left"><a accesskey="p" href="objectstate-querying.html">&#19978;&#19968;&#39029;</a>&nbsp;
+               </td>
+               <td width="20%" align="center"><a accesskey="u" href="objectstate.html">&#19978;&#19968;&#32423;</a></td>
+               <td width="40%" align="right">&nbsp;<a accesskey="n" href="objectstate-detached.html">&#19979;&#19968;&#39029;</a></td>
+            </tr>
+            <tr>
+               <td width="40%" align="left" valign="top">10.4.&nbsp;&#26597;&#35810;&nbsp;</td>
+               <td width="20%" align="center"><a accesskey="h" href="index.html">&#36215;&#22987;&#39029;</a></td>
+               <td width="40%" align="right" valign="top">&nbsp;10.6.&nbsp;&#20462;&#25913;&#33073;&#31649;(Detached)&#23545;&#35937;</td>
+            </tr>
+         </table>
+      </div>
+   </body>
+</html>

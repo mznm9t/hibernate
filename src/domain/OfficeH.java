@@ -18,7 +18,6 @@ public class OfficeH extends ContactableH implements interfaces.Office, java.io.
 
     // Fields    
 
-     private Long id;
      private String entityName;
      private String description;
      private String name;
@@ -45,13 +44,7 @@ public class OfficeH extends ContactableH implements interfaces.Office, java.io.
    
     // Property accessors
 
-    public Long getId() {
-        return this.id;
-    }
-    
-    public void setId(Long id) {
-        this.id = id;
-    }
+
 
     public String getEntityName() {
         return this.entityName;
@@ -139,10 +132,11 @@ public class OfficeH extends ContactableH implements interfaces.Office, java.io.
 	@Override
 	public void removeAllManager(PRManager aAllManager) {
 		// TODO Auto-generated method stub
+	
 		
 	}
    
-
+    
 
 
 

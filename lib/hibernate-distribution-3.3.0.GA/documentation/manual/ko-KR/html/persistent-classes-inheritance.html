@@ -1,0 +1,68 @@
+<html>
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   
+      <title>4.2. &#49345;&#49549; &#44396;&#54788;&#54616;&#44592;</title>
+      <link rel="stylesheet" href="css/html.css" type="text/css">
+      <meta name="generator" content="DocBook XSL Stylesheets V1.72.0">
+      <link rel="start" href="index.html" title="HIBERNATE - &#44060;&#49457;&#51080;&#45716; &#51088;&#48148;&#47484; &#50948;&#54620; &#44288;&#44228; &#50689;&#49549;">
+      <link rel="up" href="persistent-classes.html" title="4&#51109;. &#50689;&#49549; &#53364;&#47000;&#49828;&#46308;">
+      <link rel="prev" href="persistent-classes.html" title="4&#51109;. &#50689;&#49549; &#53364;&#47000;&#49828;&#46308;">
+      <link rel="next" href="persistent-classes-equalshashcode.html" title="4.3. equals()&#50752; hashCode() &#44396;&#54788;&#54616;&#44592;">
+   </head>
+   <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+      <div class="navheader">
+         <table width="100%" summary="Navigation header">
+            <tr>
+               <th colspan="3" align="center">4.2. &#49345;&#49549; &#44396;&#54788;&#54616;&#44592;</th>
+            </tr>
+            <tr>
+               <td width="20%" align="left"><a accesskey="p" href="persistent-classes.html">&#51060;&#51204;</a>&nbsp;
+               </td>
+               <th width="60%" align="center">4&#51109;. &#50689;&#49549; &#53364;&#47000;&#49828;&#46308;</th>
+               <td width="20%" align="right">&nbsp;<a accesskey="n" href="persistent-classes-equalshashcode.html">&#45796;&#51020;</a></td>
+            </tr>
+         </table>
+         <hr>
+      </div>
+      <div class="sect1" lang="ko-KR">
+         <div class="titlepage">
+            <div>
+               <div>
+                  <h2 class="title" style="clear: both"><a name="persistent-classes-inheritance"></a>4.2. &#49345;&#49549; &#44396;&#54788;&#54616;&#44592;
+                  </h2>
+               </div>
+            </div>
+         </div>
+         <p>&#49436;&#48652;&#53364;&#47000;&#49828;&#45716; &#46608;&#54620; &#52395; &#48264;&#51704; &#44508;&#52825;&#46308;&#44284; &#46160; &#48264;&#51704; &#44508;&#52825;&#46308;&#51012; &#51452;&#49884;&#54644;&#50556; &#54620;&#45796;. &#44536;&#44163;&#51008; &#49800;&#54140;&#53364;&#47000;&#49828; <code class="literal">Cat</code>&#51004;&#47196;&#48512;&#53552; &#44536;&#44163;&#51032; identifier &#54532;&#47196;&#54140;&#54000;&#47484; &#49345;&#49549;&#48155;&#45716;&#45796;. 
+         </p><pre class="programlisting">package eg;
+
+public class DomesticCat extends Cat {
+        private String name;
+
+        public String getName() {
+                return name;
+        }
+        protected void setName(String name) {
+                this.name=name;
+        }
+}</pre></div>
+      <div class="navfooter">
+         <hr>
+         <table width="100%" summary="Navigation footer">
+            <tr>
+               <td width="40%" align="left"><a accesskey="p" href="persistent-classes.html">&#51060;&#51204;</a>&nbsp;
+               </td>
+               <td width="20%" align="center"><a accesskey="u" href="persistent-classes.html">&#50948;&#47196;</a></td>
+               <td width="40%" align="right">&nbsp;<a accesskey="n" href="persistent-classes-equalshashcode.html">&#45796;&#51020;</a></td>
+            </tr>
+            <tr>
+               <td width="40%" align="left" valign="top">4&#51109;. &#50689;&#49549; &#53364;&#47000;&#49828;&#46308;&nbsp;</td>
+               <td width="20%" align="center"><a accesskey="h" href="index.html">&#52376;&#51020;&#51004;&#47196;</a></td>
+               <td width="40%" align="right" valign="top">&nbsp;4.3. <code class="literal">equals()</code>&#50752; <code class="literal">hashCode()</code> &#44396;&#54788;&#54616;&#44592;
+               </td>
+            </tr>
+         </table>
+      </div>
+   </body>
+</html>

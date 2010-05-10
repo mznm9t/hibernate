@@ -1,0 +1,75 @@
+<html>
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   
+      <title>13.2.&nbsp;&aelig;&#137;&sup1;&eacute;&#135;&#143;&aelig;&#155;&acute;&aelig;&#150;&deg;&iuml;&frac14;&#136;Batch updates&iuml;&frac14;&#137;</title>
+      <link rel="stylesheet" href="css/html.css" type="text/css">
+      <meta name="generator" content="DocBook XSL Stylesheets V1.72.0">
+      <link rel="start" href="index.html" title="HIBERNATE - &#31526;&#21512;Java&#20064;&#24815;&#30340;&#20851;&#31995;&#25968;&#25454;&#24211;&#25345;&#20037;&#21270;">
+      <link rel="up" href="batch.html" title="&#31532;&nbsp;13&nbsp;&#31456;&nbsp;&aelig;&#137;&sup1;&eacute;&#135;&#143;&aring;&curren;&#132;&ccedil;&#144;&#134;&iuml;&frac14;&#136;Batch processing&iuml;&frac14;&#137;">
+      <link rel="prev" href="batch.html" title="&#31532;&nbsp;13&nbsp;&#31456;&nbsp;&aelig;&#137;&sup1;&eacute;&#135;&#143;&aring;&curren;&#132;&ccedil;&#144;&#134;&iuml;&frac14;&#136;Batch processing&iuml;&frac14;&#137;">
+      <link rel="next" href="batch-statelesssession.html" title="13.3.&nbsp;StatelessSession (&aelig;&#151;&nbsp;&ccedil;&#138;&para;&aelig;&#128;&#129;session)&aelig;&#142;&yen;&aring;&#143;&pound;">
+   </head>
+   <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+      <div class="navheader">
+         <table width="100%" summary="Navigation header">
+            <tr>
+               <th colspan="3" align="center">13.2.&nbsp;&aelig;&#137;&sup1;&eacute;&#135;&#143;&aelig;&#155;&acute;&aelig;&#150;&deg;&iuml;&frac14;&#136;Batch updates&iuml;&frac14;&#137;</th>
+            </tr>
+            <tr>
+               <td width="20%" align="left"><a accesskey="p" href="batch.html">&#19978;&#19968;&#39029;</a>&nbsp;
+               </td>
+               <th width="60%" align="center">&#31532;&nbsp;13&nbsp;&#31456;&nbsp;&aelig;&#137;&sup1;&eacute;&#135;&#143;&aring;&curren;&#132;&ccedil;&#144;&#134;&iuml;&frac14;&#136;Batch processing&iuml;&frac14;&#137;</th>
+               <td width="20%" align="right">&nbsp;<a accesskey="n" href="batch-statelesssession.html">&#19979;&#19968;&#39029;</a></td>
+            </tr>
+         </table>
+         <hr>
+      </div>
+      <div class="sect1" lang="zh-CN">
+         <div class="titlepage">
+            <div>
+               <div>
+                  <h2 class="title" style="clear: both"><a name="batch-update"></a>13.2.&nbsp;&aelig;&#137;&sup1;&eacute;&#135;&#143;&aelig;&#155;&acute;&aelig;&#150;&deg;&iuml;&frac14;&#136;Batch updates&iuml;&frac14;&#137;
+                  </h2>
+               </div>
+            </div>
+         </div>
+         <p>&aelig;&shy;&curren;&aelig;&#150;&sup1;&aelig;&sup3;&#149;&aring;&#144;&#140;&aelig;&nbsp;&middot;&eacute;&#128;&#130;&ccedil;&#148;&uml;&auml;&ordm;&#142;&aelig;&pound;&#128;&ccedil;&acute;&cent;&aring;&#146;&#140;&aelig;&#155;&acute;&aelig;&#150;&deg;&aelig;&#149;&deg;&aelig;&#141;&reg;&atilde;&#128;&#130;&aelig;&shy;&curren;&aring;&curren;&#150;&iuml;&frac14;&#140;&aring;&#156;&uml;&egrave;&iquest;&#155;&egrave;&iexcl;&#140;&auml;&frac14;&#154;&egrave;&iquest;&#148;&aring;&#155;&#158;&aring;&frac34;&#136;&aring;&curren;&#154;&egrave;&iexcl;&#140;&aelig;&#149;&deg;&aelig;&#141;&reg;&ccedil;&#154;&#132;&aelig;&#159;&yen;&egrave;&macr;&cent;&aelig;&#151;&para;&iuml;&frac14;&#140; &auml;&frac12;&nbsp;&eacute;&#156;&#128;&egrave;&brvbar;&#129;&auml;&frac12;&iquest;&ccedil;&#148;&uml;
+            <code class="literal">scroll()</code> &aelig;&#150;&sup1;&aelig;&sup3;&#149;&auml;&raquo;&yen;&auml;&frac34;&iquest;&aring;&#133;&#133;&aring;&#136;&#134;&aring;&#136;&copy;&ccedil;&#148;&uml;&aelig;&#156;&#141;&aring;&#138;&iexcl;&aring;&#153;&uml;&ccedil;&laquo;&macr;&aelig;&cedil;&cedil;&aelig;&nbsp;&#135;&aelig;&#137;&#128;&aring;&cedil;&brvbar;&aelig;&#157;&yen;&ccedil;&#154;&#132;&aring;&yen;&frac12;&aring;&curren;&#132;&atilde;&#128;&#130; 
+         </p><pre class="programlisting">Session session = sessionFactory.openSession();
+Transaction tx = session.beginTransaction();
+   
+ScrollableResults customers = session.getNamedQuery("GetCustomers")
+    .setCacheMode(CacheMode.IGNORE)
+    .scroll(ScrollMode.FORWARD_ONLY);
+int count=0;
+while ( customers.next() ) {
+    Customer customer = (Customer) customers.get(0);
+    customer.updateStuff(...);
+    if ( ++count % 20 == 0 ) {
+        //flush a batch of updates and release memory:
+        session.flush();
+        session.clear();
+    }
+}
+   
+tx.commit();
+session.close();</pre></div>
+      <div class="navfooter">
+         <hr>
+         <table width="100%" summary="Navigation footer">
+            <tr>
+               <td width="40%" align="left"><a accesskey="p" href="batch.html">&#19978;&#19968;&#39029;</a>&nbsp;
+               </td>
+               <td width="20%" align="center"><a accesskey="u" href="batch.html">&#19978;&#19968;&#32423;</a></td>
+               <td width="40%" align="right">&nbsp;<a accesskey="n" href="batch-statelesssession.html">&#19979;&#19968;&#39029;</a></td>
+            </tr>
+            <tr>
+               <td width="40%" align="left" valign="top">&#31532;&nbsp;13&nbsp;&#31456;&nbsp;&aelig;&#137;&sup1;&eacute;&#135;&#143;&aring;&curren;&#132;&ccedil;&#144;&#134;&iuml;&frac14;&#136;Batch processing&iuml;&frac14;&#137;&nbsp;</td>
+               <td width="20%" align="center"><a accesskey="h" href="index.html">&#36215;&#22987;&#39029;</a></td>
+               <td width="40%" align="right" valign="top">&nbsp;13.3.&nbsp;StatelessSession (&aelig;&#151;&nbsp;&ccedil;&#138;&para;&aelig;&#128;&#129;session)&aelig;&#142;&yen;&aring;&#143;&pound;</td>
+            </tr>
+         </table>
+      </div>
+   </body>
+</html>

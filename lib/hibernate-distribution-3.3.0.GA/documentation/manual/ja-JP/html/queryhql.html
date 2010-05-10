@@ -1,0 +1,69 @@
+<html>
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   
+      <title>&#31532;14&#31456; HQL: The Hibernate Query Language</title>
+      <link rel="stylesheet" href="css/html.css" type="text/css">
+      <meta name="generator" content="DocBook XSL Stylesheets V1.72.0">
+      <link rel="start" href="index.html" title="HIBERNATE - Relational Persistence for Idiomatic Java">
+      <link rel="up" href="index.html" title="HIBERNATE - Relational Persistence for Idiomatic Java">
+      <link rel="prev" href="batch-direct.html" title="13.4. DML&atilde;&#130;&sup1;&atilde;&#130;&iquest;&atilde;&#130;&curren;&atilde;&#131;&laquo;&atilde;&#129;&reg;&aelig;&#147;&#141;&auml;&frac12;&#156;">
+      <link rel="next" href="queryhql-from.html" title="14.2. from&#31680;">
+   </head>
+   <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+      <div class="navheader">
+         <table width="100%" summary="Navigation header">
+            <tr>
+               <th colspan="3" align="center">&#31532;14&#31456; HQL: The Hibernate Query Language</th>
+            </tr>
+            <tr>
+               <td width="20%" align="left"><a accesskey="p" href="batch-direct.html">&#21069;&#12398;&#12506;&#12540;&#12472;</a>&nbsp;
+               </td>
+               <th width="60%" align="center">&nbsp;</th>
+               <td width="20%" align="right">&nbsp;<a accesskey="n" href="queryhql-from.html">&#27425;&#12398;&#12506;&#12540;&#12472;</a></td>
+            </tr>
+         </table>
+         <hr>
+      </div>
+      <div class="chapter" lang="ja-JP">
+         <div class="titlepage">
+            <div>
+               <div>
+                  <h2 class="title"><a name="queryhql"></a>&#31532;14&#31456; HQL: The Hibernate Query Language
+                  </h2>
+               </div>
+            </div>
+         </div>
+         <p>Hibernate&#12399;SQL&#12395;&#38750;&#24120;&#12395;&#12424;&#12367;&#20284;&#12383;(&#24847;&#22259;&#30340;&#12395;&#20284;&#12379;&#12383;)&#24375;&#21147;&#12394;&#21839;&#12356;&#21512;&#12431;&#12379;&#35328;&#35486;&#12434;&#20633;&#12360;&#12390;&#12356;&#12414;&#12377;&#12290; &#12375;&#12363;&#12375;SQL&#12395;&#20284;&#12383;&#27083;&#25991;&#12395;&#24785;&#12431;&#12373;&#12428;&#12394;&#12356;&#12391;&#12367;&#12384;&#12373;&#12356;&#12290;HQL&#12399;&#23436;&#20840;&#12395;&#12458;&#12502;&#12472;&#12455;&#12463;&#12488;&#25351;&#21521;&#12391;&#12354;&#12426;&#12289; &#32153;&#25215;&#12289;&#12509;&#12522;&#12514;&#12540;&#12501;&#12451;&#12474;&#12512;&#12289;&#38306;&#36899;&#12392;&#12356;&#12387;&#12383;&#27010;&#24565;&#12434;&#29702;&#35299;&#12375;&#12414;&#12377;&#12290; </p>
+         <div class="sect1" lang="ja-JP">
+            <div class="titlepage">
+               <div>
+                  <div>
+                     <h2 class="title" style="clear: both"><a name="queryhql-casesensitivity"></a>14.1. &#22823;&#25991;&#23383;&#12392;&#23567;&#25991;&#23383;&#12398;&#21306;&#21029;
+                     </h2>
+                  </div>
+               </div>
+            </div>
+            <p>&#12463;&#12456;&#12522;&#12399;Java&#12398;&#12463;&#12521;&#12473;&#21517;&#12392;&#12503;&#12525;&#12497;&#12486;&#12451;&#21517;&#12434;&#38500;&#12356;&#12390;&#22823;&#25991;&#23383;&#12289;&#23567;&#25991;&#23383;&#12434;&#21306;&#21029;&#12375;&#12414;&#12379;&#12435;&#12290; &#24467;&#12387;&#12390; <code class="literal">SeLeCT</code> &#12399; <code class="literal">sELEct</code> &#12392;&#21516;&#12376;&#12391;&#12289;&#12363;&#12388; <code class="literal">SELECT</code> &#12392;&#12418;&#21516;&#12376;&#12391;&#12377;&#12364; <code class="literal">net.sf.hibernate.eg.FOO</code> &#12399; <code class="literal">net.sf.hibernate.eg.Foo</code> &#12392;&#12399;&#36949;&#12356;&#12289;&#12363;&#12388; <code class="literal">foo.barSet</code> &#12399; <code class="literal">foo.BARSET</code> &#12392;&#12418;&#36949;&#12356;&#12414;&#12377;&#12290; 
+            </p>
+            <p>&#12371;&#12398;&#12510;&#12491;&#12517;&#12450;&#12523;&#12391;&#12399;&#23567;&#25991;&#23383;&#12398;HQL&#12461;&#12540;&#12527;&#12540;&#12489;&#12434;&#20351;&#29992;&#12375;&#12414;&#12377;&#12290; &#22823;&#25991;&#23383;&#12398;&#12461;&#12540;&#12527;&#12540;&#12489;&#12398;&#12463;&#12456;&#12522;&#12398;&#26041;&#12364;&#35501;&#12415;&#12420;&#12377;&#12356;&#12392;&#24863;&#12376;&#12427;&#12518;&#12540;&#12470;&#12540;&#12418;&#12356;&#12427;&#12392;&#24605;&#12356;&#12414;&#12377;&#12290; &#12391;&#12377;&#12364;&#12289;Java&#12467;&#12540;&#12489;&#20869;&#12395;&#22475;&#12417;&#36796;&#12414;&#12428;&#12383;&#12392;&#12365;&#12395;&#12399;&#35211;&#12389;&#12425;&#12356;&#12392;&#24605;&#12356;&#12414;&#12377;&#12290; </p>
+         </div>
+      </div>
+      <div class="navfooter">
+         <hr>
+         <table width="100%" summary="Navigation footer">
+            <tr>
+               <td width="40%" align="left"><a accesskey="p" href="batch-direct.html">&#21069;&#12398;&#12506;&#12540;&#12472;</a>&nbsp;
+               </td>
+               <td width="20%" align="center">&nbsp;</td>
+               <td width="40%" align="right">&nbsp;<a accesskey="n" href="queryhql-from.html">&#27425;&#12398;&#12506;&#12540;&#12472;</a></td>
+            </tr>
+            <tr>
+               <td width="40%" align="left" valign="top">13.4. DML&atilde;&#130;&sup1;&atilde;&#130;&iquest;&atilde;&#130;&curren;&atilde;&#131;&laquo;&atilde;&#129;&reg;&aelig;&#147;&#141;&auml;&frac12;&#156;&nbsp;</td>
+               <td width="20%" align="center"><a accesskey="h" href="index.html">&#12507;&#12540;&#12512;</a></td>
+               <td width="40%" align="right" valign="top">&nbsp;14.2. from&#31680;</td>
+            </tr>
+         </table>
+      </div>
+   </body>
+</html>

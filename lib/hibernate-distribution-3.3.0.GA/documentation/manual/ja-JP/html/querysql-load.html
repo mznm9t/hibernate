@@ -1,0 +1,86 @@
+<html>
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   
+      <title>16.4. &#12525;&#12540;&#12489;&#12398;&#12383;&#12417;&#12398;&#12459;&#12473;&#12479;&#12512;SQL</title>
+      <link rel="stylesheet" href="css/html.css" type="text/css">
+      <meta name="generator" content="DocBook XSL Stylesheets V1.72.0">
+      <link rel="start" href="index.html" title="HIBERNATE - Relational Persistence for Idiomatic Java">
+      <link rel="up" href="querysql.html" title="&#31532;16&#31456; &#12493;&#12452;&#12486;&#12451;&#12502;SQL">
+      <link rel="prev" href="querysql-cud.html" title="16.3. &#20316;&#25104;&#12289;&#26356;&#26032;&#12289;&#21066;&#38500;&#12398;&#12383;&#12417;&#12398;&#12459;&#12473;&#12479;&#12512;SQL">
+      <link rel="next" href="filters.html" title="&#31532;17&#31456; &#12487;&#12540;&#12479;&#12398;&#12501;&#12451;&#12523;&#12479;&#12522;&#12531;&#12464;">
+   </head>
+   <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+      <div class="navheader">
+         <table width="100%" summary="Navigation header">
+            <tr>
+               <th colspan="3" align="center">16.4. &#12525;&#12540;&#12489;&#12398;&#12383;&#12417;&#12398;&#12459;&#12473;&#12479;&#12512;SQL</th>
+            </tr>
+            <tr>
+               <td width="20%" align="left"><a accesskey="p" href="querysql-cud.html">&#21069;&#12398;&#12506;&#12540;&#12472;</a>&nbsp;
+               </td>
+               <th width="60%" align="center">&#31532;16&#31456; &#12493;&#12452;&#12486;&#12451;&#12502;SQL</th>
+               <td width="20%" align="right">&nbsp;<a accesskey="n" href="filters.html">&#27425;&#12398;&#12506;&#12540;&#12472;</a></td>
+            </tr>
+         </table>
+         <hr>
+      </div>
+      <div class="sect1" lang="ja-JP">
+         <div class="titlepage">
+            <div>
+               <div>
+                  <h2 class="title" style="clear: both"><a name="querysql-load"></a>16.4. &#12525;&#12540;&#12489;&#12398;&#12383;&#12417;&#12398;&#12459;&#12473;&#12479;&#12512;SQL
+                  </h2>
+               </div>
+            </div>
+         </div>
+         <p>&#12456;&#12531;&#12486;&#12451;&#12486;&#12451;&#12434;&#35501;&#12415;&#36796;&#12416;&#12383;&#12417;&#12398;&#29420;&#33258;&#12398;SQL&#65288;&#12418;&#12375;&#12367;&#12399;HQL&#65289;&#12463;&#12456;&#12522;&#12418;&#23459;&#35328;&#12391;&#12365;&#12414;&#12377;&#12290;</p><pre class="programlisting">&lt;sql-query name="person"&gt;
+    &lt;return alias="pers" class="Person" lock-mode="upgrade"/&gt;
+    SELECT NAME AS {pers.name}, ID AS {pers.id}
+    FROM PERSON
+    WHERE ID=?
+    FOR UPDATE
+&lt;/sql-query&gt;</pre><p>&#12371;&#12428;&#12399;&#12289;&#12414;&#12373;&#12395;&#65288;&#20197;&#21069;&#35696;&#35542;&#12375;&#12383;&#65289;&#21517;&#21069;&#20184;&#12365;&#12463;&#12456;&#12522;&#12398;&#23459;&#35328;&#12391;&#12377;&#12290; &#12371;&#12398;&#21517;&#21069;&#20184;&#12365;&#12463;&#12456;&#12522;&#12434;&#12463;&#12521;&#12473;&#12398;&#12510;&#12483;&#12500;&#12531;&#12464;&#12363;&#12425;&#21442;&#29031;&#12391;&#12365;&#12414;&#12377;&#12290;</p><pre class="programlisting">&lt;class name="Person"&gt;
+    &lt;id name="id"&gt;
+        &lt;generator class="increment"/&gt;
+    &lt;/id&gt;
+    &lt;property name="name" not-null="true"/&gt;
+    &lt;loader query-ref="person"/&gt;
+&lt;/class&gt;</pre><p>&#12371;&#12428;&#12399;&#12473;&#12488;&#12450;&#12489;&#12503;&#12525;&#12471;&#12540;&#12472;&#12515;&#12391;&#12373;&#12360;&#12418;&#21205;&#20316;&#12375;&#12414;&#12377;&#12290;</p>
+         <p>&#27425;&#12398;&#12424;&#12358;&#12395;&#12289;&#12467;&#12524;&#12463;&#12471;&#12519;&#12531;&#12434;&#12525;&#12540;&#12489;&#12377;&#12427;&#12383;&#12417;&#12398;&#12463;&#12456;&#12522;&#12373;&#12360;&#23450;&#32681;&#12375;&#12390;&#12424;&#12356;&#12391;&#12377;&#12290;</p><pre class="programlisting">&lt;set name="employments" inverse="true"&gt;
+    &lt;key/&gt;
+    &lt;one-to-many class="Employment"/&gt;
+    &lt;loader query-ref="employments"/&gt;
+&lt;/set&gt;</pre><pre class="programlisting">&lt;sql-query name="employments"&gt;
+    &lt;load-collection alias="emp" role="Person.employments"/&gt;
+    SELECT {emp.*}
+    FROM EMPLOYMENT emp
+    WHERE EMPLOYER = :id
+    ORDER BY STARTDATE ASC, EMPLOYEE ASC
+&lt;/sql-query&gt;</pre><p>&#27425;&#12398;&#12424;&#12358;&#12395;&#12289;&#32080;&#21512;&#12501;&#12455;&#12483;&#12481;&#12395;&#12424;&#12426;&#12467;&#12524;&#12463;&#12471;&#12519;&#12531;&#12434;&#12525;&#12540;&#12489;&#12377;&#12427; &#12456;&#12531;&#12486;&#12451;&#12486;&#12451;&#12525;&#12540;&#12480;&#12540;&#12434;&#23450;&#32681;&#12391;&#12365;&#12414;&#12377;&#12290;</p><pre class="programlisting">&lt;sql-query name="person"&gt;
+    &lt;return alias="pers" class="Person"/&gt;
+    &lt;return-join alias="emp" property="pers.employments"/&gt;
+    SELECT NAME AS {pers.*}, {emp.*}
+    FROM PERSON pers
+    LEFT OUTER JOIN EMPLOYMENT emp
+        ON pers.ID = emp.PERSON_ID
+    WHERE ID=?
+&lt;/sql-query&gt;</pre></div>
+      <div class="navfooter">
+         <hr>
+         <table width="100%" summary="Navigation footer">
+            <tr>
+               <td width="40%" align="left"><a accesskey="p" href="querysql-cud.html">&#21069;&#12398;&#12506;&#12540;&#12472;</a>&nbsp;
+               </td>
+               <td width="20%" align="center"><a accesskey="u" href="querysql.html">&#19978;&#12395;&#25147;&#12427;</a></td>
+               <td width="40%" align="right">&nbsp;<a accesskey="n" href="filters.html">&#27425;&#12398;&#12506;&#12540;&#12472;</a></td>
+            </tr>
+            <tr>
+               <td width="40%" align="left" valign="top">16.3. &#20316;&#25104;&#12289;&#26356;&#26032;&#12289;&#21066;&#38500;&#12398;&#12383;&#12417;&#12398;&#12459;&#12473;&#12479;&#12512;SQL&nbsp;</td>
+               <td width="20%" align="center"><a accesskey="h" href="index.html">&#12507;&#12540;&#12512;</a></td>
+               <td width="40%" align="right" valign="top">&nbsp;&#31532;17&#31456; &#12487;&#12540;&#12479;&#12398;&#12501;&#12451;&#12523;&#12479;&#12522;&#12531;&#12464;</td>
+            </tr>
+         </table>
+      </div>
+   </body>
+</html>

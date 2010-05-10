@@ -1,0 +1,66 @@
+<html>
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   
+      <title>15.3. &#32080;&#26524;&#12398;&#25972;&#21015;</title>
+      <link rel="stylesheet" href="css/html.css" type="text/css">
+      <meta name="generator" content="DocBook XSL Stylesheets V1.72.0">
+      <link rel="start" href="index.html" title="HIBERNATE - Relational Persistence for Idiomatic Java">
+      <link rel="up" href="querycriteria.html" title="&#31532;15&#31456; Criteria&#12463;&#12456;&#12522;">
+      <link rel="prev" href="querycriteria-narrowing.html" title="15.2. &#12522;&#12470;&#12523;&#12488;&#12475;&#12483;&#12488;&#12398;&#32094;&#36796;&#12415;">
+      <link rel="next" href="querycriteria-associations.html" title="15.4. &#38306;&#36899;">
+   </head>
+   <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+      <div class="navheader">
+         <table width="100%" summary="Navigation header">
+            <tr>
+               <th colspan="3" align="center">15.3. &#32080;&#26524;&#12398;&#25972;&#21015;</th>
+            </tr>
+            <tr>
+               <td width="20%" align="left"><a accesskey="p" href="querycriteria-narrowing.html">&#21069;&#12398;&#12506;&#12540;&#12472;</a>&nbsp;
+               </td>
+               <th width="60%" align="center">&#31532;15&#31456; Criteria&#12463;&#12456;&#12522;</th>
+               <td width="20%" align="right">&nbsp;<a accesskey="n" href="querycriteria-associations.html">&#27425;&#12398;&#12506;&#12540;&#12472;</a></td>
+            </tr>
+         </table>
+         <hr>
+      </div>
+      <div class="sect1" lang="ja-JP">
+         <div class="titlepage">
+            <div>
+               <div>
+                  <h2 class="title" style="clear: both"><a name="querycriteria-ordering"></a>15.3. &#32080;&#26524;&#12398;&#25972;&#21015;
+                  </h2>
+               </div>
+            </div>
+         </div>
+         <p><code class="literal">org.hibernate.criterion.Order</code> &#12434;&#20351;&#12387;&#12390;&#32080;&#26524;&#12434;&#20006;&#12403;&#26367;&#12360;&#12427;&#12371;&#12392;&#12364;&#12391;&#12365;&#12414;&#12377;&#12290; 
+         </p><pre class="programlisting">List cats = sess.createCriteria(Cat.class)
+    .add( Restrictions.like("name", "F%")
+    .addOrder( Order.asc("name") )
+    .addOrder( Order.desc("age") )
+    .setMaxResults(50)
+    .list();</pre><pre class="programlisting">List cats = sess.createCriteria(Cat.class)
+    .add( Property.forName("name").like("F%") )
+    .addOrder( Property.forName("name").asc() )
+    .addOrder( Property.forName("age").desc() )
+    .setMaxResults(50)
+    .list();</pre></div>
+      <div class="navfooter">
+         <hr>
+         <table width="100%" summary="Navigation footer">
+            <tr>
+               <td width="40%" align="left"><a accesskey="p" href="querycriteria-narrowing.html">&#21069;&#12398;&#12506;&#12540;&#12472;</a>&nbsp;
+               </td>
+               <td width="20%" align="center"><a accesskey="u" href="querycriteria.html">&#19978;&#12395;&#25147;&#12427;</a></td>
+               <td width="40%" align="right">&nbsp;<a accesskey="n" href="querycriteria-associations.html">&#27425;&#12398;&#12506;&#12540;&#12472;</a></td>
+            </tr>
+            <tr>
+               <td width="40%" align="left" valign="top">15.2. &#12522;&#12470;&#12523;&#12488;&#12475;&#12483;&#12488;&#12398;&#32094;&#36796;&#12415;&nbsp;</td>
+               <td width="20%" align="center"><a accesskey="h" href="index.html">&#12507;&#12540;&#12512;</a></td>
+               <td width="40%" align="right" valign="top">&nbsp;15.4. &#38306;&#36899;</td>
+            </tr>
+         </table>
+      </div>
+   </body>
+</html>

@@ -1,0 +1,90 @@
+<html>
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   
+      <title>16.3.&nbsp;&#23450;&#21046;SQL&#29992;&#26469;create&#65292;update&#21644;delete</title>
+      <link rel="stylesheet" href="css/html.css" type="text/css">
+      <meta name="generator" content="DocBook XSL Stylesheets V1.72.0">
+      <link rel="start" href="index.html" title="HIBERNATE - &#31526;&#21512;Java&#20064;&#24815;&#30340;&#20851;&#31995;&#25968;&#25454;&#24211;&#25345;&#20037;&#21270;">
+      <link rel="up" href="querysql.html" title="&#31532;&nbsp;16&nbsp;&#31456;&nbsp;Native SQL&#26597;&#35810;">
+      <link rel="prev" href="querysql-namedqueries.html" title="16.2.&nbsp;&#21629;&#21517;SQL&#26597;&#35810;">
+      <link rel="next" href="querysql-load.html" title="16.4.&nbsp;&#23450;&#21046;&#35013;&#36733;SQL">
+   </head>
+   <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+      <div class="navheader">
+         <table width="100%" summary="Navigation header">
+            <tr>
+               <th colspan="3" align="center">16.3.&nbsp;&#23450;&#21046;SQL&#29992;&#26469;create&#65292;update&#21644;delete</th>
+            </tr>
+            <tr>
+               <td width="20%" align="left"><a accesskey="p" href="querysql-namedqueries.html">&#19978;&#19968;&#39029;</a>&nbsp;
+               </td>
+               <th width="60%" align="center">&#31532;&nbsp;16&nbsp;&#31456;&nbsp;Native SQL&#26597;&#35810;</th>
+               <td width="20%" align="right">&nbsp;<a accesskey="n" href="querysql-load.html">&#19979;&#19968;&#39029;</a></td>
+            </tr>
+         </table>
+         <hr>
+      </div>
+      <div class="sect1" lang="zh-CN">
+         <div class="titlepage">
+            <div>
+               <div>
+                  <h2 class="title" style="clear: both"><a name="querysql-cud"></a>16.3.&nbsp;&#23450;&#21046;SQL&#29992;&#26469;create&#65292;update&#21644;delete
+                  </h2>
+               </div>
+            </div>
+         </div>
+         <p>Hibernate3&#33021;&#22815;&#20351;&#29992;&#23450;&#21046;&#30340;SQL&#35821;&#21477;&#26469;&#25191;&#34892;create,update&#21644;delete&#25805;&#20316;&#12290;&#22312;Hibernate&#20013;&#65292;&#25345;&#20037;&#21270;&#30340;&#31867;&#21644;&#38598;&#21512;&#24050;&#32463; &#21253;&#21547;&#20102;&#19968;&#22871;&#37197;&#32622;&#26399;&#20135;&#29983;&#30340;&#35821;&#21477;(insertsql, deletesql, updatesql&#31561;&#31561;)&#65292;&#36825;&#20123;&#26144;&#23556;&#26631;&#35760;
+            <code class="literal">&lt;sql-insert&gt;</code>, <code class="literal">&lt;sql-delete&gt;</code>, and <code class="literal">&lt;sql-update&gt;</code>&#37325;&#36733;&#20102; &#36825;&#20123;&#35821;&#21477;&#12290;
+         </p><pre class="programlisting">&lt;class name="Person"&gt;
+    &lt;id name="id"&gt;
+        &lt;generator class="increment"/&gt;
+    &lt;/id&gt;
+    &lt;property name="name" not-null="true"/&gt;
+    &lt;sql-insert&gt;INSERT INTO PERSON (NAME, ID) VALUES ( UPPER(?), ? )&lt;/sql-insert&gt;
+    &lt;sql-update&gt;UPDATE PERSON SET NAME=UPPER(?) WHERE ID=?&lt;/sql-update&gt;
+    &lt;sql-delete&gt;DELETE FROM PERSON WHERE ID=?&lt;/sql-delete&gt;
+&lt;/class&gt;</pre><p>&#36825;&#20123;SQL&#30452;&#25509;&#22312;&#20320;&#30340;&#25968;&#25454;&#24211;&#37324;&#25191;&#34892;&#65292;&#25152;&#20197;&#20320;&#21487;&#20197;&#33258;&#30001;&#30340;&#20351;&#29992;&#20320;&#21916;&#27426;&#30340;&#20219;&#24847;&#35821;&#27861;&#12290;&#20294;&#22914;&#26524;&#20320;&#20351;&#29992;&#25968;&#25454;&#24211;&#29305;&#23450;&#30340;&#35821;&#27861;&#65292; &#36825;&#24403;&#28982;&#20250;&#38477;&#20302;&#20320;&#26144;&#23556;&#30340;&#21487;&#31227;&#26893;&#24615;&#12290;</p>
+         <p>&#22914;&#26524;&#35774;&#23450;<code class="literal">callable</code>&#65292;&#21017;&#33021;&#22815;&#25903;&#25345;&#23384;&#20648;&#36807;&#31243;&#20102;&#12290;
+         </p><pre class="programlisting">&lt;class name="Person"&gt;
+    &lt;id name="id"&gt;
+        &lt;generator class="increment"/&gt;
+    &lt;/id&gt;
+    &lt;property name="name" not-null="true"/&gt;
+    &lt;sql-insert callable="true"&gt;{call createPerson (?, ?)}&lt;/sql-insert&gt;
+    &lt;sql-delete callable="true"&gt;{? = call deletePerson (?)}&lt;/sql-delete&gt;
+    &lt;sql-update callable="true"&gt;{? = call updatePerson (?, ?)}&lt;/sql-update&gt;
+&lt;/class&gt;</pre><p>&#21442;&#25968;&#30340;&#20301;&#32622;&#39034;&#24207;&#26159;&#38750;&#24120;&#37325;&#35201;&#30340;&#65292;&#20182;&#20204;&#24517;&#39035;&#21644;Hibernate&#25152;&#26399;&#24453;&#30340;&#39034;&#24207;&#30456;&#21516;&#12290;</p>
+         <p>&#20320;&#33021;&#22815;&#36890;&#36807;&#35774;&#23450;&#26085;&#24535;&#35843;&#35797;&#32423;&#21035;&#20026;<code class="literal">org.hiberante.persister.entity</code>,&#26469;&#26597;&#30475;Hibernate&#25152;&#26399;&#24453;&#30340;&#39034;&#24207;&#12290;&#22312;&#36825;&#20010;&#32423;&#21035;&#19979;&#65292; Hibernate&#23558;&#20250;&#25171;&#21360;&#20986;create,update&#21644;delete&#23454;&#20307;&#30340;&#38745;&#24577;SQL&#12290;(&#22914;&#26524;&#24819;&#30475;&#21040;&#39044;&#35745;&#30340;&#39034;&#24207;&#12290;&#35760;&#24471;&#19981;&#35201;&#23558;&#23450;&#21046;SQL&#21253;&#21547;&#22312;&#26144;&#23556;&#25991;&#20214;&#37324;&#65292; &#22240;&#20026;&#20182;&#20204;&#20250;&#37325;&#36733;Hibernate&#29983;&#25104;&#30340;&#38745;&#24577;SQL&#12290;)
+         </p>
+         <p>&#22312;&#22823;&#22810;&#25968;&#24773;&#20917;&#19979;(&#26368;&#22909;&#36825;&#20040;&#20570;)&#65292;&#23384;&#20648;&#36807;&#31243;&#38656;&#35201;&#36820;&#22238;&#25554;&#20837;/&#26356;&#26032;/&#21024;&#38500;&#30340;&#34892;&#25968;&#65292;&#22240;&#20026;Hibernate&#23545;&#35821;&#21477;&#30340;&#25104;&#21151;&#25191;&#34892;&#26377;&#20123;&#36816;&#34892;&#26102;&#30340;&#26816;&#26597;&#12290; Hibernate&#24120;&#20250;&#25226;&#36827;&#34892;CUD&#25805;&#20316;&#30340;&#35821;&#21477;&#30340;&#31532;&#19968;&#20010;&#21442;&#25968;&#27880;&#20876;&#20026;&#19968;&#20010;&#25968;&#20540;&#22411;&#36755;&#20986;&#21442;&#25968;&#12290;</p><pre class="programlisting">CREATE OR REPLACE FUNCTION updatePerson (uid IN NUMBER, uname IN VARCHAR2)
+    RETURN NUMBER IS
+BEGIN
+
+    update PERSON
+    set
+        NAME = uname,
+    where
+        ID = uid;
+
+    return SQL%ROWCOUNT;
+
+END updatePerson;</pre></div>
+      <div class="navfooter">
+         <hr>
+         <table width="100%" summary="Navigation footer">
+            <tr>
+               <td width="40%" align="left"><a accesskey="p" href="querysql-namedqueries.html">&#19978;&#19968;&#39029;</a>&nbsp;
+               </td>
+               <td width="20%" align="center"><a accesskey="u" href="querysql.html">&#19978;&#19968;&#32423;</a></td>
+               <td width="40%" align="right">&nbsp;<a accesskey="n" href="querysql-load.html">&#19979;&#19968;&#39029;</a></td>
+            </tr>
+            <tr>
+               <td width="40%" align="left" valign="top">16.2.&nbsp;&#21629;&#21517;SQL&#26597;&#35810;&nbsp;</td>
+               <td width="20%" align="center"><a accesskey="h" href="index.html">&#36215;&#22987;&#39029;</a></td>
+               <td width="40%" align="right" valign="top">&nbsp;16.4.&nbsp;&#23450;&#21046;&#35013;&#36733;SQL</td>
+            </tr>
+         </table>
+      </div>
+   </body>
+</html>

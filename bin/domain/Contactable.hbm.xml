@@ -6,7 +6,7 @@
 -->
 <hibernate-mapping>
  <typedef class="core.DateLong" name="DateLong"/>
- <class catalog="savillstest" name="domain.ContactableH" table="com_fpdsavills_pr_contactable">
+ <class name="domain.ContactableH" table="com_fpdsavills_pr_contactable">
   <composite-id class="domain.ID" mapped="false" name="ID" unsaved-value="undefined">
    <key-property column="ID" name="identifier" type="java.lang.Long"/>
   </composite-id>
@@ -55,6 +55,10 @@
   <many-to-one cascade="all" class="domain.AddressH" name="address" unique="true">
    <column name="address_"/>
   </many-to-one>
+  <set access="field" name="contactEvents" sort="unsorted" table="com_fpdsavills_pr_contactable$to$contactevent">
+   <key column="contactableID"/>
+   <many-to-many class="domain.ContactEventH" column="contactEvent_" unique="false"/>
+  </set>
   <joined-subclass extends="domain.ContactableH" name="domain.PersonH" table="com_fpdsavills_pr_person">
    <key column="ID"/>
    <property generated="never" lazy="false" name="entityName" type="java.lang.String">

@@ -1,0 +1,156 @@
+<html>
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   
+      <title>7.4. &#21452;&#26041;&#21521;&#38306;&#36899;</title>
+      <link rel="stylesheet" href="css/html.css" type="text/css">
+      <meta name="generator" content="DocBook XSL Stylesheets V1.72.0">
+      <link rel="start" href="index.html" title="HIBERNATE - Relational Persistence for Idiomatic Java">
+      <link rel="up" href="associations.html" title="&#31532;7&#31456; &#38306;&#36899;&#12510;&#12483;&#12500;&#12531;&#12464;">
+      <link rel="prev" href="assoc-unidirectional-join.html" title="7.3. &#32080;&#21512;&#12486;&#12540;&#12502;&#12523;&#12434;&#20351;&#12387;&#12383;&#21336;&#26041;&#21521;&#38306;&#36899;">
+      <link rel="next" href="assoc-bidirectional-join.html" title="7.5. &#32080;&#21512;&#12486;&#12540;&#12502;&#12523;&#12434;&#20351;&#12387;&#12383;&#21452;&#26041;&#21521;&#38306;&#36899;">
+   </head>
+   <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+      <div class="navheader">
+         <table width="100%" summary="Navigation header">
+            <tr>
+               <th colspan="3" align="center">7.4. &#21452;&#26041;&#21521;&#38306;&#36899;</th>
+            </tr>
+            <tr>
+               <td width="20%" align="left"><a accesskey="p" href="assoc-unidirectional-join.html">&#21069;&#12398;&#12506;&#12540;&#12472;</a>&nbsp;
+               </td>
+               <th width="60%" align="center">&#31532;7&#31456; &#38306;&#36899;&#12510;&#12483;&#12500;&#12531;&#12464;</th>
+               <td width="20%" align="right">&nbsp;<a accesskey="n" href="assoc-bidirectional-join.html">&#27425;&#12398;&#12506;&#12540;&#12472;</a></td>
+            </tr>
+         </table>
+         <hr>
+      </div>
+      <div class="sect1" lang="ja-JP">
+         <div class="titlepage">
+            <div>
+               <div>
+                  <h2 class="title" style="clear: both"><a name="assoc-bidirectional"></a>7.4. &#21452;&#26041;&#21521;&#38306;&#36899;
+                  </h2>
+               </div>
+            </div>
+         </div>
+         <div class="sect2" lang="ja-JP">
+            <div class="titlepage">
+               <div>
+                  <div>
+                     <h3 class="title"><a name="assoc-bidirectional-m21"></a>7.4.1. &#19968;&#23550;&#22810;/&#22810;&#23550;&#19968;
+                     </h3>
+                  </div>
+               </div>
+            </div>
+            <p><span class="emphasis"><em>&#21452;&#26041;&#21521;&#22810;&#23550;&#19968;&#38306;&#36899;</em></span> &#12399;&#26368;&#12418;&#19968;&#33324;&#30340;&#12394;&#38306;&#36899;&#12391;&#12377;&#12290; &#65288;&#27161;&#28310;&#30340;&#12394;&#35242;&#23376;&#38306;&#20418;&#12391;&#12377;&#65289; 
+            </p><pre class="programlisting">&lt;class name="Person"&gt;
+    &lt;id name="id" column="personId"&gt;
+        &lt;generator class="native"/&gt;
+    &lt;/id&gt;
+    &lt;many-to-one name="address" 
+        column="addressId"
+        not-null="true"/&gt;
+&lt;/class&gt;
+
+&lt;class name="Address"&gt;
+    &lt;id name="id" column="addressId"&gt;
+        &lt;generator class="native"/&gt;
+    &lt;/id&gt;
+    &lt;set name="people" inverse="true"&gt;
+        &lt;key column="addressId"/&gt;
+        &lt;one-to-many class="Person"/&gt;
+    &lt;/set&gt;
+&lt;/class&gt;</pre><pre class="programlisting">
+create table Person ( personId bigint not null primary key, addressId bigint not null )
+create table Address ( addressId bigint not null primary key )
+        </pre><p><code class="literal">List</code> &#65288;&#12414;&#12383;&#12399;&#20182;&#12398;&#12452;&#12531;&#12487;&#12483;&#12463;&#12473;&#20184;&#12365;&#12398;&#12467;&#12524;&#12463;&#12471;&#12519;&#12531;&#65289;&#12434;&#20351;&#12358;&#12394;&#12425;&#12289; &#22806;&#37096;&#12461;&#12540;&#12398; <code class="literal">key</code> &#12459;&#12521;&#12512;&#12434; <code class="literal">not null</code> &#12395;&#35373;&#23450;&#12375;&#12289; &#12467;&#12524;&#12463;&#12471;&#12519;&#12531;&#20596;&#12364;&#21508;&#35201;&#32032;&#12398;&#12452;&#12531;&#12487;&#12483;&#12463;&#12473;&#12434;&#12513;&#12531;&#12486;&#12490;&#12531;&#12473;&#12377;&#12427;&#12424;&#12358;&#12395;&#12289; &#38306;&#36899;&#12434;&#25201;&#12358;&#24517;&#35201;&#12364;&#12354;&#12426;&#12414;&#12377; &#65288;<code class="literal">update="false"</code> &#12363;&#12388; <code class="literal">insert="false"</code> &#12392;&#35373;&#23450;&#12375;&#12390;&#12289;&#21453;&#23550;&#20596;&#12434;&#20206;&#24819;&#30340;&#12395;inverse&#12395;&#12375;&#12414;&#12377;&#65289;&#65306; 
+            </p><pre class="programlisting">&lt;class name="Person"&gt;
+   &lt;id name="id"/&gt;
+   ...
+   &lt;many-to-one name="address"
+      column="addressId"
+      not-null="true"
+      insert="false"
+      update="false"/&gt;
+&lt;/class&gt;
+
+&lt;class name="Address"&gt;
+   &lt;id name="id"/&gt;
+   ...
+   &lt;list name="people"&gt;
+      &lt;key column="addressId" not-null="true"/&gt;
+      &lt;list-index column="peopleIdx"/&gt;
+      &lt;one-to-many class="Person"/&gt;
+   &lt;/list&gt;
+&lt;/class&gt;</pre><p>&#12418;&#12375;&#22806;&#37096;&#12461;&#12540;&#12459;&#12521;&#12512;&#12364; <code class="literal">NOT NULL</code> &#12391;&#12354;&#12427;&#12394;&#12425;&#12400;&#12289; &#12467;&#12524;&#12463;&#12471;&#12519;&#12531;&#12510;&#12483;&#12500;&#12531;&#12464;&#12398; <code class="literal">&lt;key&gt;</code> &#35201;&#32032;&#12434; <code class="literal">not-null="true"</code> &#12395;&#12377;&#12427;&#12371;&#12392;&#12399;&#37325;&#35201;&#12391;&#12377;&#12290; &#20837;&#12428;&#23376;&#12395;&#12394;&#12387;&#12383; <code class="literal">&lt;column&gt;</code> &#35201;&#32032;&#12384;&#12369;&#12391;&#12399;&#12394;&#12367;&#12289; <code class="literal">&lt;key&gt;</code> &#35201;&#32032;&#12418; <code class="literal">not-null="true"</code> &#12392;&#23450;&#32681;&#12375;&#12394;&#12356;&#12424;&#12358;&#12395;&#12375;&#12390;&#12367;&#12384;&#12373;&#12356;&#12290; 
+            </p>
+         </div>
+         <div class="sect2" lang="ja-JP">
+            <div class="titlepage">
+               <div>
+                  <div>
+                     <h3 class="title"><a name="assoc-bidirectional-121"></a>7.4.2. &#19968;&#23550;&#19968;
+                     </h3>
+                  </div>
+               </div>
+            </div>
+            <p><span class="emphasis"><em>&#22806;&#37096;&#12461;&#12540;&#12398;&#21452;&#26041;&#21521;&#19968;&#23550;&#19968;&#38306;&#36899;</em></span> &#12399;&#38750;&#24120;&#12395;&#19968;&#33324;&#30340;&#12391;&#12377;&#12290; 
+            </p><pre class="programlisting">&lt;class name="Person"&gt;
+    &lt;id name="id" column="personId"&gt;
+        &lt;generator class="native"/&gt;
+    &lt;/id&gt;
+    &lt;many-to-one name="address" 
+        column="addressId" 
+        unique="true"
+        not-null="true"/&gt;
+&lt;/class&gt;
+
+&lt;class name="Address"&gt;
+    &lt;id name="id" column="addressId"&gt;
+        &lt;generator class="native"/&gt;
+    &lt;/id&gt;
+   &lt;one-to-one name="person" 
+        property-ref="address"/&gt;
+&lt;/class&gt;</pre><pre class="programlisting">
+create table Person ( personId bigint not null primary key, addressId bigint not null unique )
+create table Address ( addressId bigint not null primary key )
+        </pre><p><span class="emphasis"><em>&#20027;&#12461;&#12540;&#12398;&#21452;&#26041;&#21521;&#19968;&#23550;&#19968;&#38306;&#36899;</em></span> &#12399;&#29305;&#27530;&#12394;ID&#12472;&#12455;&#12493;&#12524;&#12540;&#12479;&#12434;&#20351;&#12356;&#12414;&#12377;&#12290; 
+            </p><pre class="programlisting">&lt;class name="Person"&gt;
+    &lt;id name="id" column="personId"&gt;
+        &lt;generator class="native"/&gt;
+    &lt;/id&gt;
+    &lt;one-to-one name="address"/&gt;
+&lt;/class&gt;
+
+&lt;class name="Address"&gt;
+    &lt;id name="id" column="personId"&gt;
+        &lt;generator class="foreign"&gt;
+            &lt;param name="property"&gt;person&lt;/param&gt;
+        &lt;/generator&gt;
+    &lt;/id&gt;
+    &lt;one-to-one name="person" 
+        constrained="true"/&gt;
+&lt;/class&gt;</pre><pre class="programlisting">
+create table Person ( personId bigint not null primary key )
+create table Address ( personId bigint not null primary key )
+        </pre></div>
+      </div>
+      <div class="navfooter">
+         <hr>
+         <table width="100%" summary="Navigation footer">
+            <tr>
+               <td width="40%" align="left"><a accesskey="p" href="assoc-unidirectional-join.html">&#21069;&#12398;&#12506;&#12540;&#12472;</a>&nbsp;
+               </td>
+               <td width="20%" align="center"><a accesskey="u" href="associations.html">&#19978;&#12395;&#25147;&#12427;</a></td>
+               <td width="40%" align="right">&nbsp;<a accesskey="n" href="assoc-bidirectional-join.html">&#27425;&#12398;&#12506;&#12540;&#12472;</a></td>
+            </tr>
+            <tr>
+               <td width="40%" align="left" valign="top">7.3. &#32080;&#21512;&#12486;&#12540;&#12502;&#12523;&#12434;&#20351;&#12387;&#12383;&#21336;&#26041;&#21521;&#38306;&#36899;&nbsp;</td>
+               <td width="20%" align="center"><a accesskey="h" href="index.html">&#12507;&#12540;&#12512;</a></td>
+               <td width="40%" align="right" valign="top">&nbsp;7.5. &#32080;&#21512;&#12486;&#12540;&#12502;&#12523;&#12434;&#20351;&#12387;&#12383;&#21452;&#26041;&#21521;&#38306;&#36899;</td>
+            </tr>
+         </table>
+      </div>
+   </body>
+</html>

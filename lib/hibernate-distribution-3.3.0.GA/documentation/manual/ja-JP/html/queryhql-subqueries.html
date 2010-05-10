@@ -1,0 +1,73 @@
+<html>
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   
+      <title>14.13. &#21103;&#21839;&#12356;&#21512;&#12431;&#12379;</title>
+      <link rel="stylesheet" href="css/html.css" type="text/css">
+      <meta name="generator" content="DocBook XSL Stylesheets V1.72.0">
+      <link rel="start" href="index.html" title="HIBERNATE - Relational Persistence for Idiomatic Java">
+      <link rel="up" href="queryhql.html" title="&#31532;14&#31456; HQL: The Hibernate Query Language">
+      <link rel="prev" href="queryhql-grouping.html" title="14.12. group by&#31680;">
+      <link rel="next" href="queryhql-examples.html" title="14.14. HQL&#12398;&#20363;">
+   </head>
+   <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+      <div class="navheader">
+         <table width="100%" summary="Navigation header">
+            <tr>
+               <th colspan="3" align="center">14.13. &#21103;&#21839;&#12356;&#21512;&#12431;&#12379;</th>
+            </tr>
+            <tr>
+               <td width="20%" align="left"><a accesskey="p" href="queryhql-grouping.html">&#21069;&#12398;&#12506;&#12540;&#12472;</a>&nbsp;
+               </td>
+               <th width="60%" align="center">&#31532;14&#31456; HQL: The Hibernate Query Language</th>
+               <td width="20%" align="right">&nbsp;<a accesskey="n" href="queryhql-examples.html">&#27425;&#12398;&#12506;&#12540;&#12472;</a></td>
+            </tr>
+         </table>
+         <hr>
+      </div>
+      <div class="sect1" lang="ja-JP">
+         <div class="titlepage">
+            <div>
+               <div>
+                  <h2 class="title" style="clear: both"><a name="queryhql-subqueries"></a>14.13. &#21103;&#21839;&#12356;&#21512;&#12431;&#12379;
+                  </h2>
+               </div>
+            </div>
+         </div>
+         <p>&#12469;&#12502;&#12475;&#12524;&#12463;&#12488;&#12434;&#12469;&#12509;&#12540;&#12488;&#12377;&#12427;&#12487;&#12540;&#12479;&#12505;&#12540;&#12473;&#12398;&#12383;&#12417;&#12289;Hibernate&#12399;&#21103;&#21839;&#12356;&#21512;&#12431;&#12379;&#12434;&#12469;&#12509;&#12540;&#12488;&#12375;&#12390;&#12356;&#12414;&#12377;&#12290; &#21103;&#21839;&#12356;&#21512;&#12431;&#12379;&#12399;&#25324;&#24359;&#12391;&#22258;&#12414;&#12394;&#12369;&#12428;&#12400;&#12394;&#12426;&#12414;&#12379;&#12435;&#65288;SQL&#12398;&#38598;&#32004;&#38306;&#25968;&#21628;&#12403;&#20986;&#12375;&#12395;&#12424;&#12427;&#20107;&#12364;&#22810;&#12356;&#12391;&#12377;&#65289;&#12290; &#38306;&#36899;&#21103;&#21839;&#12356;&#21512;&#12431;&#12379;(&#22806;&#37096;&#12463;&#12456;&#12522;&#20013;&#12398;&#21029;&#21517;&#12434;&#21442;&#29031;&#12377;&#12427;&#21103;&#21839;&#12356;&#21512;&#12431;&#12379;&#12398;&#12371;&#12392;)&#12373;&#12360;&#35377;&#21487;&#12373;&#12428;&#12414;&#12377;&#12290;
+            
+         </p><pre class="programlisting">from Cat as fatcat
+where fatcat.weight &gt; (
+    select avg(cat.weight) from DomesticCat cat
+)</pre><pre class="programlisting">from DomesticCat as cat
+where cat.name = some (
+    select name.nickName from Name as name
+)</pre><pre class="programlisting">from Cat as cat
+where not exists (
+    from Cat as mate where mate.mate = cat
+)</pre><pre class="programlisting">from DomesticCat as cat
+where cat.name not in (
+    select name.nickName from Name as name
+)</pre><pre class="programlisting">select cat.id, (select max(kit.weight) from cat.kitten kit)
+from Cat as cat</pre><p>HQL&#21103;&#21839;&#12356;&#21512;&#12431;&#12379;&#12399;&#12289;select&#12414;&#12383;&#12399;where&#31680;&#12384;&#12369;&#12391;&#20351;&#12431;&#12428;&#12427;&#12371;&#12392;&#12395;&#27880;&#24847;&#12375;&#12390;&#12367;&#12384;&#12373;&#12356;&#12290; </p>
+         <p>Note that subqueries can also utilize <code class="literal">row value constructor</code> syntax. See <a href="queryhql-tuple.html" title="14.18. Row value constructor syntax">&#38917;14.18. &#12300;Row value constructor syntax&#12301;</a> for more details. 
+         </p>
+      </div>
+      <div class="navfooter">
+         <hr>
+         <table width="100%" summary="Navigation footer">
+            <tr>
+               <td width="40%" align="left"><a accesskey="p" href="queryhql-grouping.html">&#21069;&#12398;&#12506;&#12540;&#12472;</a>&nbsp;
+               </td>
+               <td width="20%" align="center"><a accesskey="u" href="queryhql.html">&#19978;&#12395;&#25147;&#12427;</a></td>
+               <td width="40%" align="right">&nbsp;<a accesskey="n" href="queryhql-examples.html">&#27425;&#12398;&#12506;&#12540;&#12472;</a></td>
+            </tr>
+            <tr>
+               <td width="40%" align="left" valign="top">14.12. group by&#31680;&nbsp;</td>
+               <td width="20%" align="center"><a accesskey="h" href="index.html">&#12507;&#12540;&#12512;</a></td>
+               <td width="40%" align="right" valign="top">&nbsp;14.14. HQL&#12398;&#20363;</td>
+            </tr>
+         </table>
+      </div>
+   </body>
+</html>

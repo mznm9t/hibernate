@@ -1,0 +1,184 @@
+<html>
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   
+      <title>14.10.&nbsp;&#34920;&#36798;&#24335;</title>
+      <link rel="stylesheet" href="css/html.css" type="text/css">
+      <meta name="generator" content="DocBook XSL Stylesheets V1.72.0">
+      <link rel="start" href="index.html" title="HIBERNATE - &#31526;&#21512;Java&#20064;&#24815;&#30340;&#20851;&#31995;&#25968;&#25454;&#24211;&#25345;&#20037;&#21270;">
+      <link rel="up" href="queryhql.html" title="&#31532;&nbsp;14&nbsp;&#31456;&nbsp;HQL: Hibernate&#26597;&#35810;&#35821;&#35328;">
+      <link rel="prev" href="queryhql-where.html" title="14.9.&nbsp;where&#23376;&#21477;">
+      <link rel="next" href="queryhql-ordering.html" title="14.11.&nbsp;order by&#23376;&#21477;">
+   </head>
+   <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+      <div class="navheader">
+         <table width="100%" summary="Navigation header">
+            <tr>
+               <th colspan="3" align="center">14.10.&nbsp;&#34920;&#36798;&#24335;</th>
+            </tr>
+            <tr>
+               <td width="20%" align="left"><a accesskey="p" href="queryhql-where.html">&#19978;&#19968;&#39029;</a>&nbsp;
+               </td>
+               <th width="60%" align="center">&#31532;&nbsp;14&nbsp;&#31456;&nbsp;HQL: Hibernate&#26597;&#35810;&#35821;&#35328;</th>
+               <td width="20%" align="right">&nbsp;<a accesskey="n" href="queryhql-ordering.html">&#19979;&#19968;&#39029;</a></td>
+            </tr>
+         </table>
+         <hr>
+      </div>
+      <div class="sect1" lang="zh-CN">
+         <div class="titlepage">
+            <div>
+               <div>
+                  <h2 class="title" style="clear: both"><a name="queryhql-expressions"></a>14.10.&nbsp;&#34920;&#36798;&#24335;
+                  </h2>
+               </div>
+            </div>
+         </div>
+         <p>&#22312;<code class="literal">where</code>&#23376;&#21477;&#20013;&#20801;&#35768;&#20351;&#29992;&#30340;&#34920;&#36798;&#24335;&#21253;&#25324; &#22823;&#22810;&#25968;&#20320;&#21487;&#20197;&#22312;SQL&#20351;&#29992;&#30340;&#34920;&#36798;&#24335;&#31181;&#31867;: 
+         </p>
+         <div class="itemizedlist">
+            <ul type="disc" compact>
+               <li>
+                  <p>&#25968;&#23398;&#36816;&#31639;&#31526;<code class="literal">+, -, *, /</code> 
+                  </p>
+               </li>
+               <li>
+                  <p>&#20108;&#36827;&#21046;&#27604;&#36739;&#36816;&#31639;&#31526;<code class="literal">=, &gt;=, &lt;=, &lt;&gt;, !=, like</code> 
+                  </p>
+               </li>
+               <li>
+                  <p>&#36923;&#36753;&#36816;&#31639;&#31526;<code class="literal">and, or, not</code> 
+                  </p>
+               </li>
+               <li>
+                  <p>Parentheses <code class="literal">( )</code>, indicating grouping 
+                  </p>
+               </li>
+               <li>
+                  <p><code class="literal">in</code>, <code class="literal">not in</code>, <code class="literal">between</code>, <code class="literal">is null</code>, <code class="literal">is not null</code>, <code class="literal">is empty</code>, <code class="literal">is not empty</code>, <code class="literal">member of</code> and <code class="literal">not member of</code> 
+                  </p>
+               </li>
+               <li>
+                  <p>"&#31616;&#21333;&#30340;" case, <code class="literal">case ... when ... then ... else ... end</code>,&#21644; "&#25628;&#32034;" case, <code class="literal">case when ... then ... else ... end</code> 
+                  </p>
+               </li>
+               <li>
+                  <p>&#23383;&#31526;&#20018;&#36830;&#25509;&#31526;<code class="literal">...||...</code> or <code class="literal">concat(...,...)</code> 
+                  </p>
+               </li>
+               <li>
+                  <p><code class="literal">current_date()</code>, <code class="literal">current_time()</code>, <code class="literal">current_timestamp()</code> 
+                  </p>
+               </li>
+               <li>
+                  <p><code class="literal">second(...)</code>, <code class="literal">minute(...)</code>, <code class="literal">hour(...)</code>, <code class="literal">day(...)</code>, <code class="literal">month(...)</code>, <code class="literal">year(...)</code>, 
+                  </p>
+               </li>
+               <li>
+                  <p>EJB-QL 3.0&#23450;&#20041;&#30340;&#20219;&#20309;&#20989;&#25968;&#25110;&#25805;&#20316;&#65306;<code class="literal">substring(), trim(), lower(), upper(), length(), locate(), abs(), sqrt(), bit_length()&#65292; mod()</code> 
+                  </p>
+               </li>
+               <li>
+                  <p><code class="literal">coalesce()</code> &#21644; <code class="literal">nullif()</code> 
+                  </p>
+               </li>
+               <li>
+                  <p><code class="literal">str()</code> &#25226;&#25968;&#23383;&#25110;&#32773;&#26102;&#38388;&#20540;&#36716;&#25442;&#20026;&#21487;&#35835;&#30340;&#23383;&#31526;&#20018; 
+                  </p>
+               </li>
+               <li>
+                  <p><code class="literal">cast(... as ...)</code>, &#20854;&#31532;&#20108;&#20010;&#21442;&#25968;&#26159;&#26576;Hibernate&#31867;&#22411;&#30340;&#21517;&#23383;&#65292;&#20197;&#21450;<code class="literal">extract(... from ...)</code>&#65292;&#21482;&#35201;ANSI <code class="literal">cast()</code> &#21644; <code class="literal">extract()</code> &#34987;&#24213;&#23618;&#25968;&#25454;&#24211;&#25903;&#25345; 
+                  </p>
+               </li>
+               <li>
+                  <p>HQL <code class="literal">index()</code> &#20989;&#25968;&#65292;&#20316;&#29992;&#20110;join&#30340;&#26377;&#24207;&#38598;&#21512;&#30340;&#21035;&#21517;&#12290; 
+                  </p>
+               </li>
+               <li>
+                  <p>HQL&#20989;&#25968;&#65292;&#25226;&#38598;&#21512;&#20316;&#20026;&#21442;&#25968;:<code class="literal">size(), minelement(), maxelement(), minindex(), maxindex()</code>,&#36824;&#26377;&#29305;&#21035;&#30340;<code class="literal">elements()</code> &#21644;<code class="literal">indices</code>&#20989;&#25968;&#65292;&#21487;&#20197;&#19982;&#25968;&#37327;&#35789;&#21152;&#20197;&#38480;&#23450;&#65306;<code class="literal">some, all, exists, any, in</code>&#12290; 
+                  </p>
+               </li>
+               <li>
+                  <p>&#20219;&#20309;&#25968;&#25454;&#24211;&#25903;&#25345;&#30340;SQL&#26631;&#37327;&#20989;&#25968;&#65292;&#27604;&#22914;<code class="literal">sign()</code>, <code class="literal">trunc()</code>, <code class="literal">rtrim()</code>, <code class="literal">sin()</code> 
+                  </p>
+               </li>
+               <li>
+                  <p>JDBC&#39118;&#26684;&#30340;&#21442;&#25968;&#20256;&#20837; <code class="literal">?</code> 
+                  </p>
+               </li>
+               <li>
+                  <p>&#21629;&#21517;&#21442;&#25968;<code class="literal">:name</code>, <code class="literal">:start_date</code>, <code class="literal">:x1</code> 
+                  </p>
+               </li>
+               <li>
+                  <p>SQL &#30452;&#25509;&#24120;&#37327; <code class="literal">'foo'</code>, <code class="literal">69</code>, <code class="literal">6.66E+2</code>, <code class="literal">'1970-01-01 10:00:01.0'</code> 
+                  </p>
+               </li>
+               <li>
+                  <p>Java <code class="literal">public static final</code> &#31867;&#22411;&#30340;&#24120;&#37327; <code class="literal">eg.Color.TABBY</code> 
+                  </p>
+               </li>
+            </ul>
+         </div>
+         <p>&#20851;&#38190;&#23383;<code class="literal">in</code>&#19982;<code class="literal">between</code>&#21487;&#25353;&#22914;&#19979;&#26041;&#27861;&#20351;&#29992;: 
+         </p><pre class="programlisting">from DomesticCat cat where cat.name between 'A' and 'B'</pre><pre class="programlisting">from DomesticCat cat where cat.name in ( 'Foo', 'Bar', 'Baz' )</pre><p>&#32780;&#19988;&#21542;&#23450;&#30340;&#26684;&#24335;&#20063;&#21487;&#20197;&#22914;&#19979;&#20070;&#20889;&#65306; </p><pre class="programlisting">from DomesticCat cat where cat.name not between 'A' and 'B'</pre><pre class="programlisting">from DomesticCat cat where cat.name not in ( 'Foo', 'Bar', 'Baz' )</pre><p>&#21516;&#26679;, &#23376;&#21477;<code class="literal">is null</code>&#19982;<code class="literal">is not null</code>&#21487;&#20197;&#34987;&#29992;&#26469;&#27979;&#35797;&#31354;&#20540;(null). 
+         </p>
+         <p>&#22312;Hibernate&#37197;&#32622;&#25991;&#20214;&#20013;&#22768;&#26126;HQL&#8220;&#26597;&#35810;&#26367;&#20195;&#65288;query substitutions&#65289;&#8221;&#20043;&#21518;&#65292; &#24067;&#23572;&#34920;&#36798;&#24335;&#65288;Booleans&#65289;&#21487;&#20197;&#22312;&#20854;&#20182;&#34920;&#36798;&#24335;&#20013;&#36731;&#26494;&#30340;&#20351;&#29992;: </p><pre class="programlisting">&lt;property name="hibernate.query.substitutions"&gt;true 1, false 0&lt;/property&gt;</pre><p>&#31995;&#32479;&#23558;&#35813;HQL&#36716;&#25442;&#20026;SQL&#35821;&#21477;&#26102;&#65292;&#35813;&#35774;&#32622;&#34920;&#26126;&#23558;&#29992;&#23383;&#31526; <code class="literal">1</code> &#21644; <code class="literal">0</code> &#26469; &#21462;&#20195;&#20851;&#38190;&#23383;<code class="literal">true</code> &#21644; <code class="literal">false</code>: 
+         </p><pre class="programlisting">from Cat cat where cat.alive = true</pre><p>&#20320;&#21487;&#20197;&#29992;&#29305;&#27530;&#23646;&#24615;<code class="literal">size</code>, &#25110;&#26159;&#29305;&#27530;&#20989;&#25968;<code class="literal">size()</code>&#27979;&#35797;&#19968;&#20010;&#38598;&#21512;&#30340;&#22823;&#23567;&#12290; 
+         </p><pre class="programlisting">from Cat cat where cat.kittens.size &gt; 0</pre><pre class="programlisting">from Cat cat where size(cat.kittens) &gt; 0</pre><p>&#23545;&#20110;&#32034;&#24341;&#20102;&#65288;&#26377;&#24207;&#65289;&#30340;&#38598;&#21512;&#65292;&#20320;&#21487;&#20197;&#20351;&#29992;<code class="literal">minindex</code> &#19982; <code class="literal">maxindex</code>&#20989;&#25968;&#26469;&#24341;&#29992;&#21040;&#26368;&#23567;&#19982;&#26368;&#22823;&#30340;&#32034;&#24341;&#24207;&#25968;&#12290; &#21516;&#29702;&#65292;&#20320;&#21487;&#20197;&#20351;&#29992;<code class="literal">minelement</code> &#19982; <code class="literal">maxelement</code>&#20989;&#25968;&#26469; &#24341;&#29992;&#21040;&#19968;&#20010;&#22522;&#26412;&#25968;&#25454;&#31867;&#22411;&#30340;&#38598;&#21512;&#20013;&#26368;&#23567;&#19982;&#26368;&#22823;&#30340;&#20803;&#32032;&#12290; 
+         </p><pre class="programlisting">from Calendar cal where maxelement(cal.holidays) &gt; current_date</pre><pre class="programlisting">from Order order where maxindex(order.items) &gt; 100</pre><pre class="programlisting">from Order order where minelement(order.items) &gt; 10000</pre><p>&#22312;&#20256;&#36882;&#19968;&#20010;&#38598;&#21512;&#30340;&#32034;&#24341;&#38598;&#25110;&#32773;&#26159;&#20803;&#32032;&#38598;(<code class="literal">elements</code>&#19982;<code class="literal">indices</code> &#20989;&#25968;) &#25110;&#32773;&#20256;&#36882;&#19968;&#20010;&#23376;&#26597;&#35810;&#30340;&#32467;&#26524;&#30340;&#26102;&#20505;&#65292;&#21487;&#20197;&#20351;&#29992;SQL&#20989;&#25968;<code class="literal">any, some, all, exists, in</code> 
+         </p><pre class="programlisting">select mother from Cat as mother, Cat as kit
+where kit in elements(foo.kittens)</pre><pre class="programlisting">select p from NameList list, Person p
+where p.name = some elements(list.names)</pre><pre class="programlisting">from Cat cat where exists elements(cat.kittens)</pre><pre class="programlisting">from Player p where 3 &gt; all elements(p.scores)</pre><pre class="programlisting">from Show show where 'fizard' in indices(show.acts)</pre><p>&#27880;&#24847;&#65292;&#22312;Hibernate3&#31181;&#65292;&#36825;&#20123;&#32467;&#26500;&#21464;&#37327;- <code class="literal">size</code>, <code class="literal">elements</code>, <code class="literal">indices</code>, <code class="literal">minindex</code>, <code class="literal">maxindex</code>, <code class="literal">minelement</code>, <code class="literal">maxelement</code> - &#21482;&#33021;&#22312;where&#23376;&#21477;&#20013;&#20351;&#29992;&#12290; 
+         </p>
+         <p>&#19968;&#20010;&#34987;&#32034;&#24341;&#36807;&#30340;&#65288;&#26377;&#24207;&#30340;&#65289;&#38598;&#21512;&#30340;&#20803;&#32032;(arrays, lists, maps)&#21487;&#20197;&#22312;&#20854;&#20182;&#32034;&#24341;&#20013;&#34987;&#24341;&#29992;&#65288;&#21482;&#33021;&#22312;where&#23376;&#21477;&#20013;&#65289;&#65306; </p><pre class="programlisting">from Order order where order.items[0].id = 1234</pre><pre class="programlisting">select person from Person person, Calendar calendar
+where calendar.holidays['national day'] = person.birthDay
+    and person.nationality.calendar = calendar</pre><pre class="programlisting">select item from Item item, Order order
+where order.items[ order.deliveredItemIndices[0] ] = item and order.id = 11</pre><pre class="programlisting">select item from Item item, Order order
+where order.items[ maxindex(order.items) ] = item and order.id = 11</pre><p>&#22312;<code class="literal">[]</code>&#20013;&#30340;&#34920;&#36798;&#24335;&#29978;&#33267;&#21487;&#20197;&#26159;&#19968;&#20010;&#31639;&#25968;&#34920;&#36798;&#24335;&#12290; 
+         </p><pre class="programlisting">select item from Item item, Order order
+where order.items[ size(order.items) - 1 ] = item</pre><p>&#23545;&#20110;&#19968;&#20010;&#19968;&#23545;&#22810;&#30340;&#20851;&#32852;&#65288;one-to-many association&#65289;&#25110;&#26159;&#20540;&#30340;&#38598;&#21512;&#20013;&#30340;&#20803;&#32032;&#65292; HQL&#20063;&#25552;&#20379;&#20869;&#24314;&#30340;<code class="literal">index()</code>&#20989;&#25968;&#65292; 
+         </p><pre class="programlisting">select item, index(item) from Order order
+    join order.items item
+where index(item) &lt; 5</pre><p>&#22914;&#26524;&#24213;&#23618;&#25968;&#25454;&#24211;&#25903;&#25345;&#26631;&#37327;&#30340;SQL&#20989;&#25968;&#65292;&#23427;&#20204;&#20063;&#21487;&#20197;&#34987;&#20351;&#29992; </p><pre class="programlisting">from DomesticCat cat where upper(cat.name) like 'FRI%'</pre><p>&#22914;&#26524;&#20320;&#36824;&#19981;&#33021;&#23545;&#25152;&#26377;&#30340;&#36825;&#20123;&#28145;&#20449;&#19981;&#30097;&#65292;&#24819;&#24819;&#19979;&#38754;&#30340;&#26597;&#35810;&#12290;&#22914;&#26524;&#20351;&#29992;SQL&#65292;&#35821;&#21477;&#38271;&#24230;&#20250;&#22686;&#38271;&#22810;&#23569;&#65292;&#21487;&#35835;&#24615;&#20250;&#19979;&#38477;&#22810;&#23569;&#65306; </p><pre class="programlisting">select cust
+from Product prod,
+    Store store
+    inner join store.customers cust
+where prod.name = 'widget'
+    and store.location.name in ( 'Melbourne', 'Sydney' )
+    and prod = all elements(cust.currentOrder.lineItems)</pre><p><span class="emphasis"><em>&#25552;&#31034;:</em></span> &#20250;&#20687;&#22914;&#19979;&#30340;&#35821;&#21477; 
+         </p><pre class="programlisting">SELECT cust.name, cust.address, cust.phone, cust.id, cust.current_order
+FROM customers cust,
+    stores store,
+    locations loc,
+    store_customers sc,
+    product prod
+WHERE prod.name = 'widget'
+    AND store.loc_id = loc.id
+    AND loc.name IN ( 'Melbourne', 'Sydney' )
+    AND sc.store_id = store.id
+    AND sc.cust_id = cust.id
+    AND prod.id = ALL(
+        SELECT item.prod_id
+        FROM line_items item, orders o
+        WHERE item.order_id = o.id
+            AND cust.current_order = o.id
+    )</pre></div>
+      <div class="navfooter">
+         <hr>
+         <table width="100%" summary="Navigation footer">
+            <tr>
+               <td width="40%" align="left"><a accesskey="p" href="queryhql-where.html">&#19978;&#19968;&#39029;</a>&nbsp;
+               </td>
+               <td width="20%" align="center"><a accesskey="u" href="queryhql.html">&#19978;&#19968;&#32423;</a></td>
+               <td width="40%" align="right">&nbsp;<a accesskey="n" href="queryhql-ordering.html">&#19979;&#19968;&#39029;</a></td>
+            </tr>
+            <tr>
+               <td width="40%" align="left" valign="top">14.9.&nbsp;where&#23376;&#21477;&nbsp;</td>
+               <td width="20%" align="center"><a accesskey="h" href="index.html">&#36215;&#22987;&#39029;</a></td>
+               <td width="40%" align="right" valign="top">&nbsp;14.11.&nbsp;order by&#23376;&#21477;</td>
+            </tr>
+         </table>
+      </div>
+   </body>
+</html>

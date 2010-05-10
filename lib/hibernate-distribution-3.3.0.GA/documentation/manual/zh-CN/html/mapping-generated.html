@@ -1,0 +1,67 @@
+<html>
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   
+      <title>5.6.&nbsp;&#25968;&#25454;&#24211;&#29983;&#25104;&#23646;&#24615;&#65288;Generated Properties&#65289;</title>
+      <link rel="stylesheet" href="css/html.css" type="text/css">
+      <meta name="generator" content="DocBook XSL Stylesheets V1.72.0">
+      <link rel="start" href="index.html" title="HIBERNATE - &#31526;&#21512;Java&#20064;&#24815;&#30340;&#20851;&#31995;&#25968;&#25454;&#24211;&#25345;&#20037;&#21270;">
+      <link rel="up" href="mapping.html" title="&#31532;&nbsp;5&nbsp;&#31456;&nbsp;&#23545;&#35937;/&#20851;&#31995;&#25968;&#25454;&#24211;&#26144;&#23556;&#22522;&#30784;(Basic O/R Mapping)">
+      <link rel="prev" href="mapping-alternatives.html" title="5.5.&nbsp;&#20854;&#20182;&#20803;&#25968;&#25454;(Metadata)">
+      <link rel="next" href="mapping-database-object.html" title="5.7.&nbsp;&#36741;&#21161;&#25968;&#25454;&#24211;&#23545;&#35937;(Auxiliary Database Objects)">
+   </head>
+   <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+      <div class="navheader">
+         <table width="100%" summary="Navigation header">
+            <tr>
+               <th colspan="3" align="center">5.6.&nbsp;&#25968;&#25454;&#24211;&#29983;&#25104;&#23646;&#24615;&#65288;Generated Properties&#65289;</th>
+            </tr>
+            <tr>
+               <td width="20%" align="left"><a accesskey="p" href="mapping-alternatives.html">&#19978;&#19968;&#39029;</a>&nbsp;
+               </td>
+               <th width="60%" align="center">&#31532;&nbsp;5&nbsp;&#31456;&nbsp;&#23545;&#35937;/&#20851;&#31995;&#25968;&#25454;&#24211;&#26144;&#23556;&#22522;&#30784;(Basic O/R Mapping)</th>
+               <td width="20%" align="right">&nbsp;<a accesskey="n" href="mapping-database-object.html">&#19979;&#19968;&#39029;</a></td>
+            </tr>
+         </table>
+         <hr>
+      </div>
+      <div class="sect1" lang="zh-CN">
+         <div class="titlepage">
+            <div>
+               <div>
+                  <h2 class="title" style="clear: both"><a name="mapping-generated"></a>5.6.&nbsp;&#25968;&#25454;&#24211;&#29983;&#25104;&#23646;&#24615;&#65288;Generated Properties&#65289;
+                  </h2>
+               </div>
+            </div>
+         </div>
+         <p>Generated properties&#25351;&#30340;&#26159;&#20854;&#20540;&#30001;&#25968;&#25454;&#24211;&#29983;&#25104;&#30340;&#23646;&#24615;&#12290;&#19968;&#33324;&#26469;&#35828;&#65292;&#22914;&#26524;&#23545;&#35937;&#26377;&#20219;&#20309;&#23646;&#24615;&#30001;&#25968;&#25454;&#24211;&#29983;&#25104;&#20540;&#65292;Hibernate&#24212;&#29992;&#31243;&#24207;&#38656;&#35201;&#36827;&#34892;<code class="literal">&#21047;&#26032;(refresh)</code>&#12290;&#20294;&#22914;&#26524;&#25226;&#23646;&#24615;&#26631;&#26126;&#20026;generated&#65292;&#23601;&#21487;&#20197;&#36716;&#30001;Hibernate&#26469;&#36127;&#36131;&#36825;&#20010;&#21160;&#20316;&#12290;&#23454;&#38469;&#19978;&#12290;&#23545;&#23450;&#20041;&#20102;generated properties&#30340;&#23454;&#20307;,&#27599;&#24403;Hibernate&#25191;&#34892;&#19968;&#26465;SQL INSERT&#25110;&#32773;UPDATE&#35821;&#21477;&#65292;&#20250;&#31435;&#21051;&#25191;&#34892;&#19968;&#26465;select&#26469;&#33719;&#24471;&#29983;&#25104;&#30340;&#20540;&#12290;
+            
+         </p>
+         <p>Properties marked as generated must additionally be non-insertable and non-updateable. Only <a href="mapping.html#mapping-declaration-version" title="5.1.9.&nbsp;&#29256;&#26412;&#65288;version&#65289;(&#21487;&#36873;)">versions</a>, <a href="mapping.html#mapping-declaration-timestamp" title="5.1.10.&nbsp;timestamp (&#21487;&#36873;)">timestamps</a>, and <a href="mapping.html#mapping-declaration-property" title="5.1.11.&nbsp;property">simple properties</a> can be marked as generated. 
+         </p>
+         <p><code class="literal">never</code> (&#40664;&#35748;) &#26631;&#26126;&#27492;&#23646;&#24615;&#20540;&#19981;&#26159;&#20174;&#25968;&#25454;&#24211;&#20013;&#29983;&#25104;&#12290; 
+         </p>
+         <p><code class="literal">insert</code> - states that the given property value is generated on insert, but is not regenerated on subsequent updates. Things like
+            created-date would fall into this category. Note that even thought <a href="mapping.html#mapping-declaration-version" title="5.1.9.&nbsp;&#29256;&#26412;&#65288;version&#65289;(&#21487;&#36873;)">version</a> and <a href="mapping.html#mapping-declaration-timestamp" title="5.1.10.&nbsp;timestamp (&#21487;&#36873;)">timestamp</a> properties can be marked as generated, this option is not available there... 
+         </p>
+         <p><code class="literal">always</code> - &#26631;&#26126;&#27492;&#23646;&#24615;&#20540;&#22312;insert&#21644;update&#26102;&#37117;&#20250;&#34987;&#29983;&#25104;&#12290; 
+         </p>
+      </div>
+      <div class="navfooter">
+         <hr>
+         <table width="100%" summary="Navigation footer">
+            <tr>
+               <td width="40%" align="left"><a accesskey="p" href="mapping-alternatives.html">&#19978;&#19968;&#39029;</a>&nbsp;
+               </td>
+               <td width="20%" align="center"><a accesskey="u" href="mapping.html">&#19978;&#19968;&#32423;</a></td>
+               <td width="40%" align="right">&nbsp;<a accesskey="n" href="mapping-database-object.html">&#19979;&#19968;&#39029;</a></td>
+            </tr>
+            <tr>
+               <td width="40%" align="left" valign="top">5.5.&nbsp;&#20854;&#20182;&#20803;&#25968;&#25454;(Metadata)&nbsp;</td>
+               <td width="20%" align="center"><a accesskey="h" href="index.html">&#36215;&#22987;&#39029;</a></td>
+               <td width="40%" align="right" valign="top">&nbsp;5.7.&nbsp;&#36741;&#21161;&#25968;&#25454;&#24211;&#23545;&#35937;(Auxiliary Database Objects)</td>
+            </tr>
+         </table>
+      </div>
+   </body>
+</html>

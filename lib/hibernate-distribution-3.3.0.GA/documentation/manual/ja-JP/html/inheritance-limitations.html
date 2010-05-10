@@ -1,0 +1,133 @@
+<html>
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   
+      <title>9.2. &#21046;&#38480;</title>
+      <link rel="stylesheet" href="css/html.css" type="text/css">
+      <meta name="generator" content="DocBook XSL Stylesheets V1.72.0">
+      <link rel="start" href="index.html" title="HIBERNATE - Relational Persistence for Idiomatic Java">
+      <link rel="up" href="inheritance.html" title="&#31532;9&#31456; &#32153;&#25215;&#12510;&#12483;&#12500;&#12531;&#12464;">
+      <link rel="prev" href="inheritance.html" title="&#31532;9&#31456; &#32153;&#25215;&#12510;&#12483;&#12500;&#12531;&#12464;">
+      <link rel="next" href="objectstate.html" title="&#31532;10&#31456; &#12458;&#12502;&#12472;&#12455;&#12463;&#12488;&#12434;&#25201;&#12358;">
+   </head>
+   <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+      <div class="navheader">
+         <table width="100%" summary="Navigation header">
+            <tr>
+               <th colspan="3" align="center">9.2. &#21046;&#38480;</th>
+            </tr>
+            <tr>
+               <td width="20%" align="left"><a accesskey="p" href="inheritance.html">&#21069;&#12398;&#12506;&#12540;&#12472;</a>&nbsp;
+               </td>
+               <th width="60%" align="center">&#31532;9&#31456; &#32153;&#25215;&#12510;&#12483;&#12500;&#12531;&#12464;</th>
+               <td width="20%" align="right">&nbsp;<a accesskey="n" href="objectstate.html">&#27425;&#12398;&#12506;&#12540;&#12472;</a></td>
+            </tr>
+         </table>
+         <hr>
+      </div>
+      <div class="sect1" lang="ja-JP">
+         <div class="titlepage">
+            <div>
+               <div>
+                  <h2 class="title" style="clear: both"><a name="inheritance-limitations"></a>9.2. &#21046;&#38480;
+                  </h2>
+               </div>
+            </div>
+         </div>
+         <p>table-per-concrete-class &#12510;&#12483;&#12500;&#12531;&#12464;&#25126;&#30053;&#12408;&#12398;&#12300;&#26263;&#40665;&#30340;&#12509;&#12522;&#12514;&#12540;&#12501;&#12451;&#12474;&#12512;&#12301;&#12450;&#12503;&#12525;&#12540;&#12481;&#12395;&#12399; &#12356;&#12367;&#12388;&#12363;&#12398;&#21046;&#38480;&#12364;&#12354;&#12426;&#12414;&#12377;&#12290;<code class="literal">&lt;union-subclass&gt;</code> &#12510;&#12483;&#12500;&#12531;&#12464;&#12395;&#23550;&#12375;&#12390;&#12418; &#23569;&#12375;&#24369;&#12417;&#12398;&#21046;&#38480;&#12364;&#12354;&#12426;&#12414;&#12377;&#12290; 
+         </p>
+         <p>&#27425;&#12398;&#12486;&#12540;&#12502;&#12523;&#12395;&#12289;Hibernate&#12395;&#12362;&#12369;&#12427;table-per-concrete-class&#12510;&#12483;&#12500;&#12531;&#12464;&#12398; &#21046;&#38480;&#12420;&#26263;&#40665;&#30340;&#12509;&#12522;&#12514;&#12540;&#12501;&#12451;&#12474;&#12512;&#12398;&#21046;&#38480;&#12434;&#31034;&#12375;&#12414;&#12377;&#12290; </p>
+         <div class="table"><a name="d0e8963"></a><p class="title"><b>&#34920; 9.1. &#32153;&#25215;&#12510;&#12483;&#12500;&#12531;&#12464;&#12398;&#27231;&#33021;</b></p>
+            <div class="table-contents">
+               <table summary="&#32153;&#25215;&#12510;&#12483;&#12500;&#12531;&#12464;&#12398;&#27231;&#33021;" border="1">
+                  <colgroup>
+                     <col align="left">
+                     <col align="left">
+                     <col align="left">
+                     <col align="left">
+                     <col align="left">
+                     <col align="left">
+                     <col align="left">
+                     <col align="left">
+                  </colgroup>
+                  <thead>
+                     <tr>
+                        <th align="left">&#32153;&#25215;&#25126;&#30053;</th>
+                        <th align="left">&#22810;&#23550;&#19968;&#12398;&#12509;&#12522;&#12514;&#12540;&#12501;&#12451;&#12474;&#12512;</th>
+                        <th align="left">&#19968;&#23550;&#19968;&#12398;&#12509;&#12522;&#12514;&#12540;&#12501;&#12451;&#12474;&#12512;</th>
+                        <th align="left">&#19968;&#23550;&#22810;&#12398;&#12509;&#12522;&#12514;&#12540;&#12501;&#12451;&#12474;&#12512;</th>
+                        <th align="left">&#22810;&#23550;&#22810;&#12398;&#12509;&#12522;&#12514;&#12540;&#12501;&#12451;&#12474;&#12512;</th>
+                        <th align="left">Polymorphic <code class="literal">load()/get()</code></th>
+                        <th align="left">&#12509;&#12522;&#12514;&#12540;&#12501;&#12451;&#12474;&#12512;&#12434;&#20351;&#12387;&#12383;&#12463;&#12456;&#12522;</th>
+                        <th align="left">&#12509;&#12522;&#12514;&#12540;&#12501;&#12451;&#12474;&#12512;&#12434;&#20351;&#12387;&#12383;&#32080;&#21512;</th>
+                        <th align="left">&#22806;&#37096;&#32080;&#21512;&#12395;&#12424;&#12427;&#12501;&#12455;&#12483;&#12481;</th>
+                     </tr>
+                  </thead>
+                  <tbody>
+                     <tr>
+                        <td align="left">table per class-hierarchy</td>
+                        <td align="left"><code class="literal">&lt;many-to-one&gt;</code></td>
+                        <td align="left"><code class="literal">&lt;one-to-one&gt;</code></td>
+                        <td align="left"><code class="literal">&lt;one-to-many&gt;</code></td>
+                        <td align="left"><code class="literal">&lt;many-to-many&gt;</code></td>
+                        <td align="left"><code class="literal">s.get(Payment.class, id)</code></td>
+                        <td align="left"><code class="literal">from Payment p</code></td>
+                        <td align="left"><code class="literal">from Order o join o.payment p</code></td>
+                        <td align="left"><span class="emphasis"><em>&#12469;&#12509;&#12540;&#12488;</em></span></td>
+                     </tr>
+                     <tr>
+                        <td align="left">table per subclass</td>
+                        <td align="left"><code class="literal">&lt;many-to-one&gt;</code></td>
+                        <td align="left"><code class="literal">&lt;one-to-one&gt;</code></td>
+                        <td align="left"><code class="literal">&lt;one-to-many&gt;</code></td>
+                        <td align="left"><code class="literal">&lt;many-to-many&gt;</code></td>
+                        <td align="left"><code class="literal">s.get(Payment.class, id)</code></td>
+                        <td align="left"><code class="literal">from Payment p</code></td>
+                        <td align="left"><code class="literal">from Order o join o.payment p</code></td>
+                        <td align="left"><span class="emphasis"><em>&#12469;&#12509;&#12540;&#12488;</em></span></td>
+                     </tr>
+                     <tr>
+                        <td align="left">table per concrete-class (union-subclass)</td>
+                        <td align="left"><code class="literal">&lt;many-to-one&gt;</code></td>
+                        <td align="left"><code class="literal">&lt;one-to-one&gt;</code></td>
+                        <td align="left"><code class="literal">&lt;one-to-many&gt;</code> (for <code class="literal">inverse="true"</code> only)
+                        </td>
+                        <td align="left"><code class="literal">&lt;many-to-many&gt;</code></td>
+                        <td align="left"><code class="literal">s.get(Payment.class, id)</code></td>
+                        <td align="left"><code class="literal">from Payment p</code></td>
+                        <td align="left"><code class="literal">from Order o join o.payment p</code></td>
+                        <td align="left"><span class="emphasis"><em>&#12469;&#12509;&#12540;&#12488;</em></span></td>
+                     </tr>
+                     <tr>
+                        <td align="left">table per concrete class (implicit polymorphism)</td>
+                        <td align="left"><code class="literal">&lt;any&gt;</code></td>
+                        <td align="left"><span class="emphasis"><em>&#12469;&#12509;&#12540;&#12488;&#12375;&#12390;&#12356;&#12414;&#12379;&#12435;</em></span></td>
+                        <td align="left"><span class="emphasis"><em>&#12469;&#12509;&#12540;&#12488;&#12375;&#12390;&#12356;&#12414;&#12379;&#12435;</em></span></td>
+                        <td align="left"><code class="literal">&lt;many-to-any&gt;</code></td>
+                        <td align="left"><code class="literal">s.createCriteria(Payment.class).add( Restrictions.idEq(id) ).uniqueResult()</code></td>
+                        <td align="left"><code class="literal">from Payment p</code></td>
+                        <td align="left"><span class="emphasis"><em>&#12469;&#12509;&#12540;&#12488;&#12375;&#12390;&#12356;&#12414;&#12379;&#12435;</em></span></td>
+                        <td align="left"><span class="emphasis"><em>&#12469;&#12509;&#12540;&#12488;&#12375;&#12390;&#12356;&#12414;&#12379;&#12435;</em></span></td>
+                     </tr>
+                  </tbody>
+               </table>
+            </div>
+         </div><br class="table-break"></div>
+      <div class="navfooter">
+         <hr>
+         <table width="100%" summary="Navigation footer">
+            <tr>
+               <td width="40%" align="left"><a accesskey="p" href="inheritance.html">&#21069;&#12398;&#12506;&#12540;&#12472;</a>&nbsp;
+               </td>
+               <td width="20%" align="center"><a accesskey="u" href="inheritance.html">&#19978;&#12395;&#25147;&#12427;</a></td>
+               <td width="40%" align="right">&nbsp;<a accesskey="n" href="objectstate.html">&#27425;&#12398;&#12506;&#12540;&#12472;</a></td>
+            </tr>
+            <tr>
+               <td width="40%" align="left" valign="top">&#31532;9&#31456; &#32153;&#25215;&#12510;&#12483;&#12500;&#12531;&#12464;&nbsp;</td>
+               <td width="20%" align="center"><a accesskey="h" href="index.html">&#12507;&#12540;&#12512;</a></td>
+               <td width="40%" align="right" valign="top">&nbsp;&#31532;10&#31456; &#12458;&#12502;&#12472;&#12455;&#12463;&#12488;&#12434;&#25201;&#12358;</td>
+            </tr>
+         </table>
+      </div>
+   </body>
+</html>

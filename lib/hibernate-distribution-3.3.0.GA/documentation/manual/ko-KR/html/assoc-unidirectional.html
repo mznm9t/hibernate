@@ -1,0 +1,157 @@
+<html>
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   
+      <title>7.2. &#45800;&#48169;&#54693; &#50672;&#44288;&#46308;</title>
+      <link rel="stylesheet" href="css/html.css" type="text/css">
+      <meta name="generator" content="DocBook XSL Stylesheets V1.72.0">
+      <link rel="start" href="index.html" title="HIBERNATE - &#44060;&#49457;&#51080;&#45716; &#51088;&#48148;&#47484; &#50948;&#54620; &#44288;&#44228; &#50689;&#49549;">
+      <link rel="up" href="associations.html" title="7&#51109;. &#50672;&#44288; &#47588;&#54609;&#46308;">
+      <link rel="prev" href="associations.html" title="7&#51109;. &#50672;&#44288; &#47588;&#54609;&#46308;">
+      <link rel="next" href="assoc-unidirectional-join.html" title="7.3. join &#53580;&#51060;&#48660;&#46308;&#50640; &#45824;&#54620; &#45800;&#48169;&#54693; &#50672;&#44288;&#46308;">
+   </head>
+   <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+      <div class="navheader">
+         <table width="100%" summary="Navigation header">
+            <tr>
+               <th colspan="3" align="center">7.2. &#45800;&#48169;&#54693; &#50672;&#44288;&#46308;</th>
+            </tr>
+            <tr>
+               <td width="20%" align="left"><a accesskey="p" href="associations.html">&#51060;&#51204;</a>&nbsp;
+               </td>
+               <th width="60%" align="center">7&#51109;. &#50672;&#44288; &#47588;&#54609;&#46308;</th>
+               <td width="20%" align="right">&nbsp;<a accesskey="n" href="assoc-unidirectional-join.html">&#45796;&#51020;</a></td>
+            </tr>
+         </table>
+         <hr>
+      </div>
+      <div class="sect1" lang="ko-KR">
+         <div class="titlepage">
+            <div>
+               <div>
+                  <h2 class="title" style="clear: both"><a name="assoc-unidirectional"></a>7.2. &#45800;&#48169;&#54693; &#50672;&#44288;&#46308;
+                  </h2>
+               </div>
+            </div>
+         </div>
+         <div class="sect2" lang="ko-KR">
+            <div class="titlepage">
+               <div>
+                  <div>
+                     <h3 class="title"><a name="assoc-unidirectional-m21"></a>7.2.1. many to one
+                     </h3>
+                  </div>
+               </div>
+            </div>
+            <p><span class="emphasis"><em>&#45800;&#48169;&#54693; many-to-one &#50672;&#44288;</em></span>&#51008; &#44032;&#51109; &#44277;&#53685;&#51201;&#51064; &#51333;&#47448;&#51032; &#45800;&#48169;&#54693; &#50672;&#44288;&#51060;&#45796;. 
+            </p><pre class="programlisting">&lt;class name="Person"&gt;
+    &lt;id name="id" column="personId"&gt;
+        &lt;generator class="native"/&gt;
+    &lt;/id&gt;
+    &lt;many-to-one name="address" 
+        column="addressId"
+        not-null="true"/&gt;
+&lt;/class&gt;
+
+&lt;class name="Address"&gt;
+    &lt;id name="id" column="addressId"&gt;
+        &lt;generator class="native"/&gt;
+    &lt;/id&gt;
+&lt;/class&gt;</pre><pre class="programlisting">
+create table Person ( personId bigint not null primary key, addressId bigint not null )
+create table Address ( addressId bigint not null primary key )
+        </pre></div>
+         <div class="sect2" lang="ko-KR">
+            <div class="titlepage">
+               <div>
+                  <div>
+                     <h3 class="title"><a name="assoc-unidirectional-121"></a>7.2.2. one to one
+                     </h3>
+                  </div>
+               </div>
+            </div>
+            <p><span class="emphasis"><em>foreign &#53412;&#50640; &#45824;&#54620; &#45800;&#48169;&#54693; one-to-one &#50672;&#44288;&#51008; &#45824;&#44060; &#50500;&#51452; &#46041;&#51068;&#54616;&#45796;.</em></span> &#50976;&#51068;&#54620; &#52264;&#51060;&#51216;&#51008; &#52972;&#47100; &#50976;&#51068;(unique) &#52968;&#49828;&#53944;&#47112;&#51064;&#53944;&#51060;&#45796;. 
+            </p><pre class="programlisting">&lt;class name="Person"&gt;
+    &lt;id name="id" column="personId"&gt;
+        &lt;generator class="native"/&gt;
+    &lt;/id&gt;
+    &lt;many-to-one name="address" 
+        column="addressId" 
+        unique="true"
+        not-null="true"/&gt;
+&lt;/class&gt;
+
+&lt;class name="Address"&gt;
+    &lt;id name="id" column="addressId"&gt;
+        &lt;generator class="native"/&gt;
+    &lt;/id&gt;
+&lt;/class&gt;</pre><pre class="programlisting">
+create table Person ( personId bigint not null primary key, addressId bigint not null unique )
+create table Address ( addressId bigint not null primary key )
+        </pre><p><span class="emphasis"><em>&#54616;&#45208;&#51032; &#54532;&#46972;&#51060;&#47672;&#47532; &#53412;&#50640; &#45824;&#54620; &#45800;&#48169;&#54693; one-to-one &#50672;&#44288;</em></span>&#51008; &#45824;&#44060; &#53945;&#48324;&#54620; id &#49373;&#49457;&#44592;&#47484; &#49324;&#50857;&#54620;&#45796;. (&#51060; &#50696;&#51228;&#50640;&#49436; &#50672;&#44288;&#51032; &#48169;&#54693;&#51060; &#50669;&#51204;&#46104;&#50632;&#51020;&#51012; &#51452;&#47785;&#54616;&#46972;.) 
+            </p><pre class="programlisting">&lt;class name="Person"&gt;
+    &lt;id name="id" column="personId"&gt;
+        &lt;generator class="native"/&gt;
+    &lt;/id&gt;
+&lt;/class&gt;
+
+&lt;class name="Address"&gt;
+    &lt;id name="id" column="personId"&gt;
+        &lt;generator class="foreign"&gt;
+            &lt;param name="property"&gt;person&lt;/param&gt;
+        &lt;/generator&gt;
+    &lt;/id&gt;
+    &lt;one-to-one name="person" constrained="true"/&gt;
+&lt;/class&gt;</pre><pre class="programlisting">
+create table Person ( personId bigint not null primary key )
+create table Address ( personId bigint not null primary key )
+        </pre></div>
+         <div class="sect2" lang="ko-KR">
+            <div class="titlepage">
+               <div>
+                  <div>
+                     <h3 class="title"><a name="assoc-unidirectional-12m"></a>7.2.3. one to many
+                     </h3>
+                  </div>
+               </div>
+            </div>
+            <p><span class="emphasis"><em>&#54616;&#45208;&#51032; foreign &#53412;&#50640; &#45824;&#54620; &#45800;&#48169;&#54693; one-to-many &#50672;&#44288;</em></span>&#51008; &#47588;&#50864; &#49353;&#45796;&#47480; &#44221;&#50864;&#51060;&#44256;, &#49892;&#51228;&#47196; &#44428;&#51109;&#46104;&#51648; &#50506;&#45716;&#45796;. 
+            </p><pre class="programlisting">&lt;class name="Person"&gt;
+    &lt;id name="id" column="personId"&gt;
+        &lt;generator class="native"/&gt;
+    &lt;/id&gt;
+    &lt;set name="addresses"&gt;
+        &lt;key column="personId" 
+            not-null="true"/&gt;
+        &lt;one-to-many class="Address"/&gt;
+    &lt;/set&gt;
+&lt;/class&gt;
+
+&lt;class name="Address"&gt;
+    &lt;id name="id" column="addressId"&gt;
+        &lt;generator class="native"/&gt;
+    &lt;/id&gt;
+&lt;/class&gt;</pre><pre class="programlisting">
+create table Person ( personId bigint not null primary key )
+create table Address ( addressId bigint not null primary key, personId bigint not null )
+        </pre><p>&#50864;&#47532;&#45716; &#51060;&#47088; &#51333;&#47448;&#51032; &#50672;&#44288;&#50640; &#45824;&#54644; &#54616;&#45208;&#51032; join &#53580;&#51060;&#48660;&#51012; &#49324;&#50857;&#54616;&#45716; &#44163;&#51060; &#45908; &#51339;&#45796;&#44256; &#49373;&#44033;&#54620;&#45796;. </p>
+         </div>
+      </div>
+      <div class="navfooter">
+         <hr>
+         <table width="100%" summary="Navigation footer">
+            <tr>
+               <td width="40%" align="left"><a accesskey="p" href="associations.html">&#51060;&#51204;</a>&nbsp;
+               </td>
+               <td width="20%" align="center"><a accesskey="u" href="associations.html">&#50948;&#47196;</a></td>
+               <td width="40%" align="right">&nbsp;<a accesskey="n" href="assoc-unidirectional-join.html">&#45796;&#51020;</a></td>
+            </tr>
+            <tr>
+               <td width="40%" align="left" valign="top">7&#51109;. &#50672;&#44288; &#47588;&#54609;&#46308;&nbsp;</td>
+               <td width="20%" align="center"><a accesskey="h" href="index.html">&#52376;&#51020;&#51004;&#47196;</a></td>
+               <td width="40%" align="right" valign="top">&nbsp;7.3. join &#53580;&#51060;&#48660;&#46308;&#50640; &#45824;&#54620; &#45800;&#48169;&#54693; &#50672;&#44288;&#46308;</td>
+            </tr>
+         </table>
+      </div>
+   </body>
+</html>

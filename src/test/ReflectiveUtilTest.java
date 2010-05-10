@@ -72,5 +72,29 @@ public class ReflectiveUtilTest extends TestCase {
 		assertTrue(b.getKnownAs().equals("omar"));
 		assertTrue(b.getCreated().equals(NOW));
 	}
+	
+	public final void testSetFieldsReflectively() {
+		Date NOW=new Date();
+		String KNOWNAS="omar";
+		Contactable a=new ContactableH();
+		ReflectiveUtil.setField(a, "created", NOW);
+		ReflectiveUtil.setField(a, "knownAs", KNOWNAS);
+		Person b=new PersonH();
+		ReflectiveUtil.copyObjectFields(a, b,true);
+		assertTrue(b.getKnownAs().equals("omar"));
+		assertTrue(b.getCreated().equals(NOW));
+	}
+	
+	public final void testGetFieldsReflectively() {
+		Date NOW=new Date();
+		String KNOWNAS="omar";
+		Contactable a=new ContactableH();
+		a.setCreated(NOW);
+		a.setKnownAs(KNOWNAS);
+		Person b=new PersonH();
+		ReflectiveUtil.copyObjectFields(a, b,true);
+		assertEquals(KNOWNAS, ReflectiveUtil.getField(a, "knownAs"));
+		assertEquals(NOW, ReflectiveUtil.getField(a, "created"));
+	}
 
 }

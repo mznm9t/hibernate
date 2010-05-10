@@ -1,0 +1,93 @@
+<html>
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   
+      <title>4.5.&nbsp;&#20803;&#32452;&#29255;&#26029;&#26144;&#23556;(Tuplizers)</title>
+      <link rel="stylesheet" href="css/html.css" type="text/css">
+      <meta name="generator" content="DocBook XSL Stylesheets V1.72.0">
+      <link rel="start" href="index.html" title="HIBERNATE - &#31526;&#21512;Java&#20064;&#24815;&#30340;&#20851;&#31995;&#25968;&#25454;&#24211;&#25345;&#20037;&#21270;">
+      <link rel="up" href="persistent-classes.html" title="&#31532;&nbsp;4&nbsp;&#31456;&nbsp;&#25345;&#20037;&#21270;&#31867;(Persistent Classes)">
+      <link rel="prev" href="persistent-classes-dynamicmodels.html" title="4.4.&nbsp;&#21160;&#24577;&#27169;&#22411;(Dynamic models)">
+      <link rel="next" href="persistent-classes-extensions.html" title="4.6.&nbsp;Extentsions">
+   </head>
+   <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+      <div class="navheader">
+         <table width="100%" summary="Navigation header">
+            <tr>
+               <th colspan="3" align="center">4.5.&nbsp;&#20803;&#32452;&#29255;&#26029;&#26144;&#23556;(Tuplizers)</th>
+            </tr>
+            <tr>
+               <td width="20%" align="left"><a accesskey="p" href="persistent-classes-dynamicmodels.html">&#19978;&#19968;&#39029;</a>&nbsp;
+               </td>
+               <th width="60%" align="center">&#31532;&nbsp;4&nbsp;&#31456;&nbsp;&#25345;&#20037;&#21270;&#31867;(Persistent Classes)</th>
+               <td width="20%" align="right">&nbsp;<a accesskey="n" href="persistent-classes-extensions.html">&#19979;&#19968;&#39029;</a></td>
+            </tr>
+         </table>
+         <hr>
+      </div>
+      <div class="sect1" lang="zh-CN">
+         <div class="titlepage">
+            <div>
+               <div>
+                  <h2 class="title" style="clear: both"><a name="persistent-classes-tuplizers"></a>4.5.&nbsp;&#20803;&#32452;&#29255;&#26029;&#26144;&#23556;(Tuplizers)
+                  </h2>
+               </div>
+            </div>
+         </div>
+         <p><code class="literal">org.hibernate.tuple.Tuplizer</code>&#65292;&#20197;&#21450;&#20854;&#23376;&#25509;&#21475;&#65292;&#36127;&#36131;&#26681;&#25454;&#32473;&#23450;&#30340;<code class="literal">org.hibernate.EntityMode</code>&#65292;&#26469;&#22797;&#29616;&#29255;&#26029;&#25968;&#25454;&#12290;&#22914;&#26524;&#32473;&#23450;&#30340;&#29255;&#26029;&#25968;&#25454;&#34987;&#35748;&#20026;&#20854;&#26159;&#19968;&#31181;&#25968;&#25454;&#32467;&#26500;&#65292;"tuplizer"&#23601;&#26159;&#19968;&#20010;&#30693;&#36947;&#22914;&#20309;&#21019;&#24314;&#36825;&#26679;&#30340;&#25968;&#25454;&#32467;&#26500;&#65292;&#20197;&#21450;&#22914;&#20309;&#32473;&#36825;&#20010;&#25968;&#25454;&#32467;&#26500;&#36171;&#20540;&#30340;&#19996;&#35199;&#12290;&#27604;&#22914;&#35828;&#65292;&#23545;&#20110;POJO&#36825;&#31181;Entity Mode&#65292;&#23545;&#24212;&#30340;tuplizer&#30693;&#36947;&#36890;&#36807;&#20854;&#26500;&#36896;&#26041;&#27861;&#26469;&#21019;&#24314;&#19968;&#20010;POJO&#65292;&#20877;&#36890;&#36807;&#20854;&#23646;&#24615;&#35775;&#38382;&#22120;&#26469;&#35775;&#38382;POJO&#23646;&#24615;&#12290;&#26377;&#20004;&#22823;&#31867;&#39640;&#23618;Tuplizer&#65292;&#20998;&#21035;&#26159;<code class="literal">org.hibernate.tuple.entity.EntityTuplizer</code> &#21644;<code class="literal">org.hibernate.tuple.entity.ComponentTuplizer</code>&#25509;&#21475;&#12290;<code class="literal">EntityTuplizer</code>&#36127;&#36131;&#31649;&#29702;&#19978;&#38754;&#25552;&#21040;&#30340;&#23454;&#20307;&#30340;&#22865;&#32422;&#65292;&#32780;<code class="literal">ComponentTuplizer</code>&#21017;&#26159;&#38024;&#23545;&#32452;&#20214;&#30340;&#12290; 
+         </p>
+         <p>&#29992;&#25143;&#20063;&#21487;&#20197;&#25554;&#20837;&#20854;&#33258;&#23450;&#20041;&#30340;tuplizer&#12290;&#25110;&#35768;&#24744;&#38656;&#35201;&#19968;&#31181;&#19981;&#21516;&#20110;dynamic-map entity-mode&#20013;&#20351;&#29992;&#30340;<code class="literal">java.util.HashMap</code>&#30340;<code class="literal">java.util.Map</code>&#23454;&#29616;&#65307;&#25110;&#35768;&#24744;&#38656;&#35201;&#19982;&#40664;&#35748;&#31574;&#30053;&#19981;&#21516;&#30340;&#20195;&#29702;&#29983;&#25104;&#31574;&#30053;(proxy generation strategy)&#12290;&#36890;&#36807;&#33258;&#23450;&#20041;tuplizer&#23454;&#29616;&#65292;&#36825;&#20004;&#20010;&#30446;&#26631;&#24744;&#37117;&#21487;&#20197;&#36798;&#21040;&#12290;Tuplizer&#23450;&#20041;&#34987;&#38468;&#21152;&#21040;&#23427;&#20204;&#26399;&#26395;&#31649;&#29702;&#30340;entity&#25110;&#32773;component&#26144;&#23556;&#20013;&#12290;&#22238;&#21040;&#25105;&#20204;&#30340;customer
+            entity&#20363;&#23376;&#65306; 
+         </p><pre class="programlisting">&lt;hibernate-mapping&gt;
+    &lt;class entity-name="Customer"&gt;
+        &lt;!--
+            Override the dynamic-map entity-mode
+            tuplizer for the customer entity
+        --&gt;
+        &lt;tuplizer entity-mode="dynamic-map"
+                class="CustomMapTuplizerImpl"/&gt;
+
+        &lt;id name="id" type="long" column="ID"&gt;
+            &lt;generator class="sequence"/&gt;
+        &lt;/id&gt;
+
+        &lt;!-- other properties --&gt;
+        ...
+    &lt;/class&gt;
+&lt;/hibernate-mapping&gt;
+
+
+public class CustomMapTuplizerImpl
+        extends org.hibernate.tuple.entity.DynamicMapEntityTuplizer {
+    // override the buildInstantiator() method to plug in our custom map...
+    protected final Instantiator buildInstantiator(
+            org.hibernate.mapping.PersistentClass mappingInfo) {
+        return new CustomMapInstantiator( mappingInfo );
+    }
+
+    private static final class CustomMapInstantiator
+            extends org.hibernate.tuple.DynamicMapInstantitor {
+        // override the generateMap() method to return our custom map...
+            protected final Map generateMap() {
+                    return new CustomMap();
+            }
+    }
+}</pre></div>
+      <div class="navfooter">
+         <hr>
+         <table width="100%" summary="Navigation footer">
+            <tr>
+               <td width="40%" align="left"><a accesskey="p" href="persistent-classes-dynamicmodels.html">&#19978;&#19968;&#39029;</a>&nbsp;
+               </td>
+               <td width="20%" align="center"><a accesskey="u" href="persistent-classes.html">&#19978;&#19968;&#32423;</a></td>
+               <td width="40%" align="right">&nbsp;<a accesskey="n" href="persistent-classes-extensions.html">&#19979;&#19968;&#39029;</a></td>
+            </tr>
+            <tr>
+               <td width="40%" align="left" valign="top">4.4.&nbsp;&#21160;&#24577;&#27169;&#22411;(Dynamic models)&nbsp;</td>
+               <td width="20%" align="center"><a accesskey="h" href="index.html">&#36215;&#22987;&#39029;</a></td>
+               <td width="40%" align="right" valign="top">&nbsp;4.6.&nbsp;Extentsions</td>
+            </tr>
+         </table>
+      </div>
+   </body>
+</html>

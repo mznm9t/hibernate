@@ -1,0 +1,60 @@
+<html>
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   
+      <title>14.4. join &#44396;&#47928;&#51032; &#54805;&#49885;&#46308;</title>
+      <link rel="stylesheet" href="css/html.css" type="text/css">
+      <meta name="generator" content="DocBook XSL Stylesheets V1.72.0">
+      <link rel="start" href="index.html" title="HIBERNATE - &#44060;&#49457;&#51080;&#45716; &#51088;&#48148;&#47484; &#50948;&#54620; &#44288;&#44228; &#50689;&#49549;">
+      <link rel="up" href="queryhql.html" title="14&#51109;. HQL: &#54616;&#51060;&#48260;&#45348;&#51060;&#53944; &#51656;&#51032; &#50616;&#50612;(Hibernate Query Language)">
+      <link rel="prev" href="queryhql-joins.html" title="14.3. &#50672;&#44288;&#46308;&#44284; &#51312;&#51064;&#46308;">
+      <link rel="next" href="queryhql-identifier-property.html" title="14.5. &#49885;&#48324;&#51088; &#49549;&#49457; &#52280;&#51312;&#54616;&#44592;">
+   </head>
+   <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+      <div class="navheader">
+         <table width="100%" summary="Navigation header">
+            <tr>
+               <th colspan="3" align="center">14.4. join &#44396;&#47928;&#51032; &#54805;&#49885;&#46308;</th>
+            </tr>
+            <tr>
+               <td width="20%" align="left"><a accesskey="p" href="queryhql-joins.html">&#51060;&#51204;</a>&nbsp;
+               </td>
+               <th width="60%" align="center">14&#51109;. HQL: &#54616;&#51060;&#48260;&#45348;&#51060;&#53944; &#51656;&#51032; &#50616;&#50612;(Hibernate Query Language)</th>
+               <td width="20%" align="right">&nbsp;<a accesskey="n" href="queryhql-identifier-property.html">&#45796;&#51020;</a></td>
+            </tr>
+         </table>
+         <hr>
+      </div>
+      <div class="sect1" lang="ko-KR">
+         <div class="titlepage">
+            <div>
+               <div>
+                  <h2 class="title" style="clear: both"><a name="queryhql-joins-forms"></a>14.4. join &#44396;&#47928;&#51032; &#54805;&#49885;&#46308;
+                  </h2>
+               </div>
+            </div>
+         </div>
+         <p>HQL&#51008; &#46160; &#44032;&#51648; &#54805;&#49885;&#51032; &#50672;&#44288; &#51312;&#51064;&#51012; &#51648;&#50896;&#54620;&#45796;: <code class="literal">&#50516;&#47925;&#51201;</code> &#44536;&#47532;&#44256; <code class="literal">&#47749;&#49884;&#51201;</code>. 
+         </p>
+         <p>&#50526;&#51032; &#51208;&#50640;&#49436; &#48372;&#50668;&#51652; &#51656;&#51032;&#46308;&#51008; &#47784;&#46160; join &#53412;&#50892;&#46300;&#44032; from &#51208; &#45236;&#50640; &#47749;&#49884;&#51201;&#51004;&#47196; &#49324;&#50857;&#46104;&#45716; <code class="literal">&#47749;&#49884;&#51201;&#51064;</code> &#54805;&#49885;&#51012; &#49324;&#50857;&#54620;&#45796;. &#51060;&#44163;&#51008; &#44428;&#51109;&#46104;&#45716; &#54805;&#49885;&#51060;&#45796;. 
+         </p>
+         <p><code class="literal">&#54632;&#52629;&#51201;&#51064;</code> &#54805;&#49885;&#51008; join &#53412;&#50892;&#46300;&#47484; &#49324;&#50857;&#54616;&#51648; &#50506;&#45716;&#45796;. &#45824;&#49888;&#50640;, &#50672;&#44288;&#46308;&#51008; dot(.) &#54364;&#44592;&#47484; &#49324;&#50857;&#54616;&#50668; "dot-&#52280;&#51312;&#46108;&#45796;(dereferenced)". <code class="literal">&#54632;&#52629;&#51201;&#51064;</code> &#51312;&#51064;&#46308;&#51008; &#51076;&#51032;&#51032; HQL &#51208;&#46308;&#45236;&#50640; &#45208;&#53440;&#45216; &#49688; &#51080;&#45796;. <code class="literal">&#54632;&#52629;&#51201;&#51064;</code> join&#51008; &#44208;&#44284;&#46104;&#45716; SQL &#47928;&#51109;&#50640;&#49436; inner join&#51004;&#47196; &#44480;&#44208;&#46108;&#45796;. 
+         </p><pre class="programlisting">from Cat as cat where cat.mate.name like '%s%'</pre></div>
+      <div class="navfooter">
+         <hr>
+         <table width="100%" summary="Navigation footer">
+            <tr>
+               <td width="40%" align="left"><a accesskey="p" href="queryhql-joins.html">&#51060;&#51204;</a>&nbsp;
+               </td>
+               <td width="20%" align="center"><a accesskey="u" href="queryhql.html">&#50948;&#47196;</a></td>
+               <td width="40%" align="right">&nbsp;<a accesskey="n" href="queryhql-identifier-property.html">&#45796;&#51020;</a></td>
+            </tr>
+            <tr>
+               <td width="40%" align="left" valign="top">14.3. &#50672;&#44288;&#46308;&#44284; &#51312;&#51064;&#46308;&nbsp;</td>
+               <td width="20%" align="center"><a accesskey="h" href="index.html">&#52376;&#51020;&#51004;&#47196;</a></td>
+               <td width="40%" align="right" valign="top">&nbsp;14.5. &#49885;&#48324;&#51088; &#49549;&#49457; &#52280;&#51312;&#54616;&#44592;</td>
+            </tr>
+         </table>
+      </div>
+   </body>
+</html>

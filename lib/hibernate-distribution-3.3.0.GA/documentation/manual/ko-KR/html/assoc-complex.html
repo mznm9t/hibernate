@@ -1,0 +1,82 @@
+<html>
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   
+      <title>7.6. &#48372;&#45796; &#48373;&#51105;&#54620; &#50672;&#44288; &#47588;&#54609;&#46308;</title>
+      <link rel="stylesheet" href="css/html.css" type="text/css">
+      <meta name="generator" content="DocBook XSL Stylesheets V1.72.0">
+      <link rel="start" href="index.html" title="HIBERNATE - &#44060;&#49457;&#51080;&#45716; &#51088;&#48148;&#47484; &#50948;&#54620; &#44288;&#44228; &#50689;&#49549;">
+      <link rel="up" href="associations.html" title="7&#51109;. &#50672;&#44288; &#47588;&#54609;&#46308;">
+      <link rel="prev" href="assoc-bidirectional-join.html" title="7.5. join &#53580;&#51060;&#48660;&#46308;&#50640; &#45824;&#54620; &#50577;&#48169;&#54693; &#50672;&#44288;&#46308;">
+      <link rel="next" href="components.html" title="8&#51109;. Component &#47588;&#54609;">
+   </head>
+   <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+      <div class="navheader">
+         <table width="100%" summary="Navigation header">
+            <tr>
+               <th colspan="3" align="center">7.6. &#48372;&#45796; &#48373;&#51105;&#54620; &#50672;&#44288; &#47588;&#54609;&#46308;</th>
+            </tr>
+            <tr>
+               <td width="20%" align="left"><a accesskey="p" href="assoc-bidirectional-join.html">&#51060;&#51204;</a>&nbsp;
+               </td>
+               <th width="60%" align="center">7&#51109;. &#50672;&#44288; &#47588;&#54609;&#46308;</th>
+               <td width="20%" align="right">&nbsp;<a accesskey="n" href="components.html">&#45796;&#51020;</a></td>
+            </tr>
+         </table>
+         <hr>
+      </div>
+      <div class="sect1" lang="ko-KR">
+         <div class="titlepage">
+            <div>
+               <div>
+                  <h2 class="title" style="clear: both"><a name="assoc-complex"></a>7.6. &#48372;&#45796; &#48373;&#51105;&#54620; &#50672;&#44288; &#47588;&#54609;&#46308;
+                  </h2>
+               </div>
+            </div>
+         </div>
+         <p>&#48372;&#45796; &#48373;&#51105;&#54620; &#50672;&#44288; &#51312;&#51064;&#46308;&#51008; <span class="emphasis"><em>&#44537;&#44592;</em></span> &#46300;&#47932;&#45796;. Hibernate&#45716; &#47588;&#54609; &#47928;&#49436;&#46308; &#45236;&#50640; &#49341;&#51077;&#46108; SQL &#51312;&#44033;&#46308;&#51012; &#49324;&#50857;&#54616;&#50668; &#48372;&#45796; &#48373;&#51105;&#54620; &#49345;&#54889;&#51012; &#52376;&#47532;&#54616;&#45716; &#44163;&#51012; &#44032;&#45733;&#54616;&#46020;&#47197; &#54644;&#51456;&#45796;. &#50696;&#47484; &#46308;&#50612;, &#47564;&#51068; &#44228;&#51340; &#45236;&#50669; &#51221;&#48372; &#45936;&#51060;&#53552;&#47484; &#44032;&#51652; &#54616;&#45208;&#51060; &#53580;&#51060;&#48660;&#51060; <code class="literal">accountNumber</code>, <code class="literal">effectiveEndDate</code> &#44536;&#47532;&#44256; <code class="literal">effectiveStartDate</code> &#52972;&#47100;&#46308;&#51012; &#51221;&#51032;&#54624; &#44221;&#50864;, &#45796;&#51020;&#44284; &#44057;&#51060; &#47588;&#54609;&#46108;&#45796;: 
+         </p><pre class="programlisting">&lt;properties name="currentAccountKey"&gt;
+    &lt;property name="accountNumber" type="string" not-null="true"/&gt;
+    &lt;property name="currentAccount" type="boolean"&gt;
+        &lt;formula&gt;case when effectiveEndDate is null then 1 else 0 end&lt;/formula&gt;
+    &lt;/property&gt;
+&lt;/properties&gt;
+&lt;property name="effectiveEndDate" type="date"/&gt;
+&lt;property name="effectiveStateDate" type="date" not-null="true"/&gt;</pre><p>&#44536;&#46412; &#50864;&#47532;&#45716; &#45796;&#51020;&#51012; &#49324;&#50857;&#54616;&#50668; &#54616;&#45208;&#51032; &#50672;&#44288;&#51012; <span class="emphasis"><em>&#54788;&#51116;</em></span> &#51064;&#49828;&#53556;&#49828; (null <code class="literal">effectiveEndDate</code>&#51012; &#44032;&#51652; &#51064;&#49828;&#53556;&#49828;)&#47196; &#47588;&#54609;&#49884;&#53420; &#49688; &#51080;&#45796;: 
+         </p><pre class="programlisting">&lt;many-to-one name="currentAccountInfo" 
+        property-ref="currentAccountKey"
+        class="AccountInfo"&gt;
+    &lt;column name="accountNumber"/&gt;
+    &lt;formula&gt;'1'&lt;/formula&gt;
+&lt;/many-to-one&gt;</pre><p>&#48372;&#45796; &#48373;&#51105;&#54620; &#50696;&#51228;&#50640;&#49436;, <code class="literal">Employee</code>&#50752; <code class="literal">Organization</code> &#49324;&#51060;&#51032; &#50672;&#44288;&#51060; &#51204;&#52404; &#44256;&#50857; &#45236;&#50669; &#45936;&#51060;&#53552;&#47484; &#44032;&#51652; <code class="literal">Employment</code> &#53580;&#51060;&#48660; &#45236;&#50640; &#50976;&#51648;&#46108;&#45796;&#44256; &#44032;&#51221;&#54616;&#51088;. &#44536;&#46412; &#51333;&#50629;&#50896;&#51032; <span class="emphasis"><em>&#44032;&#51109; &#52572;&#44540;&#51032;</em></span> &#44256;&#50857;&#51452;&#50640; &#45824;&#54620; &#54616;&#45208;&#51032; &#50672;&#44288;(&#44032;&#51109; &#52572;&#44540;&#51032; <code class="literal">startDate</code>&#47484; &#44054;&#44256; &#51080;&#45716; &#44163;)&#51060; &#45796;&#51020; &#48169;&#48277;&#51004;&#47196; &#47588;&#54609;&#46112; &#49688; &#51080;&#45796;: 
+         </p><pre class="programlisting">&lt;join&gt;
+    &lt;key column="employeeId"/&gt;
+    &lt;subselect&gt;
+        select employeeId, orgId 
+        from Employments 
+        group by orgId 
+        having startDate = max(startDate)
+    &lt;/subselect&gt;
+    &lt;many-to-one name="mostRecentEmployer" 
+            class="Organization" 
+            column="orgId"/&gt;
+&lt;/join&gt;</pre><p>&#45817;&#49888;&#51008; &#51060; &#44592;&#45733;&#51004;&#47196; &#50500;&#51452; &#49373;&#49328;&#49457;&#51012; &#50619;&#51012; &#49688; &#51080;&#51648;&#47564;, &#44536;&#44163;&#51008; &#45824;&#44060; HQL &#46608;&#45716; criteria &#51656;&#51032;&#47484; &#49324;&#50857;&#54616;&#50668; &#51060;&#46308; &#51333;&#47448;&#51032; &#44221;&#50864;&#46308;&#51012; &#52376;&#47532;&#54616;&#45716; &#44163;&#51060; &#48372;&#45796; &#49892;&#50857;&#51201;&#51060;&#45796;. </p>
+      </div>
+      <div class="navfooter">
+         <hr>
+         <table width="100%" summary="Navigation footer">
+            <tr>
+               <td width="40%" align="left"><a accesskey="p" href="assoc-bidirectional-join.html">&#51060;&#51204;</a>&nbsp;
+               </td>
+               <td width="20%" align="center"><a accesskey="u" href="associations.html">&#50948;&#47196;</a></td>
+               <td width="40%" align="right">&nbsp;<a accesskey="n" href="components.html">&#45796;&#51020;</a></td>
+            </tr>
+            <tr>
+               <td width="40%" align="left" valign="top">7.5. join &#53580;&#51060;&#48660;&#46308;&#50640; &#45824;&#54620; &#50577;&#48169;&#54693; &#50672;&#44288;&#46308;&nbsp;</td>
+               <td width="20%" align="center"><a accesskey="h" href="index.html">&#52376;&#51020;&#51004;&#47196;</a></td>
+               <td width="40%" align="right" valign="top">&nbsp;8&#51109;. Component &#47588;&#54609;</td>
+            </tr>
+         </table>
+      </div>
+   </body>
+</html>

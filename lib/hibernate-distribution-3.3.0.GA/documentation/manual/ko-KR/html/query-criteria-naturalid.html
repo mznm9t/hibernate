@@ -1,0 +1,78 @@
+<html>
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   
+      <title>15.9. natural &#49885;&#48324;&#51088;&#50640; &#51032;&#54620; &#51656;&#51032;&#46308;</title>
+      <link rel="stylesheet" href="css/html.css" type="text/css">
+      <meta name="generator" content="DocBook XSL Stylesheets V1.72.0">
+      <link rel="start" href="index.html" title="HIBERNATE - &#44060;&#49457;&#51080;&#45716; &#51088;&#48148;&#47484; &#50948;&#54620; &#44288;&#44228; &#50689;&#49549;">
+      <link rel="up" href="querycriteria.html" title="15&#51109;. Criteria &#51656;&#51032;&#46308;">
+      <link rel="prev" href="querycriteria-detachedqueries.html" title="15.8. Detached &#51656;&#51032;&#46308;&#44284; &#49436;&#48652;&#51656;&#51032;&#46308;">
+      <link rel="next" href="querysql.html" title="16&#51109;. Native SQL">
+   </head>
+   <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+      <div class="navheader">
+         <table width="100%" summary="Navigation header">
+            <tr>
+               <th colspan="3" align="center">15.9. natural &#49885;&#48324;&#51088;&#50640; &#51032;&#54620; &#51656;&#51032;&#46308;</th>
+            </tr>
+            <tr>
+               <td width="20%" align="left"><a accesskey="p" href="querycriteria-detachedqueries.html">&#51060;&#51204;</a>&nbsp;
+               </td>
+               <th width="60%" align="center">15&#51109;. Criteria &#51656;&#51032;&#46308;</th>
+               <td width="20%" align="right">&nbsp;<a accesskey="n" href="querysql.html">&#45796;&#51020;</a></td>
+            </tr>
+         </table>
+         <hr>
+      </div>
+      <div class="sect1" lang="ko-KR">
+         <div class="titlepage">
+            <div>
+               <div>
+                  <h2 class="title" style="clear: both"><a name="query-criteria-naturalid"></a>15.9. natural &#49885;&#48324;&#51088;&#50640; &#51032;&#54620; &#51656;&#51032;&#46308;
+                  </h2>
+               </div>
+            </div>
+         </div>
+         <p>&#45824;&#48512;&#48516;&#51032; &#51656;&#51032;&#46308;&#50640;&#49436;, criteria &#51656;&#51032;&#46308;&#51012; &#54252;&#54632;&#54616;&#50668;, &#51656;&#51032; &#52880;&#49884;&#45716; &#47588;&#50864; &#54952;&#50984;&#51201;&#51060;&#51648; &#50506;&#45796;. &#50780;&#45264;&#54616;&#47732; &#51656;&#51032; &#52880;&#49884; &#48708;&#50976;&#54952;&#49457;&#51060; &#45320;&#47924; &#51088;&#51452; &#48156;&#49373;&#54616;&#44592; &#46412;&#47928;&#51060;&#45796;. &#54616;&#51648;&#47564;, &#50864;&#47532;&#44032; &#52880;&#49884; &#48708;&#50976;&#54952;&#49457; &#50508;&#44256;&#47532;&#51608;&#51012; &#52572;&#51201;&#54868; &#49884;&#53420; &#49688; &#51080;&#45716; &#54620;
+            &#44032;&#51648; &#53945;&#48324;&#54620; &#51333;&#47448;&#51032; &#51656;&#51032;&#44032; &#51316;&#51116;&#54620;&#45796;: &#49345;&#49688; natural &#53412;&#50640; &#51032;&#54620; &#47337;&#50629;. &#47751;&#47751; &#50612;&#54540;&#47532;&#52992;&#51060;&#49496;&#46308;&#50640;&#49436;, &#51060;&#47088; &#51333;&#47448;&#51032; &#51656;&#51032;&#44032; &#51088;&#51452; &#48156;&#49373;&#54620;&#45796;. criteria API&#45716; &#51060; &#50416;&#51076;&#49352;&#47484; &#50948;&#54620; &#53945;&#48324;&#54620; &#49444;&#48708;&#47484; &#51228;&#44277;&#54620;&#45796;. 
+         </p>
+         <p>&#52395;&#48264;&#51704;&#47196; &#45817;&#49888;&#51008; <code class="literal">&lt;natural-id&gt;</code>&#47484; &#49324;&#50857;&#54616;&#50668; &#45817;&#49888;&#51032; &#50644;&#54000;&#54000;&#50640; &#45824;&#54620; natural &#53412;&#47484; &#47588;&#54609; &#49884;&#53020;&#50556; &#54616;&#44256;, second-level &#52880;&#49884; &#49324;&#50857;&#51012; &#44032;&#45733;&#54616;&#44172; &#54644;&#50556; &#54620;&#45796;. 
+         </p><pre class="programlisting">&lt;class name="User"&gt;
+    &lt;cache usage="read-write"/&gt;
+    &lt;id name="id"&gt;
+        &lt;generator class="increment"/&gt;
+    &lt;/id&gt;
+    &lt;natural-id&gt;
+        &lt;property name="name"/&gt;
+        &lt;property name="org"/&gt;
+    &lt;/natural-id&gt;
+    &lt;property name="password"/&gt;
+&lt;/class&gt;</pre><p>&#51060; &#44592;&#45733;&#51008; <span class="emphasis"><em>&#44032;&#48320;&#49457; &#51080;&#45716;</em></span> natural &#53412;&#46308;&#51012; &#44032;&#51652; &#50644;&#54000;&#54000;&#46308;&#51032; &#50857;&#46020;&#47196; &#44256;&#50504;&#46104;&#50612; &#51080;&#51648; &#50506;&#51020;&#51012; &#45432;&#53944;&#54616;&#46972;. 
+         </p>
+         <p>&#45796;&#51020;&#51004;&#47196; , Hibernate &#51656;&#51032; &#52880;&#49884;&#47484; &#49324;&#50857; &#44032;&#45733;&#54616;&#46020;&#47197; &#54616;&#46972;. </p>
+         <p>&#51060;&#51228; <code class="literal">Restrictions.naturalId()</code>&#45716; &#52880;&#49884; &#50508;&#44256;&#47532;&#51608;&#51012; &#48372;&#45796; &#54952;&#50984;&#51201;&#51004;&#47196; &#49324;&#50857;&#54624; &#49688; &#51080;&#46020;&#47197; &#50864;&#47532;&#50640;&#44172; &#54728;&#50857;&#54644;&#51456;&#45796;. 
+         </p><pre class="programlisting">session.createCriteria(User.class)
+    .add( Restrictions.naturalId()
+        .set("name", "gavin")
+        .set("org", "hb") 
+    ).setCacheable(true)
+    .uniqueResult();</pre></div>
+      <div class="navfooter">
+         <hr>
+         <table width="100%" summary="Navigation footer">
+            <tr>
+               <td width="40%" align="left"><a accesskey="p" href="querycriteria-detachedqueries.html">&#51060;&#51204;</a>&nbsp;
+               </td>
+               <td width="20%" align="center"><a accesskey="u" href="querycriteria.html">&#50948;&#47196;</a></td>
+               <td width="40%" align="right">&nbsp;<a accesskey="n" href="querysql.html">&#45796;&#51020;</a></td>
+            </tr>
+            <tr>
+               <td width="40%" align="left" valign="top">15.8. Detached &#51656;&#51032;&#46308;&#44284; &#49436;&#48652;&#51656;&#51032;&#46308;&nbsp;</td>
+               <td width="20%" align="center"><a accesskey="h" href="index.html">&#52376;&#51020;&#51004;&#47196;</a></td>
+               <td width="40%" align="right" valign="top">&nbsp;16&#51109;. Native SQL</td>
+            </tr>
+         </table>
+      </div>
+   </body>
+</html>

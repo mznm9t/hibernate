@@ -1,0 +1,64 @@
+<html>
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   
+      <title>3.6.&nbsp;&#23454;&#29616;NamingStrategy</title>
+      <link rel="stylesheet" href="css/html.css" type="text/css">
+      <meta name="generator" content="DocBook XSL Stylesheets V1.72.0">
+      <link rel="start" href="index.html" title="HIBERNATE - &#31526;&#21512;Java&#20064;&#24815;&#30340;&#20851;&#31995;&#25968;&#25454;&#24211;&#25345;&#20037;&#21270;">
+      <link rel="up" href="session-configuration.html" title="&#31532;&nbsp;3&nbsp;&#31456;&nbsp;&#37197;&#32622;">
+      <link rel="prev" href="configuration-logging.html" title="3.5.&nbsp;&#26085;&#24535;">
+      <link rel="next" href="configuration-xmlconfig.html" title="3.7.&nbsp;XML&#37197;&#32622;&#25991;&#20214;">
+   </head>
+   <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+      <div class="navheader">
+         <table width="100%" summary="Navigation header">
+            <tr>
+               <th colspan="3" align="center">3.6.&nbsp;&#23454;&#29616;<code class="literal">NamingStrategy</code></th>
+            </tr>
+            <tr>
+               <td width="20%" align="left"><a accesskey="p" href="configuration-logging.html">&#19978;&#19968;&#39029;</a>&nbsp;
+               </td>
+               <th width="60%" align="center">&#31532;&nbsp;3&nbsp;&#31456;&nbsp;&#37197;&#32622;</th>
+               <td width="20%" align="right">&nbsp;<a accesskey="n" href="configuration-xmlconfig.html">&#19979;&#19968;&#39029;</a></td>
+            </tr>
+         </table>
+         <hr>
+      </div>
+      <div class="sect1" lang="zh-CN">
+         <div class="titlepage">
+            <div>
+               <div>
+                  <h2 class="title" style="clear: both"><a name="configuration-namingstrategy"></a>3.6.&nbsp;&#23454;&#29616;<code class="literal">NamingStrategy</code></h2>
+               </div>
+            </div>
+         </div>
+         <p><code class="literal">org.hibernate.cfg.NamingStrategy</code>&#25509;&#21475;&#20801;&#35768;&#20320;&#20026;&#25968;&#25454;&#24211;&#20013;&#30340;&#23545;&#35937;&#21644;schema &#20803;&#32032;&#25351;&#23450;&#19968;&#20010;&#8220;&#21629;&#21517;&#26631;&#20934;&#8221;. 
+         </p>
+         <p>&#20320;&#21487;&#33021;&#20250;&#25552;&#20379;&#19968;&#20123;&#36890;&#36807;Java&#26631;&#35782;&#29983;&#25104;&#25968;&#25454;&#24211;&#26631;&#35782;&#25110;&#23558;&#26144;&#23556;&#23450;&#20041;&#25991;&#20214;&#20013;"&#36923;&#36753;"&#34920;/&#21015;&#21517;&#22788;&#29702;&#25104;"&#29289;&#29702;"&#34920;/&#21015;&#21517;&#30340;&#35268;&#21017;. &#36825;&#20010;&#29305;&#24615;&#26377;&#21161;&#20110;&#20943;&#23569;&#20887;&#38271;&#30340;&#26144;&#23556;&#23450;&#20041;&#25991;&#20214;. </p>
+         <p>&#22312;&#21152;&#20837;&#26144;&#23556;&#23450;&#20041;&#21069;&#65292;&#20320;&#21487;&#20197;&#35843;&#29992; <code class="literal">Configuration.setNamingStrategy()</code>&#25351;&#23450;&#19968;&#20010;&#19981;&#21516;&#30340;&#21629;&#21517;&#31574;&#30053;: 
+         </p><pre class="programlisting">SessionFactory sf = new Configuration()
+    .setNamingStrategy(ImprovedNamingStrategy.INSTANCE)
+    .addFile("Item.hbm.xml")
+    .addFile("Bid.hbm.xml")
+    .buildSessionFactory();</pre><p><code class="literal">org.hibernate.cfg.ImprovedNamingStrategy</code>&#26159;&#19968;&#20010;&#20869;&#24314;&#30340;&#21629;&#21517;&#31574;&#30053;, &#23545; &#19968;&#20123;&#24212;&#29992;&#31243;&#24207;&#32780;&#35328;&#65292;&#21487;&#33021;&#26159;&#38750;&#24120;&#26377;&#29992;&#30340;&#36215;&#28857;. 
+         </p>
+      </div>
+      <div class="navfooter">
+         <hr>
+         <table width="100%" summary="Navigation footer">
+            <tr>
+               <td width="40%" align="left"><a accesskey="p" href="configuration-logging.html">&#19978;&#19968;&#39029;</a>&nbsp;
+               </td>
+               <td width="20%" align="center"><a accesskey="u" href="session-configuration.html">&#19978;&#19968;&#32423;</a></td>
+               <td width="40%" align="right">&nbsp;<a accesskey="n" href="configuration-xmlconfig.html">&#19979;&#19968;&#39029;</a></td>
+            </tr>
+            <tr>
+               <td width="40%" align="left" valign="top">3.5.&nbsp;&#26085;&#24535;&nbsp;</td>
+               <td width="20%" align="center"><a accesskey="h" href="index.html">&#36215;&#22987;&#39029;</a></td>
+               <td width="40%" align="right" valign="top">&nbsp;3.7.&nbsp;XML&#37197;&#32622;&#25991;&#20214;</td>
+            </tr>
+         </table>
+      </div>
+   </body>
+</html>

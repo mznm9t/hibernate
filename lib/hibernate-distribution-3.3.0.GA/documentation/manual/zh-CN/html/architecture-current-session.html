@@ -1,0 +1,87 @@
+<html>
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   
+      <title>2.5.&nbsp;&#19978;&#19979;&#25991;&#30456;&#20851;&#30340;&#65288;Contextual&#65289;Session</title>
+      <link rel="stylesheet" href="css/html.css" type="text/css">
+      <meta name="generator" content="DocBook XSL Stylesheets V1.72.0">
+      <link rel="start" href="index.html" title="HIBERNATE - &#31526;&#21512;Java&#20064;&#24815;&#30340;&#20851;&#31995;&#25968;&#25454;&#24211;&#25345;&#20037;&#21270;">
+      <link rel="up" href="architecture.html" title="&#31532;&nbsp;2&nbsp;&#31456;&nbsp;&#20307;&#31995;&#32467;&#26500;(Architecture)">
+      <link rel="prev" href="architecture-jca.html" title="2.4.&nbsp;&#23545;JCA&#30340;&#25903;&#25345;">
+      <link rel="next" href="session-configuration.html" title="&#31532;&nbsp;3&nbsp;&#31456;&nbsp;&#37197;&#32622;">
+   </head>
+   <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+      <div class="navheader">
+         <table width="100%" summary="Navigation header">
+            <tr>
+               <th colspan="3" align="center">2.5.&nbsp;&#19978;&#19979;&#25991;&#30456;&#20851;&#30340;&#65288;Contextual&#65289;Session</th>
+            </tr>
+            <tr>
+               <td width="20%" align="left"><a accesskey="p" href="architecture-jca.html">&#19978;&#19968;&#39029;</a>&nbsp;
+               </td>
+               <th width="60%" align="center">&#31532;&nbsp;2&nbsp;&#31456;&nbsp;&#20307;&#31995;&#32467;&#26500;(Architecture)</th>
+               <td width="20%" align="right">&nbsp;<a accesskey="n" href="session-configuration.html">&#19979;&#19968;&#39029;</a></td>
+            </tr>
+         </table>
+         <hr>
+      </div>
+      <div class="sect1" lang="zh-CN">
+         <div class="titlepage">
+            <div>
+               <div>
+                  <h2 class="title" style="clear: both"><a name="architecture-current-session"></a>2.5.&nbsp;&#19978;&#19979;&#25991;&#30456;&#20851;&#30340;&#65288;Contextual&#65289;Session
+                  </h2>
+               </div>
+            </div>
+         </div>
+         <p>&#20351;&#29992;Hibernate&#30340;&#22823;&#22810;&#25968;&#24212;&#29992;&#31243;&#24207;&#38656;&#35201;&#26576;&#31181;&#24418;&#24335;&#30340;&#8220;&#19978;&#19979;&#25991;&#30456;&#20851;&#30340;&#8221; session&#65292;&#29305;&#23450;&#30340;session&#22312;&#25972;&#20010;&#29305;&#23450;&#30340;&#19978;&#19979;&#25991;&#33539;&#22260;&#20869;&#22987;&#32456;&#26377;&#25928;&#12290;&#28982;&#32780;&#65292;&#23545;&#19981;&#21516;&#31867;&#22411;&#30340;&#24212;&#29992;&#31243;&#24207;&#32780;&#35328;&#65292;&#35201;&#20026;&#20160;&#20040;&#26159;&#32452;&#25104;&#36825;&#31181;&#8220;&#19978;&#19979;&#25991;&#8221;&#19979;&#19968;&#20010;&#23450;&#20041;&#36890;&#24120;&#26159;&#22256;&#38590;&#30340;&#65307;&#19981;&#21516;&#30340;&#19978;&#19979;&#25991;&#23545;&#8220;&#24403;&#21069;&#8221;&#36825;&#20010;&#27010;&#24565;&#23450;&#20041;&#20102;&#19981;&#21516;&#30340;&#33539;&#22260;&#12290;&#22312;3.0&#29256;&#26412;&#20043;&#21069;&#65292;&#20351;&#29992;Hibernate&#30340;&#31243;&#24207;&#35201;&#20040;&#37319;&#29992;&#33258;&#34892;&#32534;&#20889;&#30340;&#22522;&#20110;<code class="literal">ThreadLocal</code>&#30340;&#19978;&#19979;&#25991;session&#65292;&#35201;&#20040;&#37319;&#29992;<code class="literal">HibernateUtil</code>&#36825;&#26679;&#30340;&#36741;&#21161;&#31867;&#65292;&#35201;&#20040;&#37319;&#29992;&#31532;&#19977;&#26041;&#26694;&#26550;&#65288;&#27604;&#22914;Spring&#25110;Pico)&#65292;&#23427;&#20204;&#25552;&#20379;&#20102;&#22522;&#20110;&#20195;&#29702;(proxy)&#25110;&#32773;&#22522;&#20110;&#25318;&#25130;&#22120;(interception)&#30340;&#19978;&#19979;&#25991;&#30456;&#20851;session&#12290; 
+         </p>
+         <p>&#20174;3.0.1&#29256;&#26412;&#24320;&#22987;&#65292;Hibernate&#22686;&#21152;&#20102;<code class="literal">SessionFactory.getCurrentSession()</code>&#26041;&#27861;&#12290;&#19968;&#24320;&#22987;&#65292;&#23427;&#20551;&#23450;&#20102;&#37319;&#29992;<code class="literal">JTA</code>&#20107;&#21153;&#65292;<code class="literal">JTA</code>&#20107;&#21153;&#23450;&#20041;&#20102;&#24403;&#21069;session&#30340;&#33539;&#22260;&#21644;&#19978;&#19979;&#25991;(scope and context)&#12290;Hibernate&#24320;&#21457;&#22242;&#38431;&#22362;&#20449;&#65292;&#22240;&#20026;&#26377;&#22909;&#20960;&#20010;&#29420;&#31435;&#30340;<code class="literal">JTA TransactionManager</code>&#23454;&#29616;&#31283;&#23450;&#21487;&#29992;&#65292;&#19981;&#35770;&#26159;&#21542;&#34987;&#37096;&#32626;&#21040;&#19968;&#20010;<code class="literal">J2EE</code>&#23481;&#22120;&#20013;&#65292;&#22823;&#22810;&#25968;(&#20551;&#33509;&#19981;&#26159;&#25152;&#26377;&#30340;&#65289;&#24212;&#29992;&#31243;&#24207;&#37117;&#24212;&#35813;&#37319;&#29992;<code class="literal">JTA</code>&#20107;&#21153;&#31649;&#29702;&#12290;&#22522;&#20110;&#36825;&#19968;&#28857;&#65292;&#37319;&#29992;<code class="literal">JTA</code>&#30340;&#19978;&#19979;&#25991;&#30456;&#20851;session&#21487;&#20197;&#28385;&#36275;&#20320;&#19968;&#20999;&#38656;&#35201;&#12290; 
+         </p>
+         <p>&#26356;&#22909;&#30340;&#26159;&#65292;&#20174;3.1&#24320;&#22987;&#65292;<code class="literal">SessionFactory.getCurrentSession()</code>&#30340;&#21518;&#21488;&#23454;&#29616;&#26159;&#21487;&#25300;&#25554;&#30340;&#12290;&#22240;&#27492;&#65292;&#25105;&#20204;&#24341;&#20837;&#20102;&#26032;&#30340;&#25193;&#23637;&#25509;&#21475;(<code class="literal">org.hibernate.context.CurrentSessionContext</code>)&#21644;&#26032;&#30340;&#37197;&#32622;&#21442;&#25968;(<code class="literal">hibernate.current_session_context_class</code>)&#65292;&#20197;&#20415;&#23545;&#20160;&#20040;&#26159;&#8220;&#24403;&#21069;session&#8221;&#30340;&#33539;&#22260;&#21644;&#19978;&#19979;&#25991;(scope and context)&#30340;&#23450;&#20041;&#36827;&#34892;&#25300;&#25554;&#12290; 
+         </p>
+         <p>&#35831;&#21442;&#38405;<code class="literal">org.hibernate.context.CurrentSessionContext</code>&#25509;&#21475;&#30340;Javadoc,&#37027;&#37324;&#26377;&#20851;&#20110;&#23427;&#30340;&#22865;&#32422;&#30340;&#35814;&#32454;&#35752;&#35770;&#12290;&#23427;&#23450;&#20041;&#20102;&#21333;&#19968;&#30340;&#26041;&#27861;&#65292;<code class="literal">currentSession()</code>&#65292;&#29305;&#23450;&#30340;&#23454;&#29616;&#29992;&#23427;&#26469;&#36127;&#36131;&#36319;&#36394;&#24403;&#21069;&#30340;&#19978;&#19979;&#25991;session&#12290;Hibernate&#20869;&#32622;&#20102;&#27492;&#25509;&#21475;&#30340;&#19977;&#31181;&#23454;&#29616;&#12290; 
+         </p>
+         <div class="itemizedlist">
+            <ul type="disc">
+               <li>
+                  <p><code class="literal">org.hibernate.context.JTASessionContext</code> - &#24403;&#21069;session&#26681;&#25454;<code class="literal">JTA</code>&#26469;&#36319;&#36394;&#21644;&#30028;&#23450;&#12290;&#36825;&#21644;&#20197;&#21069;&#30340;&#20165;&#25903;&#25345;JTA&#30340;&#26041;&#27861;&#26159;&#23436;&#20840;&#19968;&#26679;&#30340;&#12290;&#35814;&#24773;&#35831;&#21442;&#38405;Javadoc&#12290; 
+                  </p>
+               </li>
+               <li>
+                  <p><code class="literal">org.hibernate.context.ThreadLocalSessionContext</code> - &#24403;&#21069;session&#36890;&#36807;&#24403;&#21069;&#25191;&#34892;&#30340;&#32447;&#31243;&#26469;&#36319;&#36394;&#21644;&#30028;&#23450;&#12290;&#35814;&#24773;&#20063;&#35831;&#21442;&#38405;Javadoc&#12290; 
+                  </p>
+               </li>
+               <li>
+                  <p><code class="literal">org.hibernate.context.ManagedSessionContext</code> - &#24403;&#21069;session&#36890;&#36807;&#24403;&#21069;&#25191;&#34892;&#30340;&#32447;&#31243;&#26469;&#36319;&#36394;&#21644;&#30028;&#23450;&#12290;&#20294;&#26159;&#65292;&#20320;&#38656;&#35201;&#36127;&#36131;&#20351;&#29992;&#36825;&#20010;&#31867;&#30340;&#38745;&#24577;&#26041;&#27861;&#23558;<code class="literal">Session</code>&#23454;&#20363;&#32465;&#23450;&#12289;&#25110;&#32773;&#21462;&#28040;&#32465;&#23450;&#65292;&#23427;&#24182;&#19981;&#20250;&#25171;&#24320;(open)&#12289;flush&#25110;&#32773;&#20851;&#38381;(close)&#20219;&#20309;<code class="literal">Session</code>&#12290; 
+                  </p>
+               </li>
+            </ul>
+         </div>
+         <p>The first two implementations provide a "one session - one database transaction" programming model, also known and used as
+            <span class="emphasis"><em>session-per-request</em></span>. The beginning and end of a Hibernate session is defined by the duration of a database transaction. If you use programmatic
+            transaction demarcation in plain JSE without JTA, you are advised to use the Hibernate <code class="literal">Transaction</code> API to hide the underlying transaction system from your code. If you use JTA, use the JTA interfaces to demarcate transactions.
+            If you execute in an EJB container that supports CMT, transaction boundaries are defined declaratively and you don't need
+            any transaction or session demarcation operations in your code. Refer to <a href="transactions.html" title="&#31532;&nbsp;11&nbsp;&#31456;&nbsp;&#20107;&#21153;&#21644;&#24182;&#21457;">&#31532;&nbsp;11&nbsp;&#31456; <i xmlns:xlink="http://www.w3.org/1999/xlink">&#20107;&#21153;&#21644;&#24182;&#21457;</i></a> for more information and code examples. 
+         </p>
+         <p><code class="literal">hibernate.current_session_context_class</code>&#37197;&#32622;&#21442;&#25968;&#23450;&#20041;&#20102;&#24212;&#35813;&#37319;&#29992;&#21738;&#20010;<code class="literal">org.hibernate.context.CurrentSessionContext</code>&#23454;&#29616;&#12290;&#27880;&#24847;&#65292;&#20026;&#20102;&#21521;&#19979;&#20860;&#23481;&#65292;&#22914;&#26524;&#26410;&#37197;&#32622;&#27492;&#21442;&#25968;&#65292;&#20294;&#26159;&#23384;&#22312;<code class="literal">org.hibernate.transaction.TransactionManagerLookup</code>&#30340;&#37197;&#32622;&#65292;Hibernate&#20250;&#37319;&#29992;<code class="literal">org.hibernate.context.JTASessionContext</code>&#12290;&#19968;&#33324;&#32780;&#35328;&#65292;&#27492;&#21442;&#25968;&#30340;&#20540;&#25351;&#26126;&#20102;&#35201;&#20351;&#29992;&#30340;&#23454;&#29616;&#31867;&#30340;&#20840;&#21517;&#65292;&#20294;&#37027;&#19977;&#31181;&#20869;&#32622;&#30340;&#23454;&#29616;&#21487;&#20197;&#20351;&#29992;&#31616;&#20889;&#65292;&#21363;"jta"&#12289;"thread"&#21644;"managed"&#12290; 
+         </p>
+      </div>
+      <div class="navfooter">
+         <hr>
+         <table width="100%" summary="Navigation footer">
+            <tr>
+               <td width="40%" align="left"><a accesskey="p" href="architecture-jca.html">&#19978;&#19968;&#39029;</a>&nbsp;
+               </td>
+               <td width="20%" align="center"><a accesskey="u" href="architecture.html">&#19978;&#19968;&#32423;</a></td>
+               <td width="40%" align="right">&nbsp;<a accesskey="n" href="session-configuration.html">&#19979;&#19968;&#39029;</a></td>
+            </tr>
+            <tr>
+               <td width="40%" align="left" valign="top">2.4.&nbsp;&#23545;JCA&#30340;&#25903;&#25345;&nbsp;</td>
+               <td width="20%" align="center"><a accesskey="h" href="index.html">&#36215;&#22987;&#39029;</a></td>
+               <td width="40%" align="right" valign="top">&nbsp;&#31532;&nbsp;3&nbsp;&#31456;&nbsp;&#37197;&#32622;</td>
+            </tr>
+         </table>
+      </div>
+   </body>
+</html>

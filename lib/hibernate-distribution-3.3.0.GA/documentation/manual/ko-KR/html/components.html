@@ -1,0 +1,146 @@
+<html>
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   
+      <title>8&#51109;. Component &#47588;&#54609;</title>
+      <link rel="stylesheet" href="css/html.css" type="text/css">
+      <meta name="generator" content="DocBook XSL Stylesheets V1.72.0">
+      <link rel="start" href="index.html" title="HIBERNATE - &#44060;&#49457;&#51080;&#45716; &#51088;&#48148;&#47484; &#50948;&#54620; &#44288;&#44228; &#50689;&#49549;">
+      <link rel="up" href="index.html" title="HIBERNATE - &#44060;&#49457;&#51080;&#45716; &#51088;&#48148;&#47484; &#50948;&#54620; &#44288;&#44228; &#50689;&#49549;">
+      <link rel="prev" href="assoc-complex.html" title="7.6. &#48372;&#45796; &#48373;&#51105;&#54620; &#50672;&#44288; &#47588;&#54609;&#46308;">
+      <link rel="next" href="components-incollections.html" title="8.2. &#51333;&#49549; &#44061;&#52404;&#46308;&#51012; &#44032;&#51652; &#53084;&#47113;&#49496;&#46308;">
+   </head>
+   <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+      <div class="navheader">
+         <table width="100%" summary="Navigation header">
+            <tr>
+               <th colspan="3" align="center">8&#51109;. Component &#47588;&#54609;</th>
+            </tr>
+            <tr>
+               <td width="20%" align="left"><a accesskey="p" href="assoc-complex.html">&#51060;&#51204;</a>&nbsp;
+               </td>
+               <th width="60%" align="center">&nbsp;</th>
+               <td width="20%" align="right">&nbsp;<a accesskey="n" href="components-incollections.html">&#45796;&#51020;</a></td>
+            </tr>
+         </table>
+         <hr>
+      </div>
+      <div class="chapter" lang="ko-KR">
+         <div class="titlepage">
+            <div>
+               <div>
+                  <h2 class="title"><a name="components"></a>8&#51109;. Component &#47588;&#54609;
+                  </h2>
+               </div>
+            </div>
+         </div>
+         <p><span class="emphasis"><em>component</em></span>&#51032; &#44060;&#45392;&#51008; Hibernate&#50640;&#49436; &#45796;&#47480; &#50857;&#46020;&#47196; &#47751;&#47751; &#45796;&#47480; &#52968;&#53581;&#49828;&#53944;&#46308; &#45236;&#50640;&#49436; &#51116;&#49324;&#50857;&#46108;&#45796;. 
+         </p>
+         <div class="sect1" lang="ko-KR">
+            <div class="titlepage">
+               <div>
+                  <div>
+                     <h2 class="title" style="clear: both"><a name="components-dependentobjects"></a>8.1. &#51333;&#49549; &#44061;&#52404;&#46308;
+                     </h2>
+                  </div>
+               </div>
+            </div>
+            <p>&#54616;&#45208;&#51032; &#52980;&#54252;&#45324;&#53944;&#45716; &#50644;&#54000;&#54000; &#52280;&#51312;&#44032; &#50500;&#45772;, value &#53440;&#51077;&#51004;&#47196;&#49436; &#50689;&#49549;&#54868; &#46104;&#45716; &#54616;&#45208;&#51032; &#54252;&#54632;&#46108; &#44061;&#52404;&#51060;&#45796;. "&#52980;&#54252;&#45324;&#53944;" &#50857;&#50612;&#45716; (&#50500;&#53412;&#53581;&#52376; &#49688;&#51456;&#51032; &#52980;&#54252;&#45324;&#53944;&#46308;&#51060; &#50500;&#45772;) composition(&#44396;&#49457;,&#54633;&#49457;)&#50640; &#45824;&#54620; &#44061;&#52404;-&#51648;&#54693;&#51201;&#51064; &#44060;&#45392;&#51012;
+               &#50616;&#44553;&#54620;&#45796;. &#50696;&#47484; &#46308;&#50612; &#45817;&#49888;&#51008; &#45796;&#51020;&#44284; &#44057;&#51060; &#44060;&#51064;&#51012; &#47784;&#54805;&#54868; &#49884;&#53420; &#49688;&#46020; &#51080;&#45796;: 
+            </p><pre class="programlisting">public class Person {
+    private java.util.Date birthday;
+    private Name name;
+    private String key;
+    public String getKey() {
+        return key;
+    }
+    private void setKey(String key) {
+        this.key=key;
+    }
+    public java.util.Date getBirthday() {
+        return birthday;
+    }
+    public void setBirthday(java.util.Date birthday) {
+        this.birthday = birthday;
+    }
+    public Name getName() {
+        return name;
+    }
+    public void setName(Name name) {
+        this.name = name;
+    }
+    ......
+    ......
+}</pre><pre class="programlisting">public class Name {
+    char initial;
+    String first;
+    String last;
+    public String getFirst() {
+        return first;
+    }
+    void setFirst(String first) {
+        this.first = first;
+    }
+    public String getLast() {
+        return last;
+    }
+    void setLast(String last) {
+        this.last = last;
+    }
+    public char getInitial() {
+        return initial;
+    }
+    void setInitial(char initial) {
+        this.initial = initial;
+    }
+}</pre><p>&#51060;&#51228; <code class="literal">Name</code>&#51008; <code class="literal">Person</code>&#51032; &#52980;&#54252;&#45324;&#53944;&#47196;&#49436; &#50689;&#49549;&#54868; &#46112; &#49688;&#46020; &#51080;&#45796;. <code class="literal">Name</code>&#51060; &#44536;&#44163;&#51032; &#50689;&#49549; &#54532;&#47196;&#54140;&#54000;&#46308;&#50640; &#45824;&#54620; getter &#47700;&#49548;&#46300;&#50752; setter &#47700;&#49548;&#46300;&#47484; &#51221;&#51032;&#54616;&#51648;&#47564;, &#50612;&#46500; &#51064;&#53552;&#54168;&#51060;&#49828;&#46308;&#51060;&#45208; &#49885;&#48324;&#51088; &#54532;&#47196;&#54140;&#54000;&#46308;&#51012; &#49440;&#50616;&#54616;&#45716; &#44163;&#51012; &#54596;&#50836;&#47196; &#54616;&#51648; &#50506;&#51020;&#51012; &#51452;&#47785;&#54616;&#46972;. 
+            </p>
+            <p>&#50864;&#47532;&#51032; Hibernate &#47588;&#54609;&#51008; &#45796;&#51020;&#44284; &#44057;&#51012; &#44163;&#51060;&#45796;: </p><pre class="programlisting">&lt;class name="eg.Person" table="person"&gt;
+    &lt;id name="Key" column="pid" type="string"&gt;
+        &lt;generator class="uuid"/&gt;
+    &lt;/id&gt;
+    &lt;property name="birthday" type="date"/&gt;
+    &lt;component name="Name" class="eg.Name"&gt; &lt;!-- class attribute optional --&gt;
+        &lt;property name="initial"/&gt;
+        &lt;property name="first"/&gt;
+        &lt;property name="last"/&gt;
+    &lt;/component&gt;
+&lt;/class&gt;</pre><p>person &#53580;&#51060;&#48660;&#51008; <code class="literal">pid</code>, <code class="literal">birthday</code>, <code class="literal">initial</code>, <code class="literal">first</code>, <code class="literal">last</code> &#52972;&#47100;&#46308;&#51012; &#44032;&#51656; &#44163;&#51060;&#45796;. 
+            </p>
+            <p>&#47784;&#46304; &#44050;(value) &#53440;&#51077;&#46308;&#52376;&#47100;, &#52980;&#54252;&#45324;&#53944;&#46308;&#51008; &#44277;&#50976;&#46108; &#52280;&#51312;&#46308;&#51012; &#51648;&#50896;&#54616;&#51648; &#50506;&#45716;&#45796;. &#45804;&#47532; &#47568;&#54644;, &#46160; &#47749;&#51032; &#44060;&#51064;&#46308;&#51008; &#46041;&#51068;&#54620; &#51060;&#47492;&#51012; &#44032;&#51656; &#49688; &#51080;&#51648;&#47564;, &#46160; &#44060;&#51032; person &#44061;&#52404;&#46308;&#51008; &#50724;&#51649; &#44050; &#47564;&#51060; "&#46041;&#51068;&#54620;" &#46160; &#44060;&#51032; &#46021;&#47549;&#51201;&#51064; name
+               &#44061;&#52404;&#46308;&#51012; &#54252;&#54632;&#54624; &#44163;&#51060;&#45796;. &#52980;&#54252;&#45324;&#53944;&#51032; null &#44050; &#51032;&#48120;&#45716; <span class="emphasis"><em>&#53945;&#48324;&#54620; &#50857;&#46020;&#47484; &#50948;&#54620; &#44163;&#51060;&#45796;</em></span>. &#54252;&#54632;&#46108; &#44061;&#52404;&#47484; &#45796;&#49884; &#47196;&#46300;&#49884;&#53420; &#46412;, Hibernate&#45716; &#47784;&#46304; &#52980;&#54252;&#45324;&#53944; &#52972;&#47100;&#46308;&#51060; null&#51068; &#44221;&#50864;&#50640; &#51204;&#52404; &#52980;&#54252;&#45324;&#53944;&#44032; null&#51060;&#46972;&#44256; &#44032;&#51221;&#54624; &#44163;&#51060;&#45796;. &#51060;&#44163;&#51008; &#45824;&#48512;&#48516;&#51032; &#50857;&#46020;&#50640; &#47582;&#51012; &#44163;&#51060;&#45796;. 
+            </p>
+            <p>&#52980;&#54252;&#45324;&#53944;&#51032; &#54532;&#47196;&#54140;&#54000;&#46308;&#51008; &#51076;&#51032;&#51032; Hibernate &#53440;&#51077;&#51068; &#49688; &#51080;&#45796;(&#53084;&#47113;&#49496;&#46308;, many-to-one &#50672;&#44288;&#46308;, &#45796;&#47480; &#52980;&#54252;&#45324;&#53944;&#46308;, &#44592;&#53440;). &#45236;&#54252;&#46108; &#52980;&#54252;&#45324;&#53944;&#46308;&#51008; &#49888;&#51333;&#51032; &#49324;&#50857;&#47168;&#47196; &#44036;&#51452;&#46104;&#51648; <span class="emphasis"><em>&#50506;&#51012;</em></span> &#44163;&#51060;&#45796;. Hibernate&#45716; &#47588;&#50864; &#51096; &#51221;&#51228;&#46108; &#44061;&#52404; &#47784;&#54805;&#51012; &#51648;&#50896;&#54616;&#46020;&#47197; &#44256;&#50504;&#46104;&#50612;&#51080;&#45796;. 
+            </p>
+            <p><code class="literal">&lt;component&gt;</code> &#50836;&#49548;&#45716; &#52980;&#54252;&#45324;&#53944; &#53364;&#47000;&#49828;&#51032; &#54532;&#47196;&#54140;&#54000;&#47484; &#54252;&#54632;&#46104;&#45716; &#50644;&#54000;&#54000;&#50640; &#45824;&#54620; &#50669; &#52280;&#51312;&#47196;&#49436; &#47588;&#54609;&#49884;&#53412;&#45716; <code class="literal">&lt;parent&gt;</code> &#49436;&#48652;&#50836;&#49548;&#47484; &#54728;&#50857;&#54620;&#45796;. 
+            </p><pre class="programlisting">&lt;class name="eg.Person" table="person"&gt;
+    &lt;id name="Key" column="pid" type="string"&gt;
+        &lt;generator class="uuid"/&gt;
+    &lt;/id&gt;
+    &lt;property name="birthday" type="date"/&gt;
+    &lt;component name="Name" class="eg.Name" unique="true"&gt;
+        &lt;parent name="namedPerson"/&gt; &lt;!-- reference back to the Person --&gt;
+        &lt;property name="initial"/&gt;
+        &lt;property name="first"/&gt;
+        &lt;property name="last"/&gt;
+    &lt;/component&gt;
+&lt;/class&gt;</pre></div>
+      </div>
+      <div class="navfooter">
+         <hr>
+         <table width="100%" summary="Navigation footer">
+            <tr>
+               <td width="40%" align="left"><a accesskey="p" href="assoc-complex.html">&#51060;&#51204;</a>&nbsp;
+               </td>
+               <td width="20%" align="center">&nbsp;</td>
+               <td width="40%" align="right">&nbsp;<a accesskey="n" href="components-incollections.html">&#45796;&#51020;</a></td>
+            </tr>
+            <tr>
+               <td width="40%" align="left" valign="top">7.6. &#48372;&#45796; &#48373;&#51105;&#54620; &#50672;&#44288; &#47588;&#54609;&#46308;&nbsp;</td>
+               <td width="20%" align="center"><a accesskey="h" href="index.html">&#52376;&#51020;&#51004;&#47196;</a></td>
+               <td width="40%" align="right" valign="top">&nbsp;8.2. &#51333;&#49549; &#44061;&#52404;&#46308;&#51012; &#44032;&#51652; &#53084;&#47113;&#49496;&#46308;</td>
+            </tr>
+         </table>
+      </div>
+   </body>
+</html>

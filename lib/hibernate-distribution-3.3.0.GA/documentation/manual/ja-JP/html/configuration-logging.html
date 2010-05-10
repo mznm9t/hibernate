@@ -1,0 +1,122 @@
+<html>
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   
+      <title>3.5. &#12525;&#12462;&#12531;&#12464;</title>
+      <link rel="stylesheet" href="css/html.css" type="text/css">
+      <meta name="generator" content="DocBook XSL Stylesheets V1.72.0">
+      <link rel="start" href="index.html" title="HIBERNATE - Relational Persistence for Idiomatic Java">
+      <link rel="up" href="session-configuration.html" title="&#31532;3&#31456; &#35373;&#23450;">
+      <link rel="prev" href="configuration-optional.html" title="3.4. &#12458;&#12503;&#12471;&#12519;&#12531;&#35373;&#23450;&#12503;&#12525;&#12497;&#12486;&#12451;">
+      <link rel="next" href="configuration-namingstrategy.html" title="3.6. NamingStrategy &#12398;&#23455;&#35013;">
+   </head>
+   <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+      <div class="navheader">
+         <table width="100%" summary="Navigation header">
+            <tr>
+               <th colspan="3" align="center">3.5. &#12525;&#12462;&#12531;&#12464;</th>
+            </tr>
+            <tr>
+               <td width="20%" align="left"><a accesskey="p" href="configuration-optional.html">&#21069;&#12398;&#12506;&#12540;&#12472;</a>&nbsp;
+               </td>
+               <th width="60%" align="center">&#31532;3&#31456; &#35373;&#23450;</th>
+               <td width="20%" align="right">&nbsp;<a accesskey="n" href="configuration-namingstrategy.html">&#27425;&#12398;&#12506;&#12540;&#12472;</a></td>
+            </tr>
+         </table>
+         <hr>
+      </div>
+      <div class="sect1" lang="ja-JP">
+         <div class="titlepage">
+            <div>
+               <div>
+                  <h2 class="title" style="clear: both"><a name="configuration-logging"></a>3.5. &#12525;&#12462;&#12531;&#12464;
+                  </h2>
+               </div>
+            </div>
+         </div>
+         <p>Hibernate utilizes <a xmlns:xlink="http://www.w3.org/1999/xlink" href="http://www.slf4j.org/" target="_top">Simple Logging Facade for Java</a> (SLF4J) in order to log various system events. SLF4J can direct your logging output to several logging frameworks (NOP, Simple,
+            log4j version 1.2, JDK 1.4 logging, JCL or logback) depending on your chosen binding. In order to setup logging properly you
+            will need <code class="filename">slf4j-api.jar</code> in your classpath together with the jar file for your preferred binding - <code class="filename">slf4j-log4j12.jar</code> in the case of Log4J. See the SLF4J <a xmlns:xlink="http://www.w3.org/1999/xlink" href="http://www.slf4j.org/manual.html" target="_top">documentation</a> for more detail. To use Log4j you will also need to place a <code class="filename">log4j.properties</code> file in your classpath, an example properties file is distributed with Hibernate in the <code class="literal">src/</code> directory. 
+         </p>
+         <p>Hibernate&#12398;&#12525;&#12464;&#12513;&#12483;&#12475;&#12540;&#12472;&#12395;&#24931;&#12428;&#12427;&#12371;&#12392;&#12434;&#24375;&#12367;&#12362;&#12377;&#12377;&#12417;&#12375;&#12414;&#12377;&#12290; Hibernate&#12398;&#12525;&#12464;&#12399;&#35501;&#12415;&#12420;&#12377;&#12367;&#12289;&#12391;&#12365;&#12427;&#38480;&#12426;&#35443;&#32048;&#12395;&#12394;&#12427;&#12424;&#12358;&#12395;&#21162;&#21147;&#12373;&#12428;&#12390;&#12356;&#12414;&#12377;&#12290; &#12371;&#12428;&#12399;&#24517;&#38920;&#12398;&#12488;&#12521;&#12502;&#12523;&#12471;&#12517;&#12540;&#12486;&#12451;&#12531;&#12464;&#12487;&#12496;&#12452;&#12473;&#12391;&#12377;&#12290; &#20197;&#19979;&#12395;&#37325;&#35201;&#12394;&#12525;&#12464;&#12398;&#12459;&#12486;&#12468;&#12522;&#12434;&#31034;&#12375;&#12414;&#12377;&#12290;
+            
+         </p>
+         <div class="table"><a name="log-categories"></a><p class="title"><b>&#34920; 3.9. Hibernate &#12525;&#12464;&#12459;&#12486;&#12468;&#12522;</b></p>
+            <div class="table-contents">
+               <table summary="Hibernate &#12525;&#12464;&#12459;&#12486;&#12468;&#12522;" border="1">
+                  <colgroup>
+                     <col>
+                     <col>
+                  </colgroup>
+                  <thead>
+                     <tr>
+                        <th>&#12459;&#12486;&#12468;&#12522;</th>
+                        <th>&#27231;&#33021;</th>
+                     </tr>
+                  </thead>
+                  <tbody>
+                     <tr>
+                        <td><code class="literal">org.hibernate.SQL</code></td>
+                        <td>&#23455;&#34892;&#12375;&#12383;&#12377;&#12409;&#12390;&#12398;SQL&#65288;DDL&#65289;&#12473;&#12486;&#12540;&#12488;&#12513;&#12531;&#12488;&#12434;&#12525;&#12462;&#12531;&#12464;&#12375;&#12414;&#12377;&#12290;</td>
+                     </tr>
+                     <tr>
+                        <td><code class="literal">org.hibernate.type</code></td>
+                        <td>&#12377;&#12409;&#12390;&#12398;JDBC&#12497;&#12521;&#12513;&#12540;&#12479;&#12434;&#12525;&#12462;&#12531;&#12464;&#12375;&#12414;&#12377;&#12290;</td>
+                     </tr>
+                     <tr>
+                        <td><code class="literal">org.hibernate.tool.hbm2ddl</code></td>
+                        <td>&#23455;&#34892;&#12375;&#12383;&#12377;&#12409;&#12390;&#12398;SQL&#65288;DDL&#65289;&#12473;&#12486;&#12540;&#12488;&#12513;&#12531;&#12488;&#12434;&#12525;&#12462;&#12531;&#12464;&#12375;&#12414;&#12377;&#12290;</td>
+                     </tr>
+                     <tr>
+                        <td><code class="literal">org.hibernate.pretty</code></td>
+                        <td>session&#12395;&#38306;&#36899;&#12377;&#12427;&#12377;&#12409;&#12390;&#12398;&#12456;&#12531;&#12486;&#12451;&#12486;&#12451;&#65288;&#26368;&#22823;&#65298;&#65296;&#65289;&#12398;&#12501;&#12521;&#12483;&#12471;&#12517;&#26178;&#38291;&#12434;&#12525;&#12462;&#12531;&#12464;&#12375;&#12414;&#12377;&#12290; </td>
+                     </tr>
+                     <tr>
+                        <td><code class="literal">org.hibernate.cache</code></td>
+                        <td>&#12377;&#12409;&#12390;&#12398;&#65298;&#27425;&#12461;&#12515;&#12483;&#12471;&#12517;&#12398;&#21205;&#20316;&#12434;&#12525;&#12462;&#12531;&#12464;&#12375;&#12414;&#12377;&#12290;</td>
+                     </tr>
+                     <tr>
+                        <td><code class="literal">org.hibernate.transaction</code></td>
+                        <td>&#12488;&#12521;&#12531;&#12470;&#12463;&#12471;&#12519;&#12531;&#12395;&#38306;&#36899;&#12377;&#12427;&#21205;&#20316;&#12434;&#12525;&#12462;&#12531;&#12464;&#12375;&#12414;&#12377;&#12290;</td>
+                     </tr>
+                     <tr>
+                        <td><code class="literal">org.hibernate.jdbc</code></td>
+                        <td>JDBC&#12522;&#12477;&#12540;&#12473;&#21462;&#24471;&#12434;&#12525;&#12462;&#12531;&#12464;&#12375;&#12414;&#12377;&#12290;</td>
+                     </tr>
+                     <tr>
+                        <td><code class="literal">org.hibernate.hql.ast.AST</code></td>
+                        <td>HQL&#12392;SQL&#12398;AST&#12398;&#12463;&#12456;&#12522;&#12540;&#12497;&#12540;&#12473;&#12434;&#12525;&#12462;&#12531;&#12464;&#12375;&#12414;&#12377;&#12290; </td>
+                     </tr>
+                     <tr>
+                        <td><code class="literal">org.hibernate.secure</code></td>
+                        <td>&#12377;&#12409;&#12390;&#12398;JAAS&#20998;&#26512;&#12434;&#12525;&#12462;&#12531;&#12464;&#12375;&#12414;&#12377;&#12290;</td>
+                     </tr>
+                     <tr>
+                        <td><code class="literal">org.hibernate</code></td>
+                        <td>&#12377;&#12409;&#12390;&#12434;&#12525;&#12462;&#12531;&#12464;&#12375;&#12414;&#12377;&#12290;&#65288;&#24773;&#22577;&#12364;&#22823;&#37327;&#12395;&#12394;&#12426;&#12414;&#12377;&#12364;&#12289;&#12488;&#12521;&#12502;&#12523;&#12471;&#12517;&#12540;&#12486;&#12451;&#12531;&#12464;&#12395;&#12399;&#20415;&#21033;&#12391;&#12377;&#65289; </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </div>
+         </div><br class="table-break"><p>Hibernate&#12391;&#12450;&#12503;&#12522;&#12465;&#12540;&#12471;&#12519;&#12531;&#12434;&#20316;&#25104;&#12377;&#12427;&#12392;&#12365;&#12399;&#12289;<code class="literal">org.hibernate.SQL</code> &#12459;&#12486;&#12468;&#12522;&#12398; <code class="literal">debug</code> &#12434;&#24120;&#12395;&#26377;&#21177;&#12395;&#12375;&#12390;&#12362;&#12356;&#12383;&#12411;&#12358;&#12364;&#33391;&#12356;&#12391;&#12375;&#12423;&#12358;&#12290; &#20195;&#26367;&#26041;&#27861;&#12392;&#12375;&#12390;&#12289;<code class="literal">hibernate.show_sql</code> &#12434;&#26377;&#21177;&#12395;&#12377;&#12427;&#26041;&#27861;&#12364;&#12354;&#12426;&#12414;&#12377;&#12290; 
+         </p>
+      </div>
+      <div class="navfooter">
+         <hr>
+         <table width="100%" summary="Navigation footer">
+            <tr>
+               <td width="40%" align="left"><a accesskey="p" href="configuration-optional.html">&#21069;&#12398;&#12506;&#12540;&#12472;</a>&nbsp;
+               </td>
+               <td width="20%" align="center"><a accesskey="u" href="session-configuration.html">&#19978;&#12395;&#25147;&#12427;</a></td>
+               <td width="40%" align="right">&nbsp;<a accesskey="n" href="configuration-namingstrategy.html">&#27425;&#12398;&#12506;&#12540;&#12472;</a></td>
+            </tr>
+            <tr>
+               <td width="40%" align="left" valign="top">3.4. &#12458;&#12503;&#12471;&#12519;&#12531;&#35373;&#23450;&#12503;&#12525;&#12497;&#12486;&#12451;&nbsp;</td>
+               <td width="20%" align="center"><a accesskey="h" href="index.html">&#12507;&#12540;&#12512;</a></td>
+               <td width="40%" align="right" valign="top">&nbsp;3.6. <code class="literal">NamingStrategy</code> &#12398;&#23455;&#35013;
+               </td>
+            </tr>
+         </table>
+      </div>
+   </body>
+</html>

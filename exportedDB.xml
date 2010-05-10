@@ -1,0 +1,257 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+  <table name="com_fpdsavills_pr_address">
+    <column>ID</column>
+    <column>EntityName</column>
+    <column>postcode_</column>
+    <column>line4_</column>
+    <column>line3_</column>
+    <column>line2_</column>
+    <column>line1_</column>
+    <column>country_</column>
+  </table>
+  <table name="com_fpdsavills_pr_asset">
+    <column>ID</column>
+    <column>EntityName</column>
+  </table>
+  <table name="com_fpdsavills_pr_audience">
+    <column>ID</column>
+    <column>EntityName</column>
+    <column>description_</column>
+    <column>name_</column>
+    <column>size_</column>
+  </table>
+  <table name="com_fpdsavills_pr_company">
+    <column>ID</column>
+    <column>EntityName</column>
+    <column>name_</column>
+    <column>mainContact_</column>
+  </table>
+  <table name="com_fpdsavills_pr_contactable">
+    <column>ID</column>
+    <column>EntityName</column>
+    <column>notes_</column>
+    <column>mainGroup_</column>
+    <column>address_</column>
+    <column>phone1_</column>
+    <column>phone2_</column>
+    <column>mobile_</column>
+    <column>fax_</column>
+    <column>email_</column>
+    <column>www_</column>
+    <column>status_</column>
+    <column>created_</column>
+    <column>lastUpdate_</column>
+    <column>accountManager_</column>
+    <column>knownAs_</column>
+  </table>
+  <table name="com_fpdsavills_pr_contactable$to$contactevent">
+    <column>contactableID</column>
+    <column>contactEvent_</column>
+  </table>
+  <table name="com_fpdsavills_pr_contactevent">
+    <column>ID</column>
+    <column>EntityName</column>
+    <column>type_</column>
+    <column>ourContact_</column>
+    <column>theirContact_</column>
+    <column>whenPlanned_</column>
+    <column>whenHappened_</column>
+    <column>content_</column>
+    <column>title_</column>
+    <column>followup_</column>
+  </table>
+  <table name="com_fpdsavills_pr_contacteventtype">
+    <column>ID</column>
+    <column>EntityName</column>
+    <column>name_</column>
+    <column>code_</column>
+  </table>
+  <table name="com_fpdsavills_pr_contactgiventype">
+    <column>ID</column>
+    <column>EntityName</column>
+    <column>telephone_</column>
+    <column>website_</column>
+    <column>name_</column>
+  </table>
+  <table name="com_fpdsavills_pr_contactgroup">
+    <column>ID</column>
+    <column>EntityName</column>
+    <column>name_</column>
+    <column>description_</column>
+  </table>
+  <table name="com_fpdsavills_pr_contactstatus">
+    <column>ID</column>
+    <column>EntityName</column>
+    <column>name_</column>
+    <column>code_</column>
+  </table>
+  <table name="com_fpdsavills_pr_country">
+    <column>ID</column>
+    <column>EntityName</column>
+    <column>name_</column>
+    <column>isoCode_</column>
+  </table>
+  <table name="com_fpdsavills_pr_coverage">
+    <column>ID</column>
+    <column>EntityName</column>
+    <column>story_</column>
+    <column>publication_</column>
+    <column>journalist_</column>
+    <column>publicationDate_</column>
+    <column>filename_</column>
+    <column>content_</column>
+    <column>title_</column>
+    <column>evaluation_</column>
+    <column>centimetres_</column>
+    <column>feature_</column>
+    <column>contactDetails_</column>
+    <column>dateRead_</column>
+    <column>comments_</column>
+    <column>pictureDescription_</column>
+    <column>pictureFile_</column>
+    <column>mentionType_</column>
+    <column>propertyNamed_</column>
+    <column>office_</column>
+    <column>division_</column>
+    <column>researchReports_</column>
+    <column>marketComment_</column>
+    <column>contactGivenType_</column>
+    <column>personNamed_</column>
+    <column>pictureUsed_</column>
+    <column>pubDate</column>
+    <column>national</column>
+    <column>pubDate2</column>
+    <column>prManager_</column>
+    <column>featureType_</column>
+    <column>country_</column>
+    <column>sequenceNumber_</column>
+  </table>
+  <table name="com_fpdsavills_pr_coverage$to$quotedperson">
+    <column>coverageID</column>
+    <column>quotedPerson_</column>
+  </table>
+  <table name="com_fpdsavills_pr_division">
+    <column>ID</column>
+    <column>EntityName</column>
+    <column>name_</column>
+  </table>
+  <table name="com_fpdsavills_pr_employee">
+    <column>ID</column>
+    <column>EntityName</column>
+    <column>current_</column>
+  </table>
+  <table name="com_fpdsavills_pr_featuretype">
+    <column>ID</column>
+    <column>EntityName</column>
+    <column>name_</column>
+    <column>code_</column>
+  </table>
+  <table name="com_fpdsavills_pr_journalist">
+    <column>ID</column>
+    <column>EntityName</column>
+    <column>publication_</column>
+    <column>frequency_</column>
+  </table>
+  <table name="com_fpdsavills_pr_mappingtool">
+    <column>ID</column>
+    <column>EntityName</column>
+    <column>internalValue_</column>
+    <column>externalValue_</column>
+    <column>attributeName_</column>
+  </table>
+  <table name="com_fpdsavills_pr_mentiontype">
+    <column>ID</column>
+    <column>EntityName</column>
+    <column>name_</column>
+    <column>code_</column>
+  </table>
+  <table name="com_fpdsavills_pr_message">
+    <column>ID</column>
+    <column>EntityName</column>
+    <column>name_</column>
+    <column>description_</column>
+  </table>
+  <table name="com_fpdsavills_pr_office">
+    <column>ID</column>
+    <column>EntityName</column>
+    <column>description_</column>
+    <column>name_</column>
+    <column>region_</column>
+    <column>managedBy_</column>
+  </table>
+  <table name="com_fpdsavills_pr_office$to$allmanager">
+    <column>officeID</column>
+    <column>allManager_</column>
+  </table>
+  <table name="com_fpdsavills_pr_person">
+    <column>ID</column>
+    <column>EntityName</column>
+    <column>company_</column>
+    <column>jobTitle_</column>
+    <column>lastName_</column>
+    <column>title_</column>
+    <column>firstName_</column>
+  </table>
+  <table name="com_fpdsavills_pr_phonenumber">
+    <column>ID</column>
+    <column>EntityName</column>
+    <column>areaCode_</column>
+    <column>theNumber_</column>
+    <column>countryCode_</column>
+  </table>
+  <table name="com_fpdsavills_pr_pressrelease">
+    <column>ID</column>
+    <column>EntityName</column>
+    <column>story_</column>
+  </table>
+  <table name="com_fpdsavills_pr_prmanager">
+    <column>ID</column>
+    <column>EntityName</column>
+    <column>fullName_</column>
+  </table>
+  <table name="com_fpdsavills_pr_publication">
+    <column>ID</column>
+    <column>EntityName</column>
+    <column>description_</column>
+    <column>publicationName_</column>
+    <column>type_</column>
+    <column>value_</column>
+  </table>
+  <table name="com_fpdsavills_pr_publication$to$audience">
+    <column>publicationID</column>
+    <column>audience_</column>
+  </table>
+  <table name="com_fpdsavills_pr_publicationtype">
+    <column>ID</column>
+    <column>EntityName</column>
+    <column>name_</column>
+    <column>code_</column>
+    <column>value_</column>
+  </table>
+  <table name="com_fpdsavills_pr_region">
+    <column>ID</column>
+    <column>EntityName</column>
+    <column>name_</column>
+    <column>code_</column>
+  </table>
+  <table name="com_fpdsavills_pr_sequencenumber">
+    <column>ID</column>
+    <column>EntityName</column>
+    <column>suffix_</column>
+    <column>prefix_</column>
+    <column>digits_</column>
+    <column>last_</column>
+    <column>lastString_</column>
+    <column>description_</column>
+    <column>name_</column>
+  </table>
+  <table name="com_fpdsavills_pr_story">
+    <column>ID</column>
+    <column>EntityName</column>
+    <column>message_</column>
+    <column>title_</column>
+    <column>description_</column>
+    <column>client_</column>
+  </table>
+</dataset>

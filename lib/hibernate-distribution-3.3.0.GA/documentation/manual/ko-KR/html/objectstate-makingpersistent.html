@@ -1,0 +1,90 @@
+<html>
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   
+      <title>10.2. &#44061;&#52404;&#46308;&#51012; &#50689;&#49549;&#54868; &#49884;&#53412;&#44592;</title>
+      <link rel="stylesheet" href="css/html.css" type="text/css">
+      <meta name="generator" content="DocBook XSL Stylesheets V1.72.0">
+      <link rel="start" href="index.html" title="HIBERNATE - &#44060;&#49457;&#51080;&#45716; &#51088;&#48148;&#47484; &#50948;&#54620; &#44288;&#44228; &#50689;&#49549;">
+      <link rel="up" href="objectstate.html" title="10&#51109;. &#44061;&#52404;&#46308;&#47196; &#51089;&#50629;&#54616;&#44592;">
+      <link rel="prev" href="objectstate.html" title="10&#51109;. &#44061;&#52404;&#46308;&#47196; &#51089;&#50629;&#54616;&#44592;">
+      <link rel="next" href="objectstate-loading.html" title="10.3. &#44061;&#52404;&#47484; &#47196;&#46300;&#49884;&#53412;&#44592;">
+   </head>
+   <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+      <div class="navheader">
+         <table width="100%" summary="Navigation header">
+            <tr>
+               <th colspan="3" align="center">10.2. &#44061;&#52404;&#46308;&#51012; &#50689;&#49549;&#54868; &#49884;&#53412;&#44592;</th>
+            </tr>
+            <tr>
+               <td width="20%" align="left"><a accesskey="p" href="objectstate.html">&#51060;&#51204;</a>&nbsp;
+               </td>
+               <th width="60%" align="center">10&#51109;. &#44061;&#52404;&#46308;&#47196; &#51089;&#50629;&#54616;&#44592;</th>
+               <td width="20%" align="right">&nbsp;<a accesskey="n" href="objectstate-loading.html">&#45796;&#51020;</a></td>
+            </tr>
+         </table>
+         <hr>
+      </div>
+      <div class="sect1" lang="ko-KR">
+         <div class="titlepage">
+            <div>
+               <div>
+                  <h2 class="title" style="clear: both"><a name="objectstate-makingpersistent"></a>10.2. &#44061;&#52404;&#46308;&#51012; &#50689;&#49549;&#54868; &#49884;&#53412;&#44592;
+                  </h2>
+               </div>
+            </div>
+         </div>
+         <p>&#54616;&#45208;&#51032; &#50689;&#49549; &#53364;&#47000;&#49828;&#51032; &#49352;&#47196;&#51060; &#52488;&#44592;&#54868; &#46108; &#51064;&#49828;&#53556;&#49828;&#46308;&#51008; Hibernate&#50640; &#51032;&#54644; <span class="emphasis"><em>transient</em></span>&#47196; &#44036;&#51452;&#46108;&#45796;. &#50864;&#47532;&#45716; &#44536;&#44163;&#51012; &#49464;&#49496;&#44284; &#50672;&#44288;&#51648;&#50612;&#49436; transient &#51064;&#49828;&#53556;&#49828;&#47484; <span class="emphasis"><em>&#50689;&#49549;&#54868;</em></span> &#49884;&#53420; &#49688; &#51080;&#45796;: 
+         </p><pre class="programlisting">DomesticCat fritz = new DomesticCat();
+fritz.setColor(Color.GINGER);
+fritz.setSex('M');
+fritz.setName("Fritz");
+Long generatedId = (Long) sess.save(fritz);</pre><p>&#47564;&#51068; <code class="literal">Cat</code>&#51060; &#49373;&#49457;&#46108; &#49885;&#48324;&#51088;&#47484; &#44032;&#51656; &#44221;&#50864;, <code class="literal">save()</code>&#44032; &#54840;&#52636;&#46112; &#46412; &#44536; &#49885;&#48324;&#51088;&#44032; &#49373;&#49457;&#46104;&#44256; <code class="literal">cat</code>&#50640; &#54624;&#45817;&#46108;&#45796;. &#47564;&#51068; <code class="literal">Cat</code>&#51060; &#54616;&#45208;&#51032; <code class="literal">assigned</code> &#49885;&#48324;&#51088;&#45208; &#54616;&#45208;&#51032; composite key&#47484; &#44032;&#51656; &#44221;&#50864;, <code class="literal">save()</code>&#47484; &#54840;&#52636;&#54616;&#44592; &#51204;&#50640; &#44536; &#49885;&#48324;&#51088;&#44032;<code class="literal">cat</code> &#51064;&#49828;&#53556;&#49828;&#50640; &#54624;&#45817;&#46112; &#44163;&#51060;&#45796;. &#45817;&#49888;&#51008; &#46608;&#54620; EJB3 &#52488;&#44592; &#46300;&#47000;&#54532;&#53944;&#50640;&#49436; &#51221;&#51032;&#46108; &#51032;&#48120;&#47196; <code class="literal">save()</code> &#45824;&#49888; <code class="literal">persist()</code>&#47484; &#49324;&#50857;&#54624; &#49688;&#46020; &#51080;&#45796;. 
+         </p>
+         <div class="itemizedlist">
+            <ul type="disc" compact>
+               <li>
+                  <p>UNTRANSLATED! <code class="literal">persist()</code> makes a transient instance persistent. However, it doesn't guarantee that the identifier value will be assigned to the persistent
+                     instance immediately, the assignment might happen at flush time. <code class="literal">persist()</code> also guarantees that it will not execute an <code class="literal">INSERT</code> statement if it is called outside of transaction boundaries. This is useful in long-running conversations with an extended
+                     Session/persistence context. 
+                  </p>
+               </li>
+               <li>
+                  <p><code class="literal">save()</code> does guarantee to return an identifier. If an INSERT has to be executed to get the identifier ( e.g. "identity" generator,
+                     not "sequence"), this INSERT happens immediately, no matter if you are inside or outside of a transaction. This is problematic
+                     in a long-running conversation with an extended Session/persistence context. 
+                  </p>
+               </li>
+            </ul>
+         </div>
+         <p>&#45796;&#47480; &#48169;&#48277;&#51004;&#47196;, &#45817;&#49888;&#51008; <code class="literal">save()</code>&#51032; &#50724;&#48260;&#47196;&#46300;&#46108; &#48260;&#51204;&#51012; &#49324;&#50857;&#54616;&#50668; &#49885;&#48324;&#51088;&#47484; &#54624;&#45817;&#54624; &#49688; &#51080;&#45796;. 
+         </p><pre class="programlisting">DomesticCat pk = new DomesticCat();
+pk.setColor(Color.TABBY);
+pk.setSex('F');
+pk.setName("PK");
+pk.setKittens( new HashSet() );
+pk.addKitten(fritz);
+sess.save( pk, new Long(1234) );</pre><p>&#47564;&#51068; &#45817;&#49888;&#51060; &#50689;&#49549;&#54868; &#49884;&#53412;&#45716; &#44061;&#52404;&#44032; &#50672;&#44288;&#46108; &#44061;&#52404;&#46308;(&#50696;&#47484; &#46308;&#47732;. &#50526;&#51032; &#50696;&#51228;&#50640; &#51080;&#45716; <code class="literal">kittens</code> &#53084;&#47113;&#49496;)&#51012; &#44054;&#44256; &#51080;&#45796;&#47732;, &#45817;&#49888;&#51060; &#54616;&#45208;&#51032; foreign &#53412; &#52972;&#47100;&#50640; &#45824;&#54644; &#54616;&#45208;&#51032; <code class="literal">NOT NULL</code> &#52968;&#49828;&#53944;&#47112;&#51064;&#53944;&#47484; &#44054;&#51648; &#50506;&#45716; &#54620;, &#51060;&#46308; &#44061;&#52404;&#46308;&#51008; &#45817;&#49888;&#51060; &#51339;&#50500;&#54616;&#45716; &#51076;&#51032;&#51032; &#49692;&#49436;&#47196; &#50689;&#49549;&#54868; &#46104;&#50632;&#51012; &#49688;&#46020; &#51080;&#45796;. foreign &#53412; &#52968;&#49828;&#53944;&#47112;&#51064;&#53944;&#46308;&#51012; &#50948;&#48176;&#54616;&#45716; &#50948;&#54744;&#49457;&#51060; &#44208;&#53076; &#51316;&#51116;&#54616;&#51648; &#50506;&#45716;&#45796;. &#54616;&#51648;&#47564; &#45817;&#49888;&#51060; &#51096;&#47803;&#46108; &#49692;&#49436;&#47196; &#44536; &#44061;&#52404;&#46308;&#51012;
+            <code class="literal">save()</code> &#49884;&#53420; &#44221;&#50864; &#45817;&#49888;&#51008; <code class="literal">NOT NULL</code> &#52968;&#49828;&#53944;&#47112;&#51064;&#53944;&#47484; &#50948;&#48176;&#54624; &#49688;&#46020; &#51080;&#45796;. 
+         </p>
+         <p>&#45817;&#49888;&#51060; &#50672;&#44288;&#46108; &#44061;&#52404;&#46308;&#51012; &#51088;&#46041;&#51201;&#51004;&#47196; &#51200;&#51109;&#49884;&#53412;&#45716;&#45936; Hibernate&#51032; <span class="emphasis"><em>transitive persistence(&#51204;&#51060; &#50689;&#49549;)</em></span> &#53945;&#51669;&#51012; &#49324;&#50857;&#54616;&#45716; &#44163;&#51012; &#47588;&#50864; &#51339;&#50500;&#54624; &#44163;&#51060;&#48064;&#47196; &#45824;&#44060; &#45817;&#49888;&#51008; &#51060; &#49345;&#49464;&#47484; &#45236;&#48260;&#47140;&#46164;&#45796;. &#44536;&#46412; <code class="literal">NOT NULL</code> &#52968;&#49828;&#53944;&#47112;&#51064;&#53944; &#50948;&#48176;&#46308;&#51060; &#48156;&#49373;&#46104;&#51648; &#50506;&#51012;&#51648;&#46972;&#46020; - Hibernate&#45716; &#47784;&#46304; &#44163;&#51012; &#52376;&#47532;&#54624; &#44163;&#51060;&#45796;. Transitive persistence(&#51204;&#51060; &#50689;&#49549;)&#51008; &#51060; &#51109;&#50640;&#49436; &#54980;&#48152;&#48512;&#50640;&#49436; &#45436;&#51032;&#46108;&#45796;. 
+         </p>
+      </div>
+      <div class="navfooter">
+         <hr>
+         <table width="100%" summary="Navigation footer">
+            <tr>
+               <td width="40%" align="left"><a accesskey="p" href="objectstate.html">&#51060;&#51204;</a>&nbsp;
+               </td>
+               <td width="20%" align="center"><a accesskey="u" href="objectstate.html">&#50948;&#47196;</a></td>
+               <td width="40%" align="right">&nbsp;<a accesskey="n" href="objectstate-loading.html">&#45796;&#51020;</a></td>
+            </tr>
+            <tr>
+               <td width="40%" align="left" valign="top">10&#51109;. &#44061;&#52404;&#46308;&#47196; &#51089;&#50629;&#54616;&#44592;&nbsp;</td>
+               <td width="20%" align="center"><a accesskey="h" href="index.html">&#52376;&#51020;&#51004;&#47196;</a></td>
+               <td width="40%" align="right" valign="top">&nbsp;10.3. &#44061;&#52404;&#47484; &#47196;&#46300;&#49884;&#53412;&#44592;</td>
+            </tr>
+         </table>
+      </div>
+   </body>
+</html>

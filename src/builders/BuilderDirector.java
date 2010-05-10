@@ -4,9 +4,7 @@ import net.sf.cglib.proxy.Enhancer;
 import net.sf.cglib.proxy.LazyLoader;
 
 public class BuilderDirector {
-    
-	static BuilderDirector director=new BuilderDirector();
-	
+    	
 	public static EmployeeBuilder aEmployee(){
 		return new EmployeeBuilder();
 		}
@@ -42,11 +40,26 @@ public class BuilderDirector {
 	public static PhoneNumberBuilder aPhoneNumber(){
 		 return new PhoneNumberBuilder();
 	}
+	
+	public static PublicationBuilder aPublication(){
+		 return new PublicationBuilder();
+	}
 
-	@SuppressWarnings("unchecked")
-	public static <R extends BuilderI> R lazzyBuild(Class<R> builderClass){	
-		return (R)Enhancer.create(builderClass,new LazyBuilder(builderClass));		
-	}	
+	public static JournalistBuilder aJournalist(){
+		 return new JournalistBuilder();
+	}
+	
+	public static PublicationTypeBuilder aPublicationType(){
+		 return new PublicationTypeBuilder();
+	}
+	
+	public static ContactEventTypeBuilder aContactEventType(){
+		 return new ContactEventTypeBuilder();
+	}
+	
+	public static ContactEventBuilder aContactEvent(){
+		 return new ContactEventBuilder();
+	}
 	
 	@SuppressWarnings("unchecked")
 	public static <R extends BuilderI<T>,T> T lazzyObject(Class<R> builderClass,Class<T> entityClass){	
@@ -75,23 +88,3 @@ class LazyAttributeLoader implements LazyLoader{
 	}
 	
 }
-
-	class LazyBuilder implements LazyLoader{
-		
-		@SuppressWarnings("unchecked")
-		Class builderClass;
-		
-		public LazyBuilder() {
-		}
-		
-		@SuppressWarnings("unchecked")
-		public LazyBuilder(Class builderClass){
-			this.builderClass=builderClass;
-		}
-		
-		@Override
-		public Object loadObject() throws Exception {
-			return builderClass.newInstance();
-		}
-		
-	}

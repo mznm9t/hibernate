@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xmi:id="_qb8akM37EdqwVrslYOdUDA" name="Builder2">
+  <packagedElement xmi:type="uml:Package" xmi:id="_4ZDW4VmREd-gfIhRtuhm9w" name="builders">
+    <packagedElement xmi:type="uml:Class" xmi:id="_6Xtb-lmREd-gfIhRtuhm9w" name="PersonBuilderG">
+      <ownedTemplateSignature xmi:type="uml:RedefinableTemplateSignature" xmi:id="_6Xtb-1mREd-gfIhRtuhm9w" parameter="_6Xtb_FmREd-gfIhRtuhm9w _6Xtb_lmREd-gfIhRtuhm9w">
+        <ownedParameter xmi:type="uml:ClassifierTemplateParameter" xmi:id="_6Xtb_FmREd-gfIhRtuhm9w" parameteredElement="_6Xtb_VmREd-gfIhRtuhm9w">
+          <ownedParameteredElement xmi:type="uml:Class" xmi:id="_6Xtb_VmREd-gfIhRtuhm9w" name="T" templateParameter="_6Xtb_FmREd-gfIhRtuhm9w"/>
+        </ownedParameter>
+        <ownedParameter xmi:type="uml:ClassifierTemplateParameter" xmi:id="_6Xtb_lmREd-gfIhRtuhm9w" parameteredElement="_6Xtb_1mREd-gfIhRtuhm9w">
+          <ownedParameteredElement xmi:type="uml:Class" xmi:id="_6Xtb_1mREd-gfIhRtuhm9w" name="B" templateParameter="_6Xtb_lmREd-gfIhRtuhm9w"/>
+        </ownedParameter>
+      </ownedTemplateSignature>
+      <generalization xmi:id="_6b4xWVmREd-gfIhRtuhm9w"/>
+      <generalization xmi:id="_JZIzxFmSEd-gfIhRtuhm9w" general="_4ZWR31mREd-gfIhRtuhm9w"/>
+      <ownedAttribute xmi:id="_6b4xW1mREd-gfIhRtuhm9w" name="company" visibility="private"/>
+      <ownedAttribute xmi:id="_6cCiUFmREd-gfIhRtuhm9w" name="jobTitle" visibility="private">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        <defaultValue xmi:type="uml:LiteralString" xmi:id="_6cCiUVmREd-gfIhRtuhm9w" value="Engineer"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_6cCiUlmREd-gfIhRtuhm9w" name="lastName" visibility="private">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        <defaultValue xmi:type="uml:LiteralString" xmi:id="_6cCiU1mREd-gfIhRtuhm9w" value="Nahhas"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_6cLsQFmREd-gfIhRtuhm9w" name="title" visibility="private">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        <defaultValue xmi:type="uml:LiteralString" xmi:id="_6cLsQVmREd-gfIhRtuhm9w" value="Mr"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_6cLsQlmREd-gfIhRtuhm9w" name="firstName" visibility="private">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        <defaultValue xmi:type="uml:LiteralString" xmi:id="_6cLsQ1mREd-gfIhRtuhm9w" value="Omar"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_6cVdQFmREd-gfIhRtuhm9w" name="entityName" visibility="private">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        <defaultValue xmi:type="uml:LiteralString" xmi:id="_6cVdQVmREd-gfIhRtuhm9w" value="Person"/>
+      </ownedAttribute>
+      <ownedOperation xmi:id="_6cVdQlmREd-gfIhRtuhm9w" name="withEntityName" visibility="public">
+        <ownedParameter xmi:id="_6cVdQ1mREd-gfIhRtuhm9w" name="entityName">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        </ownedParameter>
+        <ownedParameter xmi:id="_6cVdRFmREd-gfIhRtuhm9w" name="return" type="_6Xtb_1mREd-gfIhRtuhm9w" direction="return"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_6cVdRVmREd-gfIhRtuhm9w" name="withCompany" visibility="public">
+        <ownedParameter xmi:id="_6cVdRlmREd-gfIhRtuhm9w" name="company"/>
+        <ownedParameter xmi:id="_6cVdR1mREd-gfIhRtuhm9w" name="return" type="_6Xtb_1mREd-gfIhRtuhm9w" direction="return"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_6cVdSFmREd-gfIhRtuhm9w" name="withJobTitle" visibility="public">
+        <ownedParameter xmi:id="_6cVdSVmREd-gfIhRtuhm9w" name="jobTitle">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        </ownedParameter>
+        <ownedParameter xmi:id="_6cVdSlmREd-gfIhRtuhm9w" name="return" type="_6Xtb_1mREd-gfIhRtuhm9w" direction="return"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_6cenMFmREd-gfIhRtuhm9w" name="withLastName" visibility="public">
+        <ownedParameter xmi:id="_6cenMVmREd-gfIhRtuhm9w" name="lastName">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        </ownedParameter>
+        <ownedParameter xmi:id="_6cenMlmREd-gfIhRtuhm9w" name="return" type="_6Xtb_1mREd-gfIhRtuhm9w" direction="return"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_6cenM1mREd-gfIhRtuhm9w" name="withTitle" visibility="public">
+        <ownedParameter xmi:id="_6cenNFmREd-gfIhRtuhm9w" name="title">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        </ownedParameter>
+        <ownedParameter xmi:id="_6cenNVmREd-gfIhRtuhm9w" name="return" type="_6Xtb_1mREd-gfIhRtuhm9w" direction="return"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_6cenNlmREd-gfIhRtuhm9w" name="withFirstName" visibility="public">
+        <ownedParameter xmi:id="_6cenN1mREd-gfIhRtuhm9w" name="firstName">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        </ownedParameter>
+        <ownedParameter xmi:id="_6cenOFmREd-gfIhRtuhm9w" name="return" type="_6Xtb_1mREd-gfIhRtuhm9w" direction="return"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_6cenOVmREd-gfIhRtuhm9w" name="build" visibility="public">
+        <ownedParameter xmi:id="_6cenOlmREd-gfIhRtuhm9w" name="return" type="_6Xtb_VmREd-gfIhRtuhm9w" direction="return"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_6coYMFmREd-gfIhRtuhm9w" name="createInstance" visibility="public">
+        <ownedParameter xmi:id="_6coYMVmREd-gfIhRtuhm9w" name="return" type="_6Xtb_VmREd-gfIhRtuhm9w" direction="return"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_6coYMlmREd-gfIhRtuhm9w" name="getSuperInstance" visibility="private">
+        <ownedParameter xmi:id="_6coYM1mREd-gfIhRtuhm9w" name="return" direction="return"/>
+      </ownedOperation>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="___uNX1mREd-gfIhRtuhm9w" name="JournalistBuilderG" clientDependency="_AG3-OFmSEd-gfIhRtuhm9w">
+      <ownedTemplateSignature xmi:type="uml:RedefinableTemplateSignature" xmi:id="___uNYFmREd-gfIhRtuhm9w" parameter="___uNYVmREd-gfIhRtuhm9w ___uNY1mREd-gfIhRtuhm9w">
+        <ownedParameter xmi:type="uml:ClassifierTemplateParameter" xmi:id="___uNYVmREd-gfIhRtuhm9w" parameteredElement="___uNYlmREd-gfIhRtuhm9w">
+          <ownedParameteredElement xmi:type="uml:Class" xmi:id="___uNYlmREd-gfIhRtuhm9w" name="T" templateParameter="___uNYVmREd-gfIhRtuhm9w"/>
+        </ownedParameter>
+        <ownedParameter xmi:type="uml:ClassifierTemplateParameter" xmi:id="___uNY1mREd-gfIhRtuhm9w" parameteredElement="___uNZFmREd-gfIhRtuhm9w">
+          <ownedParameteredElement xmi:type="uml:Class" xmi:id="___uNZFmREd-gfIhRtuhm9w" name="B" templateParameter="___uNY1mREd-gfIhRtuhm9w"/>
+        </ownedParameter>
+      </ownedTemplateSignature>
+      <generalization xmi:id="_AG3-OVmSEd-gfIhRtuhm9w" general="_ACGy91mSEd-gfIhRtuhm9w"/>
+      <generalization xmi:id="_IhZ6g1mSEd-gfIhRtuhm9w" general="_6Xtb-lmREd-gfIhRtuhm9w"/>
+      <ownedAttribute xmi:id="_AG3-OlmSEd-gfIhRtuhm9w" name="entityName" visibility="private">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        <defaultValue xmi:type="uml:LiteralString" xmi:id="_AG3-O1mSEd-gfIhRtuhm9w" value="Journalist"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_AHBvMFmSEd-gfIhRtuhm9w" name="publication" visibility="private" type="_AG3-PFmSEd-gfIhRtuhm9w"/>
+      <ownedAttribute xmi:id="_AHBvMlmSEd-gfIhRtuhm9w" name="frequency" visibility="private">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+      </ownedAttribute>
+      <interfaceRealization xmi:id="_AG3-OFmSEd-gfIhRtuhm9w" name="BuilderGI&lt;T,B>" client="___uNX1mREd-gfIhRtuhm9w">
+        <supplier xmi:type="uml:Interface" href="../Builder2.uml#___uNUVmREd-gfIhRtuhm9w"/>
+        <contract href="../Builder2.uml#___uNUVmREd-gfIhRtuhm9w"/>
+      </interfaceRealization>
+      <ownedOperation xmi:id="_AHBvM1mSEd-gfIhRtuhm9w" name="withEntityName" visibility="public">
+        <ownedParameter xmi:id="_AHBvNFmSEd-gfIhRtuhm9w" name="entityName">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        </ownedParameter>
+        <ownedParameter xmi:id="_AHBvNVmSEd-gfIhRtuhm9w" name="return" type="___uNZFmREd-gfIhRtuhm9w" direction="return"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_AHLgMFmSEd-gfIhRtuhm9w" name="withPublication" visibility="public">
+        <ownedParameter xmi:id="_AHLgMVmSEd-gfIhRtuhm9w" name="publication" type="_AG3-PFmSEd-gfIhRtuhm9w"/>
+        <ownedParameter xmi:id="_AHLgMlmSEd-gfIhRtuhm9w" name="return" type="___uNZFmREd-gfIhRtuhm9w" direction="return"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_AHLgM1mSEd-gfIhRtuhm9w" name="withFrequency" visibility="public">
+        <ownedParameter xmi:id="_AHLgNFmSEd-gfIhRtuhm9w" name="frequency">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+        </ownedParameter>
+        <ownedParameter xmi:id="_AHLgNVmSEd-gfIhRtuhm9w" name="return" type="___uNZFmREd-gfIhRtuhm9w" direction="return"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_AHLgNlmSEd-gfIhRtuhm9w" name="build" visibility="public">
+        <ownedParameter xmi:id="_AHLgN1mSEd-gfIhRtuhm9w" name="return" type="___uNYlmREd-gfIhRtuhm9w" direction="return"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_AHLgOFmSEd-gfIhRtuhm9w" name="createInstance" visibility="public">
+        <ownedParameter xmi:id="_AHLgOVmSEd-gfIhRtuhm9w" name="return" type="___uNYlmREd-gfIhRtuhm9w" direction="return"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_AHLgOlmSEd-gfIhRtuhm9w" name="getSuperInstance" visibility="private">
+        <ownedParameter xmi:id="_AHLgO1mSEd-gfIhRtuhm9w" name="return" type="_ACQj-lmSEd-gfIhRtuhm9w" direction="return"/>
+      </ownedOperation>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_4ZWR31mREd-gfIhRtuhm9w" name="ContactableBuilderG" clientDependency="_4d-TIlmREd-gfIhRtuhm9w">
+      <ownedTemplateSignature xmi:type="uml:RedefinableTemplateSignature" xmi:id="_4ZWR4FmREd-gfIhRtuhm9w" parameter="_4ZWR4VmREd-gfIhRtuhm9w _4ZWR41mREd-gfIhRtuhm9w">
+        <ownedParameter xmi:type="uml:ClassifierTemplateParameter" xmi:id="_4ZWR4VmREd-gfIhRtuhm9w" parameteredElement="_4ZWR4lmREd-gfIhRtuhm9w">
+          <ownedParameteredElement xmi:type="uml:Class" xmi:id="_4ZWR4lmREd-gfIhRtuhm9w" name="T" templateParameter="_4ZWR4VmREd-gfIhRtuhm9w"/>
+        </ownedParameter>
+        <ownedParameter xmi:type="uml:ClassifierTemplateParameter" xmi:id="_4ZWR41mREd-gfIhRtuhm9w" parameteredElement="_4ZWR5FmREd-gfIhRtuhm9w">
+          <ownedParameteredElement xmi:type="uml:Class" xmi:id="_4ZWR5FmREd-gfIhRtuhm9w" name="B" templateParameter="_4ZWR41mREd-gfIhRtuhm9w"/>
+        </ownedParameter>
+      </ownedTemplateSignature>
+      <ownedAttribute xmi:id="_4d-TI1mREd-gfIhRtuhm9w" name="entityName" visibility="private">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        <defaultValue xmi:type="uml:LiteralString" xmi:id="_4d-TJFmREd-gfIhRtuhm9w" value="Contactable"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_4eHdEFmREd-gfIhRtuhm9w" name="notes" visibility="private">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        <defaultValue xmi:type="uml:LiteralString" xmi:id="_4eHdEVmREd-gfIhRtuhm9w" value="No notes"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_4eHdElmREd-gfIhRtuhm9w" name="mainGroup" visibility="private"/>
+      <ownedAttribute xmi:id="_4eROEVmREd-gfIhRtuhm9w" name="address" visibility="private"/>
+      <ownedAttribute xmi:id="_4eROE1mREd-gfIhRtuhm9w" name="phone1" visibility="private"/>
+      <ownedAttribute xmi:id="_4ekJAFmREd-gfIhRtuhm9w" name="phone2" visibility="private"/>
+      <ownedAttribute xmi:id="_4ekJAVmREd-gfIhRtuhm9w" name="mobile" visibility="private"/>
+      <ownedAttribute xmi:id="_4et6AVmREd-gfIhRtuhm9w" name="accountManager" visibility="private"/>
+      <ownedAttribute xmi:id="_4e3rAFmREd-gfIhRtuhm9w" name="status" visibility="private"/>
+      <ownedAttribute xmi:id="_4e3rAVmREd-gfIhRtuhm9w" name="fax" visibility="private"/>
+      <ownedAttribute xmi:id="_4e3rAlmREd-gfIhRtuhm9w" name="email" visibility="private">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        <defaultValue xmi:type="uml:LiteralString" xmi:id="_4e3rA1mREd-gfIhRtuhm9w" value="test@com.com"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_4fA08FmREd-gfIhRtuhm9w" name="www" visibility="private">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        <defaultValue xmi:type="uml:LiteralString" xmi:id="_4fA08VmREd-gfIhRtuhm9w" value="www.test.com"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_4fKl8FmREd-gfIhRtuhm9w" name="created" visibility="private"/>
+      <ownedAttribute xmi:id="_4fKl8VmREd-gfIhRtuhm9w" name="lastUpdate" visibility="private"/>
+      <ownedAttribute xmi:id="_4fTv4FmREd-gfIhRtuhm9w" name="knownAs" visibility="private">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        <defaultValue xmi:type="uml:LiteralString" xmi:id="_4fTv4VmREd-gfIhRtuhm9w" value="The Contactable"/>
+      </ownedAttribute>
+      <interfaceRealization xmi:id="_4d-TIlmREd-gfIhRtuhm9w" name="BuilderGI&lt;T,B>" client="_4ZWR31mREd-gfIhRtuhm9w"/>
+      <ownedOperation xmi:id="_4fTv4lmREd-gfIhRtuhm9w" name="withEntityName" visibility="public">
+        <ownedParameter xmi:id="_4fTv41mREd-gfIhRtuhm9w" name="entityName">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        </ownedParameter>
+        <ownedParameter xmi:id="_4fTv5FmREd-gfIhRtuhm9w" name="return" type="_4ZWR5FmREd-gfIhRtuhm9w" direction="return"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_4fTv5VmREd-gfIhRtuhm9w" name="withNotes" visibility="public">
+        <ownedParameter xmi:id="_4fTv5lmREd-gfIhRtuhm9w" name="notes">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        </ownedParameter>
+        <ownedParameter xmi:id="_4fTv51mREd-gfIhRtuhm9w" name="return" type="_4ZWR5FmREd-gfIhRtuhm9w" direction="return"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_4fTv6FmREd-gfIhRtuhm9w" name="withMainGroup" visibility="public">
+        <ownedParameter xmi:id="_4fTv6VmREd-gfIhRtuhm9w" name="mainGroup"/>
+        <ownedParameter xmi:id="_4fTv6lmREd-gfIhRtuhm9w" name="return" type="_4ZWR5FmREd-gfIhRtuhm9w" direction="return"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_4fdg4FmREd-gfIhRtuhm9w" name="withAddress" visibility="public">
+        <ownedParameter xmi:id="_4fdg4VmREd-gfIhRtuhm9w" name="address"/>
+        <ownedParameter xmi:id="_4fdg4lmREd-gfIhRtuhm9w" name="return" type="_4ZWR5FmREd-gfIhRtuhm9w" direction="return"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_4fdg41mREd-gfIhRtuhm9w" name="withPhone1" visibility="public">
+        <ownedParameter xmi:id="_4fdg5FmREd-gfIhRtuhm9w" name="phone1"/>
+        <ownedParameter xmi:id="_4fdg5VmREd-gfIhRtuhm9w" name="return" type="_4ZWR5FmREd-gfIhRtuhm9w" direction="return"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_4fdg5lmREd-gfIhRtuhm9w" name="withPhone2" visibility="public">
+        <ownedParameter xmi:id="_4fdg51mREd-gfIhRtuhm9w" name="phone2"/>
+        <ownedParameter xmi:id="_4fdg6FmREd-gfIhRtuhm9w" name="return" type="_4ZWR5FmREd-gfIhRtuhm9w" direction="return"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_4fnR4FmREd-gfIhRtuhm9w" name="withMobile" visibility="public">
+        <ownedParameter xmi:id="_4fnR4VmREd-gfIhRtuhm9w" name="mobile"/>
+        <ownedParameter xmi:id="_4fnR4lmREd-gfIhRtuhm9w" name="return" type="_4ZWR5FmREd-gfIhRtuhm9w" direction="return"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_4fnR41mREd-gfIhRtuhm9w" name="withFax" visibility="public">
+        <ownedParameter xmi:id="_4fnR5FmREd-gfIhRtuhm9w" name="fax"/>
+        <ownedParameter xmi:id="_4fnR5VmREd-gfIhRtuhm9w" name="return" type="_4ZWR5FmREd-gfIhRtuhm9w" direction="return"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_4fnR5lmREd-gfIhRtuhm9w" name="withStatus" visibility="public">
+        <ownedParameter xmi:id="_4fnR51mREd-gfIhRtuhm9w" name="status"/>
+        <ownedParameter xmi:id="_4fnR6FmREd-gfIhRtuhm9w" name="return" type="_4ZWR5FmREd-gfIhRtuhm9w" direction="return"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_4fwb0FmREd-gfIhRtuhm9w" name="withAccountManager" visibility="public">
+        <ownedParameter xmi:id="_4fwb0VmREd-gfIhRtuhm9w" name="accountManager"/>
+        <ownedParameter xmi:id="_4fwb0lmREd-gfIhRtuhm9w" name="return" type="_4ZWR5FmREd-gfIhRtuhm9w" direction="return"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_4fwb01mREd-gfIhRtuhm9w" name="withEmail" visibility="public">
+        <ownedParameter xmi:id="_4fwb1FmREd-gfIhRtuhm9w" name="email">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        </ownedParameter>
+        <ownedParameter xmi:id="_4fwb1VmREd-gfIhRtuhm9w" name="return" type="_4ZWR5FmREd-gfIhRtuhm9w" direction="return"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_4fwb1lmREd-gfIhRtuhm9w" name="withWww" visibility="public">
+        <ownedParameter xmi:id="_4fwb11mREd-gfIhRtuhm9w" name="www">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        </ownedParameter>
+        <ownedParameter xmi:id="_4fwb2FmREd-gfIhRtuhm9w" name="return" type="_4ZWR5FmREd-gfIhRtuhm9w" direction="return"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_4f6M0FmREd-gfIhRtuhm9w" name="withCreated" visibility="public">
+        <ownedParameter xmi:id="_4f6M0VmREd-gfIhRtuhm9w" name="created"/>
+        <ownedParameter xmi:id="_4f6M0lmREd-gfIhRtuhm9w" name="return" type="_4ZWR5FmREd-gfIhRtuhm9w" direction="return"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_4f6M01mREd-gfIhRtuhm9w" name="withLastUpdate" visibility="public">
+        <ownedParameter xmi:id="_4f6M1FmREd-gfIhRtuhm9w" name="lastUpdate"/>
+        <ownedParameter xmi:id="_4f6M1VmREd-gfIhRtuhm9w" name="return" type="_4ZWR5FmREd-gfIhRtuhm9w" direction="return"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_4f6M1lmREd-gfIhRtuhm9w" name="withKnownAs" visibility="public">
+        <ownedParameter xmi:id="_4f6M11mREd-gfIhRtuhm9w" name="knownAs">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        </ownedParameter>
+        <ownedParameter xmi:id="_4f6M2FmREd-gfIhRtuhm9w" name="return" type="_4ZWR5FmREd-gfIhRtuhm9w" direction="return"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_4gD90FmREd-gfIhRtuhm9w" name="createInstance" visibility="public">
+        <ownedParameter xmi:id="_4gD90VmREd-gfIhRtuhm9w" name="return" type="_4ZWR4lmREd-gfIhRtuhm9w" direction="return"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_4gD90lmREd-gfIhRtuhm9w" name="build" visibility="public">
+        <ownedParameter xmi:id="_4gD901mREd-gfIhRtuhm9w" name="return" type="_4ZWR4lmREd-gfIhRtuhm9w" direction="return"/>
+      </ownedOperation>
+    </packagedElement>
+  </packagedElement>
+  <packagedElement xmi:type="uml:DataType" xmi:id="_ABquHlmSEd-gfIhRtuhm9w" name="Class"/>
+  <packagedElement xmi:type="uml:DataType" xmi:id="_ABz4AVmSEd-gfIhRtuhm9w" name="Object"/>
+  <packagedElement xmi:type="uml:DataType" xmi:id="_ABz4BVmSEd-gfIhRtuhm9w" name="ContactableBuilderG&lt;Contactable,ContactableBuilder>"/>
+  <packagedElement xmi:type="uml:DataType" xmi:id="_ACGy81mSEd-gfIhRtuhm9w" name="PublicationType"/>
+  <packagedElement xmi:type="uml:DataType" xmi:id="_ACGy91mSEd-gfIhRtuhm9w" name="PersonBuilderG&lt;T,B>"/>
+  <packagedElement xmi:type="uml:DataType" xmi:id="_ACQj-lmSEd-gfIhRtuhm9w" name="BusinessObject"/>
+  <packagedElement xmi:type="uml:DataType" xmi:id="_ACje41mSEd-gfIhRtuhm9w" name="ContactGroup"/>
+  <packagedElement xmi:type="uml:DataType" xmi:id="_ACje51mSEd-gfIhRtuhm9w" name="PublicationBuilderG&lt;Publication,PublicationBuilder>"/>
+  <packagedElement xmi:type="uml:DataType" xmi:id="_ACje6VmSEd-gfIhRtuhm9w" name="ContactableBuilderG&lt;T,B>"/>
+  <packagedElement xmi:type="uml:DataType" xmi:id="_ACtP4lmSEd-gfIhRtuhm9w" name="Person"/>
+  <packagedElement xmi:type="uml:DataType" xmi:id="_ADJ701mSEd-gfIhRtuhm9w" name="Country"/>
+  <packagedElement xmi:type="uml:DataType" xmi:id="_ADJ711mSEd-gfIhRtuhm9w" name="CompanyBuilderG&lt;Company,CompanyBuilder>"/>
+  <packagedElement xmi:type="uml:DataType" xmi:id="_ADc2w1mSEd-gfIhRtuhm9w" name="ContactStatus"/>
+  <packagedElement xmi:type="uml:DataType" xmi:id="_ADc2x1mSEd-gfIhRtuhm9w" name="Company"/>
+  <packagedElement xmi:type="uml:DataType" xmi:id="_AEMdo1mSEd-gfIhRtuhm9w" name="Address"/>
+  <packagedElement xmi:type="uml:DataType" xmi:id="_AEWOoVmSEd-gfIhRtuhm9w" name="PhoneNumber"/>
+  <packagedElement xmi:type="uml:DataType" xmi:id="_AEfYkVmSEd-gfIhRtuhm9w" name="Employee"/>
+  <packagedElement xmi:type="uml:DataType" xmi:id="_AEy6klmSEd-gfIhRtuhm9w" name="Date"/>
+  <packagedElement xmi:type="uml:DataType" xmi:id="_AFrrYVmSEd-gfIhRtuhm9w" name="PersonBuilderG&lt;Person,PersonBuilder>"/>
+  <packagedElement xmi:type="uml:DataType" xmi:id="_AFrraFmSEd-gfIhRtuhm9w" name="EmployeeBuilderG&lt;Employee,EmployeeBuilder>"/>
+  <packagedElement xmi:type="uml:DataType" xmi:id="_AFrralmSEd-gfIhRtuhm9w" name="CompanyBuilderG&lt;T,B>"/>
+  <packagedElement xmi:type="uml:DataType" xmi:id="_AG3-PFmSEd-gfIhRtuhm9w" name="Publication"/>
+  <packagedElement xmi:type="uml:DataType" xmi:id="_AHebLFmSEd-gfIhRtuhm9w" name="JournalistBuilderG&lt;Journalist,JournalistBuilder>"/>
+</uml:Model>

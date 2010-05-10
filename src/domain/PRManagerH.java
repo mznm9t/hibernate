@@ -13,7 +13,7 @@ public class PRManagerH extends PersonH implements interfaces.PRManager,java.io.
 
     // Fields    
 
-     private Long id;
+     private ID id;
      private String entityName;
      private String fullName;
 
@@ -34,11 +34,11 @@ public class PRManagerH extends PersonH implements interfaces.PRManager,java.io.
    
     // Property accessors
 
-    public Long getId() {
+    public ID getID() {
         return this.id;
     }
     
-    public void setId(Long id) {
+    public void setID(ID id) {
         this.id = id;
     }
 
@@ -46,7 +46,8 @@ public class PRManagerH extends PersonH implements interfaces.PRManager,java.io.
         return this.entityName;
     }
     
-    public void setEntityName(String entityName) {
+    @SuppressWarnings("unused")
+	private void setEntityName(String entityName) {
         this.entityName = entityName;
     }
 

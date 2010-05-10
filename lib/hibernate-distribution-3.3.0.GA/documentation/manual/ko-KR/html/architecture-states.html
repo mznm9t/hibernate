@@ -1,0 +1,78 @@
+<html>
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   
+      <title>2.2. &#51064;&#49828;&#53556;&#49828; &#49345;&#53468;&#46308;</title>
+      <link rel="stylesheet" href="css/html.css" type="text/css">
+      <meta name="generator" content="DocBook XSL Stylesheets V1.72.0">
+      <link rel="start" href="index.html" title="HIBERNATE - &#44060;&#49457;&#51080;&#45716; &#51088;&#48148;&#47484; &#50948;&#54620; &#44288;&#44228; &#50689;&#49549;">
+      <link rel="up" href="architecture.html" title="2&#51109;. &#50500;&#53412;&#53581;&#52376;">
+      <link rel="prev" href="architecture.html" title="2&#51109;. &#50500;&#53412;&#53581;&#52376;">
+      <link rel="next" href="architecture-jmx.html" title="2.3. JMX &#53685;&#54633;">
+   </head>
+   <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+      <div class="navheader">
+         <table width="100%" summary="Navigation header">
+            <tr>
+               <th colspan="3" align="center">2.2. &#51064;&#49828;&#53556;&#49828; &#49345;&#53468;&#46308;</th>
+            </tr>
+            <tr>
+               <td width="20%" align="left"><a accesskey="p" href="architecture.html">&#51060;&#51204;</a>&nbsp;
+               </td>
+               <th width="60%" align="center">2&#51109;. &#50500;&#53412;&#53581;&#52376;</th>
+               <td width="20%" align="right">&nbsp;<a accesskey="n" href="architecture-jmx.html">&#45796;&#51020;</a></td>
+            </tr>
+         </table>
+         <hr>
+      </div>
+      <div class="sect1" lang="ko-KR">
+         <div class="titlepage">
+            <div>
+               <div>
+                  <h2 class="title" style="clear: both"><a name="architecture-states"></a>2.2. &#51064;&#49828;&#53556;&#49828; &#49345;&#53468;&#46308;
+                  </h2>
+               </div>
+            </div>
+         </div>
+         <p>&#50689;&#49549; &#53364;&#47000;&#49828;&#46308;&#51032; &#51064;&#49828;&#53556;&#49828;&#45716; &#49464;&#44060;&#51032; &#49345;&#53468;&#46308; &#51473; &#54616;&#45208; &#51068; &#49688; &#51080;&#45796;. &#44536;&#44163;&#46308;(&#49345;&#53468;&#46308;)&#51008; &#50689;&#49549; &#52968;&#53581;&#49828;&#53944;(<span class="emphasis"><em>persistence context</em></span>)&#50640; &#45824;&#54644; &#51221;&#51032;&#46108;&#45796;. Hibernate <code class="literal">Session</code> &#44061;&#52404;&#45716; &#50689;&#49549; &#52968;&#53581;&#49828;&#53944;&#51060;&#45796;: 
+         </p>
+         <div class="variablelist">
+            <dl>
+               <dt><span class="term">transient</span></dt>
+               <dd>
+                  <p>&#51064;&#49828;&#53556;&#49828;&#45716; &#51076;&#51032;&#51032; &#52968;&#53581;&#49828;&#53944;&#50752; &#50672;&#44288;&#46104;&#50612; &#51080;&#51648; &#50506;&#44256;, &#44208;&#53076; &#50672;&#44288;&#46108; &#51201;&#51060; &#50630;&#50632;&#45796;. &#44536;&#44163;&#51008; &#50689;&#49549; &#49885;&#48324;&#51088;(&#54532;&#46972;&#51060;&#47672;&#47532; &#53412; &#44050;)&#51012; &#44054;&#51648; &#50506;&#45716;&#45796;. </p>
+               </dd>
+               <dt><span class="term">persistent</span></dt>
+               <dd>
+                  <p>&#51064;&#49828;&#53556;&#49828;&#45716; &#54788;&#51116; &#50689;&#49549; &#52968;&#53581;&#49828;&#53944;&#50752; &#50672;&#44288;&#46104;&#50612; &#51080;&#45796;. &#44536;&#44163;&#51008; &#50689;&#49549; &#49885;&#48324;&#51088;(&#54532;&#46972;&#51060;&#47672;&#47532; &#53412; &#44050;) &#44536;&#47532;&#44256; &#50500;&#47560; &#45936;&#51060;&#53552;&#48288;&#51060;&#49828; &#45236;&#50640; &#51080;&#45716; &#45824;&#51025;&#54616;&#45716; &#54665;&#51012; &#44054;&#45716;&#45796;. &#53945;&#48324;&#54620; &#50689;&#49549; &#52968;&#53581;&#49828;&#53944;&#51032; &#44221;&#50864;, Hibernate&#45716; &#50689;&#49549; identity&#44032;
+                     Java identity(&#44061;&#52404;&#51032; &#47700;&#47784;&#47532; &#45236; &#50948;&#52824;)&#50752; &#44057;&#45796;&#45716; &#51216;&#51012; <span class="emphasis"><em>&#48372;&#51613;&#54620;&#45796;</em></span>. 
+                  </p>
+               </dd>
+               <dt><span class="term">detached</span></dt>
+               <dd>
+                  <p>The instance was once associated with a persistence context, but that context was closed, or the instance was serialized to
+                     another process. It has a persistent identity and, perhaps, a corresponding row in the database. For detached instances, Hibernate
+                     makes no guarantees about the relationship between persistent identity and Java identity. 
+                  </p>
+               </dd>
+            </dl>
+         </div>
+      </div>
+      <div class="navfooter">
+         <hr>
+         <table width="100%" summary="Navigation footer">
+            <tr>
+               <td width="40%" align="left"><a accesskey="p" href="architecture.html">&#51060;&#51204;</a>&nbsp;
+               </td>
+               <td width="20%" align="center"><a accesskey="u" href="architecture.html">&#50948;&#47196;</a></td>
+               <td width="40%" align="right">&nbsp;<a accesskey="n" href="architecture-jmx.html">&#45796;&#51020;</a></td>
+            </tr>
+            <tr>
+               <td width="40%" align="left" valign="top">2&#51109;. &#50500;&#53412;&#53581;&#52376;&nbsp;</td>
+               <td width="20%" align="center"><a accesskey="h" href="index.html">&#52376;&#51020;&#51004;&#47196;</a></td>
+               <td width="40%" align="right" valign="top">&nbsp;2.3. JMX &#53685;&#54633;</td>
+            </tr>
+         </table>
+      </div>
+   </body>
+</html>

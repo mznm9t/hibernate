@@ -1,0 +1,232 @@
+<html>
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   
+      <title>1.4.&nbsp;&#31532;&#19977;&#37096;&#20998; - EventManager web&#24212;&#29992;&#31243;&#24207;</title>
+      <link rel="stylesheet" href="css/html.css" type="text/css">
+      <meta name="generator" content="DocBook XSL Stylesheets V1.72.0">
+      <link rel="start" href="index.html" title="HIBERNATE - &#31526;&#21512;Java&#20064;&#24815;&#30340;&#20851;&#31995;&#25968;&#25454;&#24211;&#25345;&#20037;&#21270;">
+      <link rel="up" href="tutorial.html" title="&#31532;&nbsp;1&nbsp;&#31456;&nbsp;Hibernate&#20837;&#38376;">
+      <link rel="prev" href="tutorial-associations.html" title="1.3.&nbsp;&#31532;&#20108;&#37096;&#20998; &#65293; &#20851;&#32852;&#26144;&#23556;">
+      <link rel="next" href="tutorial-summary.html" title="1.5.&nbsp;&#24635;&#32467;">
+   </head>
+   <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+      <div class="navheader">
+         <table width="100%" summary="Navigation header">
+            <tr>
+               <th colspan="3" align="center">1.4.&nbsp;&#31532;&#19977;&#37096;&#20998; - EventManager web&#24212;&#29992;&#31243;&#24207;</th>
+            </tr>
+            <tr>
+               <td width="20%" align="left"><a accesskey="p" href="tutorial-associations.html">&#19978;&#19968;&#39029;</a>&nbsp;
+               </td>
+               <th width="60%" align="center">&#31532;&nbsp;1&nbsp;&#31456;&nbsp;Hibernate&#20837;&#38376;</th>
+               <td width="20%" align="right">&nbsp;<a accesskey="n" href="tutorial-summary.html">&#19979;&#19968;&#39029;</a></td>
+            </tr>
+         </table>
+         <hr>
+      </div>
+      <div class="sect1" lang="zh-CN">
+         <div class="titlepage">
+            <div>
+               <div>
+                  <h2 class="title" style="clear: both"><a name="tutorial-webapp"></a>1.4.&nbsp;&#31532;&#19977;&#37096;&#20998; - EventManager web&#24212;&#29992;&#31243;&#24207;
+                  </h2>
+               </div>
+            </div>
+         </div>
+         <p>Let's turn the following discussion into a small web application... </p>
+         <p>Hibernate web&#24212;&#29992;&#31243;&#24207;&#20351;&#29992;<code class="literal">Session</code> &#21644;<code class="literal">Transaction</code>&#30340;&#26041;&#24335;&#20960;&#20046;&#21644;&#29420;&#31435;&#24212;&#29992;&#31243;&#24207;&#26159;&#19968;&#26679;&#30340;&#12290;&#20294;&#26159;&#65292;&#26377;&#19968;&#20123;&#24120;&#35265;&#30340;&#27169;&#24335;&#65288;pattern&#65289;&#38750;&#24120;&#26377;&#29992;&#12290;&#29616;&#22312;&#25105;&#20204;&#32534;&#20889;&#19968;&#20010;<code class="literal">EventManagerServlet</code>&#12290;&#36825;&#20010;servlet&#21487;&#20197;&#21015;&#20986;&#25968;&#25454;&#24211;&#20013;&#20445;&#23384;&#30340;&#25152;&#26377;&#30340;events&#65292;&#36824;&#25552;&#20379;&#19968;&#20010;HTML&#34920;&#21333;&#26469;&#22686;&#21152;&#26032;&#30340;events&#12290; 
+         </p>
+         <div class="sect2" lang="zh-CN">
+            <div class="titlepage">
+               <div>
+                  <div>
+                     <h3 class="title"><a name="tutorial-webapp-servlet"></a>1.4.1.&nbsp;&#32534;&#20889;&#22522;&#26412;&#30340;servlet
+                     </h3>
+                  </div>
+               </div>
+            </div>
+            <p>&#22312;&#20320;&#30340;&#28304;&#20195;&#30721;&#30446;&#24405;&#30340;<code class="literal">events</code>&#21253;&#20013;&#21019;&#24314;&#19968;&#20010;&#26032;&#30340;&#31867;&#65306; 
+            </p><pre class="programlisting">package events;
+
+// Imports
+
+public class EventManagerServlet extends HttpServlet {
+
+    // Servlet code
+}</pre><p>&#25105;&#20204;&#21518;&#38754;&#20250;&#29992;&#21040;<code class="literal">dateFormatter</code> &#30340;&#24037;&#20855;&#65292; &#23427;&#25226;<code class="literal">Date</code>&#23545;&#35937;&#36716;&#25442;&#20026;&#23383;&#31526;&#20018;&#12290;&#21482;&#35201;&#19968;&#20010;formatter&#20316;&#20026;servlet&#30340;&#25104;&#21592;&#23601;&#21487;&#20197;&#20102;&#12290; 
+            </p><pre class="programlisting">protected void doGet(HttpServletRequest request,
+                     HttpServletResponse response)
+        throws ServletException, IOException {
+
+    SimpleDateFormat dateFormatter = new SimpleDateFormat("dd.MM.yyyy");
+
+    try {
+        // Begin unit of work
+        HibernateUtil.getSessionFactory()
+                .getCurrentSession().beginTransaction();
+
+        // Process request and render page...
+
+        // End unit of work
+        HibernateUtil.getSessionFactory()
+                .getCurrentSession().getTransaction().commit();
+
+    } catch (Exception ex) {
+        HibernateUtil.getSessionFactory()
+                .getCurrentSession().getTransaction().rollback();
+        throw new ServletException(ex);
+    }
+
+}</pre><p>The pattern we are applying here is called <span class="emphasis"><em>session-per-request</em></span>. When a request hits the servlet, a new Hibernate <code class="literal">Session</code> is opened through the first call to <code class="literal">getCurrentSession()</code> on the <code class="literal">SessionFactory</code>. Then a database transaction is started-all data access as to occur inside a transaction, no matter if data is read or written
+               (we don't use the auto-commit mode in applications). 
+            </p>
+            <p>&#25105;&#20204;&#31216;&#36825;&#37324;&#24212;&#29992;&#30340;&#27169;&#24335;&#20026;&#27599;&#27425;&#35831;&#27714;&#19968;&#20010;session<span class="emphasis"><em>(session-per-request)</em></span>&#12290;&#24403;&#26377;&#35831;&#27714;&#21040;&#36798;&#36825;&#20010;servlet&#30340;&#26102;&#20505;&#65292;&#36890;&#36807;&#23545;<code class="literal">SessionFactory</code>&#30340;&#31532;&#19968;&#27425;&#35843;&#29992;&#65292;&#25171;&#24320;&#19968;&#20010;&#26032;&#30340;Hibernate <code class="literal">Session</code>&#12290;&#28982;&#21518;&#21551;&#21160;&#19968;&#20010;&#25968;&#25454;&#24211;&#20107;&#21153;-&#25152;&#26377;&#30340;&#25968;&#25454;&#35775;&#38382;&#37117;&#26159;&#22312;&#20107;&#21153;&#20013;&#36827;&#34892;&#65292;&#19981;&#31649;&#26159;&#35835;&#36824;&#26159;&#20889;&#65288;&#25105;&#20204;&#22312;&#24212;&#29992;&#31243;&#24207;&#20013;&#19981;&#20351;&#29992;auto-commit&#27169;&#24335;&#65289;&#12290; 
+            </p>
+            <p><span class="emphasis"><em>&#19981;&#35201;</em></span>&#20026;&#27599;&#27425;&#25968;&#25454;&#24211;&#25805;&#20316;&#37117;&#20351;&#29992;&#19968;&#20010;&#26032;&#30340;Hibernate <code class="literal">Session</code>&#12290;&#23558;Hibernate <code class="literal">Session</code>&#30340;&#33539;&#22260;&#35774;&#32622;&#20026;&#25972;&#20010;&#35831;&#27714;&#12290;&#35201;&#29992;<code class="literal">getCurrentSession()</code>&#65292;&#36825;&#26679;&#23427;&#33258;&#21160;&#20250;&#32465;&#23450;&#21040;&#24403;&#21069;Java&#32447;&#31243;&#12290; 
+            </p>
+            <p>Finally, the unit of work ends when processing and rendering is complete. If any problem occurred during processing or rendering,
+               an exception will be thrown and the database transaction rolled back. This completes the <code class="literal">session-per-request</code> pattern. Instead of the transaction demarcation code in every servlet you could also write a servlet filter. See the Hibernate
+               website and Wiki for more information about this pattern, called <span class="emphasis"><em>Open Session in View</em></span>-you'll need it as soon as you consider rendering your view in JSP, not in a servlet. 
+            </p>
+         </div>
+         <div class="sect2" lang="zh-CN">
+            <div class="titlepage">
+               <div>
+                  <div>
+                     <h3 class="title"><a name="tutorial-webapp-processing"></a>1.4.2.&nbsp;&#26368;&#21518;&#65292;&#24403;&#22788;&#29702;&#19982;&#28210;&#26579;&#37117;&#32467;&#26463;&#30340;&#26102;&#20505;&#65292;&#36825;&#20010;&#24037;&#20316;&#21333;&#20803;&#23601;&#32467;&#26463;&#20102;&#12290;&#20551;&#33509;&#22312;&#22788;&#29702;&#25110;&#28210;&#26579;&#30340;&#26102;&#20505;&#26377;&#20219;&#20309;&#38169;&#35823;&#21457;&#29983;&#65292;&#20250;&#25243;&#20986;&#19968;&#20010;&#24322;&#24120;&#65292;&#22238;&#28378;&#25968;&#25454;&#24211;&#20107;&#21153;&#12290;&#36825;&#26679;&#65292;<code class="literal">session-per-request</code>&#27169;&#24335;&#23601;&#23436;&#25104;&#20102;&#12290;&#20026;&#20102;&#36991;&#20813;&#22312;&#27599;&#20010;servlet&#20013;&#37117;&#32534;&#20889;&#20107;&#21153;&#36793;&#30028;&#30028;&#23450;&#30340;&#20195;&#30721;&#65292;&#21487;&#20197;&#32771;&#34385;&#20889;&#19968;&#20010;servlet &#36807;&#28388;&#22120;&#65288;filter&#65289;&#26469;&#26356;&#22909;&#22320;&#35299;&#20915;&#12290;&#20851;&#20110;&#36825;&#19968;&#27169;&#24335;&#30340;&#26356;&#22810;&#20449;&#24687;&#65292;&#35831;&#21442;&#38405;Hibernate&#32593;&#31449;&#21644;Wiki&#65292;&#36825;&#19968;&#27169;&#24335;&#21483;&#20570;<span class="emphasis"><em>Open Session in View</em></span>-&#21482;&#35201;&#20320;&#32771;&#34385;&#29992;JSP&#26469;&#28210;&#26579;&#20320;&#30340;&#35270;&#22270;&#65288;view&#65289;&#65292;&#32780;&#19981;&#26159;&#22312;servlet&#20013;&#65292;&#20320;&#23601;&#20250;&#24456;&#24555;&#29992;&#21040;&#23427;&#12290;
+                     </h3>
+                  </div>
+               </div>
+            </div>
+            <p>&#22788;&#29702;&#19982;&#28210;&#26579; </p><pre class="programlisting">// Write HTML header
+PrintWriter out = response.getWriter();
+out.println("&lt;html&gt;&lt;head&gt;&lt;title&gt;Event Manager&lt;/title&gt;&lt;/head&gt;&lt;body&gt;");
+
+// Handle actions
+if ( "store".equals(request.getParameter("action")) ) {
+
+    String eventTitle = request.getParameter("eventTitle");
+    String eventDate = request.getParameter("eventDate");
+
+    if ( "".equals(eventTitle) || "".equals(eventDate) ) {
+        out.println("&lt;b&gt;&lt;i&gt;Please enter event title and date.&lt;/i&gt;&lt;/b&gt;");
+    } else {
+        createAndStoreEvent(eventTitle, dateFormatter.parse(eventDate));
+        out.println("&lt;b&gt;&lt;i&gt;Added event.&lt;/i&gt;&lt;/b&gt;");
+    }
+}
+
+// Print page
+printEventForm(out);
+listEvents(out, dateFormatter);
+
+// Write HTML footer
+out.println("&lt;/body&gt;&lt;/html&gt;");
+out.flush();
+out.close();</pre><p>Granted, this coding style with a mix of Java and HTML would not scale in a more complex application-keep in mind that we
+               are only illustrating basic Hibernate concepts in this tutorial. The code prints an HTML header and a footer. Inside this
+               page, an HTML form for event entry and a list of all events in the database are printed. The first method is trivial and only
+               outputs HTML: 
+            </p><pre class="programlisting">private void printEventForm(PrintWriter out) {
+    out.println("&lt;h2&gt;Add new event:&lt;/h2&gt;");
+    out.println("&lt;form&gt;");
+    out.println("Title: &lt;input name='eventTitle' length='50'/&gt;&lt;br/&gt;");
+    out.println("Date (e.g. 24.12.2009): &lt;input name='eventDate' length='10'/&gt;&lt;br/&gt;");
+    out.println("&lt;input type='submit' name='action' value='store'/&gt;");
+    out.println("&lt;/form&gt;");
+}</pre><p><code class="literal">listEvents()</code>&#26041;&#27861;&#20351;&#29992;&#32465;&#23450;&#21040;&#24403;&#21069;&#32447;&#31243;&#30340;Hibernate <code class="literal">Session</code>&#26469;&#25191;&#34892;&#26597;&#35810;&#65306; 
+            </p><pre class="programlisting">private void listEvents(PrintWriter out, SimpleDateFormat dateFormatter) {
+
+    List result = HibernateUtil.getSessionFactory()
+                    .getCurrentSession().createCriteria(Event.class).list();
+    if (result.size() &gt; 0) {
+        out.println("&lt;h2&gt;Events in database:&lt;/h2&gt;");
+        out.println("&lt;table border='1'&gt;");
+        out.println("&lt;tr&gt;");
+        out.println("&lt;th&gt;Event title&lt;/th&gt;");
+        out.println("&lt;th&gt;Event date&lt;/th&gt;");
+        out.println("&lt;/tr&gt;");
+        for (Iterator it = result.iterator(); it.hasNext();) {
+            Event event = (Event) it.next();
+            out.println("&lt;tr&gt;");
+            out.println("&lt;td&gt;" + event.getTitle() + "&lt;/td&gt;");
+            out.println("&lt;td&gt;" + dateFormatter.format(event.getDate()) + "&lt;/td&gt;");
+            out.println("&lt;/tr&gt;");
+        }
+        out.println("&lt;/table&gt;");
+    }
+}</pre><p>&#26368;&#21518;&#65292;<code class="literal">store</code>&#21160;&#20316;&#20250;&#34987;&#23548;&#21521;&#21040;<code class="literal">createAndStoreEvent()</code>&#26041;&#27861;&#65292;&#23427;&#20063;&#20351;&#29992;&#24403;&#21069;&#32447;&#31243;&#30340;<code class="literal">Session</code>: 
+            </p><pre class="programlisting">protected void createAndStoreEvent(String title, Date theDate) {
+    Event theEvent = new Event();
+    theEvent.setTitle(title);
+    theEvent.setDate(theDate);
+
+    HibernateUtil.getSessionFactory()
+                    .getCurrentSession().save(theEvent);
+}</pre><p>That's it, the servlet is complete. A request to the servlet will be processed in a single <code class="literal">Session</code> and <code class="literal">Transaction</code>. As earlier in the standalone application, Hibernate can automatically bind these objects to the current thread of execution.
+               This gives you the freedom to layer your code and access the <code class="literal">SessionFactory</code> in any way you like. Usually you'd use a more sophisticated design and move the data access code into data access objects
+               (the DAO pattern). See the Hibernate Wiki for more examples. 
+            </p>
+         </div>
+         <div class="sect2" lang="zh-CN">
+            <div class="titlepage">
+               <div>
+                  <div>
+                     <h3 class="title"><a name="tutorial-webapp-deploy"></a>1.4.3.&nbsp;&#37096;&#32626;&#19982;&#27979;&#35797;
+                     </h3>
+                  </div>
+               </div>
+            </div>
+            <p>&#35201;&#21457;&#24067;&#36825;&#20010;&#31243;&#24207;&#65292;&#20320;&#24471;&#25226;&#23427;&#25171;&#25104;web&#21457;&#24067;&#21253;&#65306;WAR&#25991;&#20214;&#12290;&#25226;&#19979;&#38754;&#30340;&#33050;&#26412;&#21152;&#20837;&#21040;&#20320;&#30340;<code class="literal">build.xml</code>&#20013;&#65306; 
+            </p><pre class="programlisting">&lt;target name="war" depends="compile"&gt;
+    &lt;war destfile="hibernate-tutorial.war" webxml="web.xml"&gt;
+        &lt;lib dir="${librarydir}"&gt;
+          &lt;exclude name="jsdk*.jar"/&gt;
+        &lt;/lib&gt;
+
+        &lt;classes dir="${targetdir}"/&gt;
+    &lt;/war&gt;
+&lt;/target&gt;</pre><p>&#36825;&#27573;&#20195;&#30721;&#22312;&#20320;&#30340;&#24320;&#21457;&#30446;&#24405;&#20013;&#21019;&#24314;&#19968;&#20010;<code class="literal">hibernate-tutorial.war</code>&#30340;&#25991;&#20214;&#12290;&#23427;&#25226;&#25152;&#26377;&#30340;&#31867;&#24211;&#21644;<code class="literal">web.xml</code>&#25551;&#36848;&#25991;&#20214;&#37117;&#25171;&#21253;&#36827;&#21435;&#65292;web.xml &#25991;&#20214;&#24212;&#35813;&#20301;&#20110;&#20320;&#30340;&#24320;&#21457;&#26681;&#30446;&#24405;&#20013;&#65306; 
+            </p><pre class="programlisting">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;web-app version="2.4"
+    xmlns="http://java.sun.com/xml/ns/j2ee"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd"&gt;
+
+    &lt;servlet&gt;
+        &lt;servlet-name&gt;Event Manager&lt;/servlet-name&gt;
+        &lt;servlet-class&gt;events.EventManagerServlet&lt;/servlet-class&gt;
+    &lt;/servlet&gt;
+
+    &lt;servlet-mapping&gt;
+        &lt;servlet-name&gt;Event Manager&lt;/servlet-name&gt;
+        &lt;url-pattern&gt;/eventmanager&lt;/url-pattern&gt;
+    &lt;/servlet-mapping&gt;
+&lt;/web-app&gt;</pre><p>Before you compile and deploy the web application, note that an additional library is required: <code class="literal">jsdk.jar</code>. This is the Java servlet development kit, if you don't have this library already, get it from the Sun website and copy it
+               to your library directory. However, it will be only used for compilation and excluded from the WAR package. 
+            </p>
+            <p>&#22312;&#20320;&#30340;&#24320;&#21457;&#30446;&#24405;&#20013;&#65292;&#35843;&#29992;<code class="literal">ant war</code>&#26469;&#26500;&#24314;&#12289;&#25171;&#21253;&#65292;&#28982;&#21518;&#25226;<code class="literal">hibernate-tutorial.war</code>&#25991;&#20214;&#25335;&#36125;&#21040;&#20320;&#30340;tomcat&#30340;<code class="literal">webapps</code>&#30446;&#24405;&#19979;&#12290;&#20551;&#33509;&#20320;&#36824;&#27809;&#23433;&#35013;Tomcat&#65292;&#23601;&#21435;&#19979;&#36733;&#19968;&#20010;&#65292;&#25353;&#29031;&#25351;&#21335;&#26469;&#23433;&#35013;&#12290;&#23545;&#27492;&#24212;&#29992;&#30340;&#21457;&#24067;&#65292;&#20320;&#19981;&#38656;&#35201;&#20462;&#25913;&#20219;&#20309;Tomcat&#30340;&#37197;&#32622;&#12290; 
+            </p>
+            <p>&#22312;&#37096;&#32626;&#23436;&#65292;&#21551;&#21160;Tomcat&#20043;&#21518;&#65292;&#36890;&#36807;<code class="literal">http://localhost:8080/hibernate-tutorial/eventmanager</code>&#36827;&#34892;&#35775;&#38382;&#20320;&#30340;&#24212;&#29992;&#65292;&#22312;&#31532;&#19968;&#27425;servlet &#35831;&#27714;&#21457;&#29983;&#26102;&#65292;&#35831;&#22312;Tomcat log&#20013;&#30830;&#35748;&#20320;&#30475;&#21040;Hibernate&#34987;&#21021;&#22987;&#21270;&#20102;&#65288;<code class="literal">HibernateUtil</code>&#30340;&#38745;&#24577;&#21021;&#22987;&#21270;&#22120;&#34987;&#35843;&#29992;&#65289;&#65292;&#20551;&#33509;&#26377;&#20219;&#20309;&#24322;&#24120;&#25243;&#20986;&#65292;&#20063;&#21487;&#20197;&#30475;&#21040;&#35814;&#32454;&#30340;&#36755;&#20986;&#12290; 
+            </p>
+         </div>
+      </div>
+      <div class="navfooter">
+         <hr>
+         <table width="100%" summary="Navigation footer">
+            <tr>
+               <td width="40%" align="left"><a accesskey="p" href="tutorial-associations.html">&#19978;&#19968;&#39029;</a>&nbsp;
+               </td>
+               <td width="20%" align="center"><a accesskey="u" href="tutorial.html">&#19978;&#19968;&#32423;</a></td>
+               <td width="40%" align="right">&nbsp;<a accesskey="n" href="tutorial-summary.html">&#19979;&#19968;&#39029;</a></td>
+            </tr>
+            <tr>
+               <td width="40%" align="left" valign="top">1.3.&nbsp;&#31532;&#20108;&#37096;&#20998; &#65293; &#20851;&#32852;&#26144;&#23556;&nbsp;</td>
+               <td width="20%" align="center"><a accesskey="h" href="index.html">&#36215;&#22987;&#39029;</a></td>
+               <td width="40%" align="right" valign="top">&nbsp;1.5.&nbsp;&#24635;&#32467;</td>
+            </tr>
+         </table>
+      </div>
+   </body>
+</html>

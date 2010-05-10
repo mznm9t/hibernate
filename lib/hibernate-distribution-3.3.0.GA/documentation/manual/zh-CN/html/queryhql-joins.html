@@ -1,0 +1,102 @@
+<html>
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   
+      <title>14.3.&nbsp;&#20851;&#32852;(Association)&#19982;&#36830;&#25509;(Join)</title>
+      <link rel="stylesheet" href="css/html.css" type="text/css">
+      <meta name="generator" content="DocBook XSL Stylesheets V1.72.0">
+      <link rel="start" href="index.html" title="HIBERNATE - &#31526;&#21512;Java&#20064;&#24815;&#30340;&#20851;&#31995;&#25968;&#25454;&#24211;&#25345;&#20037;&#21270;">
+      <link rel="up" href="queryhql.html" title="&#31532;&nbsp;14&nbsp;&#31456;&nbsp;HQL: Hibernate&#26597;&#35810;&#35821;&#35328;">
+      <link rel="prev" href="queryhql-from.html" title="14.2.&nbsp;from&#23376;&#21477;">
+      <link rel="next" href="queryhql-joins-forms.html" title="14.4.&nbsp;join &#35821;&#27861;&#30340;&#24418;&#24335;">
+   </head>
+   <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+      <div class="navheader">
+         <table width="100%" summary="Navigation header">
+            <tr>
+               <th colspan="3" align="center">14.3.&nbsp;&#20851;&#32852;(Association)&#19982;&#36830;&#25509;(Join)</th>
+            </tr>
+            <tr>
+               <td width="20%" align="left"><a accesskey="p" href="queryhql-from.html">&#19978;&#19968;&#39029;</a>&nbsp;
+               </td>
+               <th width="60%" align="center">&#31532;&nbsp;14&nbsp;&#31456;&nbsp;HQL: Hibernate&#26597;&#35810;&#35821;&#35328;</th>
+               <td width="20%" align="right">&nbsp;<a accesskey="n" href="queryhql-joins-forms.html">&#19979;&#19968;&#39029;</a></td>
+            </tr>
+         </table>
+         <hr>
+      </div>
+      <div class="sect1" lang="zh-CN">
+         <div class="titlepage">
+            <div>
+               <div>
+                  <h2 class="title" style="clear: both"><a name="queryhql-joins"></a>14.3.&nbsp;&#20851;&#32852;(Association)&#19982;&#36830;&#25509;(Join)
+                  </h2>
+               </div>
+            </div>
+         </div>
+         <p>&#25105;&#20204;&#20063;&#21487;&#20197;&#20026;&#30456;&#20851;&#32852;&#30340;&#23454;&#20307;&#29978;&#33267;&#26159;&#23545;&#19968;&#20010;&#38598;&#21512;&#20013;&#30340;&#20840;&#37096;&#20803;&#32032;&#25351;&#23450;&#19968;&#20010;&#21035;&#21517;, &#36825;&#26102;&#35201;&#20351;&#29992;&#20851;&#38190;&#23383;<code class="literal">join</code>&#12290; 
+         </p><pre class="programlisting">from Cat as cat
+    inner join cat.mate as mate
+    left outer join cat.kittens as kitten</pre><pre class="programlisting">from Cat as cat left join cat.mate.kittens as kittens</pre><pre class="programlisting">from Formula form full join form.parameter param</pre><p>&#21463;&#25903;&#25345;&#30340;&#36830;&#25509;&#31867;&#22411;&#26159;&#20174;ANSI SQL&#20013;&#20511;&#37492;&#26469;&#30340;&#12290; </p>
+         <div class="itemizedlist">
+            <ul type="disc" compact>
+               <li>
+                  <p>
+                                         <code class="literal"><code class="literal">inner join</code>&#65288;&#20869;&#36830;&#25509;&#65289;</code>
+                                     
+                  </p>
+               </li>
+               <li>
+                  <p>
+                                         <code class="literal"><code class="literal">left outer join</code>&#65288;&#24038;&#22806;&#36830;&#25509;&#65289;</code>
+                                     
+                  </p>
+               </li>
+               <li>
+                  <p>
+                                         <code class="literal"><code class="literal">right outer join</code>&#65288;&#21491;&#22806;&#36830;&#25509;&#65289;</code>
+                                     
+                  </p>
+               </li>
+               <li>
+                  <p><code class="literal">full join</code> (&#20840;&#36830;&#25509;&#65292;&#24182;&#19981;&#24120;&#29992;) 
+                  </p>
+               </li>
+            </ul>
+         </div>
+         <p>&#35821;&#21477;<code class="literal">inner join</code>, <code class="literal">left outer join</code> &#20197;&#21450; <code class="literal">right outer join</code> &#21487;&#20197;&#31616;&#20889;&#12290; 
+         </p><pre class="programlisting">from Cat as cat
+    join cat.mate as mate
+    left join cat.kittens as kitten</pre><p>&#36890;&#36807;HQL&#30340;<code class="literal">with</code>&#20851;&#38190;&#23383;&#65292;&#20320;&#21487;&#20197;&#25552;&#20379;&#39069;&#22806;&#30340;join&#26465;&#20214;&#12290; 
+         </p><pre class="programlisting">from Cat as cat
+    left join cat.kittens as kitten
+        with kitten.bodyWeight &gt; 10.0</pre><p>&#36824;&#26377;&#65292;&#19968;&#20010;"fetch"&#36830;&#25509;&#20801;&#35768;&#20165;&#20165;&#20351;&#29992;&#19968;&#20010;&#36873;&#25321;&#35821;&#21477;&#23601;&#23558;&#30456;&#20851;&#32852;&#30340;&#23545;&#35937;&#25110;&#19968;&#32452;&#20540;&#30340;&#38598;&#21512;&#38543;&#30528;&#20182;&#20204;&#30340;&#29238;&#23545;&#35937;&#30340;&#21021;&#22987;&#21270;&#32780;&#34987;&#21021;&#22987;&#21270;&#65292;&#36825;&#31181;&#26041;&#27861;&#22312;&#20351;&#29992;&#21040;&#38598;&#21512;&#30340;&#24773;&#20917;&#19979;&#23588;&#20854;&#26377;&#29992;&#65292;&#23545;&#20110;&#20851;&#32852;&#21644;&#38598;&#21512;&#26469;&#35828;&#65292;&#23427;&#26377;&#25928;&#30340;&#20195;&#26367;&#20102;&#26144;&#23556;&#25991;&#20214;&#20013;&#30340;&#22806;&#32852;&#25509; &#19982;&#24310;&#36831;&#22768;&#26126;&#65288;lazy declarations&#65289;.
+            &#26597;&#30475; <a href="performance.html#performance-fetching" title="19.1.&nbsp;&#25235;&#21462;&#31574;&#30053;(Fetching strategies)">&#31532;&nbsp;19.1&nbsp;&#33410; &#8220;&#25235;&#21462;&#31574;&#30053;(Fetching strategies)&#8221;</a> &#20197;&#33719;&#24471;&#31561;&#22810;&#30340;&#20449;&#24687;&#12290; 
+         </p><pre class="programlisting">from Cat as cat
+    inner join fetch cat.mate
+    left join fetch cat.kittens</pre><p>&#19968;&#20010;fetch&#36830;&#25509;&#36890;&#24120;&#19981;&#38656;&#35201;&#34987;&#25351;&#23450;&#21035;&#21517;, &#22240;&#20026;&#30456;&#20851;&#32852;&#30340;&#23545;&#35937;&#19981;&#24212;&#24403;&#34987;&#29992;&#22312; <code class="literal">where</code> &#23376;&#21477; (&#25110;&#20854;&#23427;&#20219;&#20309;&#23376;&#21477;)&#20013;&#12290;&#21516;&#26102;&#65292;&#30456;&#20851;&#32852;&#30340;&#23545;&#35937; &#24182;&#19981;&#22312;&#26597;&#35810;&#30340;&#32467;&#26524;&#20013;&#30452;&#25509;&#36820;&#22238;&#65292;&#20294;&#21487;&#20197;&#36890;&#36807;&#20182;&#20204;&#30340;&#29238;&#23545;&#35937;&#26469;&#35775;&#38382;&#21040;&#20182;&#20204;&#12290; 
+         </p><pre class="programlisting">from Cat as cat
+    inner join fetch cat.mate
+    left join fetch cat.kittens child
+    left join fetch child.kittens</pre><p>&#20551;&#33509;&#20351;&#29992;<code class="literal">iterate()</code>&#26469;&#35843;&#29992;&#26597;&#35810;&#65292;&#35831;&#27880;&#24847;<code class="literal">fetch</code>&#26500;&#36896;&#26159;&#19981;&#33021;&#20351;&#29992;&#30340;(<code class="literal">scroll()</code> &#21487;&#20197;&#20351;&#29992;)&#12290;<code class="literal">fetch</code>&#20063;&#19981;&#24212;&#35813;&#19982;<code class="literal">setMaxResults()</code> &#25110;<code class="literal">setFirstResult()</code>&#20849;&#29992;&#65292;&#36825;&#26159;&#22240;&#20026;&#36825;&#20123;&#25805;&#20316;&#26159;&#22522;&#20110;&#32467;&#26524;&#38598;&#30340;&#65292;&#32780;&#22312;&#39044;&#20808;&#25235;&#21462;&#38598;&#21512;&#31867;&#26102;&#21487;&#33021;&#21253;&#21547;&#37325;&#22797;&#30340;&#25968;&#25454;&#65292;&#20063;&#23601;&#26159;&#35828;&#26080;&#27861;&#39044;&#20808;&#30693;&#36947;&#31934;&#30830;&#30340;&#34892;&#25968;&#12290;<code class="literal">fetch</code>&#36824;&#19981;&#33021;&#19982;&#29420;&#31435;&#30340; <code class="literal">with</code>&#26465;&#20214;&#19968;&#36215;&#20351;&#29992;&#12290;&#36890;&#36807;&#22312;&#19968;&#27425;&#26597;&#35810;&#20013;fetch&#22810;&#20010;&#38598;&#21512;&#65292;&#21487;&#20197;&#21046;&#36896;&#20986;&#31515;&#21345;&#23572;&#31215;&#65292;&#22240;&#27492;&#35831;&#22810;&#21152;&#27880;&#24847;&#12290;&#23545;bag&#26144;&#23556;&#26469;&#35828;&#65292;&#21516;&#26102;join fetch&#22810;&#20010;&#38598;&#21512;&#35282;&#33394;&#21487;&#33021;&#22312;&#26576;&#20123;&#24773;&#20917;&#19979;&#32473;&#20986;&#24182;&#38750;&#39044;&#26399;&#30340;&#32467;&#26524;&#65292;&#20063;&#35831;&#23567;&#24515;&#12290;&#26368;&#21518;&#27880;&#24847;&#65292;&#20351;&#29992;<code class="literal">full join fetch</code> &#19982; <code class="literal">right join fetch</code>&#26159;&#27809;&#26377;&#24847;&#20041;&#30340;&#12290; 
+         </p>
+         <p>&#22914;&#26524;&#20320;&#20351;&#29992;&#23646;&#24615;&#32423;&#21035;&#30340;&#24310;&#36831;&#33719;&#21462;&#65288;lazy fetching&#65289;&#65288;&#36825;&#26159;&#36890;&#36807;&#37325;&#26032;&#32534;&#20889;&#23383;&#33410;&#30721;&#23454;&#29616;&#30340;&#65289;&#65292;&#21487;&#20197;&#20351;&#29992; <code class="literal">fetch all properties</code> &#26469;&#24378;&#21046;Hibernate&#31435;&#21363;&#21462;&#24471;&#37027;&#20123;&#21407;&#26412;&#38656;&#35201;&#24310;&#36831;&#21152;&#36733;&#30340;&#23646;&#24615;&#65288;&#22312;&#31532;&#19968;&#20010;&#26597;&#35810;&#20013;&#65289;&#12290; 
+         </p><pre class="programlisting">from Document fetch all properties order by name</pre><pre class="programlisting">from Document doc fetch all properties where lower(doc.name) like '%cats%'</pre></div>
+      <div class="navfooter">
+         <hr>
+         <table width="100%" summary="Navigation footer">
+            <tr>
+               <td width="40%" align="left"><a accesskey="p" href="queryhql-from.html">&#19978;&#19968;&#39029;</a>&nbsp;
+               </td>
+               <td width="20%" align="center"><a accesskey="u" href="queryhql.html">&#19978;&#19968;&#32423;</a></td>
+               <td width="40%" align="right">&nbsp;<a accesskey="n" href="queryhql-joins-forms.html">&#19979;&#19968;&#39029;</a></td>
+            </tr>
+            <tr>
+               <td width="40%" align="left" valign="top">14.2.&nbsp;from&#23376;&#21477;&nbsp;</td>
+               <td width="20%" align="center"><a accesskey="h" href="index.html">&#36215;&#22987;&#39029;</a></td>
+               <td width="40%" align="right" valign="top">&nbsp;14.4.&nbsp;join &#35821;&#27861;&#30340;&#24418;&#24335;</td>
+            </tr>
+         </table>
+      </div>
+   </body>
+</html>
